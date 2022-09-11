@@ -123,14 +123,6 @@ DEFAULT_SETTING_EVIDENTIAL_NET = MetaDictSetting(
 )
 
 
-DEFAULT_SETTING_TAIL_NET = MetaDictSetting(
-    meta_dict={
-        'dense_args': dict(units=128, kernel_initializer='lecun_normal', activation='selu'),
-        'n_dense': 3
-    },
-    mandatory_fields=[]
-)
-
 STRING_CONFIGS = ['var_obs', 'one_hot', 'var_obs_one_hot', 'one_hot_var_obs']
 
 

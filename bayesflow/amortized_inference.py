@@ -18,12 +18,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+from turtle import pos
 import numpy as np
 import tensorflow as tf
 
 from bayesflow.exceptions import ConfigurationError, SummaryStatsError
-from bayesflow.losses import *
+from bayesflow.losses import mmd_summary_space, log_loss, kl_dirichlet
 from bayesflow.default_settings import DEFAULT_KEYS
+
+import tensorflow_probability as tfp
 
 from warnings import warn
 
@@ -49,7 +52,7 @@ class AmortizedPosterior(tf.keras.Model):
     In International Conference on Machine Learning (pp. 4673-4681). PMLR.
     """
 
-    def __init__(self, inference_net, summary_net=None, loss_fun=None, summary_loss_fun=None, **kwargs):
+    def __init__(self, inference_net, summary_net=None, latent_dist=None, summary_loss_fun=None, **kwargs):
         """Initializes a composite neural network to represent an amortized approximate posterior.
 
         Parameters
@@ -58,12 +61,11 @@ class AmortizedPosterior(tf.keras.Model):
             An (invertible) inference network which processes the outputs of a generative model 
         summary_net       : tf.keras.Model or None, optional, default: None
             An optional summary network
-        loss_fun          : callable or None, optional, default: None
-            The loss function which accepts the outputs of the amortizer. If None, the loss is inferred
-            based on the `inference_net` type. 
+        latent_dist       : callable or None, optional, default: None
+            The latent distribution towards which to optimize the networks.
         summary_loss_fun  : callable or None, optional, default: None
             The loss function which accepts the outputs of the summary network. If None, no loss is provided.
-        **kwargs    : dict, optional
+        **kwargs          : dict, optional
             Additional keyword arguments passed to the __init__ method of a tf.keras.Model instance.
 
         Important
@@ -80,9 +82,10 @@ class AmortizedPosterior(tf.keras.Model):
         super(AmortizedPosterior, self).__init__(**kwargs)
 
         self.inference_net = inference_net
+        self.z_dim = self.inference_net.z_dim
         self.summary_net = summary_net
         self.summary_loss = self._determine_summary_loss(summary_loss_fun)
-        self.inference_loss = self._determine_loss(loss_fun)
+        self.latent_dist = self._determine_latent_dist(latent_dist)
 
     def call(self, input_dict, return_summary=False, **kwargs):
         """ Performs a forward pass through the summary and inference network.
@@ -178,9 +181,17 @@ class AmortizedPosterior(tf.keras.Model):
             **kwargs
         )
 
-        # Obtain random draws from the approximate posterior given conditioning variables
-        post_samples = self.inference_net.sample(condition, n_samples, training=False, **kwargs)
+        # Obtain z_samples from the specified distribution
+        z_samples = self.latent_dist.sample(n_samples)
 
+        # Obtain random draws from the approximate posterior given conditioning variables
+        post_samples = self.inference_net.inverse(z_samples, condition, training=False, **kwargs)
+
+        # Only return 2D array, if first dimensions is 1
+        if post_samples.shape[0] == 1:
+            post_samples = post_samples[0]
+
+        # Convert to numpy, if specified, and return
         if to_numpy:
             return post_samples.numpy()
         return post_samples
@@ -214,7 +225,6 @@ class AmortizedPosterior(tf.keras.Model):
             return np.concatenate(post_samples, axis=0)
         return tf.concat(post_samples, axis=0)
 
-
     def log_posterior(self, input_dict, to_numpy=True, **kwargs):
         """ Calculates the approximate log-posterior of targets given conditional variables via
         the change-of-variable formula for a conditional normalizing flow.
@@ -231,8 +241,8 @@ class AmortizedPosterior(tf.keras.Model):
 
         Returns
         -------
-        log_post  : tf.Tensor of shape (batch_size, n_obs)
-            the approximate log-posterior density of each each parameter 
+        log_post  : tf.Tensor of shape (batch_size, ...)
+            the approximate log-posterior density of each parameter draw in each data set
         """
 
         # Compute learnable summaries, if appropriate
@@ -243,8 +253,12 @@ class AmortizedPosterior(tf.keras.Model):
             **kwargs
         )
 
-        # Compute approximate log posterior of provided parameters
-        log_post = self.inference_net.log_density(input_dict[DEFAULT_KEYS['parameters']], conditions, training=False, **kwargs)
+        # Forward pass through the network
+        z, log_det_J = self.inference_net.forward(
+            input_dict[DEFAULT_KEYS['parameters']], conditions, training=False, **kwargs)
+
+        # Compute approximate log posterior
+        log_post = self.latent_dist.log_prob(z) + log_det_J
 
         if to_numpy:
             return log_post.numpy()
@@ -267,11 +281,13 @@ class AmortizedPosterior(tf.keras.Model):
         """
 
         if self.summary_loss is not None:
-            net_out, sum_out = self(input_dict, return_summary=True, **kwargs)
-            loss =  self.summary_loss(sum_out) + self.inference_loss(*net_out)
+            z, log_det_J, sum_out = self(input_dict, return_summary=True, **kwargs)
+            sum_loss =  self.summary_loss(sum_out)
+            inf_loss = tf.reduce_mean(-self.latent_dist.log_prob(z) - log_det_J)
+            loss = inf_loss + sum_loss
         else:
-            net_out = self(input_dict, **kwargs)
-            loss = self.inference_loss(*net_out)
+            z, log_det_J = self(input_dict, **kwargs)
+            loss = tf.reduce_mean(-self.latent_dist.log_prob(z) - log_det_J)
         return loss
 
     def _compute_summary_condition(self, summary_conditions, direct_conditions, **kwargs):
@@ -295,23 +311,14 @@ class AmortizedPosterior(tf.keras.Model):
             raise SummaryStatsError("Could not concatenarte or determine conditioning inputs...")
         return sum_condition, full_cond
 
-    def _determine_loss(self, loss_fun):
-        """ Determines which loss to use if default None argument provided, otherwise return argument.
+    def _determine_latent_dist(self, latent_dist):
+        """ Determines which latent distribution to use and defaults to unit normal if none provided.
         """
 
-        if loss_fun is None:
-            try:
-                if self.inference_net.tail_network is not None:
-                    return kl_latent_space_student
-                else:
-                    return kl_latent_space_gaussian
-            except Exception as _:
-                raise ConfigurationError("Could not infer loss function based on inference net type. " +
-                                         "Please provide a custom loss function!")
-        elif callable(loss_fun):
-            return loss_fun
+        if latent_dist is None:
+            return tfp.distributions.MultivariateNormalDiag(loc=[0.]*self.z_dim)
         else:
-            raise ConfigurationError("Loss function is neither default not callable. Please provide a valid loss function!")
+            return latent_dist
 
     def _determine_summary_loss(self, loss_fun):
         """ Determines which summary loss to use if default None argument provided, otherwise return argument.
@@ -326,10 +333,10 @@ class AmortizedPosterior(tf.keras.Model):
             if loss_fun.lower() == 'mmd':
                 return mmd_summary_space
             else:
-                raise NotImplementedError("For now, only 'mmd' is supported as a string argument for summary_loss_fun!")
+                raise NotImplementedError("For now, only 'MMD' is supported as a string argument for `summary_loss_fun`!")
         # Throw if loss type unexpected
         else:
-            raise NotImplementedError("Could not infer summary_loss_fun, argument should be of type (None, callable, or str)!")
+            raise NotImplementedError("Could not infer `summary_loss_fun`, argument should be of type (None, callable, or str)!")
 
 
 class AmortizedLikelihood(tf.keras.Model):

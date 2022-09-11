@@ -503,7 +503,7 @@ class GenerativeModel:
             self.prior_is_batched = prior_is_batched
         else:
             self.prior = prior
-            self.prior_is_batched = self.prior_is_batched
+            self.prior_is_batched = prior_is_batched
 
         if type(simulator) is not Simulator:
             self.simulator = self._config_custom_simulator(simulator, simulator_is_batched)

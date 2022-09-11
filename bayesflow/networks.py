@@ -19,7 +19,6 @@
 # SOFTWARE.
 
 import numpy as np
-from scipy.stats import multivariate_t, multivariate_normal
 
 import tensorflow as tf
 from tensorflow.keras.layers import Dense, MultiHeadAttention, LSTM
@@ -31,48 +30,6 @@ from bayesflow.helper_functions import build_meta_dict
 from bayesflow.exceptions import ConfigurationError, InferenceError
 
 
-class TailNetwork(tf.keras.Model):
-    """Implements a standard fully connected network for learning the degrees of a student-t distribution."""
-
-    def __init__(self, meta):
-        """ Creates a network which will adaptively learn the heavy-tailedness of the target distribution.
-
-        Parameters
-        ----------
-        meta : list(dict)
-            A list of dictionaries, where each dictionary holds parameter-value pairs
-            for a single :class:`keras.Dense` layer
-
-        """
-        
-        super(TailNetwork, self).__init__()
-
-        # Create network body
-        self.dense = Sequential(
-            # Hidden layer structure
-            [Dense(**meta['dense_args'])
-             for _ in range(meta['n_dense'])]
-        )
-
-        # Create network head
-        self.dense.add(Dense(1, activation='softplus', **{k: v for 
-        k, v in meta['dense_args'].items() if k != 'units' and k != 'activation'}))
-        
-    def call(self, condition):
-        """Performs a forward pass through the tail net. Output is the learned 'degrees of freedom' parameter
-        for the latent t-distribution.
-
-        Parameters
-        ----------
-        condition   : tf.Tensor
-            the conditioning vector of interest, for instance ``x = summary(x)``, shape (batch_size, summary_dim)
-        """
-
-        # Output is bounded between (1, inf)
-        out = self.dense(condition) + 1.0
-        return out
-
-    
 class InvariantModule(tf.keras.Model):
     """ Implements an invariant module performing a permutation-invariant transform. 
     
@@ -808,20 +765,7 @@ class InvertibleNetwork(tf.keras.Model):
         # Create sequence of coupling layers
         self.coupling_layers = [ConditionalCouplingLayer(meta) for _ in range(meta['n_coupling_layers'])]
 
-        # Determine tail network 
-        if meta.get('tail_network') is None:
-            self.tail_network = None
-        elif meta.get('tail_network') is True:
-            self.tail_network = TailNetwork(default_settings.DEFAULT_SETTING_TAIL_NET.meta_dict)
-        elif type(meta.get('tail_network')) is dict:
-            tail_meta = build_meta_dict(user_dict=meta.get('tail_network'),
-                               default_setting=default_settings.DEFAULT_SETTING_TAIL_NET)
-            self.tail_network = TailNetwork(tail_meta)
-        elif callable(meta.get('tail_network')):
-            self.tail_network = meta.get('tail_network')
-        else:
-            raise ConfigurationError("tail_network argument type should be one of (True, None, dict, callable)")
-            
+        # Store reference to the number of parameters
         self.z_dim = meta['n_params']
 
     def call(self, targets, condition, inverse=False, **kwargs):
@@ -840,7 +784,6 @@ class InvertibleNetwork(tf.keras.Model):
         -------
         (z, log_det_J)  :  tuple(tf.Tensor, tf.Tensor)
             If inverse=False: The transformed input and the corresponding Jacobian of the transformation,
-            v shape: (batch_size, ...), log_det_J shape: (batch_size, ...)
 
         target          :  tf.Tensor
             If inverse=True: The transformed out, shape (batch_size, ...)
@@ -863,15 +806,9 @@ class InvertibleNetwork(tf.keras.Model):
         for layer in self.coupling_layers:
             z, log_det_J = layer(z, condition, **kwargs)
             log_det_Js.append(log_det_J)
-        # Sum Jacobian determinants for all layers (coupling blocks) to obtain total Jacobian.
+        # Sum Jacobian determinants for all invertible components to obtain total Jacobian.
         log_det_J = tf.add_n(log_det_Js)
-        
-        # Adaptive tails or simply Gaussian
-        if self.tail_network is not None:
-            v = self.tail_network(condition, **kwargs)
-            return v, z, log_det_J
-        else:
-            return z, log_det_J
+        return z, log_det_J
 
     def inverse(self, z, condition, **kwargs):
         """ Performs a reverse pass through the chain."""
@@ -880,117 +817,6 @@ class InvertibleNetwork(tf.keras.Model):
         for layer in reversed(self.coupling_layers):
             target = layer(target, condition, inverse=True, **kwargs)
         return target
-
-    def sample(self, condition, n_samples, **kwargs):
-        """ Samples from the inverse model given a single data instance or a batch of data instances.
-
-        Parameters
-        ----------
-        condition : tf.Tensor
-            The conditioning data set(s) of interest, shape (n_data_sets, summary_dim)
-        n_samples : int
-            Number of samples to obtain from the approximate posterior
-        Returns
-        -------
-        theta_samples : tf.Tensor or np.array
-            Parameter samples, shape (n_samples, n_datasets, n_params)
-        """
-
-        # Sample from a unit Gaussian
-        if self.tail_network is None:
-            z_samples = tf.random.normal(shape=(int(condition.shape[0]), n_samples, self.z_dim))
-        # Sample from a t-distro    
-        else:
-            dfs = self.tail_network(condition, **kwargs).numpy().squeeze(axis=-1)
-            loc = np.zeros(self.z_dim)
-            shape = np.eye(self.z_dim)
-            z_samples = tf.stack(
-                [multivariate_t(df=df, loc=loc, shape=shape).rvs(n_samples) 
-                for df in dfs]
-            )
-        
-        # Inverse pass
-        target_samples = self.inverse(z_samples, condition, **kwargs)
-
-        # Remove extra batch-dimension, if single instance
-        if int(target_samples.shape[0]) == 1:
-            target_samples = target_samples[0]
-        return target_samples
-
-    def log_density(self, targets, condition, **kwargs):
-        """ Calculates the approximate log-density of targets given conditional variables.
-
-        Parameters
-        ----------
-        targets   : tf.Tensor or np.ndarray
-            The estimation quantities of interest, expected shape (batch_size, ...)
-        condition : tf.Tensor or np.ndarray
-            The conditioning variables, expected shape (batch_size, ...)
-
-        Returns
-        -------
-        loglik    : tf.Tensor of shape (batch_size, ...)
-            the approximate log-likelihood of each data point in each data set
-        """
-
-        if not self.tail_network:
-            z, log_det_J = self.forward(targets, condition, **kwargs)
-            k = z.shape[-1]
-            log_z_unnorm = -0.5 * tf.math.square(tf.norm(z, axis=-1)) 
-            log_z = log_z_unnorm - tf.math.log(tf.math.sqrt((2*np.pi)**k))
-            log_pdf = log_z + log_det_J
-        else:
-            log_pdf = self._log_density_student_t(targets, condition, **kwargs)
-        return log_pdf
-
-    def _log_density_gaussian(self, targets, condition, **kwargs):
-        """ Calculates the approximate log-density of targets given conditional variables and
-        a latent Gaussian distribution.
-
-        Parameters
-        ----------
-        targets   : tf.Tensor or np.ndarray
-            The estimation quantities of interest, expected shape (batch_size, ...)
-        condition : tf.Tensor or np.ndarray
-            The conditioning variables, expected shape (batch_size, ...)
-
-        Returns
-        -------
-        loglik    : tf.Tensor of shape (batch_size, ...)
-            the approximate log-likelihood of each data point in each data set
-        """
-
-        z, log_det_J = self.forward(targets, condition, **kwargs)
-        log_z = multivariate_normal(mean=np.zeros(self.z_dim), cov=1.).logpdf(z.numpy())
-        log_z = tf.convert_to_tensor(log_z, dtype=log_det_J.dtype)
-        log_pdf = log_z + log_det_J
-        return log_pdf
-    
-    def _log_density_student_t(self, targets, condition, **kwargs):
-        """ Calculates the approximate log-density of targets given conditional variables and
-        a latent student_t distribution
-
-        Parameters
-        ----------
-        targets   : tf.Tensor or np.ndarray
-            The estimation quantities of interest, expected shape (batch_size, ...)
-        condition : tf.Tensor or np.ndarray
-            The conditioning variables, expected shape (batch_size, ...)
-
-        Returns
-        -------
-        log_lik   : tf.Tensor of shape (batch_size, ...)
-            the approximate log-likelihood of each data point in each data set
-        """
-
-        v, z, log_det_J = self.forward(targets, condition, **kwargs)
-        batch_size = v.shape[0]
-        log_z = [multivariate_t(df=v[b].numpy().item(), loc=np.zeros(self.z_dim), shape=1.).logpdf(z[b].numpy())
-                for b in range(batch_size)]
-        log_z = tf.stack(log_z, axis=0)
-        log_z = tf.cast(log_z, dtype=log_det_J.dtype)
-        log_pdf = log_z + log_det_J
-        return log_pdf
 
 
 class EvidentialNetwork(tf.keras.Model):
