@@ -181,8 +181,11 @@ class AmortizedPosterior(tf.keras.Model):
             **kwargs
         )
 
+        # Obtain number of data sets
+        n_data_sets = condition.shape[0]
+
         # Obtain z_samples from the specified distribution
-        z_samples = self.latent_dist.sample(n_samples)
+        z_samples = self.latent_dist.sample((n_data_sets, n_samples))
 
         # Obtain random draws from the approximate posterior given conditioning variables
         post_samples = self.inference_net.inverse(z_samples, condition, training=False, **kwargs)
