@@ -448,6 +448,253 @@ class AmortizedPosterior(tf.keras.Model, AmortizedTarget):
             )
 
 
+class AmortizedPointEstimator(tf.keras.Model):
+    """A wrapper to connect an inference network for an approximate Bayes estimator with an optional summary network
+    as desribed in:
+
+    [1] Sainsbury-Dale, M., Zammit-Mangion, A., et al. (2024).
+    Likelihood-Free Parameter Estimation with Neural Bayes Estimators.
+    https://doi.org/10.1080/00031305.2023.2249522
+
+    [2] Schmitt, M., Bürkner, P. C., Köthe, U., & Radev, S. T. (2022).
+    Detecting Model Misspecification in Amortized Bayesian Inference with Neural Networks
+    arXiv preprint arXiv:2112.08866.
+    """
+
+    def __init__(
+        self,
+        inference_net,
+        estimator_loss_fun,
+        summary_net=None,
+        summary_loss_fun=None,
+        **kwargs,
+    ):
+        """Initializes a composite neural network to represent an amortized approximate Bayes estimator
+        for a Bayesian generative model.
+
+        Parameters
+        ----------
+        inference_net     : tf.keras.Model
+            An (invertible) inference network which processes the outputs of a generative model
+        estimator_loss_fun: callable
+            Loss function to compute the risk for this estimator. L1 loss corresponds to the posterior median.
+            L2 loss corresponds to the posterior mean. 0-1 loss corresponds to the posterior mode.
+        summary_net       : tf.keras.Model or None, optional, default: None
+            An optional summary network to compress non-vector data structures.
+        summary_loss_fun  : callable, str, or None, optional, default: None
+            The loss function which accepts the outputs of the summary network. If ``None``, no loss is provided
+            and the summary space will not be shaped according to a known distribution (see [2]).
+            If ``summary_loss_fun='MMD'``, the default loss from [2] will be used.
+        **kwargs          : dict, optional, default: {}
+            Additional keyword arguments passed to the ``__init__`` method of a ``tf.keras.Model`` instance.
+
+        Important
+        ----------
+        - If no ``summary_net`` is provided, then the output dictionary of your generative model should not contain
+        any ``summary_conditions``, i.e., ``summary_conditions`` should be set to ``None``, otherwise these will be ignored.
+        """
+
+        tf.keras.Model.__init__(self, **kwargs)
+
+        self.inference_net = inference_net
+        self.estimator_loss_fun = estimator_loss_fun
+        self.summary_net = summary_net
+        self.summary_loss = self._determine_summary_loss(summary_loss_fun)
+
+    def call(self, input_dict, return_summary=False, **kwargs):
+        """Performs a forward pass through the summary and inference network given an input dictionary.
+
+        Parameters
+        ----------
+        input_dict     : dict
+            Input dictionary containing the following mandatory keys, if ``DEFAULT_KEYS`` unchanged:
+            ``parameters``         - the latent model parameters over which a condition density is learned
+            ``summary_conditions`` - the conditioning variables (including data) that are first passed through a summary network
+            ``direct_conditions``  - the conditioning variables that the directly passed to the inference network
+        return_summary : bool, optional, default: False
+            A flag which determines whether the learnable data summaries (representations) are returned or not.
+        **kwargs       : dict, optional, default: {}
+            Additional keyword arguments passed to the networks
+            For instance, ``kwargs={'training': True}`` is passed automatically during training.
+
+        Returns
+        -------
+        net_out or (net_out, summary_out) : tuple of tf.Tensor
+            the outputs of ``inference_net(summary_net(x, c_s), c_d)``, which is the approximate neural Bayes estimate
+            or ``(inference_net(summary_net(x, c_s), c_d), sum_outputs)`` if ``return_summary``
+            is set to True and a summary network is defined.
+        """
+
+        # Concatenate conditions, if given
+        summary_out, full_cond = self._compute_summary_condition(
+            input_dict.get(DEFAULT_KEYS["summary_conditions"]),
+            input_dict.get(DEFAULT_KEYS["direct_conditions"]),
+            **kwargs,
+        )
+
+        # Compute output of inference net
+        net_out = self.inference_net(full_cond, **kwargs)
+
+        # Return summary outputs or not, depending on parameter
+        if return_summary:
+            return net_out, summary_out
+        return net_out
+
+    def compute_loss(self, input_dict, **kwargs):
+        """Computes the loss of the posterior amortizer given an input dictionary, which will
+        typically be the output of a Bayesian ``GenerativeModel`` instance.
+
+        Parameters
+        ----------
+        input_dict : dict
+            Input dictionary containing the following mandatory keys, if ``DEFAULT_KEYS`` unchanged:
+            ``parameters``         - the latent model parameters over which a condition density is learned
+            ``summary_conditions`` - the conditioning variables that are first passed through a summary network
+            ``direct_conditions``  - the conditioning variables that the directly passed to the inference network
+        **kwargs   : dict, optional, default: {}
+            Additional keyword arguments passed to the networks
+            For instance, ``kwargs={'training': True}`` is passed automatically during training.
+
+        Returns
+        -------
+        total_loss : tf.Tensor of shape (1,) - the total computed loss given input variables
+        """
+
+        # Get amortizer outputs
+        net_out, sum_out = self(input_dict, return_summary=True, **kwargs)
+
+        # Case summary loss should be computed
+        if self.summary_loss is not None:
+            sum_loss = self.summary_loss(sum_out)
+        # Case no summary loss, simply add 0 for convenience
+        else:
+            sum_loss = 0.0
+
+        risk = self.estimator_loss_fun(net_out - input_dict[DEFAULT_KEYS["parameters"]])
+        # Compute and return total loss
+        total_loss = tf.reduce_mean(risk) + sum_loss
+        return total_loss
+
+    def call_loop(self, input_list, return_summary=False, **kwargs):
+        """Performs a forward pass through the summary and inference network given a list of dicts
+        with the appropriate entries (i.e., as used for the standard call method).
+
+        This method is useful when GPU memory is limited or data sets have a different (non-Tensor) structure.
+
+        Parameters
+        ----------
+        input_list     : list of dicts, where each dict contains the following mandatory keys, if ``DEFAULT_KEYS`` unchanged:
+            ``parameters``         - the latent model parameters over which a condition density is learned
+            ``summary_conditions`` - the conditioning variables (including data) that are first passed through a summary network
+            ``direct_conditions``  - the conditioning variables that the directly passed to the inference network
+        return_summary : bool, optional, default: False
+            A flag which determines whether the learnable data summaries (representations) are returned or not.
+        **kwargs       : dict, optional, default: {}
+            Additional keyword arguments passed to the networks
+
+        Returns
+        -------
+        net_out or (net_out, summary_out) : tuple of tf.Tensor
+            the outputs of ``inference_net(summary_net(x, c_s), c_d)``, which is the approximate neural Bayes estimate
+            or ``(inference_net(summary_net(x, c_s), c_d), sum_outputs)`` if ``return_summary``
+            is set to True and a summary network is defined.
+        """
+
+        outputs = []
+        for forward_dict in input_list:
+            outputs.append(self(forward_dict, return_summary, **kwargs))
+        net_out = [tf.concat([o[i] for o in outputs], axis=0) for i in range(len(outputs[0]))]
+        return tuple(net_out)
+
+    def estimate(self, input_dict, to_numpy=True, **kwargs):
+        """Generates estimate using the approximate neural Bayes estimator given a dictionary with conditonal variables.
+
+        Parameters
+        ----------
+        input_dict  : dict
+            Input dictionary containing at least one of the following mandatory keys, if ``DEFAULT_KEYS`` unchanged:
+            ``summary_conditions`` : the conditioning variables (including data) that are first passed through a summary network
+            ``direct_conditions``  : the conditioning variables that the directly passed to the inference network
+        to_numpy    : bool, optional, default: True
+            Flag indicating whether to return the samples as a ``np.ndarray`` or a ``tf.Tensor``.
+        **kwargs    : dict, optional, default: {}
+            Additional keyword arguments passed to the networks
+
+        Returns
+        -------
+        estimates: tf.Tensor or np.ndarray of shape (n_data_sets, n_params)
+            The estimate for each data set
+        """
+
+        # Compute learnable summaries, if appropriate
+        _, conditions = self._compute_summary_condition(
+            input_dict.get(DEFAULT_KEYS["summary_conditions"]),
+            input_dict.get(DEFAULT_KEYS["direct_conditions"]),
+            training=False,
+            **kwargs,
+        )
+
+        # Obtain random draws from the approximate posterior given conditioning variables
+        estimates = self.inference_net(conditions, training=False, **kwargs)
+
+        # Only return 1D array, if first dimensions is 1
+        if estimates.shape[0] == 1:
+            estimates = estimates[0]
+        self._check_output_sanity(estimates)
+
+        # Return numpy version of tensor or tensor itself
+        if to_numpy:
+            return estimates.numpy()
+        return estimates
+
+    def _compute_summary_condition(self, summary_conditions, direct_conditions, **kwargs):
+        """Determines how to concatenate the provided conditions."""
+
+        # Compute learnable summaries, if given
+        if self.summary_net is not None:
+            sum_condition = self.summary_net(summary_conditions, **kwargs)
+        else:
+            sum_condition = None
+
+        # Concatenate learnable summaries with fixed summaries
+        if sum_condition is not None and direct_conditions is not None:
+            full_cond = tf.concat([sum_condition, direct_conditions], axis=-1)
+        elif sum_condition is not None:
+            full_cond = sum_condition
+        elif direct_conditions is not None:
+            full_cond = direct_conditions
+        else:
+            raise SummaryStatsError("Could not concatenarte or determine conditioning inputs...")
+        return sum_condition, full_cond
+
+    def _determine_summary_loss(self, loss_fun):
+        """Determines which summary loss to use if default `None` argument provided, otherwise return identity."""
+
+        # Throw, if summary loss without a summary network provided
+        if loss_fun is not None and self.summary_net is None:
+            raise ConfigurationError('You need to provide a summary_net if you want to use a summary_loss_fun.')
+
+        # If callable, return provided loss
+        if loss_fun is None or callable(loss_fun):
+            return loss_fun
+
+        # If string, check for MMD or mmd
+        elif type(loss_fun) is str:
+            if loss_fun.lower() == "mmd":
+                return mmd_summary_space
+            else:
+                raise NotImplementedError("For now, only 'mmd' is supported as a string argument for summary_loss_fun!")
+        # Throw if loss type unexpected
+        else:
+            raise NotImplementedError(
+                "Could not infer summary_loss_fun, argument should be of type (None, callable, or str)!"
+            )
+
+    def _check_output_sanity(self, tensor):
+        logger = logging.getLogger()
+        check_tensor_sanity(tensor, logger)
+
+
 class AmortizedLikelihood(tf.keras.Model, AmortizedTarget):
     """An interface for a surrogate model of a simulator, or an implicit likelihood
     ``p(data | parameters, context)``.
