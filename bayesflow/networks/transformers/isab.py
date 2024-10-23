@@ -1,5 +1,4 @@
 import keras
-import keras.ops as ops
 from keras.saving import register_keras_serializable as serializable
 
 from bayesflow.types import Tensor
@@ -22,9 +21,9 @@ class InducedSetAttentionBlock(keras.Layer):
         embed_dim: int = 64,
         num_heads: int = 4,
         dropout: float = 0.05,
-        num_dense_feedforward: int = 2,
-        dense_units: int = 128,
-        dense_activation: str = "gelu",
+        mlp_depth: int = 2,
+        mlp_width: int = 128,
+        mlp_activation: str = "gelu",
         kernel_initializer: str = "he_normal",
         use_bias: bool = True,
         layer_norm: bool = True,
@@ -50,9 +49,9 @@ class InducedSetAttentionBlock(keras.Layer):
             embed_dim=embed_dim,
             num_heads=num_heads,
             dropout=dropout,
-            num_dense_feedforward=num_dense_feedforward,
-            dense_units=dense_units,
-            dense_activation=dense_activation,
+            mlp_depth=mlp_depth,
+            mlp_width=mlp_width,
+            mlp_activation=mlp_activation,
             kernel_initializer=kernel_initializer,
             use_bias=use_bias,
             layer_norm=layer_norm,
@@ -82,8 +81,8 @@ class InducedSetAttentionBlock(keras.Layer):
             Output of shape (batch_size, set_size, input_dim)
         """
 
-        batch_size = ops.shape(input_set)[0]
-        inducing_points_expanded = ops.expand_dims(self.inducing_points, axis=0)
-        inducing_points_tiled = ops.tile(inducing_points_expanded, [batch_size, 1, 1])
+        batch_size = keras.ops.shape(input_set)[0]
+        inducing_points_expanded = keras.ops.expand_dims(self.inducing_points, axis=0)
+        inducing_points_tiled = keras.ops.tile(inducing_points_expanded, [batch_size, 1, 1])
         h = self.mab0(inducing_points_tiled, input_set, training=training, **kwargs)
         return self.mab1(input_set, h, training=training, **kwargs)

@@ -21,9 +21,9 @@ class MultiHeadAttentionBlock(keras.Layer):
         embed_dim: int = 64,
         num_heads: int = 4,
         dropout: float = 0.05,
-        num_dense_feedforward: int = 2,
-        dense_units: int = 128,
-        dense_activation: str = "gelu",
+        mlp_depth: int = 2,
+        mlp_width: int = 128,
+        mlp_activation: str = "gelu",
         kernel_initializer: str = "he_normal",
         use_bias: bool = True,
         layer_norm: bool = True,
@@ -48,9 +48,8 @@ class MultiHeadAttentionBlock(keras.Layer):
         )
         self.ln_pre = layers.LayerNormalization() if layer_norm else None
         self.mlp = MLP(
-            depth=num_dense_feedforward,
-            width=dense_units,
-            activation=dense_activation,
+            widths=(mlp_width,) * mlp_depth,
+            activation=mlp_activation,
             kernel_initializer=kernel_initializer,
             dropout=dropout,
         )

@@ -27,9 +27,9 @@ class PoolingByMultiHeadAttention(keras.Layer):
         num_heads: int = 4,
         seed_dim: int = None,
         dropout: float = 0.05,
-        num_dense_feedforward: int = 2,
-        dense_units: int = 128,
-        dense_activation: str = "gelu",
+        mlp_depth: int = 2,
+        mlp_width: int = 128,
+        mlp_activation: str = "gelu",
         kernel_initializer: str = "he_normal",
         use_bias: bool = True,
         layer_norm: bool = True,
@@ -51,9 +51,9 @@ class PoolingByMultiHeadAttention(keras.Layer):
             embed_dim=embed_dim,
             num_heads=num_heads,
             dropout=dropout,
-            num_dense_feedforward=num_dense_feedforward,
-            dense_units=dense_units,
-            dense_activation=dense_activation,
+            mlp_depth=mlp_depth,
+            mlp_width=mlp_width,
+            mlp_activation=mlp_activation,
             kernel_initializer=kernel_initializer,
             use_bias=use_bias,
             layer_norm=layer_norm,
@@ -66,9 +66,8 @@ class PoolingByMultiHeadAttention(keras.Layer):
         )
 
         self.feedforward = MLP(
-            depth=num_dense_feedforward,
-            width=dense_units,
-            activation=dense_activation,
+            widths=(mlp_width,) * mlp_depth,
+            activation=mlp_activation,
             kernel_initializer=kernel_initializer,
             dropout=dropout,
         )

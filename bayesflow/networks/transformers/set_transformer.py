@@ -32,7 +32,7 @@ class SetTransformer(SummaryNetwork):
         mlp_widths: tuple = (128, 128),
         num_seeds: int = 1,
         dropout: float = 0.05,
-        dense_activation: str = "gelu",
+        mlp_activation: str = "gelu",
         kernel_initializer: str = "he_normal",
         use_bias: bool = True,
         layer_norm: bool = True,
@@ -61,7 +61,7 @@ class SetTransformer(SummaryNetwork):
             Number of seeds to use for embedding.
         dropout     : float, optional (default - 0.05)
             Dropout rate applied to the attention and MLP layers. If set to None, no dropout is applied.
-        dense_activation : str, optional (default - 'gelu')
+        mlp_activation : str, optional (default - 'gelu')
             Activation function used in the dense layers. Common choices include "relu", "tanh", and "gelu".
         kernel_initializer : str, optional (default - 'he_normal')
             Initializer for the kernel weights matrix. Common choices include "glorot_uniform", "he_normal", etc.
@@ -79,7 +79,7 @@ class SetTransformer(SummaryNetwork):
 
         super().__init__(**kwargs)
 
-        # TODO - check if all lists have same length
+        SetTransformer._check_lengths(embed_dims, num_heads, mlp_depths, mlp_widths)
         num_attention_layers = len(embed_dims)
 
         # Construct a series of set-attention blocks
@@ -87,7 +87,7 @@ class SetTransformer(SummaryNetwork):
 
         global_attention_settings = dict(
             dropout=dropout,
-            dense_activation=dense_activation,
+            mlp_activation=mlp_activation,
             kernel_initializer=kernel_initializer,
             use_bias=use_bias,
             layer_norm=layer_norm,
@@ -97,8 +97,8 @@ class SetTransformer(SummaryNetwork):
             layer_attention_settings = dict(
                 num_heads=num_heads[i],
                 embed_dim=embed_dims[i],
-                num_dense_feedforward=mlp_depths[i],
-                dense_units=mlp_widths[i],
+                mlp_depth=mlp_depths[i],
+                mlp_width=mlp_widths[i],
             )
 
             if num_inducing_points is None:
@@ -113,8 +113,8 @@ class SetTransformer(SummaryNetwork):
         pooling_settings = dict(
             num_heads=num_heads[-1],
             embed_dim=embed_dims[-1],
-            num_dense_feedforward=mlp_depths[-1],
-            dense_units=mlp_widths[-1],
+            mlp_depth=mlp_depths[-1],
+            mlp_width=mlp_widths[-1],
             seed_dim=seed_dim,
             num_seeds=num_seeds,
         )
@@ -144,3 +144,8 @@ class SetTransformer(SummaryNetwork):
         summary = self.pooling_by_attention(summary, training=training, **kwargs)
         summary = self.output_projector(summary)
         return summary
+
+    @staticmethod
+    def _check_lengths(*args):
+        if len(set(map(len, args))) > 1:
+            raise ValueError("All tuple arguments must have the same length.")
