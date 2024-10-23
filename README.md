@@ -87,8 +87,8 @@ conda env create --file environment.yaml --name bayesflow
 
 Check out some of our walk-through notebooks below. We are actively working on porting all notebooks to the new interface so more will be available soon!
 
-1. [Two moons toy example](examples/TwoMoons_FlowMatching.ipynb)
-2. [Bayesian experimental design (BED)](examples/michaelis_menten_BED_tutorial.ipynb)
+1. [Two moons starter toy example](examples/TwoMoons_StarterNotebook.ipynb)
+2. [Bayesian experimental design (BED)](examples/Bayesian_Experimental_Design.ipynb)
 3. Coming soon...
 
 ## Documentation \& Help
