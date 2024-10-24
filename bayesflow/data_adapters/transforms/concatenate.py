@@ -95,3 +95,11 @@ class Concatenate(Transform):
         data |= dict(zip(keys, values))
 
         return data
+
+    def extra_repr(self) -> str:
+        result = "[" + ", ".join(map(repr, self.keys)) + "] -> " + repr(self.into)
+
+        if self.axis != -1:
+            result += f", axis={self.axis}"
+
+        return result

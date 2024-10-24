@@ -27,3 +27,6 @@ class Keep(Transform):
     def inverse(self, data: dict[str, any], **kwargs) -> dict[str, any]:
         # non-invertible transform
         return data
+
+    def extra_repr(self) -> str:
+        return "[" + ", ".join(map(repr, self.keys)) + "]"

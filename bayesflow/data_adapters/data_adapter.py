@@ -63,6 +63,9 @@ class DataAdapter:
 
         return self.forward(data, **kwargs)
 
+    def __repr__(self):
+        return f"DataAdapter({' -> '.join(map(repr, self.transforms))})"
+
     def add_transform(self, transform: Transform):
         self.transforms.append(transform)
         return self

@@ -10,6 +10,11 @@ class Transform:
 
         return self.forward(data, **kwargs)
 
+    def __repr__(self):
+        if e := self.extra_repr():
+            return f"{self.__class__.__name__}({e})"
+        return self.__class__.__name__
+
     @classmethod
     def from_config(cls, config: dict, custom_objects=None) -> "Transform":
         raise NotImplementedError
@@ -22,3 +27,6 @@ class Transform:
 
     def inverse(self, data: dict[str, np.ndarray], **kwargs) -> dict[str, np.ndarray]:
         raise NotImplementedError
+
+    def extra_repr(self) -> str:
+        return ""

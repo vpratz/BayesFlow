@@ -43,3 +43,6 @@ class Rename(Transform):
 
         data[self.from_key] = data.pop(self.to_key)
         return data
+
+    def extra_repr(self) -> str:
+        return f"{self.from_key!r} -> {self.to_key!r}"

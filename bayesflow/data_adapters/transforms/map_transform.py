@@ -19,6 +19,20 @@ class MapTransform(Transform):
     def __init__(self, transform_map: dict[str, ElementwiseTransform]):
         self.transform_map = transform_map
 
+    def __repr__(self):
+        # if the transform map values are all the same type, use that type name
+        transform_types = {type(transform) for transform in self.transform_map.values()}
+
+        if len(transform_types) == 1:
+            transform_type = transform_types.pop()
+        else:
+            transform_type = MapTransform
+
+        if e := self.extra_repr():
+            return f"{transform_type.__name__}({e})"
+
+        return transform_type.__name__
+
     @classmethod
     def from_config(cls, config: dict, custom_objects=None) -> "MapTransform":
         return cls(deserialize(config["transform_map"]))

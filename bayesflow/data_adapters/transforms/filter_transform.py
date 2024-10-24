@@ -46,6 +46,32 @@ class FilterTransform(Transform):
 
         self.transform_map = {}
 
+    def __repr__(self):
+        if e := self.extra_repr():
+            return f"{self.transform_constructor.__name__}({e})"
+
+        return self.transform_constructor.__name__
+
+    def extra_repr(self) -> str:
+        result = ""
+
+        if self.predicate is not None:
+            result += f"predicate={self.predicate.__name__}"
+
+        if self.include is not None:
+            if result:
+                result += ", "
+
+            result += f"include={self.include!r}"
+
+        if self.exclude is not None:
+            if result:
+                result += ", "
+
+            result += f"exclude={self.exclude!r}"
+
+        return result
+
     @classmethod
     def from_config(cls, config: dict, custom_objects=None) -> "Transform":
         def transform_constructor(*args, **kwargs):
