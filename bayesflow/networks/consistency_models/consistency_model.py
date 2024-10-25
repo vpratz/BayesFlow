@@ -1,5 +1,3 @@
-import math
-
 import keras
 from keras import ops
 from keras.saving import (
@@ -82,7 +80,8 @@ class ConsistencyModel(InferenceNetwork):
 
         self.s0 = float(s0)
         self.s1 = float(s1)
-        self.current_step = 0.0
+        # create variable that works with JIT compilation
+        self.current_step = self.add_weight(name="current_step", initializer="zeros", trainable=False)
 
         self.seed_generator = keras.random.SeedGenerator()
 
@@ -93,21 +92,21 @@ class ConsistencyModel(InferenceNetwork):
         Implements the function N(k) from [2], Section 3.4.
         """
 
-        k_ = math.floor(self.total_steps / (math.log(self.s1 / self.s0) / math.log(2.0) + 1.0))
-        out = min(self.s0 * math.pow(2.0, math.floor(self.current_step / k_)), self.s1) + 1.0
-        return int(out)
+        k_ = ops.floor(self.total_steps / (ops.log(self.s1 / self.s0) / ops.log(2.0) + 1.0))
+        out = ops.minimum(self.s0 * ops.power(2.0, ops.floor(self.current_step / k_)), self.s1) + 1.0
+        return ops.cast(out, "int64")
 
     def _discretize_time(self, num_steps, rho=7.0):
         """Function for obtaining the discretized time according to [2],
         Section 2, bottom of page 2.
         """
 
-        N = num_steps + 1.0
+        N = num_steps + 1
         indices = ops.arange(1, N + 1, dtype="float32")
         one_over_rho = 1.0 / rho
         discretized_time = (
             self.eps**one_over_rho
-            + (indices - 1.0) / (N - 1.0) * (self.max_time**one_over_rho - self.eps**one_over_rho)
+            + (indices - 1.0) / (ops.cast(N, "float32") - 1.0) * (self.max_time**one_over_rho - self.eps**one_over_rho)
         ) ** rho
         return discretized_time
 
@@ -131,7 +130,7 @@ class ConsistencyModel(InferenceNetwork):
         self.student_projector.build(input_shape)
 
         # Choose coefficient according to [2] Section 3.3
-        self.c_huber = 0.00054 * math.sqrt(xz_shape[-1])
+        self.c_huber = 0.00054 * ops.sqrt(xz_shape[-1])
         self.c_huber2 = self.c_huber**2
 
     def call(
@@ -224,7 +223,8 @@ class ConsistencyModel(InferenceNetwork):
 
         # The discretization schedule requires the number of passed training steps.
         # To be independent of external information, we track it here.
-        self.current_step += 1
+        if stage == "training":
+            self.current_step.assign_add(1.0)
 
         current_num_steps = self._schedule_discretization()
         discretized_time = self._discretize_time(current_num_steps)
