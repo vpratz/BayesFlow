@@ -74,12 +74,12 @@ class InvariantModule(keras.Layer):
     def build(self, input_shape):
         self.call(keras.ops.zeros(input_shape))
 
-    def call(self, input_seq: Tensor, training: bool = False, **kwargs) -> Tensor:
+    def call(self, input_set: Tensor, training: bool = False, **kwargs) -> Tensor:
         """Performs the forward pass of a learnable invariant transform.
 
         Parameters
         ----------
-        input_seq : tf.Tensor
+        input_set : Tensor
             Input of shape (batch_size,..., input_dim)
         training  : bool, optional, default - False
             Dictates the behavior of the optional dropout layers
@@ -90,7 +90,7 @@ class InvariantModule(keras.Layer):
             Output of shape (batch_size,..., out_dim)
         """
 
-        set_summary = self.inner_fc(input_seq, training=training)
+        set_summary = self.inner_fc(input_set, training=training)
         set_summary = self.pooling_layer(set_summary, training=training)
         set_summary = self.outer_fc(set_summary, training=training)
         return set_summary

@@ -70,7 +70,7 @@ class EquivariantModule(keras.Layer):
     def build(self, input_shape):
         self.call(keras.ops.zeros(input_shape))
 
-    def call(self, input_seq: Tensor, training: bool = False, **kwargs) -> Tensor:
+    def call(self, input_set: Tensor, training: bool = False, **kwargs) -> Tensor:
         """Performs the forward pass of a learnable equivariant transform.
 
         Parameters
@@ -82,23 +82,23 @@ class EquivariantModule(keras.Layer):
         #TODO
         """
 
-        input_seq = self.input_projector(input_seq)
+        input_set = self.input_projector(input_set)
 
         # Store shape of input_set, will be (batch_size, ..., set_size, some_dim)
-        shape = ops.shape(input_seq)
+        shape = ops.shape(input_set)
 
         # Example: Output dim is (batch_size, ..., set_size, representation_dim)
-        invariant_summary = self.invariant_module(input_seq, training=training)
+        invariant_summary = self.invariant_module(input_set, training=training)
         invariant_summary = ops.expand_dims(invariant_summary, axis=-2)
         tiler = [1] * len(shape)
         tiler[-2] = shape[-2]
         invariant_summary = ops.tile(invariant_summary, tiler)
 
         # Concatenate each input entry with the repeated invariant embedding
-        output_set = ops.concatenate([input_seq, invariant_summary], axis=-1)
+        output_set = ops.concatenate([input_set, invariant_summary], axis=-1)
 
         # Pass through final equivariant transform + residual
-        output_set = input_seq + self.equivariant_fc(output_set, training=training)
+        output_set = input_set + self.equivariant_fc(output_set, training=training)
         if self.layer_norm is not None:
             output_set = self.layer_norm(output_set, training=training)
 

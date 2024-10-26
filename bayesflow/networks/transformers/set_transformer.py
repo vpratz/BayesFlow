@@ -121,14 +121,14 @@ class SetTransformer(SummaryNetwork):
         self.pooling_by_attention = PoolingByMultiHeadAttention(**(global_attention_settings | pooling_settings))
         self.output_projector = keras.layers.Dense(summary_dim)
 
-    def call(self, input_seq: Tensor, training: bool = False, **kwargs) -> Tensor:
+    def call(self, input_set: Tensor, training: bool = False, **kwargs) -> Tensor:
         """Compresses the input sequence into a summary vector of size `summary_dim`.
 
         Parameters
         ----------
-        input_seq  : Tensor (e.g., np.ndarray, tf.Tensor, ...)
+        input_set  : Tensor (e.g., np.ndarray, tf.Tensor, ...)
             Input of shape (batch_size, set_size, input_dim)
-        training   : boolean, optional (default - True)
+        training   : boolean, optional (default - False)
             Passed to the optional internal dropout and spectral normalization
             layers to distinguish between train and test time behavior.
         **kwargs   : dict, optional (default - {})
@@ -140,7 +140,7 @@ class SetTransformer(SummaryNetwork):
         out : Tensor
             Output of shape (batch_size, set_size, output_dim)
         """
-        summary = self.attention_blocks(input_seq, training=training, **kwargs)
+        summary = self.attention_blocks(input_set, training=training, **kwargs)
         summary = self.pooling_by_attention(summary, training=training, **kwargs)
         summary = self.output_projector(summary)
         return summary

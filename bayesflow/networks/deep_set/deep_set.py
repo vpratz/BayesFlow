@@ -81,13 +81,13 @@ class DeepSet(SummaryNetwork):
         super().build(input_shape)
         self.call(keras.ops.zeros(input_shape))
 
-    def call(self, input_seq: Tensor, training: bool = False, **kwargs) -> Tensor:
+    def call(self, input_set: Tensor, training: bool = False, **kwargs) -> Tensor:
         """Performs the forward pass of a learnable deep invariant transformation consisting of
         a sequence of equivariant transforms followed by an invariant transform.
 
         #TODO
         """
-        x = self.equivariant_modules(input_seq, training=training)
+        x = self.equivariant_modules(input_set, training=training)
         x = self.invariant_module(x, training=training)
 
         return self.output_projector(x)
