@@ -50,9 +50,9 @@ class SkipRecurrentNet(keras.Model):
             self.skip_recurrent = keras.layers.Bidirectional(self.skip_recurrent)
         self.input_channels = input_channels
 
-    def call(self, time_series: Tensor, **kwargs) -> Tensor:
-        direct_summary = self.recurrent(time_series, **kwargs)
-        skip_summary = self.skip_recurrent(self.skip_conv(time_series), **kwargs)
+    def call(self, time_series: Tensor, training: bool = False, **kwargs) -> Tensor:
+        direct_summary = self.recurrent(time_series, training=training)
+        skip_summary = self.skip_recurrent(self.skip_conv(time_series), training=training)
         return keras.ops.concatenate((direct_summary, skip_summary), axis=-1)
 
     def build(self, input_shape):

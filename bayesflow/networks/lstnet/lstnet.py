@@ -46,9 +46,9 @@ class LSTNet(SummaryNetwork):
             kernel_sizes = (kernel_sizes,)
         if not isinstance(strides, (list, tuple)):
             strides = (strides,)
-        self.conv = Sequential()
+        self.conv_blocks = Sequential()
         for f, k, s in zip(filters, kernel_sizes, strides):
-            self.conv.add(
+            self.conv_blocks.add(
                 layers.Conv1D(
                     filters=f,
                     kernel_size=k,
@@ -57,7 +57,7 @@ class LSTNet(SummaryNetwork):
                     kernel_initializer=kernel_initializer,
                 )
             )
-            self.conv.add(layers.GroupNormalization(groups=groups))
+            self.conv_blocks.add(layers.GroupNormalization(groups=groups))
 
         # Recurrent and feedforward backbones
         self.recurrent = SkipRecurrentNet(
@@ -70,9 +70,9 @@ class LSTNet(SummaryNetwork):
         )
         self.output_projector = layers.Dense(summary_dim)
 
-    def call(self, time_series: Tensor, **kwargs) -> Tensor:
-        summary = self.conv(time_series, **kwargs)
-        summary = self.recurrent(summary, **kwargs)
+    def call(self, time_series: Tensor, training: bool = False, **kwargs) -> Tensor:
+        summary = self.conv_blocks(time_series, training=training)
+        summary = self.recurrent(summary, training=training)
         summary = self.output_projector(summary)
         return summary
 
