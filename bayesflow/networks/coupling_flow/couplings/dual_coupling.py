@@ -7,7 +7,7 @@ from .single_coupling import SingleCoupling
 from ..invertible_layer import InvertibleLayer
 
 
-@serializable(package="bayesflow.networks.coupling_flow")
+@serializable(package="networks.coupling_flow")
 class DualCoupling(InvertibleLayer):
     def __init__(self, subnet: str | type = "mlp", transform: str = "affine", **kwargs):
         super().__init__(**keras_kwargs(kwargs))
@@ -28,27 +28,29 @@ class DualCoupling(InvertibleLayer):
         # build nested layers with forward pass
         self.call(xz, conditions=conditions)
 
-    def call(self, xz: Tensor, conditions: Tensor = None, inverse: bool = False, **kwargs) -> (Tensor, Tensor):
+    def call(
+        self, xz: Tensor, conditions: Tensor = None, inverse: bool = False, training: bool = False, **kwargs
+    ) -> (Tensor, Tensor):
         if inverse:
-            return self._inverse(xz, conditions=conditions, **kwargs)
-        return self._forward(xz, conditions=conditions, **kwargs)
+            return self._inverse(xz, conditions=conditions, training=training, **kwargs)
+        return self._forward(xz, conditions=conditions, training=training, **kwargs)
 
-    def _forward(self, x: Tensor, conditions: Tensor = None, **kwargs) -> (Tensor, Tensor):
+    def _forward(self, x: Tensor, conditions: Tensor = None, training: bool = False, **kwargs) -> (Tensor, Tensor):
         """Transform (x1, x2) -> (g(x1; f(x2; x1)), f(x2; x1))"""
         x1, x2 = x[..., : self.pivot], x[..., self.pivot :]
-        (z1, z2), log_det1 = self.coupling1(x1, x2, conditions=conditions, **kwargs)
-        (z2, z1), log_det2 = self.coupling2(z2, z1, conditions=conditions, **kwargs)
+        (z1, z2), log_det1 = self.coupling1(x1, x2, conditions=conditions, training=training, **kwargs)
+        (z2, z1), log_det2 = self.coupling2(z2, z1, conditions=conditions, training=training, **kwargs)
 
         z = keras.ops.concatenate([z1, z2], axis=-1)
         log_det = log_det1 + log_det2
 
         return z, log_det
 
-    def _inverse(self, z: Tensor, conditions: Tensor = None, **kwargs) -> (Tensor, Tensor):
+    def _inverse(self, z: Tensor, conditions: Tensor = None, training: bool = False, **kwargs) -> (Tensor, Tensor):
         """Transform (g(x1; f(x2; x1)), f(x2; x1)) -> (x1, x2)"""
         z1, z2 = z[..., : self.pivot], z[..., self.pivot :]
-        (z2, z1), log_det2 = self.coupling2(z2, z1, conditions=conditions, inverse=True, **kwargs)
-        (x1, x2), log_det1 = self.coupling1(z1, z2, conditions=conditions, inverse=True, **kwargs)
+        (z2, z1), log_det2 = self.coupling2(z2, z1, conditions=conditions, inverse=True, training=training, **kwargs)
+        (x1, x2), log_det1 = self.coupling1(z1, z2, conditions=conditions, inverse=True, training=training, **kwargs)
 
         x = keras.ops.concatenate([x1, x2], axis=-1)
         log_det = log_det1 + log_det2

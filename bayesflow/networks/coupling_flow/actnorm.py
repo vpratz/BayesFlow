@@ -8,7 +8,7 @@ from bayesflow.utils import keras_kwargs
 from .invertible_layer import InvertibleLayer
 
 
-@serializable(package="bayesflow.networks")
+@serializable(package="networks.coupling_flow")
 class ActNorm(InvertibleLayer):
     """Implements an Activation Normalization (ActNorm) Layer.
     Activation Normalization is learned invertible normalization, using

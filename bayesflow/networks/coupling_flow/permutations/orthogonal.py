@@ -5,7 +5,7 @@ from bayesflow.types import Shape, Tensor
 from ..invertible_layer import InvertibleLayer
 
 
-@serializable(package="bayesflow.networks.coupling_flow")
+@serializable(package="networks.coupling_flow")
 class OrthogonalPermutation(InvertibleLayer):
     """Implements a learnable orthogonal transformation according to [1]. Can be
     used as an alternative to a fixed ``Permutation`` layer.

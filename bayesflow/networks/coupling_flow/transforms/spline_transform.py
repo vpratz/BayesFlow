@@ -7,7 +7,7 @@ from bayesflow.types import Tensor
 from .transform import Transform
 
 
-@serializable(package="bayesflow.networks.coupling_flow")
+@serializable(package="networks.coupling_flow")
 class SplineTransform(Transform):
     def __init__(self, bins=16, default_domain=(-5.0, 5.0, -5.0, 5.0), **kwargs):
         super().__init__(**kwargs)

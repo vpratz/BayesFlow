@@ -5,7 +5,7 @@ from bayesflow.types import Shape, Tensor
 from ..invertible_layer import InvertibleLayer
 
 
-@serializable(package="bayesflow.networks.coupling_flow")
+@serializable(package="networks.coupling_flow")
 class FixedPermutation(InvertibleLayer):
     def __init__(self, forward_indices=None, inverse_indices=None, **kwargs):
         super().__init__(**kwargs)

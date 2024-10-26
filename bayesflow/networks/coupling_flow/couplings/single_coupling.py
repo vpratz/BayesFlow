@@ -8,7 +8,7 @@ from ..invertible_layer import InvertibleLayer
 from ..transforms import find_transform
 
 
-@serializable(package="bayesflow.networks.coupling_flow")
+@serializable(package="networks.coupling_flow")
 class SingleCoupling(InvertibleLayer):
     """
     Implements a single coupling layer as a composition of a subnet and a transform.
@@ -41,33 +41,42 @@ class SingleCoupling(InvertibleLayer):
         self.call(x1, x2, conditions=conditions)
 
     def call(
-        self, x1: Tensor, x2: Tensor, conditions: Tensor = None, inverse: bool = False, **kwargs
+        self, x1: Tensor, x2: Tensor, conditions: Tensor = None, inverse: bool = False, training: bool = False, **kwargs
     ) -> ((Tensor, Tensor), Tensor):
         if inverse:
-            return self._inverse(x1, x2, conditions=conditions, **kwargs)
-        return self._forward(x1, x2, conditions=conditions, **kwargs)
+            return self._inverse(x1, x2, conditions=conditions, training=training, **kwargs)
+        return self._forward(x1, x2, conditions=conditions, training=training, **kwargs)
 
-    def _forward(self, x1: Tensor, x2: Tensor, conditions: Tensor = None, **kwargs) -> ((Tensor, Tensor), Tensor):
+    def _forward(
+        self, x1: Tensor, x2: Tensor, conditions: Tensor = None, training: bool = False, **kwargs
+    ) -> ((Tensor, Tensor), Tensor):
         """Transform (x1, x2) -> (x1, f(x2; x1))"""
         z1 = x1
-        parameters = self.get_parameters(x1, conditions=conditions, **kwargs)
+        parameters = self.get_parameters(x1, conditions=conditions, training=training)
         z2, log_det = self.transform(x2, parameters=parameters)
 
         return (z1, z2), log_det
 
-    def _inverse(self, z1: Tensor, z2: Tensor, conditions: Tensor = None, **kwargs) -> ((Tensor, Tensor), Tensor):
+    def _inverse(
+        self, z1: Tensor, z2: Tensor, conditions: Tensor = None, training: bool = False, **kwargs
+    ) -> ((Tensor, Tensor), Tensor):
         """Transform (x1, f(x2; x1)) -> (x1, x2)"""
         x1 = z1
-        parameters = self.get_parameters(x1, conditions=conditions, **kwargs)
+        parameters = self.get_parameters(x1, conditions=conditions, training=training, **kwargs)
         x2, log_det = self.transform(z2, parameters=parameters, inverse=True)
 
         return (x1, x2), log_det
 
-    def get_parameters(self, x: Tensor, conditions: Tensor = None, **kwargs) -> dict[str, Tensor]:
+    def get_parameters(
+        self, x: Tensor, conditions: Tensor = None, training: bool = False, **kwargs
+    ) -> dict[str, Tensor]:
+        """Applies the inner neural network to obtain the transformation parameters, for instance,
+        if affine transformations, then [s, t] = NN(inputs), followed by a constraint, e.g., s = exp(s).
+        """
         if conditions is not None:
             x = keras.ops.concatenate([x, conditions], axis=-1)
 
-        parameters = self.output_projector(self.network(x, **kwargs))
+        parameters = self.output_projector(self.network(x, training=training, **kwargs))
         parameters = self.transform.split_parameters(parameters)
         parameters = self.transform.constrain_parameters(parameters)
 

@@ -5,7 +5,7 @@ from bayesflow.types import Shape
 from .fixed_permutation import FixedPermutation
 
 
-@serializable(package="bayesflow.networks.coupling_flow")
+@serializable(package="networks.coupling_flow")
 class Swap(FixedPermutation):
     def build(self, xz_shape: Shape, **kwargs) -> None:
         shift = xz_shape[-1] // 2
