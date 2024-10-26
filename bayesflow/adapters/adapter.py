@@ -34,6 +34,15 @@ class Adapter:
 
         self.transforms = transforms
 
+    @staticmethod
+    def create_default(inference_variables: Sequence[str]) -> "Adapter":
+        return (
+            Adapter()
+            .to_array()
+            .convert_dtype("float64", "float32")
+            .concatenate(inference_variables, into="inference_variables")
+        )
+
     @classmethod
     def from_config(cls, config: dict, custom_objects=None) -> "Adapter":
         return cls(transforms=deserialize(config["transforms"], custom_objects))

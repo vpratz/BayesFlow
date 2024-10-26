@@ -42,12 +42,7 @@ class ContinuousApproximator(Approximator):
         inference_conditions: Sequence[str] = None,
         summary_variables: Sequence[str] = None,
     ) -> Adapter:
-        adapter = (
-            Adapter()
-            .to_array()
-            .convert_dtype("float64", "float32")
-            .concatenate(inference_variables, into="inference_variables")
-        )
+        adapter = Adapter.create_default(inference_variables)
 
         if inference_conditions is not None:
             adapter = adapter.concatenate(inference_conditions, into="inference_conditions")
