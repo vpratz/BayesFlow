@@ -19,10 +19,8 @@ class InvariantModule(keras.Layer):
 
     def __init__(
         self,
-        num_dense_inner: int = 2,
-        num_dense_outer: int = 2,
-        units_inner: int = 128,
-        units_outer: int = 128,
+        mlp_widths_inner: tuple = (128, 128),
+        mlp_widths_outer: tuple = (128, 128),
         activation: str = "gelu",
         kernel_initializer: str = "he_normal",
         dropout: int | float | None = 0.05,
@@ -44,10 +42,10 @@ class InvariantModule(keras.Layer):
         super().__init__(**keras_kwargs(kwargs))
 
         # Inner fully connected net for sum decomposition: inner( pooling( inner(set) ) )
-        self.inner_fc = keras.Sequential(name="InvariantInnerFC")
-        for _ in range(num_dense_inner):
+        self.inner_fc = keras.Sequential()
+        for width in mlp_widths_inner:
             layer = layers.Dense(
-                units=units_inner,
+                units=width,
                 activation=activation,
                 kernel_initializer=kernel_initializer,
             )
@@ -56,13 +54,13 @@ class InvariantModule(keras.Layer):
             self.inner_fc.add(layer)
 
         # Outer fully connected net for sum decomposition: inner( pooling( inner(set) ) )
-        self.outer_fc = keras.Sequential(name="InvariantOuterFC")
-        for _ in range(num_dense_outer):
+        self.outer_fc = keras.Sequential()
+        for width in mlp_widths_outer:
             if dropout is not None and dropout > 0:
                 self.outer_fc.add(layers.Dropout(float(dropout)))
 
             layer = layers.Dense(
-                units=units_outer,
+                units=width,
                 activation=activation,
                 kernel_initializer=kernel_initializer,
             )
@@ -76,13 +74,15 @@ class InvariantModule(keras.Layer):
     def build(self, input_shape):
         self.call(keras.ops.zeros(input_shape))
 
-    def call(self, input_set: Tensor, **kwargs) -> Tensor:
+    def call(self, input_seq: Tensor, training: bool = False, **kwargs) -> Tensor:
         """Performs the forward pass of a learnable invariant transform.
 
         Parameters
         ----------
-        input_set : tf.Tensor
+        input_seq : tf.Tensor
             Input of shape (batch_size,..., input_dim)
+        training  : bool, optional, default - False
+            Dictates the behavior of the optional dropout layers
 
         Returns
         -------
@@ -90,7 +90,7 @@ class InvariantModule(keras.Layer):
             Output of shape (batch_size,..., out_dim)
         """
 
-        set_summary = self.inner_fc(input_set, training=kwargs.get("training", False))
-        set_summary = self.pooling_layer(set_summary, training=kwargs.get("training", False))
-        set_summary = self.outer_fc(set_summary, training=kwargs.get("training", False))
+        set_summary = self.inner_fc(input_seq, training=training)
+        set_summary = self.pooling_layer(set_summary, training=training)
+        set_summary = self.outer_fc(set_summary, training=training)
         return set_summary

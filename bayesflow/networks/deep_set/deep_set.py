@@ -29,12 +29,10 @@ class DeepSet(SummaryNetwork):
         depth: int = 2,
         inner_pooling: str | keras.Layer = "mean",
         output_pooling: str | keras.Layer = "mean",
-        num_dense_equivariant: int = 2,
-        num_dense_invariant_inner: int = 2,
-        num_dense_invariant_outer: int = 2,
-        units_equivariant: int = 128,
-        units_invariant_inner: int = 128,
-        units_invariant_outer: int = 128,
+        mlp_widths_equivariant: tuple = (128, 128),
+        mlp_widths_invariant_inner: tuple = (128, 128),
+        mlp_widths_invariant_outer: tuple = (128, 128),
+        mlp_widths_invariant_last: tuple = (128, 128),
         activation: str = "gelu",
         kernel_initializer: str = "he_normal",
         dropout: int | float | None = 0.05,
@@ -49,14 +47,11 @@ class DeepSet(SummaryNetwork):
 
         # Stack of equivariant modules for a many-to-many learnable transformation
         self.equivariant_modules = keras.Sequential()
-        for i in range(depth):
+        for _ in range(depth):
             equivariant_module = EquivariantModule(
-                num_dense_equivariant=num_dense_equivariant,
-                num_dense_invariant_inner=num_dense_invariant_inner,
-                num_dense_invariant_outer=num_dense_invariant_outer,
-                units_equivariant=units_equivariant,
-                units_invariant_inner=units_invariant_inner,
-                units_invariant_outer=units_invariant_outer,
+                mlp_widths_equivariant=mlp_widths_equivariant,
+                mlp_widths_invariant_inner=mlp_widths_invariant_inner,
+                mlp_widths_invariant_outer=mlp_widths_invariant_outer,
                 activation=activation,
                 kernel_initializer=kernel_initializer,
                 spectral_normalization=spectral_normalization,
@@ -68,10 +63,8 @@ class DeepSet(SummaryNetwork):
 
         # Invariant module for a many-to-one transformation
         self.invariant_module = InvariantModule(
-            num_dense_inner=num_dense_invariant_inner,
-            num_dense_outer=num_dense_invariant_outer,
-            units_inner=units_invariant_inner,
-            units_outer=units_invariant_outer,
+            mlp_widths_inner=mlp_widths_invariant_last,
+            mlp_widths_outer=mlp_widths_invariant_last,
             activation=activation,
             kernel_initializer=kernel_initializer,
             dropout=dropout,
@@ -88,19 +81,14 @@ class DeepSet(SummaryNetwork):
         super().build(input_shape)
         self.call(keras.ops.zeros(input_shape))
 
-    def call(self, x: Tensor, **kwargs) -> Tensor:
+    def call(self, input_seq: Tensor, training: bool = False, **kwargs) -> Tensor:
         """Performs the forward pass of a learnable deep invariant transformation consisting of
         a sequence of equivariant transforms followed by an invariant transform.
 
-        :param x: Tensor of shape (batch_size, set_size, n)
-            The input set
-
-        :return: Tensor of shape (batch_size, self.summary_dim)
-            Summary representation of the input set
-
+        #TODO
         """
-        x = self.equivariant_modules(x, **kwargs)
-        x = self.invariant_module(x, **kwargs)
+        x = self.equivariant_modules(input_seq, training=training)
+        x = self.invariant_module(x, training=training)
 
         return self.output_projector(x)
 
