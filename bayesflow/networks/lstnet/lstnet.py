@@ -1,6 +1,6 @@
 import keras
 from keras import layers, Sequential
-from keras.saving import register_keras_serializable as serializable
+from keras.saving import register_keras_serializable as serializable, serialize_keras_object as serialize
 
 from bayesflow.types import Tensor
 
@@ -69,6 +69,7 @@ class LSTNet(SummaryNetwork):
             dropout=dropout,
         )
         self.output_projector = layers.Dense(summary_dim)
+        self.summary_dim = summary_dim
 
     def call(self, time_series: Tensor, training: bool = False, **kwargs) -> Tensor:
         summary = self.conv_blocks(time_series, training=training)
@@ -79,3 +80,15 @@ class LSTNet(SummaryNetwork):
     def build(self, input_shape):
         super().build(input_shape)
         self.call(keras.ops.zeros(input_shape))
+
+    def get_config(self):
+        base_config = super().get_config()
+
+        config = {
+            "conv_blocks": serialize(self.conv_blocks),
+            "recurrent": serialize(self.recurrent),
+            "output_projector": serialize(self.output_projector),
+            "summary_dim": serialize(self.summary_dim),
+        }
+
+        return base_config | config
