@@ -41,7 +41,9 @@ First, install one machine learning backend of choice. Note that BayesFlow **wil
 - [Install PyTorch](https://pytorch.org/get-started/locally/)
 - [Install TensorFlow](https://www.tensorflow.org/install)
 
-If you are new to machine learning and don't know which one to use, we recommend PyTorch to get started.
+If you don't know which backend to use, we recommend JAX to get started.
+It is the fastest backend and already works pretty reliably with the current 
+dev version of bayesflow.
 
 Once installed, [set the backend environment variable as required by keras](https://keras.io/getting_started/#configuring-your-backend). For example, inside your Python script write:
 
