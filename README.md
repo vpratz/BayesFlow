@@ -49,14 +49,14 @@ Once installed, [set the backend environment variable as required by keras](http
 
 ```python
 import os
-os.environ["KERAS_BACKEND"] = "torch"
+os.environ["KERAS_BACKEND"] = "jax"
 import bayesflow
 ```
 
 If you use conda, you can alternatively set this individually for each environment in your terminal. For example:
 
 ```bash
-conda env config vars set KERAS_BACKEND=torch
+conda env config vars set KERAS_BACKEND=jax
 ```
 
 This way, you also don't have to manually set the backend every time you are starting Python to use BayesFlow.
