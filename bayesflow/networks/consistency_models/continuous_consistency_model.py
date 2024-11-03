@@ -236,7 +236,10 @@ class ContinuousConsistencyModel(InferenceNetwork):
                 return self.subnet_projector(self.subnet(ops.concatenate([x, self.time_emb(t)], axis=-1)))
 
         primals = (xt / self.sigma_data, t)
-        tangents = (ops.cos(t) * ops.sin(t) * dxtdt, ops.cos(t) * ops.sin(t) * self.sigma_data)
+        tangents = (
+            ops.cos(t) * ops.sin(t) * dxtdt,
+            ops.cos(t) * ops.sin(t) * self.sigma_data,
+        )
         match keras.backend.backend():
             case "torch":
                 import torch
@@ -269,11 +272,12 @@ class ContinuousConsistencyModel(InferenceNetwork):
         student_out = self.subnet_projector(self.subnet(xtc, training=stage == "training"))
 
         # calculate the tangent
-        g = -(ops.cos(t) ** 2) * (self.sigma_data * teacher_output - dxtdt) - r * (
-            ops.cos(t) * ops.sin(t) * xt + self.sigma_data * cos_sin_dFdt
+        g = -(ops.cos(t) ** 2) * (self.sigma_data * teacher_output - dxtdt) - r * ops.cos(t) * ops.sin(t) * (
+            xt + self.sigma_data * cos_sin_dFdt
         )
+
         # apply normalization to stabilize training
-        g = g / (ops.norm(g) + c)
+        g = g / (ops.norm(g, axis=-1, keepdims=True) + c)
 
         # compute adaptive weights
         w = self.weight_fn_projector(self.weight_fn(expand_right_to(t_, 2)))
