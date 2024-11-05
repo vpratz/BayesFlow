@@ -7,7 +7,7 @@ from keras.saving import (
 import numpy as np
 
 from bayesflow.types import Tensor
-from bayesflow.utils import find_network, keras_kwargs, expand_right_as, expand_right_to
+from bayesflow.utils import jvp, concatenate, find_network, keras_kwargs, expand_right_as, expand_right_to
 
 
 from ..inference_network import InferenceNetwork
@@ -40,19 +40,18 @@ class ContinuousConsistencyModel(InferenceNetwork):
 
         Parameters:
         -----------
-        subnet      : str or type, optional, default: "mlp"
+        subnet        : str or type, optional, default: "mlp"
             A neural network type for the consistency model, will be
             instantiated using subnet_kwargs.
-        sigma_data      : float, optional, default: 1.0
+        sigma_data    : float, optional, default: 1.0
             Standard deviation of the target distribution
         time_emb_dim  : int, optional, default: 20
             Dimensionality of a time embedding. The embedding will
             be concatenated to the time, so the total time embedding
             will have size `time_emb_dim + 1`
-        **kwargs    : dict, optional, default: {}
+        **kwargs      : dict, optional, default: {}
             Additional keyword arguments
         """
-        # Normal is the only supported base distribution for CMs
         super().__init__(base_distribution="normal", **keras_kwargs(kwargs))
 
         self.subnet = find_network(subnet, **kwargs.get("subnet_kwargs", {}))
@@ -167,8 +166,15 @@ class ContinuousConsistencyModel(InferenceNetwork):
             x = self.consistency_function(x_n, t, conditions=conditions)
         return x
 
-    def consistency_function(self, x: Tensor, t: Tensor, conditions: Tensor = None, **kwargs) -> Tensor:
-        """Compute consistency function.
+    def consistency_function(
+        self,
+        x: Tensor,
+        t: Tensor,
+        conditions: Tensor = None,
+        training: bool = False,
+        **kwargs,
+    ) -> Tensor:
+        """Compute consistency function at time t.
 
         Parameters
         ----------
@@ -178,17 +184,13 @@ class ContinuousConsistencyModel(InferenceNetwork):
             Vector of time samples in [0, pi/2]
         conditions  : Tensor
             The conditioning vector
+        training    : bool
+            Flag to control whether the inner network operates in training or test mode
         **kwargs    : dict, optional, default: {}
-            Additional keyword arguments passed to the network.
+            Additional keyword arguments passed to the inner network.
         """
-
-        if conditions is not None:
-            xtc = ops.concatenate([x / self.sigma_data, self.time_emb(t), conditions], axis=-1)
-        else:
-            xtc = ops.concatenate([x / self.sigma_data, self.time_emb(t)], axis=-1)
-
-        f = self.subnet_projector(self.subnet(xtc, **kwargs))
-
+        xtc = concatenate(x / self.sigma_data, self.time_emb(t), conditions, axis=-1)
+        f = self.subnet_projector(self.subnet(xtc, training=training, **kwargs))
         out = ops.cos(t) * x - ops.sin(t) * self.sigma_data * f
         return out
 
@@ -225,50 +227,22 @@ class ContinuousConsistencyModel(InferenceNetwork):
 
         r = 1.0  # TODO: if consistency distillation training (not supported yet) is unstable, add schedule here
 
-        # calculate rearranged JVP
-        if conditions is not None:
-
-            def f_teacher(x, t):
-                return self.subnet_projector(self.subnet(ops.concatenate([x, self.time_emb(t), conditions], axis=-1)))
-        else:
-
-            def f_teacher(x, t):
-                return self.subnet_projector(self.subnet(ops.concatenate([x, self.time_emb(t)], axis=-1)))
+        def f_teacher(x, t):
+            o = self.subnet(concatenate(x, self.time_emb(t), conditions, axis=-1), training=stage == "training")
+            return self.subnet_projector(o)
 
         primals = (xt / self.sigma_data, t)
         tangents = (
             ops.cos(t) * ops.sin(t) * dxtdt,
             ops.cos(t) * ops.sin(t) * self.sigma_data,
         )
-        match keras.backend.backend():
-            case "torch":
-                import torch
 
-                teacher_output, cos_sin_dFdt = torch.autograd.functional.jvp(f_teacher, primals, tangents)
-            case "tensorflow":
-                import tensorflow as tf
-
-                with tf.autodiff.ForwardAccumulator(primals=primals, tangents=tangents) as acc:
-                    teacher_output = f_teacher(xt / self.sigma_data, t)
-                cos_sin_dFdt = acc.jvp(teacher_output)
-            case "jax":
-                import jax
-
-                teacher_output, cos_sin_dFdt = jax.jvp(
-                    f_teacher,
-                    primals,
-                    tangents,
-                )
-            case _:
-                raise NotImplementedError(f"JVP not implemented for backend {keras.backend.backend()}")
+        teacher_output, cos_sin_dFdt = jvp(f_teacher, primals, tangents)
         teacher_output = ops.stop_gradient(teacher_output)
         cos_sin_dFdt = ops.stop_gradient(cos_sin_dFdt)
 
         # calculate output of the network
-        if conditions is not None:
-            xtc = ops.concatenate([xt / self.sigma_data, self.time_emb(t), conditions], axis=-1)
-        else:
-            xtc = ops.concatenate([xt / self.sigma_data, self.time_emb(t)], axis=-1)
+        xtc = concatenate(xt / self.sigma_data, self.time_emb(t), conditions, axis=-1)
         student_out = self.subnet_projector(self.subnet(xtc, training=stage == "training"))
 
         # calculate the tangent
@@ -279,9 +253,9 @@ class ContinuousConsistencyModel(InferenceNetwork):
         # apply normalization to stabilize training
         g = g / (ops.norm(g, axis=-1, keepdims=True) + c)
 
-        # compute adaptive weights
+        # compute adaptive weights and calculate loss
         w = self.weight_fn_projector(self.weight_fn(expand_right_to(t_, 2)))
-        # calculate loss
+
         D = ops.shape(x)[-1]
         loss = ops.mean(
             (ops.exp(w) / D)
