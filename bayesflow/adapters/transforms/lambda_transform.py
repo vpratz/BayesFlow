@@ -19,7 +19,9 @@ class LambdaTransform(ElementwiseTransform):
     to the `custom_objects` argument of the `deserialize` function when deserializing this class.
     """
 
-    def __init__(self, *, forward: Callable[[np.ndarray, ...], np.ndarray], inverse: Callable[[np.ndarray, ...], np.ndarray]):
+    def __init__(
+        self, *, forward: Callable[[np.ndarray, ...], np.ndarray], inverse: Callable[[np.ndarray, ...], np.ndarray]
+    ):
         super().__init__()
 
         self._forward = forward

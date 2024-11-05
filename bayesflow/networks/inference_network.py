@@ -13,7 +13,13 @@ class InferenceNetwork(keras.Layer):
         self.base_distribution.build(xz_shape)
 
     def call(
-        self, xz: Tensor, conditions: Tensor = None, inverse: bool = False, density: bool = False, training: bool = False, **kwargs
+        self,
+        xz: Tensor,
+        conditions: Tensor = None,
+        inverse: bool = False,
+        density: bool = False,
+        training: bool = False,
+        **kwargs,
     ) -> Tensor | tuple[Tensor, Tensor]:
         if inverse:
             return self._inverse(xz, conditions=conditions, density=density, training=training, **kwargs)
