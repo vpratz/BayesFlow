@@ -1,15 +1,22 @@
-import keras
-from keras import ops
-
 import numpy as np
 
+import keras
+from keras import ops
+from keras.saving import register_keras_serializable as serializable
 
-class GaussianFourierEmbedding(keras.layers.Layer):
-    """Fourier projection with normally distributed frequencies"""
+from bayesflow.types import Tensor
 
-    def __init__(self, fourier_emb_dim, scale=1.0, include_identity=True):
+
+@serializable(package="bayesflow.networks")
+class GaussianFourierEmbedding(keras.Layer):
+    """Implements a Fourier projection with normally distributed frequencies."""
+
+    def __init__(self, fourier_emb_dim: int, scale: float = 1.0, include_identity: bool = True):
         """Create an instance of a fourier projection with normally
         distributed frequencies.
+
+        #TODO - Allow more than Gaussian inits
+
         Parameters:
         -----------
         fourier_emb_dim   : int (even)
@@ -19,13 +26,14 @@ class GaussianFourierEmbedding(keras.layers.Layer):
 
         """
         super().__init__()
-        assert fourier_emb_dim % 2 == 0, f"Embedding dimension must be even, was {fourier_emb_dim}."
+        assert fourier_emb_dim % 2 == 0, f"Embedding dimension must be even, but is {fourier_emb_dim}."
         self.w = self.add_weight(initializer="random_normal", shape=(fourier_emb_dim // 2,), trainable=False)
         self.scale = scale
         self.include_identity = include_identity
 
-    def call(self, t):
-        """
+    def call(self, t: Tensor) -> Tensor:
+        """Embeds the one-dimensional time scalar into a higher-dimensional Fourier embedding.
+
         Parameters:
         -----------
         t   : Tensor of shape (batch_size, 1)
