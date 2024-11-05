@@ -2,6 +2,7 @@ import keras
 
 from bayesflow.types import Shape, Tensor
 from bayesflow.utils import find_distribution
+from bayesflow.utils.decorators import allow_batch_size
 
 
 class InferenceNetwork(keras.Layer):
@@ -35,6 +36,7 @@ class InferenceNetwork(keras.Layer):
     ) -> Tensor | tuple[Tensor, Tensor]:
         raise NotImplementedError
 
+    @allow_batch_size
     def sample(self, batch_shape: Shape, conditions: Tensor = None, **kwargs) -> Tensor:
         samples = self.base_distribution.sample(batch_shape)
         samples = self(samples, conditions=conditions, inverse=True, density=False, **kwargs)
