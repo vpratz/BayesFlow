@@ -1,1 +1,1 @@
-from .time_embeddings import GaussianFourierEmbedding
+from .fourier_embedding import FourierEmbedding
