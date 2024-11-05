@@ -11,7 +11,7 @@ from bayesflow.utils import jvp, concatenate, find_network, keras_kwargs, expand
 
 
 from ..inference_network import InferenceNetwork
-from ..embeddings import GaussianFourierEmbedding
+from ..embeddings import FourierEmbedding
 
 
 @register_keras_serializable(package="bayesflow.networks")
@@ -33,7 +33,6 @@ class ContinuousConsistencyModel(InferenceNetwork):
         self,
         subnet: str | type = "mlp",
         sigma_data: float = 1.0,
-        time_emb_dim: int = 20,
         **kwargs,
     ):
         """Creates an instance of an sCM to be used for consistency training (CT).
@@ -45,12 +44,8 @@ class ContinuousConsistencyModel(InferenceNetwork):
             instantiated using subnet_kwargs.
         sigma_data    : float, optional, default: 1.0
             Standard deviation of the target distribution
-        time_emb_dim  : int, optional, default: 20
-            Dimensionality of a time embedding. The embedding will
-            be concatenated to the time, so the total time embedding
-            will have size `time_emb_dim + 1`
         **kwargs      : dict, optional, default: {}
-            Additional keyword arguments
+            Additional keyword arguments, such as
         """
         super().__init__(base_distribution="normal", **keras_kwargs(kwargs))
 
@@ -60,8 +55,8 @@ class ContinuousConsistencyModel(InferenceNetwork):
         self.weight_fn = find_network("mlp", widths=(256,), dropout=0.0)
         self.weight_fn_projector = keras.layers.Dense(units=1, bias_initializer="zeros", kernel_initializer="zeros")
 
-        self.time_emb_dim = time_emb_dim
-        self.time_emb = GaussianFourierEmbedding(self.time_emb_dim, scale=1.0, include_identity=True)
+        self.time_emb = FourierEmbedding(**kwargs.get("embedding_kwargs", {}))
+        self.time_emb_dim = self.time_emb.embed_dim
 
         self.sigma_data = sigma_data
 
