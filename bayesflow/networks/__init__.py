@@ -7,4 +7,4 @@ from .inference_network import InferenceNetwork
 from .mlp import MLP
 from .lstnet import LSTNet
 from .summary_network import SummaryNetwork
-from .transformers import SetTransformer
+from .transformers import SetTransformer, TimeSeriesTransformer, FusionTransformer
