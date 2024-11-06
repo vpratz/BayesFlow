@@ -62,21 +62,17 @@ class ContinuousConsistencyModel(InferenceNetwork):
 
         self.seed_generator = keras.random.SeedGenerator()
 
-    def _discretize_time(self, num_steps, min_noise=0.001, max_noise=80.0, rho=7.0):
-        """Function for obtaining the discretized time for multi-step sampling
-        according to [2], Section 2, bottom of page 2.
-        Subsequent transformation to time space following [1].
-        """
+    def _discretize_time(self, num_steps: int, rho: float = 3.5, **kwargs):
+        t = np.linspace(0.0, np.pi / 2, num_steps)
+        times = np.exp((t - np.pi / 2) * rho) * np.pi / 2
+        times[0] = 0.0
 
-        N = num_steps + 1
-        indices = ops.arange(1, N + 1, dtype="float32")
-        one_over_rho = 1.0 / rho
-        discretized_time = (
-            min_noise**one_over_rho
-            + (indices - 1.0) / (ops.cast(N, "float32") - 1.0) * (max_noise**one_over_rho - min_noise**one_over_rho)
-        ) ** rho
-        time = ops.arctan(discretized_time / self.sigma_data)
-        return time
+        # if rho is set too low, bad schedules can occur
+        EPS_WARN = 0.1
+        if times[1] > EPS_WARN:
+            print("Warning: The last time step is large.")
+            print(f"Increasing rho (was {rho}) or n_steps (was {num_steps}) might improve results.")
+        return ops.convert_to_tensor(times)
 
     def build(self, xz_shape, conditions_shape=None):
         super().build(xz_shape)
@@ -142,17 +138,13 @@ class ContinuousConsistencyModel(InferenceNetwork):
         x            : Tensor
             The approximate samples
         """
-        steps = kwargs.get("steps", 30)
-        max_noise = kwargs.get("max_noise", 80.0)
-        min_noise = kwargs.get("min_noise", 1e-4)
-        rho = kwargs.get("rho", 7.0)
+        steps = kwargs.get("steps", 15)
+        rho = kwargs.get("rho", 3.5)
 
         # noise distribution has variance sigma_data
         x = keras.ops.copy(z) * self.sigma_data
-        discretized_time = keras.ops.flip(
-            self._discretize_time(steps, max_noise=max_noise, min_noise=min_noise, rho=rho), axis=-1
-        )
-        t = keras.ops.full((*keras.ops.shape(x)[:-1], 1), np.pi / 2, dtype=x.dtype)
+        discretized_time = keras.ops.flip(self._discretize_time(steps, rho=rho), axis=-1)
+        t = keras.ops.full((*keras.ops.shape(x)[:-1], 1), discretized_time[0], dtype=x.dtype)
         x = self.consistency_function(x, t, conditions=conditions)
         for n in range(1, steps):
             noise = keras.random.normal(keras.ops.shape(x), dtype=keras.ops.dtype(x), seed=self.seed_generator)
