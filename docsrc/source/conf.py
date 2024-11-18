@@ -36,7 +36,10 @@ extensions = [
     "sphinx.ext.extlinks",
     "sphinx.ext.intersphinx",
     "sphinx_design",
+    "sphinxcontrib.bibtex",
 ]
+
+bibtex_bibfiles = ["references.bib"]
 
 numpydoc_show_class_members = False
 myst_enable_extensions = [
@@ -113,3 +116,5 @@ suppress_warnings = [
 ]  # Avoid duplicate label warnings for Jupyter notebooks.
 
 remove_from_toctrees = ["_autosummary/*"]
+
+autosummmary_generate = True
