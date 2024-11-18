@@ -1,15 +1,14 @@
-import logging
-
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import pandas as pd
 
+from bayesflow.utils import logging
+
 
 def plot_samples_2d(
     samples: np.ndarray = None,
     context: str = None,
-    num_variables: int = None,
     variable_names: list = None,
     height: float = 2.5,
     color: str | tuple = "#132a70",
@@ -33,8 +32,6 @@ def plot_samples_2d(
         The color of the plot
     alpha       : float in [0, 1], optional, default: 0.9
         The opacity of the plot
-    num_variables     : int, optional, default: None
-        The number of params in the collection of distributions
     variable_names : list or None, optional, default: None
         The parameter names for nice plot titles. Inferred if None
     render      : bool, optional, default: True
@@ -44,18 +41,12 @@ def plot_samples_2d(
     **kwargs    : dict, optional
         Additional keyword arguments passed to the sns.PairGrid constructor
     """
-    # Get latent dimensions
+
     dim = samples.shape[-1]
-
-    # Get number of params
-    if num_variables is None:
-        num_variables = dim
-
-    # Generate parameters if there is none
     if context is None:
         context = "Default"
 
-    # Generate titles
+    # Generic variable names
     if variable_names is None:
         titles = [f"{context} $\\theta_{{{i}}}$" for i in range(1, dim + 1)]
     else:
@@ -73,9 +64,8 @@ def plot_samples_2d(
     try:
         artist.map_lower(sns.kdeplot, fill=True, color=color, alpha=alpha)
     except Exception as e:
-        logging.warning("KDE failed due to the following exception:\n" + repr(e) + "\nSubstituting scatter plot.")
+        logging.exception("KDE failed due to the following exception:\n" + repr(e) + "\nSubstituting scatter plot.")
         artist.map_lower(sns.scatterplot, alpha=0.6, s=40, edgecolor="k", color=color)
-
     artist.map_upper(sns.scatterplot, alpha=0.6, s=40, edgecolor="k", color=color)
 
     if render:
