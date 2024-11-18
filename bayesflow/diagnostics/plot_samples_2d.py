@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import pandas as pd
@@ -15,7 +14,7 @@ def plot_samples_2d(
     alpha: float = 0.9,
     render: bool = True,
     **kwargs,
-) -> plt.Figure:
+) -> sns.PairGrid:
     """
     A more flexible pair plot function for multiple distributions based upon
     collected samples.
@@ -57,7 +56,6 @@ def plot_samples_2d(
 
     # Generate plots
     artist = sns.PairGrid(data_to_plot, height=height, **kwargs)
-
     artist.map_diag(sns.histplot, fill=True, color=color, alpha=alpha, kde=True)
 
     # Incorporate exceptions for generating KDE plots
