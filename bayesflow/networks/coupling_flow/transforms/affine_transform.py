@@ -11,6 +11,7 @@ class AffineTransform(Transform):
     def __init__(self, clamp: bool = True, **kwargs):
         super().__init__(**kwargs)
         self.clamp = clamp
+        self.clamp_factor = 3.0
 
     @property
     def params_per_dim(self):
@@ -29,7 +30,7 @@ class AffineTransform(Transform):
 
         # soft clamp
         if self.clamp:
-            scale = ops.arcsinh(scale)
+            scale = self.clamp_factor * ops.arcsinh(scale)
 
         parameters["scale"] = scale
         return parameters
