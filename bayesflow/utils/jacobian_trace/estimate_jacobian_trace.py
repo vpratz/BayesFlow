@@ -1,3 +1,4 @@
+from collections.abc import Callable
 import keras
 
 from bayesflow.types import Tensor
@@ -5,7 +6,7 @@ from bayesflow.types import Tensor
 from ..vjp import vjp
 
 
-def estimate_jacobian_trace(f: callable, x: Tensor, steps: int = 1) -> (Tensor, Tensor):
+def estimate_jacobian_trace(f: Callable[[Tensor], Tensor], x: Tensor, steps: int = 1) -> (Tensor, Tensor):
     """Estimate the trace of the Jacobian matrix of f using Hutchinson's algorithm.
 
     :param f: The function to be differentiated.
