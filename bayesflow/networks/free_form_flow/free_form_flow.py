@@ -3,7 +3,7 @@ from keras import ops
 from keras.saving import register_keras_serializable as serializable
 
 from bayesflow.types import Tensor
-from bayesflow.utils import find_network, keras_kwargs, concatenate
+from bayesflow.utils import find_network, keras_kwargs, concatenate, log_jacobian_determinant
 
 from ..inference_network import InferenceNetwork
 
@@ -89,25 +89,23 @@ class FreeFormFlow(InferenceNetwork):
     def _forward(
         self, x: Tensor, conditions: Tensor = None, density: bool = False, training: bool = False, **kwargs
     ) -> Tensor | tuple[Tensor, Tensor]:
-        z = self.encode(x, conditions, training=training, **kwargs)
-
         if density:
-            raise NotImplementedError("density computation not implemented yet")
-            log_density = None
+            z, log_det = log_jacobian_determinant(x, self.encode, conditions, training=training, **kwargs)
+            log_density = self.base_distribution.log_prob(z) + log_det
             return z, log_density
 
+        z = self.encode(x, conditions, training=training, **kwargs)
         return z
 
     def _inverse(
         self, z: Tensor, conditions: Tensor = None, density: bool = False, training: bool = False, **kwargs
     ) -> Tensor | tuple[Tensor, Tensor]:
-        x = self.decode(z, conditions, training=training, **kwargs)
-
         if density:
-            raise NotImplementedError("density computation not implemented yet")
-            log_density = None
+            x, log_det = log_jacobian_determinant(z, self.decode, conditions, training=training, **kwargs)
+            log_density = self.base_distribution.log_prob(z) - log_det
             return x, log_density
 
+        x = self.decode(z, conditions, training=training, **kwargs)
         return x
 
     def encode(self, x: Tensor, conditions: Tensor = None, training: bool = False, **kwargs) -> Tensor:

@@ -25,6 +25,7 @@ from .io import (
     parse_bytes,
 )
 from .jacobian_trace import jacobian_trace
+from .jacobian import compute_jacobian, log_jacobian_determinant
 from .jvp import jvp
 from .optimal_transport import optimal_transport
 from .tensor_utils import (
