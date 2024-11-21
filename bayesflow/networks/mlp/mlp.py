@@ -27,7 +27,7 @@ class MLP(keras.Layer):
         widths: Sequence[int] = None,
         activation: str = "mish",
         kernel_initializer: str = "he_normal",
-        residual: bool = True,
+        residual: bool = False,
         dropout: Literal[0, None] | float = 0.05,
         spectral_normalization: bool = False,
         **kwargs,
@@ -59,7 +59,7 @@ class MLP(keras.Layer):
             if depth is None or width is None:
                 # use the default
                 depth = 2
-                width = 512
+                width = 256
 
             widths = [width] * depth
 

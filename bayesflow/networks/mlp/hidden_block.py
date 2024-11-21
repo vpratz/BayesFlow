@@ -12,7 +12,7 @@ class ConfigurableHiddenBlock(keras.layers.Layer):
     def __init__(
         self,
         units: int = 256,
-        activation: str = "leaky_relu",
+        activation: str = "mish",
         kernel_initializer: str = "he_normal",
         residual: bool = False,
         dropout: Literal[0, None] | float = 0.05,
