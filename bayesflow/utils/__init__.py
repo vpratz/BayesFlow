@@ -27,6 +27,7 @@ from .io import (
 from .jacobian_trace import jacobian_trace
 from .jacobian import compute_jacobian, log_jacobian_determinant
 from .jvp import jvp
+from .vjp import vjp
 from .optimal_transport import optimal_transport
 from .tensor_utils import (
     expand_left,

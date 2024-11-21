@@ -3,9 +3,7 @@ import keras
 import numpy as np
 
 from bayesflow.types import Tensor
-
-
-from ._vjp import _make_vjp_fn
+from ..vjp import vjp
 
 
 def compute_jacobian_trace(f: Callable[[Tensor], Tensor], x: Tensor) -> (Tensor, Tensor):
@@ -24,15 +22,15 @@ def compute_jacobian_trace(f: Callable[[Tensor], Tensor], x: Tensor) -> (Tensor,
     shape = keras.ops.shape(x)
     trace = keras.ops.zeros(shape[:-1])
 
-    fx, vjp_fn = _make_vjp_fn(f, x)
+    fx, vjp_fn = vjp(f, x)
 
     for dim in range(shape[-1]):
         projector = np.zeros(shape, dtype="float32")
         projector[..., dim] = 1.0
         projector = keras.ops.convert_to_tensor(projector)
 
-        vjp = vjp_fn(projector)
+        vjp_val = vjp_fn(projector)
 
-        trace += vjp[..., dim]
+        trace += vjp_val[..., dim]
 
     return fx, trace
