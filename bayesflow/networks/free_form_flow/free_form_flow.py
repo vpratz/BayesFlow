@@ -3,7 +3,7 @@ from keras import ops
 from keras.saving import register_keras_serializable as serializable
 
 from bayesflow.types import Tensor
-from bayesflow.utils import find_network, keras_kwargs, concatenate, log_jacobian_determinant
+from bayesflow.utils import find_network, keras_kwargs, concatenate, log_jacobian_determinant, jvp, vjp
 
 from ..inference_network import InferenceNetwork
 
@@ -156,34 +156,11 @@ class FreeFormFlow(InferenceNetwork):
         def decode(z):
             return self.decode(z, conditions, training=stage == "training")
 
-        # calculate VJP and JVP (backend-specific)
-        match keras.backend.backend():
-            case "torch":
-                import torch
-
-                z, vjp_fn = torch.func.vjp(encode, x)
-                (v1,) = vjp_fn(v)
-                x_pred, v2 = torch.func.jvp(decode, (z,), (v,))
-            case "jax":
-                import jax
-
-                z, vjp_fn = jax.vjp(encode, x)
-                (v1,) = vjp_fn(v)
-                x_pred, v2 = jax.jvp(decode, (z,), (v,))
-            case "tensorflow":
-                import tensorflow as tf
-
-                # VJP computation
-                with tf.GradientTape() as tape:
-                    tape.watch(x)
-                    z = encode(x)
-                    v1 = tape.gradient(z, x, v)
-                # JVP computation
-                with tf.autodiff.ForwardAccumulator(primals=(z,), tangents=(v,)) as acc:
-                    x_pred = decode(z)
-                    v2 = acc.jvp(x_pred)
-            case _:
-                raise NotImplementedError(f"Loss function not implemented for backend {keras.backend.backend()}")
+        # VJP computation
+        z, vjp_fn = vjp(encode, x)
+        v1 = vjp_fn(v)
+        # JVP computation
+        x_pred, v2 = jvp(decode, (z,), (v,))
 
         # equivalent: surrogate = ops.matmul(ops.stop_gradient(v2[:, None]), v1[:, :, None])[:, 0, 0]
         surrogate = ops.sum((ops.stop_gradient(v2) * v1), axis=-1)
