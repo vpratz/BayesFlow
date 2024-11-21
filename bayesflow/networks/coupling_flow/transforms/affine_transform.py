@@ -1,17 +1,17 @@
-import math
-
 import keras.ops as ops
 from keras.saving import register_keras_serializable as serializable
 
 from bayesflow.types import Tensor
+from bayesflow.utils.keras_utils import shifted_softplus
 from .transform import Transform
 
 
 @serializable(package="networks.coupling_flow")
 class AffineTransform(Transform):
-    def __init__(self, clamp: float | None = 1.9, **kwargs):
+    def __init__(self, clamp: bool = True, **kwargs):
         super().__init__(**kwargs)
         self.clamp = clamp
+        self.clamp_factor = 3.0
 
     @property
     def params_per_dim(self):
@@ -25,12 +25,12 @@ class AffineTransform(Transform):
     def constrain_parameters(self, parameters: dict[str, Tensor]) -> dict[str, Tensor]:
         scale = parameters["scale"]
 
-        # soft clamp
-        if self.clamp is not None:
-            (2.0 * self.clamp / math.pi) * ops.arctan(scale / self.clamp)
-
         # constrain to positive values
-        scale = ops.exp(scale)
+        scale = shifted_softplus(scale)
+
+        # soft clamp
+        if self.clamp:
+            scale = self.clamp_factor * ops.arcsinh(scale)
 
         parameters["scale"] = scale
         return parameters
