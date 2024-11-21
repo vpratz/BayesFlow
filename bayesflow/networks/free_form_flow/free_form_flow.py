@@ -90,7 +90,13 @@ class FreeFormFlow(InferenceNetwork):
         self, x: Tensor, conditions: Tensor = None, density: bool = False, training: bool = False, **kwargs
     ) -> Tensor | tuple[Tensor, Tensor]:
         if density:
-            z, log_det = log_jacobian_determinant(x, self.encode, conditions, training=training, **kwargs)
+            if conditions is None:
+                # None cannot be batched, so supply as keyword argument
+                z, log_det = log_jacobian_determinant(x, self.encode, conditions=None, training=training, **kwargs)
+            else:
+                # conditions should be batched, supply as positional argument
+                z, log_det = log_jacobian_determinant(x, self.encode, conditions, training=training, **kwargs)
+
             log_density = self.base_distribution.log_prob(z) + log_det
             return z, log_density
 
@@ -101,7 +107,12 @@ class FreeFormFlow(InferenceNetwork):
         self, z: Tensor, conditions: Tensor = None, density: bool = False, training: bool = False, **kwargs
     ) -> Tensor | tuple[Tensor, Tensor]:
         if density:
-            x, log_det = log_jacobian_determinant(z, self.decode, conditions, training=training, **kwargs)
+            if conditions is None:
+                # None cannot be batched, so supply as keyword argument
+                x, log_det = log_jacobian_determinant(z, self.decode, conditions=None, training=training, **kwargs)
+            else:
+                # conditions should be batched, supply as positional argument
+                x, log_det = log_jacobian_determinant(z, self.decode, conditions, training=training, **kwargs)
             log_density = self.base_distribution.log_prob(z) - log_det
             return x, log_density
 

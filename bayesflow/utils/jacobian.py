@@ -42,7 +42,7 @@ def compute_jacobian(
                 return {key: deep_unsqueeze(value) for key, value in arg.items()}
             elif isinstance(arg, (list, tuple)):
                 return [deep_unsqueeze(value) for value in arg]
-            return arg
+            raise ValueError(f"Argument cannot be batched: {arg}")
 
         @wraps(fn)
         def wrapper(*args, **kwargs):
