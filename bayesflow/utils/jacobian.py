@@ -1,3 +1,4 @@
+from collections.abc import Callable
 import keras
 from keras import ops
 from bayesflow.types import Tensor
@@ -5,7 +6,7 @@ from bayesflow.types import Tensor
 from functools import partial, wraps
 
 
-def batch_wrap(fn: callable) -> callable:
+def batch_wrap(fn: Callable) -> Callable:
     """Add a batch dimension to each tensor argument.
 
     :param fn:
@@ -38,7 +39,7 @@ def double_output(fn):
 
 def compute_jacobian(
     x_in: Tensor,
-    fn: callable,
+    fn: Callable,
     *func_args: any,
     grad_type: str = "backward",
     **func_kwargs: any,
@@ -98,7 +99,7 @@ def compute_jacobian(
 
 def log_jacobian_determinant(
     x_in: Tensor,
-    fn: callable,
+    fn: Callable,
     *func_args: any,
     grad_type: str = "backward",
     **func_kwargs: any,
