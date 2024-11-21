@@ -53,9 +53,9 @@ class FreeFormFlow(InferenceNetwork):
             Additional keyword arguments
         """
         super().__init__(base_distribution=base_distribution, **keras_kwargs(kwargs))
-        self.encoder_subnet = find_network(encoder_subnet, **kwargs.get("encoder_subnet_kwargs"))
+        self.encoder_subnet = find_network(encoder_subnet, **kwargs.get("encoder_subnet_kwargs", {}))
         self.encoder_projector = keras.layers.Dense(units=None, bias_initializer="zeros", kernel_initializer="zeros")
-        self.decoder_subnet = find_network(decoder_subnet, **kwargs.get("decoder_subnet_kwargs"))
+        self.decoder_subnet = find_network(decoder_subnet, **kwargs.get("decoder_subnet_kwargs", {}))
         self.decoder_projector = keras.layers.Dense(units=None, bias_initializer="zeros", kernel_initializer="zeros")
 
         self.hutchinson_sampling = hutchinson_sampling
