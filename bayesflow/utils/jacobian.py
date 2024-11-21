@@ -6,37 +6,6 @@ from bayesflow.types import Tensor
 from functools import partial, wraps
 
 
-def batch_wrap(fn: Callable) -> Callable:
-    """Add a batch dimension to each tensor argument.
-
-    :param fn:
-    :return: wrapped function"""
-
-    def deep_unsqueeze(arg):
-        if isinstance(arg, dict):
-            return {key: deep_unsqueeze(value) for key, value in arg.items()}
-        elif isinstance(arg, (list, tuple)):
-            return [deep_unsqueeze(value) for value in arg]
-        else:
-            return arg[None, ...]
-
-    @wraps(fn)
-    def wrapper(*args, **kwargs):
-        args = deep_unsqueeze(args)
-        return fn(*args, **kwargs)[0]
-
-    return wrapper
-
-
-def double_output(fn):
-    @wraps(fn)
-    def wrapper(*args, **kwargs):
-        out = fn(*args, **kwargs)
-        return out, out
-
-    return wrapper
-
-
 def compute_jacobian(
     x_in: Tensor,
     fn: Callable,
@@ -59,6 +28,36 @@ def compute_jacobian(
     :return: The output of the function `fn(x)` and the jacobian
         of the function with respect to its input `x` of shape
         (batch_size, out_dim, in_dim)."""
+
+    def batch_wrap(fn: Callable) -> Callable:
+        """Add a batch dimension to each tensor argument.
+
+        :param fn:
+        :return: wrapped function"""
+
+        def deep_unsqueeze(arg):
+            if ops.is_tensor(arg):
+                return arg[None, ...]
+            elif isinstance(arg, dict):
+                return {key: deep_unsqueeze(value) for key, value in arg.items()}
+            elif isinstance(arg, (list, tuple)):
+                return [deep_unsqueeze(value) for value in arg]
+            return arg
+
+        @wraps(fn)
+        def wrapper(*args, **kwargs):
+            args = deep_unsqueeze(args)
+            return fn(*args, **kwargs)[0]
+
+        return wrapper
+
+    def double_output(fn):
+        @wraps(fn)
+        def wrapper(*args, **kwargs):
+            out = fn(*args, **kwargs)
+            return out, out
+
+        return wrapper
 
     match keras.backend.backend():
         case "torch":
