@@ -1,4 +1,3 @@
-# adapted from https://github.com/vislearn/FFF
 import keras
 from keras import ops
 from bayesflow.types import Tensor
