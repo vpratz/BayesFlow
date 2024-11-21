@@ -8,24 +8,20 @@ def jvp(fn: callable, primals: tuple[Tensor] | Tensor, tangents: tuple[Tensor] |
     the input (primals) and vectors in tangents."""
 
     match keras.backend.backend():
+        case "jax":
+            import jax
+
+            fn_output, _jvp = jax.jvp(fn, primals, tangents)
         case "torch":
             import torch
 
-            fn_output, _jvp = torch.autograd.functional.jvp(fn, primals, tangents)
+            fn_output, _jvp = torch.func.jvp(fn, primals, tangents)
         case "tensorflow":
             import tensorflow as tf
 
             with tf.autodiff.ForwardAccumulator(primals=primals, tangents=tangents) as acc:
                 fn_output = fn(*primals)
             _jvp = acc.jvp(fn_output)
-        case "jax":
-            import jax
-
-            fn_output, _jvp = jax.jvp(
-                fn,
-                primals,
-                tangents,
-            )
         case _:
             raise NotImplementedError(f"JVP not implemented for backend {keras.backend.backend()}")
     return fn_output, _jvp
