@@ -158,7 +158,7 @@ class FreeFormFlow(InferenceNetwork):
 
         # VJP computation
         z, vjp_fn = vjp(encode, x)
-        v1 = vjp_fn(v)
+        v1 = vjp_fn(v)[0]
         # JVP computation
         x_pred, v2 = jvp(decode, (z,), (v,))
 
