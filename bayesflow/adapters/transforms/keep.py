@@ -11,14 +11,15 @@ from .transform import Transform
 
 @serializable(package="bayesflow.adapters")
 class Keep(Transform):
-    '''
+    """
     Name the data parameters that should be kept for futher calculation. 
 
     Parameters: 
 
         cls: tuple containing the names of kept data variables as strings. 
 
-    Example: 
+    Example 1: 
+
         Two moons simulator generates data for priors alpha, r and theta as well as observation data x.
         We are interested only in theta and x, to keep only theta and x we should use the following; 
 
@@ -30,8 +31,20 @@ class Keep(Transform):
 
             )
 
+    Example 2: 
 
-    '''
+    >>> a = [1,2,3,4]
+    >>> b = [[1,2],[3,4]]
+    >>> c = [[5,6,7,8]]
+    >>> dat = dict(a=a,b=b,c =c)
+    # Here we want to only keep elements b and c 
+    >>> keeper = bf.adapters.transforms.Keep(("b","c"))
+    >>> keeper.forward(dat)
+    {'b': [[1, 2], [3, 4]], 'c': [[5, 6, 7, 8]]}
+
+
+
+    """
     def __init__(self, keys: Sequence[str]):
         self.keys = keys
 
