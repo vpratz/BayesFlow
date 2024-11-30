@@ -18,7 +18,7 @@ class Keep(Transform):
 
         cls: tuple containing the names of kept data variables as strings. 
 
-    Example 1: 
+    Useage: 
 
         Two moons simulator generates data for priors alpha, r and theta as well as observation data x.
         We are interested only in theta and x, to keep only theta and x we should use the following; 
@@ -28,11 +28,9 @@ class Keep(Transform):
 
             # drop data from unneeded priors alpha, and r 
             .keep(("theta", "x"))
-
             )
 
-    Example 2: 
-
+    Example: 
     >>> a = [1,2,3,4]
     >>> b = [[1,2],[3,4]]
     >>> c = [[5,6,7,8]]
@@ -41,8 +39,6 @@ class Keep(Transform):
     >>> keeper = bf.adapters.transforms.Keep(("b","c"))
     >>> keeper.forward(dat)
     {'b': [[1, 2], [3, 4]], 'c': [[5, 6, 7, 8]]}
-
-
 
     """
     def __init__(self, keys: Sequence[str]):
