@@ -9,6 +9,7 @@ from ..utils.ecdf import simultaneous_ecdf_bands
 def plot_sbc_ecdf(
     post_samples: dict[str, np.ndarray] | np.ndarray,
     prior_samples: dict[str, np.ndarray] | np.ndarray,
+    filter_keys: Sequence[str] = None,
     variable_names: Sequence[str] = None,
     difference: bool = False,
     stacked: bool = False,
@@ -92,7 +93,9 @@ def plot_sbc_ecdf(
     """
 
     # Preprocessing
-    plot_data = preprocess(post_samples, prior_samples, variable_names, num_col, num_row, figsize, stacked=stacked)
+    plot_data = preprocess(
+        post_samples, prior_samples, filter_keys, variable_names, num_col, num_row, figsize, stacked=stacked
+    )
     plot_data["post_samples"] = plot_data.pop("post_variables")
     plot_data["prior_samples"] = plot_data.pop("prior_variables")
 
@@ -129,7 +132,7 @@ def plot_sbc_ecdf(
         ylab = "ECDF"
 
     # Add simultaneous bounds
-    titles = plot_data["names"] if not stacked else ["Stacked ECDFs"]
+    titles = plot_data["variable_names"] if not stacked else ["Stacked ECDFs"]
     for ax, title in zip(plot_data["axes"].flat, titles):
         ax.fill_between(z, L, H, color=fill_color, alpha=0.2, label=rf"{int((1-alpha) * 100)}$\%$ Confidence Bands")
         ax.legend(fontsize=legend_fontsize)
