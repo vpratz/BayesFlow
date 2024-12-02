@@ -40,10 +40,7 @@ class MultiHeadAttentionBlock(keras.Layer):
 
         self.input_projector = layers.Dense(embed_dim)
         self.attention = layers.MultiHeadAttention(
-            key_dim=embed_dim,
-            num_heads=num_heads,
-            dropout=dropout,
-            use_bias=use_bias,
+            key_dim=embed_dim, num_heads=num_heads, dropout=dropout, use_bias=use_bias, output_shape=embed_dim
         )
         self.ln_pre = layers.LayerNormalization() if layer_norm else None
         self.mlp = MLP(
