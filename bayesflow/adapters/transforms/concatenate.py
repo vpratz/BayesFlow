@@ -13,11 +13,11 @@ from .transform import Transform
 @serializable(package="bayesflow.adapters")
 class Concatenate(Transform):
     """Concatenate multiple arrays into a new key.
-    Parameters: 
+    Parameters:
 
-    keys: 
+    keys:
 
-    into: 
+    into:
 
     """
 
