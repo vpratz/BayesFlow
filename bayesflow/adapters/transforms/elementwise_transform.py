@@ -4,7 +4,6 @@ import numpy as np
 
 @serializable(package="bayesflow.adapters")
 class ElementwiseTransform:
-
     """Base class on which other transforms are based"""
 
     def __call__(self, data: np.ndarray, inverse: bool = False, **kwargs) -> np.ndarray:

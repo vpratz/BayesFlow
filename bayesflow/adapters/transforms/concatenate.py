@@ -12,17 +12,17 @@ from .transform import Transform
 
 @serializable(package="bayesflow.adapters")
 class Concatenate(Transform):
-    """Concatenate multiple arrays into a new key. Used to specify how data variables should be treated by the network. 
+    """Concatenate multiple arrays into a new key. Used to specify how data variables should be treated by the network.
 
-    Parameters: 
+    Parameters:
         keys: Input a list of strings, where the strings are the names of data variables.
-        into: A string telling network how to use the variables named in keys. 
+        into: A string telling network how to use the variables named in keys.
             -options: "inference_variables", "summary_variables", "inference_conditions"
-        axis: integer specifing along which axis to concatonate the keys. The last axis is used by default. 
+        axis: integer specifing along which axis to concatonate the keys. The last axis is used by default.
 
-    Example: 
-    Suppose you have a simulator that generates variables beta, sigma from priors  and then observation variables "x" and "y".
-    We can then use concatonate in the following way
+    Example:
+    Suppose you have a simulator that generates variables beta, sigma from priors  and then observation 
+    variables "x" and "y". We can then use concatonate in the following way
 
     adapter = (
         bf.Adapter()
