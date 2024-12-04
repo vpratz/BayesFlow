@@ -41,7 +41,7 @@ class Constrain(ElementwiseTransform):
             .constrain("sigma", lower=0)
             )
 
-        2 ) Suppose p is the parameter for a binomial distribution where p must be in 
+        2 ) Suppose p is the parameter for a binomial distribution where p must be in
         [0,1] then we would constrain the neural network to estimate p in the following way.
 
         Usage:
