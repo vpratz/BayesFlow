@@ -12,7 +12,6 @@ from .transform import Transform
 
 @serializable(package="bayesflow.adapters")
 class Concatenate(Transform):
-<<<<<<< HEAD
     """Concatenate multiple arrays into a new key. Used to specify how data variables should be treated by the network.
 
     Parameters:
@@ -24,14 +23,6 @@ class Concatenate(Transform):
     Example:
     Suppose you have a simulator that generates variables beta, sigma from priors  and then observation 
     variables "x" and "y". We can then use concatonate in the following way
-=======
-    """Concatenate multiple arrays into a new key.
-    Parameters:
-
-    keys:
-
-    into:
->>>>>>> b8b68757b0ae1a5f34bf656a837abbeb77e2ec62
 
     adapter = (
         bf.Adapter()
