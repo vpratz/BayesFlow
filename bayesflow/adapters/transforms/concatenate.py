@@ -21,7 +21,7 @@ class Concatenate(Transform):
         axis: integer specifing along which axis to concatonate the keys. The last axis is used by default.
 
     Example:
-    Suppose you have a simulator that generates variables beta, sigma from priors  and then observation 
+    Suppose you have a simulator that generates variables beta, sigma from priors  and then observation
     variables "x" and "y". We can then use concatonate in the following way
 
     adapter = (

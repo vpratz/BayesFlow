@@ -12,37 +12,37 @@ from .transform import Transform
 @serializable(package="bayesflow.adapters")
 class Keep(Transform):
     """
-    Name the data parameters that should be kept for futher calculation.
+        Name the data parameters that should be kept for futher calculation.
 
-    Parameters:
+        Parameters:
 
-        cls: tuple containing the names of kept data variables as strings.
+            cls: tuple containing the names of kept data variables as strings.
 
-    Useage:
+        Useage:
 
-        Two moons simulator generates data for priors alpha, r and theta as well as observation data x.
-        We are interested only in theta and x, to keep only theta and x we should use the following;
+            Two moons simulator generates data for priors alpha, r and theta as well as observation data x.
+            We are interested only in theta and x, to keep only theta and x we should use the following;
 
-        adapter = (
-            bf.adapters.Adapter()
-<<<<<<< HEAD
+            adapter = (
+                bf.adapters.Adapter()
+    <<<<<<< HEAD
 
-            # drop data from unneeded priors alpha, and r
-=======
-            # only keep theta and x
->>>>>>> b8b68757b0ae1a5f34bf656a837abbeb77e2ec62
-            .keep(("theta", "x"))
-            )
+                # drop data from unneeded priors alpha, and r
+    =======
+                # only keep theta and x
+    >>>>>>> b8b68757b0ae1a5f34bf656a837abbeb77e2ec62
+                .keep(("theta", "x"))
+                )
 
-    Example:
-    >>> a = [1, 2, 3, 4]
-    >>> b = [[1, 2], [3, 4]]
-    >>> c = [[5, 6, 7, 8]]
-    >>> dat = dict(a=a, b=b, c=c)
-    # Here we want to only keep elements b and c
-    >>> keeper = bf.adapters.transforms.Keep(("b", "c"))
-    >>> keeper.forward(dat)
-    {'b': [[1, 2], [3, 4]], 'c': [[5, 6, 7, 8]]}
+        Example:
+        >>> a = [1, 2, 3, 4]
+        >>> b = [[1, 2], [3, 4]]
+        >>> c = [[5, 6, 7, 8]]
+        >>> dat = dict(a=a, b=b, c=c)
+        # Here we want to only keep elements b and c
+        >>> keeper = bf.adapters.transforms.Keep(("b", "c"))
+        >>> keeper.forward(dat)
+        {'b': [[1, 2], [3, 4]], 'c': [[5, 6, 7, 8]]}
 
     """
 
