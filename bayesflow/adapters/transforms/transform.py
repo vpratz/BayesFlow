@@ -7,6 +7,7 @@ class Transform:
     """
     Base class on which other transforms are based
     """
+
     def __call__(self, data: dict[str, np.ndarray], *, inverse: bool = False, **kwargs) -> dict[str, np.ndarray]:
         if inverse:
             return self.inverse(data, **kwargs)

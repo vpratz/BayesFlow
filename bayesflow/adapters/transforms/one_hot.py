@@ -10,7 +10,7 @@ from .elementwise_transform import ElementwiseTransform
 @serializable(package="bayesflow.adapters")
 class OneHot(ElementwiseTransform):
     """
-    Changes data to be one-hot encoded. 
+    Changes data to be one-hot encoded.
     """
 
     def __init__(self, num_classes: int):
