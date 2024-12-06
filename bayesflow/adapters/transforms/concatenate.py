@@ -16,12 +16,11 @@ class Concatenate(Transform):
 
     Parameters:
         keys: Input a list of strings, where the strings are the names of data variables.
-        into: A string telling network how to use the variables named in keys.
-            -options: "inference_variables", "summary_variables", "inference_conditions"
+        into: A string telling the network how to use the variables named in keys.
         axis: integer specifing along which axis to concatonate the keys. The last axis is used by default.
 
     Example:
-    Suppose you have a simulator that generates variables beta, sigma from priors  and then observation
+    Suppose you have a simulator that generates variables "beta" and "sigma" from priors and then observation
     variables "x" and "y". We can then use concatonate in the following way
 
     adapter = (
