@@ -1,11 +1,14 @@
-from .plots import calibration_ecdf
-from .plots import calibration_histogram
-from .plots import loss
-from .plots import mc_calibration
-from .plots import mc_confusion_matrix
-from .plots import mmd_hypothesis_test
-from .plots import pairs_posterior
-from .plots import pairs_prior
-from .plots import pairs_samples
-from .plots import recovery
-from .plots import z_score_contraction
+from .metrics import root_mean_squared_error, calibration_error, posterior_contraction
+
+from .plots import (
+    calibration_ecdf,
+    calibration_histogram,
+    loss,
+    mc_calibration,
+    mc_confusion_matrix,
+    mmd_hypothesis_test,
+    pairs_posterior,
+    pairs_samples,
+    recovery,
+    z_score_contraction,
+)

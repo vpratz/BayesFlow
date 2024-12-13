@@ -2,15 +2,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from typing import Sequence
-from ...utils.plot_utils import preprocess, add_titles_and_labels, prettify_subplots
+from ...utils.plot_utils import prepare_plot_data, add_titles_and_labels, prettify_subplots
 from ...utils.ecdf import simultaneous_ecdf_bands
 from ...utils.ecdf.ranks import fractional_ranks, distance_ranks
 
 
 def calibration_ecdf(
-    post_samples: dict[str, np.ndarray] | np.ndarray,
-    prior_samples: dict[str, np.ndarray] | np.ndarray,
-    filter_keys: Sequence[str] = None,
+    targets: dict[str, np.ndarray] | np.ndarray,
+    references: dict[str, np.ndarray] | np.ndarray,
     variable_names: Sequence[str] = None,
     difference: bool = False,
     stacked: bool = False,
@@ -51,9 +50,9 @@ def calibration_ecdf(
 
     Parameters
     ----------
-    post_samples      : np.ndarray of shape (n_data_sets, n_post_draws, n_params)
+    targets      : np.ndarray of shape (n_data_sets, n_post_draws, n_params)
         The posterior draws obtained from n_data_sets
-    prior_samples     : np.ndarray of shape (n_data_sets, n_params)
+    references     : np.ndarray of shape (n_data_sets, n_params)
         The prior draws obtained for generating n_data_sets
     difference        : bool, optional, default: False
         If `True`, plots the ECDF difference.
@@ -115,21 +114,25 @@ def calibration_ecdf(
         If an unknown `rank_type` is passed.
     """
 
-    # Preprocessing
-    plot_data = preprocess(
-        post_samples, prior_samples, filter_keys, variable_names, num_col, num_row, figsize, stacked=stacked
+    plot_data = prepare_plot_data(
+        targets=targets,
+        references=references,
+        variable_names=variable_names,
+        num_col=num_col,
+        num_row=num_row,
+        figsize=figsize,
+        stacked=stacked,
     )
-    plot_data["post_samples"] = plot_data.pop("post_variables")
-    plot_data["prior_samples"] = plot_data.pop("prior_variables")
+
+    targets = plot_data.pop("targets")
+    references = plot_data.pop("references")
 
     if rank_type == "fractional":
         # Compute fractional ranks
-        ranks = fractional_ranks(plot_data["post_samples"], plot_data["prior_samples"])
+        ranks = fractional_ranks(targets, references)
     elif rank_type == "distance":
         # Compute ranks based on distance to the origin
-        ranks = distance_ranks(
-            plot_data["post_samples"], plot_data["prior_samples"], stacked=stacked, **kwargs.pop("ranks_kwargs", {})
-        )
+        ranks = distance_ranks(targets, references, stacked=stacked, **kwargs.pop("ranks_kwargs", {}))
     else:
         raise ValueError(f"Unknown rank type: {rank_type}. Use 'fractional' or 'distance'.")
 
@@ -154,7 +157,7 @@ def calibration_ecdf(
             plot_data["axes"].flat[j].plot(xx, yy, color=rank_ecdf_color, alpha=0.95, label="Rank ECDF")
 
     # Compute uniform ECDF and bands
-    alpha, z, L, H = simultaneous_ecdf_bands(plot_data["post_samples"].shape[0], **kwargs.pop("ecdf_bands_kwargs", {}))
+    alpha, z, L, H = simultaneous_ecdf_bands(targets.shape[0], **kwargs.pop("ecdf_bands_kwargs", {}))
 
     # Difference, if specified
     if difference:
@@ -179,7 +182,6 @@ def calibration_ecdf(
 
     prettify_subplots(plot_data["axes"], num_subplots=plot_data["num_variables"], tick_fontsize=tick_fontsize)
 
-    # Add labels, titles, and set font sizes
     add_titles_and_labels(
         plot_data["axes"],
         plot_data["num_row"],
