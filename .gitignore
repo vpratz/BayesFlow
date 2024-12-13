@@ -5,6 +5,9 @@ __pycache__/
 projects/
 */bayesflow.egg-info
 docsrc/_build/
+docsrc/source/api
+docsrc/source/_examples
+docsrc/source/contributing.md
 build
 docs/
 
