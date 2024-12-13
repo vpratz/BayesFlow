@@ -23,12 +23,9 @@ github:
 	@cp -a ../examples/. source/_examples
 	@rm -rf source/_examples/in_progress  # ignore if in_progress does not exist
 	@make html
+	@echo 'Copying output from _build/html to ../docs.'
 	@cp -a _build/html/. ../docs
 	@cp .nojekyll ../docs/.nojekyll
-	@rm -r _build/html/
-	@rm -r source/_examples
-# 	@rm source/installation.rst
-	@rm source/contributing.md
 
 clean:
 	@rm -rf ../docs/*
@@ -37,6 +34,7 @@ clean:
 clean-all:
 	@rm -rf ../docs/*
 	@rm -rf _build
+	@rm -rf source/_examples
     # remove all files from source/api except for bayesflow.rst
 	@find source/api -type f ! -name 'bayesflow.rst' -exec rm -f {} +
 
