@@ -16,3 +16,4 @@ The corresponding Jupyter Notebooks are available :mainbranch:`here <examples/>`
    _examples/Linear_Regression.ipynb
    _examples/Hyperparameter_Optimization.ipynb
    _examples/Bayesian_Experimental_Design.ipynb
+   _examples/SBML_Model_Posterior_Estimation.ipynb

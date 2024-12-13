@@ -1,15 +1,22 @@
+from typing import Sequence
+
 import numpy as np
 import matplotlib.pyplot as plt
 
-from typing import Sequence
-from ..utils.comp_utils import expected_calibration_error
-from ..utils.plot_utils import preprocess, add_titles_and_labels, add_metric, prettify_subplots
+
+from bayesflow.utils import (
+    expected_calibration_error,
+    prepare_plot_data,
+    add_titles_and_labels,
+    add_metric,
+    prettify_subplots,
+)
 
 
-def plot_calibration_curves(
-    post_model_samples: dict[str, np.ndarray] | np.ndarray,
-    true_model_samples: dict[str, np.ndarray] | np.ndarray,
-    names: Sequence[str] = None,
+def mc_calibration(
+    pred_models: dict[str, np.ndarray] | np.ndarray,
+    true_models: dict[str, np.ndarray] | np.ndarray,
+    model_names: Sequence[str] = None,
     num_bins: int = 10,
     label_fontsize: int = 16,
     title_fontsize: int = 18,
@@ -27,11 +34,11 @@ def plot_calibration_curves(
 
     Parameters
     ----------
-    true_model_samples       : np.ndarray of shape (num_data_sets, num_models)
+    true_models       : np.ndarray of shape (num_data_sets, num_models)
         The one-hot-encoded true model indices per data set.
-    post_model_samples      : np.ndarray of shape (num_data_sets, num_models)
+    pred_models       : np.ndarray of shape (num_data_sets, num_models)
         The predicted posterior model probabilities (PMPs) per data set.
-    names       : list or None, optional, default: None
+    model_names       : list or None, optional, default: None
         The model names for nice plot titles. Inferred if None.
     num_bins          : int, optional, default: 10
         The number of bins to use for the calibration curves (and marginal histograms).
@@ -59,11 +66,19 @@ def plot_calibration_curves(
     fig : plt.Figure - the figure instance for optional saving
     """
 
-    plot_data = preprocess(post_model_samples, true_model_samples, names, num_col, num_row, figsize, context="M")
+    # Gather plot data and metadata into a dictionary
+    plot_data = prepare_plot_data(
+        estimates=pred_models,
+        ground_truths=true_models,
+        variable_names=model_names,
+        num_col=num_col,
+        num_row=num_row,
+        figsize=figsize,
+    )
 
     # Compute calibration
     cal_errors, true_probs, pred_probs = expected_calibration_error(
-        plot_data["prior_samples"], plot_data["post_samples"], num_bins
+        plot_data["ground_truths"], plot_data["estimates"], num_bins
     )
 
     for j, ax in enumerate(plot_data["axes"].flat):
@@ -72,10 +87,8 @@ def plot_calibration_curves(
 
         # Plot PMP distribution over bins
         uniform_bins = np.linspace(0.0, 1.0, num_bins + 1)
-        norm_weights = np.ones_like(plot_data["post_samples"]) / len(plot_data["post_samples"])
-        ax[j].hist(
-            plot_data["post_samples"][:, j], bins=uniform_bins, weights=norm_weights[:, j], color="grey", alpha=0.3
-        )
+        norm_weights = np.ones_like(plot_data["estimates"]) / len(plot_data["estimates"])
+        ax[j].hist(plot_data["estimates"][:, j], bins=uniform_bins, weights=norm_weights[:, j], color="grey", alpha=0.3)
 
         # Plot AB line
         ax[j].plot((0, 1), (0, 1), "--", color="black", alpha=0.9)
@@ -94,15 +107,14 @@ def plot_calibration_curves(
             metric_fontsize=metric_fontsize,
         )
 
-    # Prettify
     prettify_subplots(axes=plot_data["axes"], num_subplots=plot_data["num_variables"], tick_fontsize=tick_fontsize)
 
-    # Only add x-labels to the bottom row
+    # Add labels, titles, and set font sizes
     add_titles_and_labels(
         axes=plot_data["axes"],
         num_row=plot_data["num_row"],
         num_col=plot_data["num_col"],
-        title=plot_data["names"],
+        title=plot_data["variable_names"],
         xlabel="Predicted Probability",
         ylabel="True Probability",
         title_fontsize=title_fontsize,

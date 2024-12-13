@@ -9,11 +9,13 @@ from keras.saving import (
 
 from .transforms import (
     AsSet,
+    AsTimeSeries,
     Broadcast,
     Concatenate,
     Constrain,
     ConvertDType,
     Drop,
+    ExpandDims,
     FilterTransform,
     Keep,
     LambdaTransform,
@@ -111,11 +113,21 @@ class Adapter:
         self.transforms.append(transform)
         return self
 
-    def broadcast(self, keys: str | Sequence[str], *, expand_scalars: bool = True):
+    def as_time_series(self, keys: str | Sequence[str]):
         if isinstance(keys, str):
             keys = [keys]
 
-        transform = MapTransform({key: Broadcast(expand_scalars=expand_scalars) for key in keys})
+        transform = MapTransform({key: AsTimeSeries() for key in keys})
+        self.transforms.append(transform)
+        return self
+
+    def broadcast(
+        self, keys: str | Sequence[str], *, to: str, expand: str | int | tuple = "left", exclude: int | tuple = -1
+    ):
+        if isinstance(keys, str):
+            keys = [keys]
+
+        transform = Broadcast(keys, to=to, expand=expand, exclude=exclude)
         self.transforms.append(transform)
         return self
 
@@ -123,12 +135,11 @@ class Adapter:
         self.transforms = []
         return self
 
-    def concatenate(self, keys: Sequence[str], *, into: str, axis: int = -1):
+    def concatenate(self, keys: str | Sequence[str], *, into: str, axis: int = -1):
         if isinstance(keys, str):
-            # this is a common mistake, and also passes the type checker since str is a sequence of characters
-            raise ValueError("Keys must be a sequence of strings. To rename a single key, use the `rename` method.")
-
-        transform = Concatenate(keys, into=into, axis=axis)
+            transform = Rename(keys, to_key=into)
+        else:
+            transform = Concatenate(keys, into=into, axis=axis)
         self.transforms.append(transform)
         return self
 
@@ -174,6 +185,14 @@ class Adapter:
             keys = [keys]
 
         transform = Drop(keys)
+        self.transforms.append(transform)
+        return self
+
+    def expand_dims(self, keys: str | Sequence[str], *, axis: int | tuple):
+        if isinstance(keys, str):
+            keys = [keys]
+
+        transform = ExpandDims(keys, axis=axis)
         self.transforms.append(transform)
         return self
 

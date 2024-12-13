@@ -2,13 +2,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from typing import Sequence
-from ..utils.plot_utils import preprocess, add_titles_and_labels, prettify_subplots
+
+from bayesflow.utils import prepare_plot_data, add_titles_and_labels, prettify_subplots
 
 
-def plot_z_score_contraction(
-    post_samples: dict[str, np.ndarray] | np.ndarray,
-    prior_samples: dict[str, np.ndarray] | np.ndarray,
-    names: Sequence[str] = None,
+def z_score_contraction(
+    targets: dict[str, np.ndarray] | np.ndarray,
+    references: dict[str, np.ndarray] | np.ndarray,
+    variable_names: Sequence[str] = None,
     figsize: Sequence[int] = None,
     label_fontsize: int = 16,
     title_fontsize: int = 18,
@@ -51,13 +52,13 @@ def plot_z_score_contraction(
 
     Parameters
     ----------
-    post_samples      : np.ndarray of shape (n_data_sets, n_post_draws, n_params)
-        The posterior draws obtained from n_data_sets
-    prior_samples     : np.ndarray of shape (n_data_sets, n_params)
-        The prior draws (true parameters) obtained for generating the n_data_sets
-    names       : list or None, optional, default: None
+    targets      : np.ndarray of shape (num_datasets, num_post_draws, num_params)
+        The posterior draws obtained from num_datasets
+    references     : np.ndarray of shape (num_datasets, num_params)
+        The prior draws (true parameters) used for generating the num_datasets
+    variable_names    : list or None, optional, default: None
         The parameter names for nice plot titles. Inferred if None
-    figsize          : tuple or None, optional, default : None
+    figsize           : tuple or None, optional, default : None
         The figure size passed to the matplotlib constructor. Inferred if None.
     label_fontsize    : int, optional, default: 16
         The font size of the y-label text
@@ -67,9 +68,9 @@ def plot_z_score_contraction(
         The font size of the axis ticklabels
     color             : str, optional, default: '#8f2727'
         The color for the true vs. estimated scatter points and error bars
-    num_row             : int, optional, default: None
+    num_row           : int, optional, default: None
         The number of rows for the subplots. Dynamically determined if None.
-    num_col             : int, optional, default: None
+    num_col           : int, optional, default: None
         The number of columns for the subplots. Dynamically determined if None.
 
     Returns
@@ -82,24 +83,30 @@ def plot_z_score_contraction(
         If there is a deviation from the expected shapes of ``post_samples`` and ``prior_samples``.
     """
 
-    # Preprocessing
-    plot_data = preprocess(post_samples, prior_samples, names, num_col, num_row, figsize)
-    plot_data["post_samples"] = plot_data.pop("post_variables")
-    plot_data["prior_samples"] = plot_data.pop("prior_variables")
+    # Gather plot data and metadata into a dictionary
+    plot_data = prepare_plot_data(
+        targets=targets,
+        references=references,
+        variable_names=variable_names,
+        num_col=num_col,
+        num_row=num_row,
+        figsize=figsize,
+    )
+
+    targets = plot_data.pop("targets")
+    references = plot_data.pop("references")
 
     # Estimate posterior means and stds
-    post_means = plot_data["post_samples"].mean(axis=1)
-    post_stds = plot_data["post_samples"].std(axis=1, ddof=1)
-    post_vars = plot_data["post_samples"].var(axis=1, ddof=1)
+    post_means = targets.mean(axis=1)
+    post_vars = targets.var(axis=1, ddof=1)
+    post_stds = np.sqrt(post_vars)
 
     # Estimate prior variance
-    prior_vars = plot_data["prior_samples"].var(axis=0, keepdims=True, ddof=1)
+    prior_vars = references.var(axis=0, keepdims=True, ddof=1)
 
-    # Compute contraction
+    # Compute contraction and z-score
     contraction = 1 - (post_vars / prior_vars)
-
-    # Compute posterior z score
-    z_score = (post_means - prior_samples) / post_stds
+    z_score = (post_means - references) / post_stds
 
     # Loop and plot
     for i, ax in enumerate(plot_data["axes"].flat):
@@ -109,15 +116,14 @@ def plot_z_score_contraction(
         ax.scatter(contraction[:, i], z_score[:, i], color=color, alpha=0.5)
         ax.set_xlim([-0.05, 1.05])
 
-    # Prettify
     prettify_subplots(plot_data["axes"], tick_fontsize)
 
-    # Only add x-labels to the bottom row
+    # Add labels, titles, and set font sizes
     add_titles_and_labels(
         axes=plot_data["axes"],
         num_row=plot_data["num_row"],
         num_col=plot_data["num_col"],
-        title=plot_data["names"],
+        title=plot_data["variable_names"],
         xlabel="Posterior contraction",
         ylabel="Posterior z-score",
         title_fontsize=title_fontsize,
