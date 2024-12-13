@@ -141,7 +141,7 @@ The documentation uses [sphinx](https://www.sphinx-doc.org/) and relies on [nump
 You need to install the following python packages for setting up documentation generation:
 
 ```
-pip install sphinx numpydoc myst-nb sphinx_design sphinx-book-theme
+pip install sphinx numpydoc myst-nb sphinx_design sphinx-book-theme sphinxcontrib-bibtex
 ```
 
 The overall *structure* of the documentation is manually designed. This also applies to the API documentation. This has two implications for you:

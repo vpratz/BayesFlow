@@ -11,15 +11,17 @@ Autosummary
     :template: custom-module-template.rst
     :recursive:
 
+   bayesflow.adapters
    bayesflow.approximators
    bayesflow.benchmarks
-   bayesflow.configurators
    bayesflow.datasets
    bayesflow.diagnostics
    bayesflow.distributions
    bayesflow.metrics
    bayesflow.networks
    bayesflow.simulators
+   bayesflow.types
+   bayesflow.utils
 
 
 Submodules
@@ -28,15 +30,17 @@ Submodules
 .. toctree::
    :maxdepth: 2
 
+   bayesflow.adapters
    bayesflow.approximators
    bayesflow.benchmarks
-   bayesflow.configurators
    bayesflow.datasets
    bayesflow.diagnostics
    bayesflow.distributions
    bayesflow.metrics
    bayesflow.networks
    bayesflow.simulators
+   bayesflow.types
+   bayesflow.utils
 
 Miscellaneous
 -------------
