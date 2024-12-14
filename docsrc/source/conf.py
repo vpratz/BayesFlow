@@ -17,6 +17,7 @@ sys.path.insert(0, os.path.abspath("../.."))
 # -- Project information -----------------------------------------------------
 
 project = "BayesFlow"
+author = "The BayesFlow authors"
 copyright = "2023, BayesFlow authors (lead maintainer: Stefan T. Radev)"
 
 
