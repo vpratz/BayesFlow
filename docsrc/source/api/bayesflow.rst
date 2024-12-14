@@ -22,6 +22,7 @@ Autosummary
    bayesflow.simulators
    bayesflow.types
    bayesflow.utils
+   bayesflow.workflows
 
 
 Submodules
@@ -41,16 +42,4 @@ Submodules
    bayesflow.simulators
    bayesflow.types
    bayesflow.utils
-
-Miscellaneous
--------------
-
-.. toctree::
-   :hidden:
-
-   bayesflow.experimental
-
-I added a citation here to test the bibtex extension, :cite:t:`radev2023bayesflow`.
-
-```{bibliography}
-```
+   bayesflow.workflows

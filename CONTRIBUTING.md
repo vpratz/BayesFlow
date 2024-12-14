@@ -100,7 +100,7 @@ Make sure to occasionally also run multi-backend tests for your OS using [tox](h
 tox --parallel auto
 ```
 
-See [tox.ini](tox.ini) for details on the environment configurations.
+See `tox.ini` for details on the environment configurations.
 Multi-OS tests will automatically be run once you create a pull request.
 
 Note that to be backend-agnostic, your code must not:
