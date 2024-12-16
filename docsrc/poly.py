@@ -5,7 +5,7 @@ from sphinx_polyversion.api import apply_overrides
 from sphinx_polyversion.driver import DefaultDriver
 from sphinx_polyversion.git import Git, GitRef, GitRefType, file_predicate, refs_by_type
 from sphinx_polyversion.pyvenv import Pip
-from sphinx_polyversion.sphinx import CommandBuilder
+from sphinx_polyversion.sphinx import SphinxBuilder, Placeholder
 
 #: Regex matching the branches to build docs for
 BRANCH_REGEX = r"master-doctest"
@@ -73,7 +73,9 @@ DefaultDriver(
         buffer_size=1 * 10**9,  # 1 GB
         predicate=file_predicate([src]),  # exclude refs without source dir
     ),
-    builder=CommandBuilder(source=src / "source", cmd=["make", "github"]),
+    builder=SphinxBuilder(
+        src / "source", args=SPHINX_ARGS.split(), pre_cmd=["python", "pre-build.py", Placeholder.SOURCE_DIR]
+    ),
     env=Pip.factory(args=POETRY_ARGS.split(), venv="buildvenv"),
     template_dir=root / src / "polyversion/templates",
     static_dir=root / src / "polyversion/static",

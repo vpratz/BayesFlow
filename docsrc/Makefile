@@ -4,7 +4,7 @@
 # You can set these variables from the command line, and also
 # from the environment for the first two.
 SPHINXOPTS    ?=
-SPHINXBUILD   ?= sphinx-multiversion
+SPHINXBUILD   ?= sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = _build
 
@@ -18,25 +18,21 @@ help:
 # copy rendered docs and .nojekyll (for github.io) to docs folder
 # remove example notebooks from source folder
 github:
-# 	@cp ../INSTALL.rst source/installation.rst  # INSTALL.rst does not exist
-	@cp ../CONTRIBUTING.md source/contributing.md
+	@cp ../INSTALL.rst source/installation.rst
+	@cp ../CONTRIBUTING source/contributing.md
 	@cp -a ../examples/. source/_examples
-	@rm -rf source/_examples/in_progress  # ignore if in_progress does not exist
-	@$(SPHINXBUILD) "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS)
-	@echo 'Copying output from _build/html to ../docs.'
+	@rm -r source/_examples/in_progress
+	@make html
 	@cp -a _build/html/. ../docs
 	@cp .nojekyll ../docs/.nojekyll
+	@rm -r _build/html/
+	@rm -r source/_examples
+	@rm source/installation.rst
+	@rm source/contributing.md
 
 clean:
 	@rm -rf ../docs/*
 	@rm -rf _build
-
-clean-all:
-	@rm -rf ../docs/*
-	@rm -rf _build
-	@rm -rf source/_examples
-    # remove all files from source/api except for bayesflow.rst
-	@find source/api -type f ! -name 'bayesflow.rst' -exec rm -f {} +
 
 .PHONY: help Makefile
 
