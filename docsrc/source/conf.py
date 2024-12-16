@@ -133,14 +133,6 @@ remove_from_toctrees = ["_autosummary/*"]
 
 autosummmary_generate = True
 
-
-def cleanup_handler(app, exception):
-    print("Done, what now?")
-
-
-def setup(app):
-    app.connect("build-finished", cleanup_handler)
-
-
+# versioning data for template
 data = load(globals())
 current: GitRef = data["current"]
