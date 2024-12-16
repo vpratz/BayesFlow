@@ -4,7 +4,7 @@
 # You can set these variables from the command line, and also
 # from the environment for the first two.
 SPHINXOPTS    ?=
-SPHINXBUILD   ?= sphinx-build
+SPHINXBUILD   ?= sphinx-multiversion
 SOURCEDIR     = source
 BUILDDIR      = _build
 
@@ -22,7 +22,7 @@ github:
 	@cp ../CONTRIBUTING.md source/contributing.md
 	@cp -a ../examples/. source/_examples
 	@rm -rf source/_examples/in_progress  # ignore if in_progress does not exist
-	@make html
+	@$(SPHINXBUILD) "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS)
 	@echo 'Copying output from _build/html to ../docs.'
 	@cp -a _build/html/. ../docs
 	@cp .nojekyll ../docs/.nojekyll
