@@ -5,7 +5,7 @@ from sphinx_polyversion.api import apply_overrides
 from sphinx_polyversion.driver import DefaultDriver
 from sphinx_polyversion.git import Git, GitRef, GitRefType, file_predicate, refs_by_type
 from sphinx_polyversion.pyvenv import Pip
-from sphinx_polyversion.sphinx import SphinxBuilder
+from sphinx_polyversion.sphinx import CommandBuilder
 
 #: Regex matching the branches to build docs for
 BRANCH_REGEX = r"master-doctest"
@@ -19,8 +19,8 @@ OUTPUT_DIR = "_polybuild"
 #: Source directory
 SOURCE_DIR = "docsrc/"
 
-#: Arguments to pass to `poetry install`
-POETRY_ARGS = "numpy"
+#: Arguments to pass to `pip install`
+POETRY_ARGS = "bayesflow"
 
 #: Arguments to pass to `sphinx-build`
 SPHINX_ARGS = "-a -v"
@@ -33,7 +33,6 @@ MOCK_DATA = {
     ],
     "current": GitRef("master-doctest", "", "", GitRefType.TAG, datetime.fromtimestamp(6)),
 }
-MOCK = True
 
 
 #: Data passed to templates
@@ -74,11 +73,10 @@ DefaultDriver(
         buffer_size=1 * 10**9,  # 1 GB
         predicate=file_predicate([src]),  # exclude refs without source dir
     ),
-    builder=SphinxBuilder(src / "source", args=SPHINX_ARGS.split()),
+    builder=CommandBuilder(source=src / "source", cmd=["make", "github"]),
     env=Pip.factory(args=POETRY_ARGS.split(), venv="buildvenv"),
     template_dir=root / src / "polyversion/templates",
     static_dir=root / src / "polyversion/static",
     data_factory=data,
     root_data_factory=root_data,
-    mock=MOCK_DATA,
-).run(MOCK)
+).run(False)
