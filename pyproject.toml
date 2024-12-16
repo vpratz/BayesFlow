@@ -26,6 +26,12 @@ dependencies = [
     "keras ~= 3.7.0",
     "numpy ~= 1.26.4",
     "scipy ~= 1.14.1",
+    "matplotlib",
+    "seaborn",
+    "pandas",
+    "scikit-learn",
+    "scipy",
+    "tqdm",
 ]
 
 [tool.ruff]
