@@ -4,6 +4,7 @@ from logging import getLogger
 from subprocess import CalledProcessError
 import os
 from pathlib import Path
+import shutil
 
 from sphinx_polyversion.api import apply_overrides
 from sphinx_polyversion.builder import BuildError
@@ -31,7 +32,7 @@ print(PARALLEL_BUILDS, "parallel")
 root = Git.root(Path(__file__).parent)
 
 #: CodeRegex matching the branches to build docs for
-BRANCH_REGEX = r"^(master)$"
+BRANCH_REGEX = r"^(master|dev)$"
 
 #: Regex matching the tags to build docs for
 TAG_REGEX = r"^v[\.0-9]*$"
@@ -68,6 +69,8 @@ V2_BACKEND_DEPS = [
     "torch",
     "tensorflow",
 ]
+
+VENV_DIR_NAME = ".bf_doc_gen_venv"
 
 
 #: Data passed to templates
@@ -248,13 +251,22 @@ async def selector(rev, keys):
     return None
 
 
+class DestructingDynamicPip(DynamicPip):
+    async def __aexit__(self, exc_type, exc, tb):
+        if self.venv.parent.name == VENV_DIR_NAME:
+            logger.info("Removing environment " + str(self.venv))
+            shutil.rmtree(self.venv)
+
+
+pip_cls = DynamicPip if PARALLEL_BUILDS else DestructingDynamicPip
+
 ENVIRONMENT = {
     # configuration for v2 and dev
-    None: DynamicPip.factory(venv=Path(".venv"), args=["-e", "."] + SPHINX_DEPS + V2_BACKEND_DEPS, creator=creator),
+    None: pip_cls.factory(venv=Path(VENV_DIR_NAME), args=["-e", "."] + SPHINX_DEPS + V2_BACKEND_DEPS, creator=creator),
     # configuration for v1 and master (remove master here and in selector when it moves to v2)
-    "v1": DynamicPip.factory(venv=Path(".venv"), args=["-e", "."] + SPHINX_DEPS + V1_BACKEND_DEPS, creator=creator),
-    "master": DynamicPip.factory(
-        venv=Path(".venv"),
+    "v1": pip_cls.factory(venv=Path(VENV_DIR_NAME), args=["-e", "."] + SPHINX_DEPS + V1_BACKEND_DEPS, creator=creator),
+    "master": pip_cls.factory(
+        venv=Path(VENV_DIR_NAME),
         args=["-vv", "-e", "."] + V1_BACKEND_DEPS + SPHINX_DEPS,
         creator=creator,
         env_vars={"SETUPTOOLS_SCM_PRETEND_VERSION_FOR_BAYESFLOW": "1.1.6dev"},
