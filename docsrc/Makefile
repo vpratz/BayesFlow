@@ -33,7 +33,7 @@ clean:
 	@rm -rf ../docs/*
 	@rm -rf _build
 	@rm -rf _build_polyversion
-	@rm -r source/_examples
+	@rm -rf source/_examples
 	@rm source/installation.rst
 	@rm source/contributing.md
 
