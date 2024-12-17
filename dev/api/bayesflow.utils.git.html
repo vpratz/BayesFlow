@@ -1,0 +1,1156 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>bayesflow.utils.git &#8212; BayesFlow: Amortized Bayesian Inference</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8fec244e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/bayesflow.utils.git';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://www.bayesflow.org/api/bayesflow.utils.git.html" />
+    <link rel="icon" href="../_static/bayesflow_hex.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="bayesflow.utils.hparam_utils" href="bayesflow.utils.hparam_utils.html" />
+    <link rel="prev" title="bayesflow.utils.functional.Sequence" href="bayesflow.utils.functional.Sequence.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <img src="../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BayesFlow</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Quickstart_Amortized_Posterior_Estimation.html">1. Quickstart: Amortized Posterior Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/TwoMoons_StarterNotebook.html">2. Two Moons: Tackling Bimodal Posteriors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/SIR_PosteriorEstimation.html">3. Posterior Estimation for SIR-like Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Linear_Regression.html">4. Amortized Posterior Estimation for Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Hyperparameter_Optimization.html">5. Hyperparameter Optimization Using Optuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Bayesian_Experimental_Design.html">6. Bayesian Experimental Design (BED) with BayesFlow and PyTorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/SBML_Model_Posterior_Estimation.html">7. Posterior Estimation of SBML Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="bayesflow.html">Public API: bayesflow package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.adapters.html">bayesflow.adapters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.adapters.Adapter.html">bayesflow.adapters.Adapter</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.adapters.adapter.html">bayesflow.adapters.adapter</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.deserialize.html">bayesflow.adapters.adapter.deserialize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.serializable.html">bayesflow.adapters.adapter.serializable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.serialize.html">bayesflow.adapters.adapter.serialize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.Adapter.html">bayesflow.adapters.adapter.Adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.AsSet.html">bayesflow.adapters.adapter.AsSet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.AsTimeSeries.html">bayesflow.adapters.adapter.AsTimeSeries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.Broadcast.html">bayesflow.adapters.adapter.Broadcast</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.Callable.html">bayesflow.adapters.adapter.Callable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.Concatenate.html">bayesflow.adapters.adapter.Concatenate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.Constrain.html">bayesflow.adapters.adapter.Constrain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.ConvertDType.html">bayesflow.adapters.adapter.ConvertDType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.Drop.html">bayesflow.adapters.adapter.Drop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.ExpandDims.html">bayesflow.adapters.adapter.ExpandDims</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.FilterTransform.html">bayesflow.adapters.adapter.FilterTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.Keep.html">bayesflow.adapters.adapter.Keep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.LambdaTransform.html">bayesflow.adapters.adapter.LambdaTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.MapTransform.html">bayesflow.adapters.adapter.MapTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.OneHot.html">bayesflow.adapters.adapter.OneHot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.Predicate.html">bayesflow.adapters.adapter.Predicate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.Rename.html">bayesflow.adapters.adapter.Rename</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.Sequence.html">bayesflow.adapters.adapter.Sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.Standardize.html">bayesflow.adapters.adapter.Standardize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.ToArray.html">bayesflow.adapters.adapter.ToArray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.adapter.Transform.html">bayesflow.adapters.adapter.Transform</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.adapters.transforms.html">bayesflow.adapters.transforms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.AsSet.html">bayesflow.adapters.transforms.AsSet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.AsTimeSeries.html">bayesflow.adapters.transforms.AsTimeSeries</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.Broadcast.html">bayesflow.adapters.transforms.Broadcast</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.Concatenate.html">bayesflow.adapters.transforms.Concatenate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.Constrain.html">bayesflow.adapters.transforms.Constrain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.ConvertDType.html">bayesflow.adapters.transforms.ConvertDType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.Drop.html">bayesflow.adapters.transforms.Drop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.ElementwiseTransform.html">bayesflow.adapters.transforms.ElementwiseTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.ExpandDims.html">bayesflow.adapters.transforms.ExpandDims</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.FilterTransform.html">bayesflow.adapters.transforms.FilterTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.Keep.html">bayesflow.adapters.transforms.Keep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.LambdaTransform.html">bayesflow.adapters.transforms.LambdaTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.MapTransform.html">bayesflow.adapters.transforms.MapTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.OneHot.html">bayesflow.adapters.transforms.OneHot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.Rename.html">bayesflow.adapters.transforms.Rename</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.Standardize.html">bayesflow.adapters.transforms.Standardize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.ToArray.html">bayesflow.adapters.transforms.ToArray</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.Transform.html">bayesflow.adapters.transforms.Transform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.as_set.html">bayesflow.adapters.transforms.as_set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.as_time_series.html">bayesflow.adapters.transforms.as_time_series</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.broadcast.html">bayesflow.adapters.transforms.broadcast</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.concatenate.html">bayesflow.adapters.transforms.concatenate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.constrain.html">bayesflow.adapters.transforms.constrain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.convert_dtype.html">bayesflow.adapters.transforms.convert_dtype</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.drop.html">bayesflow.adapters.transforms.drop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.elementwise_transform.html">bayesflow.adapters.transforms.elementwise_transform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.expand_dims.html">bayesflow.adapters.transforms.expand_dims</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.filter_transform.html">bayesflow.adapters.transforms.filter_transform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.keep.html">bayesflow.adapters.transforms.keep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.lambda_transform.html">bayesflow.adapters.transforms.lambda_transform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.map_transform.html">bayesflow.adapters.transforms.map_transform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.one_hot.html">bayesflow.adapters.transforms.one_hot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.rename.html">bayesflow.adapters.transforms.rename</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.standardize.html">bayesflow.adapters.transforms.standardize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.to_array.html">bayesflow.adapters.transforms.to_array</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.adapters.transforms.transform.html">bayesflow.adapters.transforms.transform</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.approximators.html">bayesflow.approximators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.approximators.Approximator.html">bayesflow.approximators.Approximator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.approximators.ContinuousApproximator.html">bayesflow.approximators.ContinuousApproximator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.approximators.ModelComparisonApproximator.html">bayesflow.approximators.ModelComparisonApproximator</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.approximators.approximator.html">bayesflow.approximators.approximator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.approximator.filter_kwargs.html">bayesflow.approximators.approximator.filter_kwargs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.approximator.find_batch_size.html">bayesflow.approximators.approximator.find_batch_size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.approximator.Adapter.html">bayesflow.approximators.approximator.Adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.approximator.Approximator.html">bayesflow.approximators.approximator.Approximator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.approximator.BackendApproximator.html">bayesflow.approximators.approximator.BackendApproximator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.approximator.OnlineDataset.html">bayesflow.approximators.approximator.OnlineDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.approximator.Simulator.html">bayesflow.approximators.approximator.Simulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.approximators.backend_approximators.html">bayesflow.approximators.backend_approximators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.backend_approximators.BackendApproximator.html">bayesflow.approximators.backend_approximators.BackendApproximator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.backend_approximators.backend_approximator.html">bayesflow.approximators.backend_approximators.backend_approximator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.backend_approximators.jax_approximator.html">bayesflow.approximators.backend_approximators.jax_approximator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.backend_approximators.numpy_approximator.html">bayesflow.approximators.backend_approximators.numpy_approximator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.backend_approximators.tensorflow_approximator.html">bayesflow.approximators.backend_approximators.tensorflow_approximator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.backend_approximators.torch_approximator.html">bayesflow.approximators.backend_approximators.torch_approximator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.approximators.continuous_approximator.html">bayesflow.approximators.continuous_approximator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.continuous_approximator.deserialize.html">bayesflow.approximators.continuous_approximator.deserialize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.continuous_approximator.serializable.html">bayesflow.approximators.continuous_approximator.serializable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.continuous_approximator.serialize.html">bayesflow.approximators.continuous_approximator.serialize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.continuous_approximator.split_arrays.html">bayesflow.approximators.continuous_approximator.split_arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.continuous_approximator.Adapter.html">bayesflow.approximators.continuous_approximator.Adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.continuous_approximator.Approximator.html">bayesflow.approximators.continuous_approximator.Approximator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.continuous_approximator.ContinuousApproximator.html">bayesflow.approximators.continuous_approximator.ContinuousApproximator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.continuous_approximator.InferenceNetwork.html">bayesflow.approximators.continuous_approximator.InferenceNetwork</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.continuous_approximator.Sequence.html">bayesflow.approximators.continuous_approximator.Sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.continuous_approximator.SummaryNetwork.html">bayesflow.approximators.continuous_approximator.SummaryNetwork</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.html">bayesflow.approximators.model_comparison_approximator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.deserialize.html">bayesflow.approximators.model_comparison_approximator.deserialize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.filter_kwargs.html">bayesflow.approximators.model_comparison_approximator.filter_kwargs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.serializable.html">bayesflow.approximators.model_comparison_approximator.serializable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.serialize.html">bayesflow.approximators.model_comparison_approximator.serialize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.Adapter.html">bayesflow.approximators.model_comparison_approximator.Adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.Approximator.html">bayesflow.approximators.model_comparison_approximator.Approximator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.Mapping.html">bayesflow.approximators.model_comparison_approximator.Mapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.ModelComparisonApproximator.html">bayesflow.approximators.model_comparison_approximator.ModelComparisonApproximator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.ModelComparisonSimulator.html">bayesflow.approximators.model_comparison_approximator.ModelComparisonSimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.OnlineDataset.html">bayesflow.approximators.model_comparison_approximator.OnlineDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.Sequence.html">bayesflow.approximators.model_comparison_approximator.Sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.Simulator.html">bayesflow.approximators.model_comparison_approximator.Simulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.approximators.model_comparison_approximator.SummaryNetwork.html">bayesflow.approximators.model_comparison_approximator.SummaryNetwork</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.benchmarks.html">bayesflow.benchmarks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.LotkaVolterra.html">bayesflow.benchmarks.LotkaVolterra</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.TwoMoons.html">bayesflow.benchmarks.TwoMoons</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.benchmarks.simulators.html">bayesflow.benchmarks.simulators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.LotkaVolterra.html">bayesflow.benchmarks.simulators.LotkaVolterra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.TwoMoons.html">bayesflow.benchmarks.simulators.TwoMoons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.benchmark_simulator.html">bayesflow.benchmarks.simulators.benchmark_simulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.bernoulli_glm.html">bayesflow.benchmarks.simulators.bernoulli_glm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.bernoulli_glm_raw.html">bayesflow.benchmarks.simulators.bernoulli_glm_raw</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.gaussian_linear.html">bayesflow.benchmarks.simulators.gaussian_linear</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.gaussian_linear_uniform.html">bayesflow.benchmarks.simulators.gaussian_linear_uniform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.gaussian_mixture.html">bayesflow.benchmarks.simulators.gaussian_mixture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.inverse_kinematics.html">bayesflow.benchmarks.simulators.inverse_kinematics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.lotka_volterra.html">bayesflow.benchmarks.simulators.lotka_volterra</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.sir.html">bayesflow.benchmarks.simulators.sir</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.slcp.html">bayesflow.benchmarks.simulators.slcp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.slcp_distractors.html">bayesflow.benchmarks.simulators.slcp_distractors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.benchmarks.simulators.two_moons.html">bayesflow.benchmarks.simulators.two_moons</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.datasets.html">bayesflow.datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.datasets.DiskDataset.html">bayesflow.datasets.DiskDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.datasets.OfflineDataset.html">bayesflow.datasets.OfflineDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.datasets.OnlineDataset.html">bayesflow.datasets.OnlineDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.datasets.RoundsDataset.html">bayesflow.datasets.RoundsDataset</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.datasets.disk_dataset.html">bayesflow.datasets.disk_dataset</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.datasets.disk_dataset.pickle_load.html">bayesflow.datasets.disk_dataset.pickle_load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.datasets.disk_dataset.tree_stack.html">bayesflow.datasets.disk_dataset.tree_stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.datasets.disk_dataset.Adapter.html">bayesflow.datasets.disk_dataset.Adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.datasets.disk_dataset.DiskDataset.html">bayesflow.datasets.disk_dataset.DiskDataset</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.datasets.offline_dataset.html">bayesflow.datasets.offline_dataset</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.datasets.offline_dataset.Adapter.html">bayesflow.datasets.offline_dataset.Adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.datasets.offline_dataset.OfflineDataset.html">bayesflow.datasets.offline_dataset.OfflineDataset</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.datasets.online_dataset.html">bayesflow.datasets.online_dataset</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.datasets.online_dataset.Adapter.html">bayesflow.datasets.online_dataset.Adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.datasets.online_dataset.OnlineDataset.html">bayesflow.datasets.online_dataset.OnlineDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.datasets.online_dataset.Simulator.html">bayesflow.datasets.online_dataset.Simulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.datasets.rounds_dataset.html">bayesflow.datasets.rounds_dataset</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.datasets.rounds_dataset.Adapter.html">bayesflow.datasets.rounds_dataset.Adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.datasets.rounds_dataset.RoundsDataset.html">bayesflow.datasets.rounds_dataset.RoundsDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.datasets.rounds_dataset.Simulator.html">bayesflow.datasets.rounds_dataset.Simulator</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.diagnostics.html">bayesflow.diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.diagnostics.calibration_ecdf.html">bayesflow.diagnostics.calibration_ecdf</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.diagnostics.calibration_error.html">bayesflow.diagnostics.calibration_error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.diagnostics.calibration_histogram.html">bayesflow.diagnostics.calibration_histogram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.diagnostics.loss.html">bayesflow.diagnostics.loss</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.diagnostics.mc_calibration.html">bayesflow.diagnostics.mc_calibration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.diagnostics.mc_confusion_matrix.html">bayesflow.diagnostics.mc_confusion_matrix</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.diagnostics.mmd_hypothesis_test.html">bayesflow.diagnostics.mmd_hypothesis_test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.diagnostics.pairs_posterior.html">bayesflow.diagnostics.pairs_posterior</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.diagnostics.pairs_samples.html">bayesflow.diagnostics.pairs_samples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.diagnostics.posterior_contraction.html">bayesflow.diagnostics.posterior_contraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.diagnostics.recovery.html">bayesflow.diagnostics.recovery</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.diagnostics.root_mean_squared_error.html">bayesflow.diagnostics.root_mean_squared_error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.diagnostics.z_score_contraction.html">bayesflow.diagnostics.z_score_contraction</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.diagnostics.metrics.html">bayesflow.diagnostics.metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.diagnostics.metrics.calibration_error.html">bayesflow.diagnostics.metrics.calibration_error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.diagnostics.metrics.posterior_contraction.html">bayesflow.diagnostics.metrics.posterior_contraction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.diagnostics.metrics.root_mean_squared_error.html">bayesflow.diagnostics.metrics.root_mean_squared_error</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.diagnostics.plots.html">bayesflow.diagnostics.plots</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.diagnostics.plots.calibration_ecdf.html">bayesflow.diagnostics.plots.calibration_ecdf</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.diagnostics.plots.calibration_histogram.html">bayesflow.diagnostics.plots.calibration_histogram</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.diagnostics.plots.loss.html">bayesflow.diagnostics.plots.loss</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.diagnostics.plots.mc_calibration.html">bayesflow.diagnostics.plots.mc_calibration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.diagnostics.plots.mc_confusion_matrix.html">bayesflow.diagnostics.plots.mc_confusion_matrix</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.diagnostics.plots.mmd_hypothesis_test.html">bayesflow.diagnostics.plots.mmd_hypothesis_test</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.diagnostics.plots.pairs_posterior.html">bayesflow.diagnostics.plots.pairs_posterior</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.diagnostics.plots.pairs_samples.html">bayesflow.diagnostics.plots.pairs_samples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.diagnostics.plots.recovery.html">bayesflow.diagnostics.plots.recovery</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.diagnostics.plots.z_score_contraction.html">bayesflow.diagnostics.plots.z_score_contraction</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.distributions.html">bayesflow.distributions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.distributions.DiagonalNormal.html">bayesflow.distributions.DiagonalNormal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.distributions.DiagonalStudentT.html">bayesflow.distributions.DiagonalStudentT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.distributions.Distribution.html">bayesflow.distributions.Distribution</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.distributions.diagonal_normal.html">bayesflow.distributions.diagonal_normal</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.diagonal_normal.allow_batch_size.html">bayesflow.distributions.diagonal_normal.allow_batch_size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.diagonal_normal.serializable.html">bayesflow.distributions.diagonal_normal.serializable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.diagonal_normal.DiagonalNormal.html">bayesflow.distributions.diagonal_normal.DiagonalNormal</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.diagonal_normal.Distribution.html">bayesflow.distributions.diagonal_normal.Distribution</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.distributions.diagonal_student_t.html">bayesflow.distributions.diagonal_student_t</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.diagonal_student_t.allow_batch_size.html">bayesflow.distributions.diagonal_student_t.allow_batch_size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.diagonal_student_t.expand_tile.html">bayesflow.distributions.diagonal_student_t.expand_tile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.diagonal_student_t.serializable.html">bayesflow.distributions.diagonal_student_t.serializable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.diagonal_student_t.DiagonalStudentT.html">bayesflow.distributions.diagonal_student_t.DiagonalStudentT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.diagonal_student_t.Distribution.html">bayesflow.distributions.diagonal_student_t.Distribution</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.distributions.distribution.html">bayesflow.distributions.distribution</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.distribution.keras_kwargs.html">bayesflow.distributions.distribution.keras_kwargs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.distribution.Distribution.html">bayesflow.distributions.distribution.Distribution</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.distributions.mixture_distribution.html">bayesflow.distributions.mixture_distribution</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.mixture_distribution.allow_batch_size.html">bayesflow.distributions.mixture_distribution.allow_batch_size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.mixture_distribution.serializable.html">bayesflow.distributions.mixture_distribution.serializable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.mixture_distribution.Distribution.html">bayesflow.distributions.mixture_distribution.Distribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.distributions.mixture_distribution.MixtureDistribution.html">bayesflow.distributions.mixture_distribution.MixtureDistribution</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.metrics.html">bayesflow.metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.metrics.MaximumMeanDiscrepancy.html">bayesflow.metrics.MaximumMeanDiscrepancy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.metrics.RootMeanSquaredError.html">bayesflow.metrics.RootMeanSquaredError</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.metrics.functional.html">bayesflow.metrics.functional</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.metrics.functional.maximum_mean_discrepancy.html">bayesflow.metrics.functional.maximum_mean_discrepancy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.metrics.functional.root_mean_squared_error.html">bayesflow.metrics.functional.root_mean_squared_error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.metrics.functional.kernels.html">bayesflow.metrics.functional.kernels</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.metrics.maximum_mean_discrepancy.html">bayesflow.metrics.maximum_mean_discrepancy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.metrics.maximum_mean_discrepancy.maximum_mean_discrepancy.html">bayesflow.metrics.maximum_mean_discrepancy.maximum_mean_discrepancy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.metrics.maximum_mean_discrepancy.MaximumMeanDiscrepancy.html">bayesflow.metrics.maximum_mean_discrepancy.MaximumMeanDiscrepancy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.metrics.maximum_mean_discrepancy.partial.html">bayesflow.metrics.maximum_mean_discrepancy.partial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.metrics.root_mean_squard_error.html">bayesflow.metrics.root_mean_squard_error</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.metrics.root_mean_squard_error.root_mean_squared_error.html">bayesflow.metrics.root_mean_squard_error.root_mean_squared_error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.metrics.root_mean_squard_error.RootMeanSquaredError.html">bayesflow.metrics.root_mean_squard_error.RootMeanSquaredError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.metrics.root_mean_squard_error.partial.html">bayesflow.metrics.root_mean_squard_error.partial</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.networks.html">bayesflow.networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.CIF.html">bayesflow.networks.CIF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.ConsistencyModel.html">bayesflow.networks.ConsistencyModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.ContinuousConsistencyModel.html">bayesflow.networks.ContinuousConsistencyModel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.CouplingFlow.html">bayesflow.networks.CouplingFlow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.DeepSet.html">bayesflow.networks.DeepSet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.FlowMatching.html">bayesflow.networks.FlowMatching</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.FreeFormFlow.html">bayesflow.networks.FreeFormFlow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.FusionTransformer.html">bayesflow.networks.FusionTransformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.InferenceNetwork.html">bayesflow.networks.InferenceNetwork</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.LSTNet.html">bayesflow.networks.LSTNet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.MLP.html">bayesflow.networks.MLP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.SetTransformer.html">bayesflow.networks.SetTransformer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.SummaryNetwork.html">bayesflow.networks.SummaryNetwork</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.networks.TimeSeriesTransformer.html">bayesflow.networks.TimeSeriesTransformer</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.networks.cif.html">bayesflow.networks.cif</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.cif.CIF.html">bayesflow.networks.cif.CIF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.cif.cif.html">bayesflow.networks.cif.cif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.cif.conditional_gaussian.html">bayesflow.networks.cif.conditional_gaussian</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.networks.consistency_models.html">bayesflow.networks.consistency_models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.consistency_models.ConsistencyModel.html">bayesflow.networks.consistency_models.ConsistencyModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.consistency_models.ContinuousConsistencyModel.html">bayesflow.networks.consistency_models.ContinuousConsistencyModel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.consistency_models.consistency_model.html">bayesflow.networks.consistency_models.consistency_model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.consistency_models.continuous_consistency_model.html">bayesflow.networks.consistency_models.continuous_consistency_model</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.networks.coupling_flow.html">bayesflow.networks.coupling_flow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.coupling_flow.CouplingFlow.html">bayesflow.networks.coupling_flow.CouplingFlow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.coupling_flow.actnorm.html">bayesflow.networks.coupling_flow.actnorm</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.coupling_flow.coupling_flow.html">bayesflow.networks.coupling_flow.coupling_flow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.coupling_flow.couplings.html">bayesflow.networks.coupling_flow.couplings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.coupling_flow.invertible_layer.html">bayesflow.networks.coupling_flow.invertible_layer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.coupling_flow.permutations.html">bayesflow.networks.coupling_flow.permutations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.coupling_flow.transforms.html">bayesflow.networks.coupling_flow.transforms</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.networks.deep_set.html">bayesflow.networks.deep_set</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.deep_set.DeepSet.html">bayesflow.networks.deep_set.DeepSet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.deep_set.deep_set.html">bayesflow.networks.deep_set.deep_set</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.deep_set.equivariant_module.html">bayesflow.networks.deep_set.equivariant_module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.deep_set.invariant_module.html">bayesflow.networks.deep_set.invariant_module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.networks.embeddings.html">bayesflow.networks.embeddings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.embeddings.FourierEmbedding.html">bayesflow.networks.embeddings.FourierEmbedding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.embeddings.RecurrentEmbedding.html">bayesflow.networks.embeddings.RecurrentEmbedding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.embeddings.Time2Vec.html">bayesflow.networks.embeddings.Time2Vec</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.embeddings.fourier_embedding.html">bayesflow.networks.embeddings.fourier_embedding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.embeddings.recurrent_embedding.html">bayesflow.networks.embeddings.recurrent_embedding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.embeddings.time2vec.html">bayesflow.networks.embeddings.time2vec</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.networks.flow_matching.html">bayesflow.networks.flow_matching</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.flow_matching.FlowMatching.html">bayesflow.networks.flow_matching.FlowMatching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.flow_matching.flow_matching.html">bayesflow.networks.flow_matching.flow_matching</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.flow_matching.integrators.html">bayesflow.networks.flow_matching.integrators</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.networks.free_form_flow.html">bayesflow.networks.free_form_flow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.free_form_flow.FreeFormFlow.html">bayesflow.networks.free_form_flow.FreeFormFlow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.free_form_flow.free_form_flow.html">bayesflow.networks.free_form_flow.free_form_flow</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.networks.inference_network.html">bayesflow.networks.inference_network</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.inference_network.allow_batch_size.html">bayesflow.networks.inference_network.allow_batch_size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.inference_network.find_distribution.html">bayesflow.networks.inference_network.find_distribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.inference_network.InferenceNetwork.html">bayesflow.networks.inference_network.InferenceNetwork</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.networks.lstnet.html">bayesflow.networks.lstnet</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.lstnet.LSTNet.html">bayesflow.networks.lstnet.LSTNet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.lstnet.lstnet.html">bayesflow.networks.lstnet.lstnet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.lstnet.skip_recurrent.html">bayesflow.networks.lstnet.skip_recurrent</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.networks.mlp.html">bayesflow.networks.mlp</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.mlp.MLP.html">bayesflow.networks.mlp.MLP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.mlp.hidden_block.html">bayesflow.networks.mlp.hidden_block</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.mlp.mlp.html">bayesflow.networks.mlp.mlp</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.networks.summary_network.html">bayesflow.networks.summary_network</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.summary_network.find_distribution.html">bayesflow.networks.summary_network.find_distribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.summary_network.keras_kwargs.html">bayesflow.networks.summary_network.keras_kwargs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.summary_network.maximum_mean_discrepancy.html">bayesflow.networks.summary_network.maximum_mean_discrepancy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.summary_network.SummaryNetwork.html">bayesflow.networks.summary_network.SummaryNetwork</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.networks.transformers.html">bayesflow.networks.transformers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.transformers.FusionTransformer.html">bayesflow.networks.transformers.FusionTransformer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.transformers.SetTransformer.html">bayesflow.networks.transformers.SetTransformer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.transformers.TimeSeriesTransformer.html">bayesflow.networks.transformers.TimeSeriesTransformer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.transformers.fusion_transformer.html">bayesflow.networks.transformers.fusion_transformer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.transformers.isab.html">bayesflow.networks.transformers.isab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.transformers.mab.html">bayesflow.networks.transformers.mab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.transformers.pma.html">bayesflow.networks.transformers.pma</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.transformers.sab.html">bayesflow.networks.transformers.sab</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.transformers.set_transformer.html">bayesflow.networks.transformers.set_transformer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.networks.transformers.time_series_transformer.html">bayesflow.networks.transformers.time_series_transformer</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.simulators.html">bayesflow.simulators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.simulators.make_simulator.html">bayesflow.simulators.make_simulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.simulators.HierarchicalSimulator.html">bayesflow.simulators.HierarchicalSimulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.simulators.LambdaSimulator.html">bayesflow.simulators.LambdaSimulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.simulators.ModelComparisonSimulator.html">bayesflow.simulators.ModelComparisonSimulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.simulators.SequentialSimulator.html">bayesflow.simulators.SequentialSimulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.simulators.Simulator.html">bayesflow.simulators.Simulator</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.simulators.TwoMoons.html">bayesflow.simulators.TwoMoons</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.simulators.hierarchical_simulator.html">bayesflow.simulators.hierarchical_simulator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.hierarchical_simulator.allow_batch_size.html">bayesflow.simulators.hierarchical_simulator.allow_batch_size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.hierarchical_simulator.HierarchicalSimulator.html">bayesflow.simulators.hierarchical_simulator.HierarchicalSimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.hierarchical_simulator.Sequence.html">bayesflow.simulators.hierarchical_simulator.Sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.hierarchical_simulator.Simulator.html">bayesflow.simulators.hierarchical_simulator.Simulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.simulators.lambda_simulator.html">bayesflow.simulators.lambda_simulator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.lambda_simulator.allow_batch_size.html">bayesflow.simulators.lambda_simulator.allow_batch_size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.lambda_simulator.batched_call.html">bayesflow.simulators.lambda_simulator.batched_call</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.lambda_simulator.filter_kwargs.html">bayesflow.simulators.lambda_simulator.filter_kwargs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.lambda_simulator.tree_stack.html">bayesflow.simulators.lambda_simulator.tree_stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.lambda_simulator.LambdaSimulator.html">bayesflow.simulators.lambda_simulator.LambdaSimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.lambda_simulator.Simulator.html">bayesflow.simulators.lambda_simulator.Simulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.simulators.model_comparison_simulator.html">bayesflow.simulators.model_comparison_simulator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.model_comparison_simulator.allow_batch_size.html">bayesflow.simulators.model_comparison_simulator.allow_batch_size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.model_comparison_simulator.tree_stack.html">bayesflow.simulators.model_comparison_simulator.tree_stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.model_comparison_simulator.ModelComparisonSimulator.html">bayesflow.simulators.model_comparison_simulator.ModelComparisonSimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.model_comparison_simulator.Sequence.html">bayesflow.simulators.model_comparison_simulator.Sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.model_comparison_simulator.Simulator.html">bayesflow.simulators.model_comparison_simulator.Simulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.simulators.sequential_simulator.html">bayesflow.simulators.sequential_simulator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.sequential_simulator.allow_batch_size.html">bayesflow.simulators.sequential_simulator.allow_batch_size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.sequential_simulator.Sequence.html">bayesflow.simulators.sequential_simulator.Sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.sequential_simulator.SequentialSimulator.html">bayesflow.simulators.sequential_simulator.SequentialSimulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.sequential_simulator.Simulator.html">bayesflow.simulators.sequential_simulator.Simulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.simulators.simulator.html">bayesflow.simulators.simulator</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.simulator.allow_batch_size.html">bayesflow.simulators.simulator.allow_batch_size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.simulator.tree_concatenate.html">bayesflow.simulators.simulator.tree_concatenate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.simulator.Callable.html">bayesflow.simulators.simulator.Callable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.simulator.Simulator.html">bayesflow.simulators.simulator.Simulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.simulators.two_moons.html">bayesflow.simulators.two_moons</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.two_moons.Simulator.html">bayesflow.simulators.two_moons.Simulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.simulators.two_moons.TwoMoons.html">bayesflow.simulators.two_moons.TwoMoons</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.types.html">bayesflow.types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.types.shape.html">bayesflow.types.shape</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.types.tensor.html">bayesflow.types.tensor</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.types.tensor.BackendTensor.html">bayesflow.types.tensor.BackendTensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.types.tensor.TypeVar.html">bayesflow.types.tensor.TypeVar</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="bayesflow.utils.html">bayesflow.utils</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.add_metric.html">bayesflow.utils.add_metric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.add_titles_and_labels.html">bayesflow.utils.add_titles_and_labels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.batched_call.html">bayesflow.utils.batched_call</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.check_lengths_same.html">bayesflow.utils.check_lengths_same</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.check_posterior_prior_shapes.html">bayesflow.utils.check_posterior_prior_shapes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.compute_jacobian.html">bayesflow.utils.compute_jacobian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.concatenate.html">bayesflow.utils.concatenate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.convert_args.html">bayesflow.utils.convert_args</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.convert_kwargs.html">bayesflow.utils.convert_kwargs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.detailed_loss_callback.html">bayesflow.utils.detailed_loss_callback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.expand_left.html">bayesflow.utils.expand_left</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.expand_left_as.html">bayesflow.utils.expand_left_as</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.expand_left_to.html">bayesflow.utils.expand_left_to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.expand_right.html">bayesflow.utils.expand_right</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.expand_right_as.html">bayesflow.utils.expand_right_as</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.expand_right_to.html">bayesflow.utils.expand_right_to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.expand_tile.html">bayesflow.utils.expand_tile</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.expected_calibration_error.html">bayesflow.utils.expected_calibration_error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.filter_kwargs.html">bayesflow.utils.filter_kwargs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.find_batch_size.html">bayesflow.utils.find_batch_size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.find_distribution.html">bayesflow.utils.find_distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.find_inference_network.html">bayesflow.utils.find_inference_network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.find_memory_budget.html">bayesflow.utils.find_memory_budget</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.find_network.html">bayesflow.utils.find_network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.find_permutation.html">bayesflow.utils.find_permutation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.find_pooling.html">bayesflow.utils.find_pooling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.find_recurrent_net.html">bayesflow.utils.find_recurrent_net</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.find_summary_network.html">bayesflow.utils.find_summary_network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.format_bytes.html">bayesflow.utils.format_bytes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.jacobian_trace.html">bayesflow.utils.jacobian_trace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.jvp.html">bayesflow.utils.jvp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.keras_kwargs.html">bayesflow.utils.keras_kwargs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.log_jacobian_determinant.html">bayesflow.utils.log_jacobian_determinant</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.make_quadratic.html">bayesflow.utils.make_quadratic</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.optimal_transport.html">bayesflow.utils.optimal_transport</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.parse_bytes.html">bayesflow.utils.parse_bytes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.pickle_load.html">bayesflow.utils.pickle_load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.prepare_plot_data.html">bayesflow.utils.prepare_plot_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.prettify_subplots.html">bayesflow.utils.prettify_subplots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.simultaneous_ecdf_bands.html">bayesflow.utils.simultaneous_ecdf_bands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.size_of.html">bayesflow.utils.size_of</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.split_arrays.html">bayesflow.utils.split_arrays</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.split_tensors.html">bayesflow.utils.split_tensors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.tile_axis.html">bayesflow.utils.tile_axis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.tree_concatenate.html">bayesflow.utils.tree_concatenate</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.tree_stack.html">bayesflow.utils.tree_stack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.vjp.html">bayesflow.utils.vjp</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.callbacks.html">bayesflow.utils.callbacks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.callbacks.custom_loss_callback.html">bayesflow.utils.callbacks.custom_loss_callback</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.callbacks.detailed_loss_callback.html">bayesflow.utils.callbacks.detailed_loss_callback</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.comp_utils.html">bayesflow.utils.comp_utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.comp_utils.calibration_curve.html">bayesflow.utils.comp_utils.calibration_curve</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.comp_utils.expected_calibration_error.html">bayesflow.utils.comp_utils.expected_calibration_error</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.decorators.html">bayesflow.utils.decorators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.decorators.alias.html">bayesflow.utils.decorators.alias</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.decorators.allow_args.html">bayesflow.utils.decorators.allow_args</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.decorators.allow_batch_size.html">bayesflow.utils.decorators.allow_batch_size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.decorators.argument_callback.html">bayesflow.utils.decorators.argument_callback</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.decorators.overload.html">bayesflow.utils.decorators.overload</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.decorators.wraps.html">bayesflow.utils.decorators.wraps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.decorators.Callable.html">bayesflow.utils.decorators.Callable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.decorators.Sequence.html">bayesflow.utils.decorators.Sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.decorators.TypeVar.html">bayesflow.utils.decorators.TypeVar</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.dict_utils.html">bayesflow.utils.dict_utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dict_utils.check_output.html">bayesflow.utils.dict_utils.check_output</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dict_utils.convert_args.html">bayesflow.utils.dict_utils.convert_args</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dict_utils.convert_kwargs.html">bayesflow.utils.dict_utils.convert_kwargs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dict_utils.dicts_to_arrays.html">bayesflow.utils.dict_utils.dicts_to_arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dict_utils.filter_kwargs.html">bayesflow.utils.dict_utils.filter_kwargs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dict_utils.keras_kwargs.html">bayesflow.utils.dict_utils.keras_kwargs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dict_utils.split_arrays.html">bayesflow.utils.dict_utils.split_arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dict_utils.split_tensors.html">bayesflow.utils.dict_utils.split_tensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dict_utils.Any.html">bayesflow.utils.dict_utils.Any</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dict_utils.Callable.html">bayesflow.utils.dict_utils.Callable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dict_utils.Mapping.html">bayesflow.utils.dict_utils.Mapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dict_utils.Sequence.html">bayesflow.utils.dict_utils.Sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dict_utils.TypeVar.html">bayesflow.utils.dict_utils.TypeVar</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.dispatch.html">bayesflow.utils.dispatch</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dispatch.find_cost.html">bayesflow.utils.dispatch.find_cost</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dispatch.find_distribution.html">bayesflow.utils.dispatch.find_distribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dispatch.find_network.html">bayesflow.utils.dispatch.find_network</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dispatch.find_permutation.html">bayesflow.utils.dispatch.find_permutation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dispatch.find_pooling.html">bayesflow.utils.dispatch.find_pooling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.dispatch.find_recurrent_net.html">bayesflow.utils.dispatch.find_recurrent_net</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.ecdf.html">bayesflow.utils.ecdf</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.ecdf.distance_ranks.html">bayesflow.utils.ecdf.distance_ranks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.ecdf.fractional_ranks.html">bayesflow.utils.ecdf.fractional_ranks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.ecdf.simultaneous_ecdf_bands.html">bayesflow.utils.ecdf.simultaneous_ecdf_bands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.ecdf.minimal_coverage_probs.html">bayesflow.utils.ecdf.minimal_coverage_probs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.ecdf.ranks.html">bayesflow.utils.ecdf.ranks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.exceptions.html">bayesflow.utils.exceptions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.exceptions.ShapeError.html">bayesflow.utils.exceptions.ShapeError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.exceptions.shape_error.html">bayesflow.utils.exceptions.shape_error</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.functional.html">bayesflow.utils.functional</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.functional.batched_call.html">bayesflow.utils.functional.batched_call</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.functional.Callable.html">bayesflow.utils.functional.Callable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.functional.Mapping.html">bayesflow.utils.functional.Mapping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.functional.Sequence.html">bayesflow.utils.functional.Sequence</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">bayesflow.utils.git</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.hparam_utils.html">bayesflow.utils.hparam_utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.hparam_utils.find_batch_size.html">bayesflow.utils.hparam_utils.find_batch_size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.hparam_utils.find_memory_budget.html">bayesflow.utils.hparam_utils.find_memory_budget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.hparam_utils.format_bytes.html">bayesflow.utils.hparam_utils.format_bytes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.hparam_utils.parse_bytes.html">bayesflow.utils.hparam_utils.parse_bytes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.hparam_utils.size_of.html">bayesflow.utils.hparam_utils.size_of</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.io.html">bayesflow.utils.io</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.io.deserialize_type.html">bayesflow.utils.io.deserialize_type</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.io.format_bytes.html">bayesflow.utils.io.format_bytes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.io.parse_bytes.html">bayesflow.utils.io.parse_bytes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.io.pickle_load.html">bayesflow.utils.io.pickle_load</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.io.serialize_type.html">bayesflow.utils.io.serialize_type</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.jacobian.html">bayesflow.utils.jacobian</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.jacobian.compute_jacobian.html">bayesflow.utils.jacobian.compute_jacobian</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.jacobian.log_jacobian_determinant.html">bayesflow.utils.jacobian.log_jacobian_determinant</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.jacobian.wraps.html">bayesflow.utils.jacobian.wraps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.jacobian.Callable.html">bayesflow.utils.jacobian.Callable</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.jacobian.partial.html">bayesflow.utils.jacobian.partial</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.keras_utils.inverse_shifted_softplus.html">bayesflow.utils.keras_utils.inverse_shifted_softplus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.keras_utils.inverse_softplus.html">bayesflow.utils.keras_utils.inverse_softplus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.keras_utils.shifted_softplus.html">bayesflow.utils.keras_utils.shifted_softplus</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.logging.html">bayesflow.utils.logging</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.logging.critical.html">bayesflow.utils.logging.critical</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.logging.debug.html">bayesflow.utils.logging.debug</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.logging.error.html">bayesflow.utils.logging.error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.logging.exception.html">bayesflow.utils.logging.exception</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.logging.info.html">bayesflow.utils.logging.info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.logging.log.html">bayesflow.utils.logging.log</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.logging.warning.html">bayesflow.utils.logging.warning</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.numpy_utils.inverse_shifted_softplus.html">bayesflow.utils.numpy_utils.inverse_shifted_softplus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.numpy_utils.inverse_sigmoid.html">bayesflow.utils.numpy_utils.inverse_sigmoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.numpy_utils.inverse_softplus.html">bayesflow.utils.numpy_utils.inverse_softplus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.numpy_utils.one_hot.html">bayesflow.utils.numpy_utils.one_hot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.numpy_utils.shifted_softplus.html">bayesflow.utils.numpy_utils.shifted_softplus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.numpy_utils.softmax.html">bayesflow.utils.numpy_utils.softmax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.numpy_utils.softplus.html">bayesflow.utils.numpy_utils.softplus</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.plot_utils.html">bayesflow.utils.plot_utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.plot_utils.add_metric.html">bayesflow.utils.plot_utils.add_metric</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.plot_utils.add_titles.html">bayesflow.utils.plot_utils.add_titles</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.plot_utils.add_titles_and_labels.html">bayesflow.utils.plot_utils.add_titles_and_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.plot_utils.add_x_labels.html">bayesflow.utils.plot_utils.add_x_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.plot_utils.add_y_labels.html">bayesflow.utils.plot_utils.add_y_labels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.plot_utils.check_posterior_prior_shapes.html">bayesflow.utils.plot_utils.check_posterior_prior_shapes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.plot_utils.dicts_to_arrays.html">bayesflow.utils.plot_utils.dicts_to_arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.plot_utils.make_figure.html">bayesflow.utils.plot_utils.make_figure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.plot_utils.make_quadratic.html">bayesflow.utils.plot_utils.make_quadratic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.plot_utils.prepare_plot_data.html">bayesflow.utils.plot_utils.prepare_plot_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.plot_utils.prettify_subplots.html">bayesflow.utils.plot_utils.prettify_subplots</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.plot_utils.set_layout.html">bayesflow.utils.plot_utils.set_layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.plot_utils.Any.html">bayesflow.utils.plot_utils.Any</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.tensor_utils.html">bayesflow.utils.tensor_utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.concatenate.html">bayesflow.utils.tensor_utils.concatenate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.expand_left.html">bayesflow.utils.tensor_utils.expand_left</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.expand_left_as.html">bayesflow.utils.tensor_utils.expand_left_as</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.expand_left_to.html">bayesflow.utils.tensor_utils.expand_left_to</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.expand_right.html">bayesflow.utils.tensor_utils.expand_right</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.expand_right_as.html">bayesflow.utils.tensor_utils.expand_right_as</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.expand_right_to.html">bayesflow.utils.tensor_utils.expand_right_to</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.expand_tile.html">bayesflow.utils.tensor_utils.expand_tile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.size_of.html">bayesflow.utils.tensor_utils.size_of</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.tile_axis.html">bayesflow.utils.tensor_utils.tile_axis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.tree_concatenate.html">bayesflow.utils.tensor_utils.tree_concatenate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.tree_stack.html">bayesflow.utils.tensor_utils.tree_stack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.Sequence.html">bayesflow.utils.tensor_utils.Sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.tensor_utils.TypeVar.html">bayesflow.utils.tensor_utils.TypeVar</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.validators.html">bayesflow.utils.validators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.validators.check_lengths_same.html">bayesflow.utils.validators.check_lengths_same</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.validators.check_posterior_prior_shapes.html">bayesflow.utils.validators.check_posterior_prior_shapes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.validators.ShapeError.html">bayesflow.utils.validators.ShapeError</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.utils.workflow_utils.html">bayesflow.utils.workflow_utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.workflow_utils.find_inference_network.html">bayesflow.utils.workflow_utils.find_inference_network</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.workflow_utils.find_summary_network.html">bayesflow.utils.workflow_utils.find_summary_network</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.workflow_utils.InferenceNetwork.html">bayesflow.utils.workflow_utils.InferenceNetwork</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.utils.workflow_utils.SummaryNetwork.html">bayesflow.utils.workflow_utils.SummaryNetwork</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.workflows.html">bayesflow.workflows</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.workflows.BasicWorkflow.html">bayesflow.workflows.BasicWorkflow</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.workflows.basic_workflow.html">bayesflow.workflows.basic_workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.basic_workflow.find_inference_network.html">bayesflow.workflows.basic_workflow.find_inference_network</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.basic_workflow.find_summary_network.html">bayesflow.workflows.basic_workflow.find_summary_network</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.basic_workflow.Adapter.html">bayesflow.workflows.basic_workflow.Adapter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.basic_workflow.BasicWorkflow.html">bayesflow.workflows.basic_workflow.BasicWorkflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.basic_workflow.ContinuousApproximator.html">bayesflow.workflows.basic_workflow.ContinuousApproximator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.basic_workflow.DiskDataset.html">bayesflow.workflows.basic_workflow.DiskDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.basic_workflow.InferenceNetwork.html">bayesflow.workflows.basic_workflow.InferenceNetwork</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.basic_workflow.OfflineDataset.html">bayesflow.workflows.basic_workflow.OfflineDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.basic_workflow.OnlineDataset.html">bayesflow.workflows.basic_workflow.OnlineDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.basic_workflow.Simulator.html">bayesflow.workflows.basic_workflow.Simulator</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.basic_workflow.SummaryNetwork.html">bayesflow.workflows.basic_workflow.SummaryNetwork</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.basic_workflow.Workflow.html">bayesflow.workflows.basic_workflow.Workflow</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.workflows.workflow.html">bayesflow.workflows.workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.workflow.allow_batch_size.html">bayesflow.workflows.workflow.allow_batch_size</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.workflows.workflow.Workflow.html">bayesflow.workflows.workflow.Workflow</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to BayesFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About us</a></li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div class="rst-versions">
+  
+   
+  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
+  <ul>
+      <li><a href="/dev/index.html" class="current">dev</a></li>
+      <li><a href="/master/index.html" >master</a></li>
+  </ul>
+  
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow/edit/master/api/bayesflow.utils.git.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow/issues/new?title=Issue%20on%20page%20%2Fapi/bayesflow.utils.git.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/api/bayesflow.utils.git.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>bayesflow.utils.git</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-bayesflow.utils.git">
+<span id="bayesflow-utils-git"></span><h1>bayesflow.utils.git<a class="headerlink" href="#module-bayesflow.utils.git" title="Link to this heading">#</a></h1>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="bayesflow.utils.functional.Sequence.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">bayesflow.utils.functional.Sequence</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bayesflow.utils.hparam_utils.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">bayesflow.utils.hparam_utils</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The BayesFlow authors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
