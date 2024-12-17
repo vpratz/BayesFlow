@@ -41,7 +41,7 @@ docs = [
   "sphinx_design",
   "sphinx-book-theme",
   "sphinxcontrib-bibtex",
-  "sphinx-polyversion",
+  "sphinx-polyversion==1.0.0",
 ]
 [tool.ruff]
 # We use ruff to lint and auto-format code

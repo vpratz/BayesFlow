@@ -23,11 +23,14 @@ from typing import (
 
 logger = getLogger(__name__)
 
+#: Whether to build the docs in parallel
+PARALLEL_BUILDS = False
+
 #: Determine repository root directory
 root = Git.root(Path(__file__).parent)
 
 #: CodeRegex matching the branches to build docs for
-BRANCH_REGEX = r"^(master)$"
+BRANCH_REGEX = r"^(master|dev)$"
 
 #: Regex matching the tags to build docs for
 TAG_REGEX = r"^v[\.0-9]*$"
@@ -71,9 +74,10 @@ def data(driver, rev, env):
     revisions = driver.targets
     branches, tags = refs_by_type(revisions)
     latest = max(tags or branches)
-    named_master = (r for r in branches if r.name == "master")
-    if len(named_master) > 0:
-        (latest,) = named_master
+    for b in branches:
+        if b.name == "master":
+            latest = b
+
     # sort tags and branches by date, newest first
     return {
         "current": rev,
@@ -226,7 +230,7 @@ vcs = Git(
 creator = LocalVenvCreator()
 
 
-async def selector(rev, keys):
+def selector(rev, keys):
     """Select configuration based on revision"""
     # map all v1 revisions to one configuration
     if rev.name.startswith("v1."):
@@ -251,8 +255,21 @@ ENVIRONMENT = {
     ),
 }
 
+
+class SynchronousDriver(DefaultDriver):
+    async def arun(self) -> None:
+        """Build all revisions (async)."""
+        await self.init()
+        for rev in self.targets:
+            await asyncio.gather(self.build_revision(rev))
+        await self.build_root()
+
+
+driver_cls = DefaultDriver if PARALLEL_BUILDS else SynchronousDriver
+
+
 # Setup driver and run it
-DefaultDriver(
+driver_cls(
     root,
     OUTPUT_DIR,
     vcs=vcs,
