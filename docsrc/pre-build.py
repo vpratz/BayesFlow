@@ -2,7 +2,13 @@ import os
 import shutil
 import sys
 from pathlib import Path
-from sphinx_polyversion.git import Git
+
+try:
+    from sphinx_polyversion.git import Git
+
+    USE_POLYVERSION = True
+except ImportError:
+    USE_POLYVERSION = False
 
 
 def copy_files(sourcedir):
@@ -34,8 +40,13 @@ def copy_files(sourcedir):
 
 
 def patch_conf(sourcedir):
-    root = Git.root(Path(__file__).parent)
+    if USE_POLYVERSION:
+        root = Git.root(Path(__file__).parent)
+    else:
+        root = str(Path(sourcedir).parent.parent)
     cursrc = os.path.join(root, "docsrc", "source")
+    if os.path.abspath(cursrc) == os.path.abspath(sourcedir):
+        return
     # copy the configuration file: shared for all versions
     conf_src = os.path.join(cursrc, "conf.py")
     conf_dst = os.path.join(sourcedir, "conf.py")

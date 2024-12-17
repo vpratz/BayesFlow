@@ -11,8 +11,16 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 import os
 import sys
-from sphinx_polyversion import load
-from sphinx_polyversion.git import GitRef
+
+try:
+    from sphinx_polyversion import load
+    from sphinx_polyversion.git import GitRef
+    from sphinx_polyversion.api import LoadError
+
+    USE_POLYVERSION = True
+except ImportError:
+    USE_POLYVERSION = False
+    print("sphinx_polyversion not installed, building single version")
 
 sys.path.insert(0, os.path.abspath("../.."))
 
@@ -134,5 +142,9 @@ remove_from_toctrees = ["_autosummary/*"]
 autosummmary_generate = True
 
 # versioning data for template
-data = load(globals())
-current: GitRef = data["current"]
+if USE_POLYVERSION:
+    try:
+        data = load(globals())
+        current: GitRef = data["current"]
+    except LoadError:
+        print("sphinx_polyversion could not load. Building single version")
