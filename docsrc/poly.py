@@ -31,7 +31,7 @@ BRANCH_REGEX = r"^(master)$"
 
 #: Regex matching the tags to build docs for
 TAG_REGEX = r"^v[\.0-9]*$"
-TAG_REGEX = r"^v1.1.6$"
+# TAG_REGEX = r"^(v1.1.6)$"
 
 #: Output dir relative to project root
 OUTPUT_DIR = "_build_polyversion"
@@ -71,6 +71,9 @@ def data(driver, rev, env):
     revisions = driver.targets
     branches, tags = refs_by_type(revisions)
     latest = max(tags or branches)
+    named_master = (r for r in branches if r.name == "master")
+    if len(named_master) > 0:
+        (latest,) = named_master
     # sort tags and branches by date, newest first
     return {
         "current": rev,
