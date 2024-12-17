@@ -1222,20 +1222,20 @@ Multi-OS tests will automatically be run once you create a pull request.</p>
 <section id="document-your-changes">
 <h3>4. Document your changes<a class="headerlink" href="#document-your-changes" title="Link to this heading">#</a></h3>
 <p>The documentation uses <a class="reference external" href="https://www.sphinx-doc.org/">sphinx</a> and relies on <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html">numpy style docstrings</a> in classes and functions.</p>
-<p>You need to install the following python packages for setting up documentation generation:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">sphinx</span> <span class="n">numpydoc</span> <span class="n">myst</span><span class="o">-</span><span class="n">nb</span> <span class="n">sphinx_design</span> <span class="n">sphinx</span><span class="o">-</span><span class="n">book</span><span class="o">-</span><span class="n">theme</span> <span class="n">sphinxcontrib</span><span class="o">-</span><span class="n">bibtex</span>
+<p>Run the following command to install all necessary packages for setting up documentation generation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">.</span><span class="p">[</span><span class="n">docs</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>The overall <em>structure</em> of the documentation is manually designed. This also applies to the API documentation. This has two implications for you:</p>
-<ol class="arabic simple">
-<li><p>If you add to existing submodules, the documentation will update automatically (given that you use proper numpy docstrings).</p></li>
-<li><p>If you add a new submodule or subpackage, you need to add a reference to the new module to the appropriate section
-of <code class="docutils literal notranslate"><span class="pre">docsrc/source/api/bayesflow.rst</span></code>.</p></li>
-</ol>
-<p>You can re-build the documentation with</p>
+<p>The overall <em>structure</em> of the documentation is manually designed, but the API documentation is auto-generated.</p>
+<p>You can re-build the current documentation with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docsrc
+make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>dev
+<span class="c1"># in case of issues, try `make clean-all`</span>
+</pre></div>
+</div>
+<p>We also provide a multi-version documentation. To generate it, run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docsrc
 make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>github
-<span class="c1"># in case of issues, try `make clean-all`</span>
 </pre></div>
 </div>
 <p>The entry point of the rendered documentation will be at <code class="docutils literal notranslate"><span class="pre">docs/index.html</span></code>.</p>
