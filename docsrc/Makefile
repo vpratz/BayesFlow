@@ -34,8 +34,8 @@ clean:
 	@rm -rf _build
 	@rm -rf _build_polyversion
 	@rm -rf source/_examples
-	@rm source/installation.rst
-	@rm source/contributing.md
+	@rm -f source/installation.rst
+	@rm -f source/contributing.md
 
 .PHONY: help Makefile
 
