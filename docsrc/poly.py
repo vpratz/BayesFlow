@@ -23,6 +23,9 @@ from typing import (
 
 logger = getLogger(__name__)
 
+#: Determine repository root directory
+root = Git.root(Path(__file__).parent)
+
 #: CodeRegex matching the branches to build docs for
 BRANCH_REGEX = r"^(master|dev)$"
 
@@ -30,7 +33,7 @@ BRANCH_REGEX = r"^(master|dev)$"
 TAG_REGEX = r"^v[\.0-9]*$"
 
 #: Output dir relative to project root
-OUTPUT_DIR = "docsrc/_build_polyversion"
+OUTPUT_DIR = "_build_polyversion"
 
 #: Source directory
 SOURCE_DIR = "docsrc"
@@ -86,20 +89,6 @@ def root_data(driver):
 
 # Load overrides read from commandline to global scope
 apply_overrides(globals())
-# Determine repository root directory
-root = Git.root(Path(__file__).parent)
-
-
-async def selector(rev, keys):
-    """Select configuration based on revision"""
-    # map all v1 revisions to one configuration
-    if rev.name.startswith("v1."):
-        return "v1"
-    elif rev.name in ["master"]:
-        # special configuration for v1 master branch
-        return rev.name
-    # common config for everything else
-    return None
 
 
 # adapted from Pip
@@ -231,6 +220,19 @@ vcs = Git(
 
 
 creator = LocalVenvCreator()
+
+
+async def selector(rev, keys):
+    """Select configuration based on revision"""
+    # map all v1 revisions to one configuration
+    if rev.name.startswith("v1."):
+        return "v1"
+    elif rev.name in ["master"]:
+        # special configuration for v1 master branch
+        return rev.name
+    # common config for everything else
+    return None
+
 
 ENVIRONMENT = {
     # configuration for v2 and dev
