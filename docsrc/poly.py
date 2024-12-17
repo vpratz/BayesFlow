@@ -31,7 +31,7 @@ print(PARALLEL_BUILDS, "parallel")
 root = Git.root(Path(__file__).parent)
 
 #: CodeRegex matching the branches to build docs for
-BRANCH_REGEX = r"^(master|dev)$"
+BRANCH_REGEX = r"^(master)$"
 
 #: Regex matching the tags to build docs for
 TAG_REGEX = r"^v[\.0-9]*$"
