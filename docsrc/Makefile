@@ -17,22 +17,25 @@ help:
 # render docs
 # copy rendered docs and .nojekyll (for github.io) to docs folder
 # remove example notebooks from source folder
-github:
-	@cp ../INSTALL.rst source/installation.rst
-	@cp ../CONTRIBUTING source/contributing.md
-	@cp -a ../examples/. source/_examples
-	@rm -r source/_examples/in_progress
+dev:
+	@python pre-build.py source
 	@make html
+	@echo 'Copying docs to ../docs'
 	@cp -a _build/html/. ../docs
 	@cp .nojekyll ../docs/.nojekyll
-	@rm -r _build/html/
-	@rm -r source/_examples
-	@rm source/installation.rst
-	@rm source/contributing.md
+
+github:
+	@sphinx-polyversion -vv poly.py
+	@echo 'Copying docs to ../docs'
+	@cp -a _build_polyversion/. ../docs
 
 clean:
 	@rm -rf ../docs/*
 	@rm -rf _build
+	@rm -rf _build_polyversion
+	@rm -r source/_examples
+	@rm source/installation.rst
+	@rm source/contributing.md
 
 .PHONY: help Makefile
 
