@@ -2,11 +2,12 @@
 # From https://github.com/eeholmes/readthedoc-test/blob/main/.github/workflows/docs_pages.yml
 name: docs
 
-# execute this workflow automatically when we push to master
+# execute this workflow automatically when we push to master or dev
 on:
   push:
     branches:
       - master
+      - dev
 
 jobs:
 
@@ -17,13 +18,13 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v3
         with:
-          path: master
+          path: dev
 
       - name: Checkout gh-pages
         uses: actions/checkout@v3
         with:
-          path: gh-pages
-          ref: gh-pages
+          path: gh-pages-dev
+          ref: gh-pages-dev
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -33,17 +34,17 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd ./master
+          cd ./dev
           python -m pip install .[docs]
       - name: Make the Sphinx docs
         run: |
-          cd ./master/docsrc
+          cd ./dev/docsrc
           make clean
           make github
       - name: Commit changes to docs
         run: |
-          cd ./gh-pages
-          cp -R ../master/docs/* ./
+          cd ./gh-pages-dev
+          cp -R ../dev/docs/* ./
           git config --local user.email ""
           git config --local user.name "github-actions"
           git add -A
