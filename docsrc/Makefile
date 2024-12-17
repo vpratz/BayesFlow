@@ -28,6 +28,7 @@ github:
 	@sphinx-polyversion -vv poly.py
 	@echo 'Copying docs to ../docs'
 	@cp -a _build_polyversion/. ../docs
+	@cp .nojekyll ../docs/.nojekyll
 
 clean:
 	@rm -rf ../docs/*
