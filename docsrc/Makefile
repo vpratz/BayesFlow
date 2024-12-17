@@ -25,7 +25,7 @@ dev:
 	@cp .nojekyll ../docs/.nojekyll
 
 github:
-	@sphinx-polyversion -vv poly.py
+	@BF_DOCS_SYNCHRONOUS_BUILDS=1 sphinx-polyversion -vv poly.py
 	@echo 'Copying docs to ../docs'
 	@cp -a _build_polyversion/. ../docs
 	@cp .nojekyll ../docs/.nojekyll

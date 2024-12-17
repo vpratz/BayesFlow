@@ -24,7 +24,8 @@ from typing import (
 logger = getLogger(__name__)
 
 #: Whether to build the docs in parallel
-PARALLEL_BUILDS = False
+PARALLEL_BUILDS = os.environ.get("BF_DOCS_SYNCHRONOUS_BUILDS", "0") != "1"
+print(PARALLEL_BUILDS, "parallel")
 
 #: Determine repository root directory
 root = Git.root(Path(__file__).parent)
@@ -77,6 +78,7 @@ def data(driver, rev, env):
     for b in branches:
         if b.name == "master":
             latest = b
+            break
 
     # sort tags and branches by date, newest first
     return {
@@ -92,6 +94,10 @@ def root_data(driver):
     revisions = driver.builds
     branches, tags = refs_by_type(revisions)
     latest = max(tags or branches)
+    for b in branches:
+        if b.name == "master":
+            latest = b
+            break
     return {"revisions": revisions, "latest": latest}
 
 
@@ -230,7 +236,7 @@ vcs = Git(
 creator = LocalVenvCreator()
 
 
-def selector(rev, keys):
+async def selector(rev, keys):
     """Select configuration based on revision"""
     # map all v1 revisions to one configuration
     if rev.name.startswith("v1."):
