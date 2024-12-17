@@ -31,7 +31,7 @@ BRANCH_REGEX = r"^(master)$"
 
 #: Regex matching the tags to build docs for
 TAG_REGEX = r"^v[\.0-9]*$"
-TAG_REGEX = r"^notatag$"
+TAG_REGEX = r"^v1.1.6$"
 
 #: Output dir relative to project root
 OUTPUT_DIR = "_build_polyversion"
