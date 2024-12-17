@@ -17,3 +17,6 @@
   color: var(--pst-color-accent);
   font-weight: 600;
 }
+.bd-sidebar-primary div#rtd-footer-container {
+  margin: 0;
+}
