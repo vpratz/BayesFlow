@@ -25,7 +25,7 @@ from typing import (
 logger = getLogger(__name__)
 
 #: Whether to build the docs in parallel
-PARALLEL_BUILDS = os.environ.get("BF_DOCS_SYNCHRONOUS_BUILDS", "0") != "1"
+PARALLEL_BUILDS = os.environ.get("BF_DOCS_SEQUENTIAL_BUILDS", "0") != "1"
 print(PARALLEL_BUILDS, "parallel")
 
 #: Determine repository root directory

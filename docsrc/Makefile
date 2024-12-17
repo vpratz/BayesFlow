@@ -25,7 +25,13 @@ dev:
 	@cp .nojekyll ../docs/.nojekyll
 
 github:
-	@BF_DOCS_SYNCHRONOUS_BUILDS=1 sphinx-polyversion -vv poly.py
+	@BF_DOCS_SEQUENTIAL_BUILDS=1 sphinx-polyversion poly.py
+	@echo 'Copying docs to ../docs'
+	@cp -a _build_polyversion/. ../docs
+	@cp .nojekyll ../docs/.nojekyll
+
+parallel:
+	@BF_DOCS_SEQUENTIAL_BUILDS=0 sphinx-polyversion poly.py
 	@echo 'Copying docs to ../docs'
 	@cp -a _build_polyversion/. ../docs
 	@cp .nojekyll ../docs/.nojekyll
@@ -37,6 +43,10 @@ clean:
 	@rm -rf source/_examples
 	@rm -f source/installation.rst
 	@rm -f source/contributing.md
+
+clean-all:
+	@make clean
+	@rm -rf docsrc/.bf_doc_gen_venv
 
 .PHONY: help Makefile
 
