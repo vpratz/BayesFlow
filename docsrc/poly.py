@@ -12,7 +12,7 @@ from sphinx_polyversion.driver import DefaultDriver
 from sphinx_polyversion.git import Git, file_predicate, refs_by_type
 from sphinx_polyversion.pyvenv import VirtualPythonEnvironment
 from sphinx_polyversion.sphinx import SphinxBuilder, Placeholder
-from sphinx_polyversion.utils import to_thread
+from sphinx_polyversion.utils import to_thread, shift_path
 
 from typing import (
     Any,
@@ -32,6 +32,7 @@ root = Git.root(Path(__file__).parent)
 
 #: CodeRegex matching the branches to build docs for
 BRANCH_REGEX = r"^(master|dev)$"
+# BRANCH_REGEX = r"^(master)$"
 
 #: Regex matching the tags to build docs for
 TAG_REGEX = r"^v[\.0-9]*$"
@@ -273,7 +274,47 @@ ENVIRONMENT = {
 }
 
 
-class SynchronousDriver(DefaultDriver):
+class TemplatingDriver(DefaultDriver):
+    async def build_root(self) -> None:
+        """
+        Build the root directory.
+
+        The root of the output directory contains subdirectories for the docs
+        of each revision. This method adds more to this root directory.
+        """
+        # metadata as json
+        (self.output_dir / "versions.json").write_text(self.encoder.encode(self.builds))
+
+        # copy static files
+        if self.static_dir and self.static_dir.exists():
+            logger.info("Copying static files to root directory...")
+            for file in self.static_dir.rglob("*"):
+                shutil.copyfile(file, shift_path(self.static_dir, self.output_dir, file))
+
+        # generate dynamic files from jinja templates
+        if self.root_data_factory:
+            context = self.root_data_factory(self)
+        else:
+            context = {"revisions": self.builds, "repo": self.root}
+
+        if self.template_dir and self.template_dir.is_dir():
+            logger.info("Rendering jinja2 templates...")
+            import jinja2
+
+            env = jinja2.Environment(
+                loader=jinja2.FileSystemLoader(str(self.template_dir)),
+                autoescape=jinja2.select_autoescape(),
+            )
+            for template_path_str in env.list_templates():
+                template = env.get_template(template_path_str)
+                rendered = template.render(context)
+                output_path = self.output_dir / template_path_str
+                # enable creation of paths for templates, allowing deeper structures
+                output_path.parent.mkdir(parents=True, exist_ok=True)
+                output_path.write_text(rendered)
+
+
+class SynchronousDriver(TemplatingDriver):
     async def arun(self) -> None:
         """Build all revisions (async)."""
         await self.init()
@@ -282,7 +323,7 @@ class SynchronousDriver(DefaultDriver):
         await self.build_root()
 
 
-driver_cls = DefaultDriver if PARALLEL_BUILDS else SynchronousDriver
+driver_cls = TemplatingDriver if PARALLEL_BUILDS else SynchronousDriver
 
 
 # Setup driver and run it

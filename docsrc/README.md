@@ -93,6 +93,10 @@ in this directory.
 For sequential builds, define the `SynchronousDriver` class, which builds the
 revisions sequentially.
 
+To generate redirects for the old, non-version docs, we need the driver to
+create folders for the rendered templates. This extension takes place in
+`TemplatingDriver`.
+
 For all other details, please refer to `poly.py` and the code of `sphinx-polyversion`.
 
 This text was written by @vpratz, if you have any questions feel free to reach out.
