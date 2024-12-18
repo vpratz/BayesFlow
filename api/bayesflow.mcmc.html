@@ -1,0 +1,743 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>bayesflow.mcmc module &#8212; BayesFlow: Amortized Bayesian Inference</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/bayesflow.mcmc';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://www.bayesflow.org/api/bayesflow.mcmc.html" />
+    <link rel="icon" href="../_static/bayesflow_hex.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="bayesflow.version module" href="bayesflow.version.html" />
+    <link rel="prev" title="bayesflow.exceptions module" href="bayesflow.exceptions.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <img src="../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BayesFlow</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Intro_Amortized_Posterior_Estimation.html">1. Quickstart: Amortized Posterior Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/TwoMoons_Bimodal_Posterior.html">2. Two Moons: Tackling Bimodal Posteriors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Model_Misspecification.html">3. Detecting Model Misspecification in Amortized Posterior Inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/LCA_Model_Posterior_Estimation.html">4. Principled Amortized Bayesian Workflow for Cognitive Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Linear_ODE_system.html">5. Posterior Estimation for ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Covid19_Initial_Posterior_Estimation.html">6. Posterior Estimation for SIR-like Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Model_Comparison_MPT.html">7. Model Comparison for Cognitive Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Hierarchical_Model_Comparison_MPT.html">8. Hierarchical Model Comparison for Cognitive Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="bayesflow.html">Public API: bayesflow package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.benchmarks.html">bayesflow.benchmarks package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm.html">bayesflow.benchmarks.bernoulli_glm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm_raw.html">bayesflow.benchmarks.bernoulli_glm_raw module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear.html">bayesflow.benchmarks.gaussian_linear module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear_uniform.html">bayesflow.benchmarks.gaussian_linear_uniform module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.gaussian_mixture.html">bayesflow.benchmarks.gaussian_mixture module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.inverse_kinematics.html">bayesflow.benchmarks.inverse_kinematics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.lotka_volterra.html">bayesflow.benchmarks.lotka_volterra module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.sir.html">bayesflow.benchmarks.sir module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.slcp.html">bayesflow.benchmarks.slcp module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.slcp_distractors.html">bayesflow.benchmarks.slcp_distractors module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.two_moons.html">bayesflow.benchmarks.two_moons module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.amortizers.html">bayesflow.amortizers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.attention.html">bayesflow.attention module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.coupling_networks.html">bayesflow.coupling_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.diagnostics.html">bayesflow.diagnostics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.inference_networks.html">bayesflow.inference_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.losses.html">bayesflow.losses module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.networks.html">bayesflow.networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.sensitivity.html">bayesflow.sensitivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.simulation.html">bayesflow.simulation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.summary_networks.html">bayesflow.summary_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.trainers.html">bayesflow.trainers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.configuration.html">bayesflow.configuration module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.default_settings.html">bayesflow.default_settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.computational_utilities.html">bayesflow.computational_utilities module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.helper_classes.html">bayesflow.helper_classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.helper_functions.html">bayesflow.helper_functions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.helper_networks.html">bayesflow.helper_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.exceptions.html">bayesflow.exceptions module</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">bayesflow.mcmc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.version.html">bayesflow.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.wrappers.html">bayesflow.wrappers module</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.experimental.html">bayesflow.experimental package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.experimental.rectifiers.html">bayesflow.experimental.rectifiers module</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Full Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to BayesFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About us</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/stefanradev93/BayesFlow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/stefanradev93/BayesFlow/edit/master/api/bayesflow.mcmc.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/stefanradev93/BayesFlow/issues/new?title=Issue%20on%20page%20%2Fapi/bayesflow.mcmc.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/api/bayesflow.mcmc.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>bayesflow.mcmc module</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.MCMCSurrogateLikelihood"><code class="docutils literal notranslate"><span class="pre">MCMCSurrogateLikelihood</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.MCMCSurrogateLikelihood.__init__"><code class="docutils literal notranslate"><span class="pre">MCMCSurrogateLikelihood.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.MCMCSurrogateLikelihood.log_likelihood"><code class="docutils literal notranslate"><span class="pre">MCMCSurrogateLikelihood.log_likelihood()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.MCMCSurrogateLikelihood.log_likelihood_grad"><code class="docutils literal notranslate"><span class="pre">MCMCSurrogateLikelihood.log_likelihood_grad()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.PyMCSurrogateLikelihood"><code class="docutils literal notranslate"><span class="pre">PyMCSurrogateLikelihood</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.itypes"><code class="docutils literal notranslate"><span class="pre">PyMCSurrogateLikelihood.itypes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.otypes"><code class="docutils literal notranslate"><span class="pre">PyMCSurrogateLikelihood.otypes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.__init__"><code class="docutils literal notranslate"><span class="pre">PyMCSurrogateLikelihood.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.perform"><code class="docutils literal notranslate"><span class="pre">PyMCSurrogateLikelihood.perform()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.grad"><code class="docutils literal notranslate"><span class="pre">PyMCSurrogateLikelihood.grad()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-bayesflow.mcmc">
+<span id="bayesflow-mcmc-module"></span><h1>bayesflow.mcmc module<a class="headerlink" href="#module-bayesflow.mcmc" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="bayesflow.mcmc.MCMCSurrogateLikelihood">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.mcmc.</span></span><span class="sig-name descname"><span class="pre">MCMCSurrogateLikelihood</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amortized_likelihood</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configurator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">likelihood_postprocessor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_postprocessor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/mcmc.html#MCMCSurrogateLikelihood"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.mcmc.MCMCSurrogateLikelihood" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>An interface to provide likelihood evaluation and gradient estimation of a pre-trained
+<code class="docutils literal notranslate"><span class="pre">AmortizedLikelihood</span></code> instance, which can be used in tandem with (HMC)-MCMC, as implemented,
+for instance, in <code class="docutils literal notranslate"><span class="pre">PyMC3</span></code>.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.mcmc.MCMCSurrogateLikelihood.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amortized_likelihood</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configurator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">likelihood_postprocessor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_postprocessor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/mcmc.html#MCMCSurrogateLikelihood.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.mcmc.MCMCSurrogateLikelihood.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Creates in instance of the surrogate likelihood using a pre-trained <code class="docutils literal notranslate"><span class="pre">AmortizedLikelihood</span></code> instance.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>amortized_likelihood</strong><span class="classifier">bayesflow.amortized_inference.AmortizedLikelihood</span></dt><dd><p>A pre-trained (invertible) inference network which processes the outputs of the generative model.</p>
+</dd>
+<dt><strong>configurator</strong><span class="classifier">callable, optional, default: None</span></dt><dd><p>A function that takes the input to the <code class="docutils literal notranslate"><span class="pre">log_likelihood</span></code> and <code class="docutils literal notranslate"><span class="pre">log_likelihood_grad</span></code>
+calls and converts them to a dictionary containing the following mandatory keys,
+if DEFAULT_KEYS unchanged:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">observables</span></code> - the variables over which a condition density is learned (i.e., the observables)
+<code class="docutils literal notranslate"><span class="pre">conditions</span></code>  - the conditioning variables that the directly passed to the inference network</p>
+</div></blockquote>
+<p>default: Return the first parameter - has to be a dicitionary with the mentioned characteristics</p>
+</dd>
+<dt><strong>likelihood_postprocessor</strong><span class="classifier">callable, optional, default: None</span></dt><dd><p>A function that takes the likelihood for each observable as an input. Can be used for aggregation
+default: sum all likelihood values and return a single value.</p>
+</dd>
+<dt><strong>grad_postprocessor</strong><span class="classifier">callable, optional, default: None</span></dt><dd><p>A function that takes the gradient for each value in <code class="docutils literal notranslate"><span class="pre">conditions</span></code> as returned by the preprocessor
+default: Leave the values unchanged.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.mcmc.MCMCSurrogateLikelihood.log_likelihood">
+<span class="sig-name descname"><span class="pre">log_likelihood</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/mcmc.html#MCMCSurrogateLikelihood.log_likelihood"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.mcmc.MCMCSurrogateLikelihood.log_likelihood" title="Link to this definition">#</a></dt>
+<dd><p>Calculates the approximate log-likelihood of targets given conditional variables.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>The parameters as expected by ``configurator``. For the default configurator,</strong></dt><dd></dd>
+<dt><strong>the first parameter has to be a dictionary containing the following mandatory keys,</strong></dt><dd></dd>
+<dt><strong>if DEFAULT_KEYS unchanged:</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">observables</span></code> - the variables over which a condition density is learned (i.e., the observables)
+<code class="docutils literal notranslate"><span class="pre">conditions</span></code>  - the conditioning variables that the directly passed to the inference network</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>out</strong><span class="classifier">np.ndarray</span></dt><dd><p>The output as returned by <code class="docutils literal notranslate"><span class="pre">likelihood_postprocessor</span></code>. For the default postprocessor,
+this is the total log-likelihood given by the sum of all log-likelihood values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.mcmc.MCMCSurrogateLikelihood.log_likelihood_grad">
+<span class="sig-name descname"><span class="pre">log_likelihood_grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/mcmc.html#MCMCSurrogateLikelihood.log_likelihood_grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.mcmc.MCMCSurrogateLikelihood.log_likelihood_grad" title="Link to this definition">#</a></dt>
+<dd><p>Calculates the gradient of the surrogate likelihood with respect to
+every parameter in <code class="docutils literal notranslate"><span class="pre">conditions</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>The parameters as expected by ``configurator``. For the default configurator,</strong></dt><dd></dd>
+<dt><strong>the first parameter has to be a dictionary containing the following mandatory keys,</strong></dt><dd></dd>
+<dt><strong>if ``DEFAULT_KEYS`` unchanged:</strong></dt><dd><p><code class="docutils literal notranslate"><span class="pre">observables</span></code> - the variables over which a condition density is learned (i.e., the observables)
+<code class="docutils literal notranslate"><span class="pre">conditions</span></code>  - the conditioning variables that the directly passed to the inference network</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>out</strong><span class="classifier">np.ndarray</span></dt><dd><p>The output as returned by <code class="docutils literal notranslate"><span class="pre">grad_postprocessor</span></code>. For the default postprocessor,
+this is an array containing the derivative with respect to each value in <code class="docutils literal notranslate"><span class="pre">conditions</span></code>
+as returned by <code class="docutils literal notranslate"><span class="pre">configurator</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bayesflow.mcmc.PyMCSurrogateLikelihood">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.mcmc.</span></span><span class="sig-name descname"><span class="pre">PyMCSurrogateLikelihood</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amortized_likelihood</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configurator=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">likelihood_postprocessor=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_postprocessor=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_pymc_type=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_tf_type=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/mcmc.html#PyMCSurrogateLikelihood"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.mcmc.PyMCSurrogateLikelihood" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Op</span></code>, <a class="reference internal" href="#bayesflow.mcmc.MCMCSurrogateLikelihood" title="bayesflow.mcmc.MCMCSurrogateLikelihood"><code class="xref py py-class docutils literal notranslate"><span class="pre">MCMCSurrogateLikelihood</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bayesflow.mcmc.PyMCSurrogateLikelihood.itypes">
+<span class="sig-name descname"><span class="pre">itypes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'Type'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[TensorType(float64,</span> <span class="pre">(?,))]</span></em><a class="headerlink" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.itypes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bayesflow.mcmc.PyMCSurrogateLikelihood.otypes">
+<span class="sig-name descname"><span class="pre">otypes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="s"><span class="pre">'Type'</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[TensorType(float64,</span> <span class="pre">())]</span></em><a class="headerlink" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.otypes" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.mcmc.PyMCSurrogateLikelihood.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">amortized_likelihood</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observables</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">configurator=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">likelihood_postprocessor=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grad_postprocessor=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_pymc_type=&lt;class</span> <span class="pre">'numpy.float64'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_tf_type=&lt;class</span> <span class="pre">'numpy.float32'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/mcmc.html#PyMCSurrogateLikelihood.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.__init__" title="Link to this definition">#</a></dt>
+<dd><p>A custom surrogate likelihood function for integration with <code class="docutils literal notranslate"><span class="pre">PyMC3</span></code>, to be used with pymc.Potential</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>amortized_likelihood</strong><span class="classifier">bayesflow.amortized_inference.AmortizedLikelihood</span></dt><dd><p>A pre-trained (invertible) inference network which processes the outputs of the generative model.</p>
+</dd>
+<dt><strong>observables</strong></dt><dd><p>The “observed” data that will be passed to the configurator.
+For the default <code class="docutils literal notranslate"><span class="pre">configurator</span></code>, an np.array of shape (N, x_dim).</p>
+</dd>
+<dt><strong>configurator</strong><span class="classifier">callable, optional, default None</span></dt><dd><p>A function that takes the input to the log_likelihood and log_likelihood_grad
+calls and converts it to a dictionary containing the following mandatory keys,
+if DEFAULT_KEYS unchanged:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">observables</span></code> - the variables over which a condition density is learned (i.e., the observables)
+<code class="docutils literal notranslate"><span class="pre">conditions</span></code>  - the conditioning variables that the directly passed to the inference network</p>
+</div></blockquote>
+<dl class="simple">
+<dt>default behavior: convert <code class="docutils literal notranslate"><span class="pre">observables</span></code> to shape (1, N, x_dim),</dt><dd><p>expand parameters of shape (cond_dim) to shape (1, N, cond_dim)</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>likelihood_postprocessor</strong><span class="classifier">callable, optional, default: None</span></dt><dd><p>A function that takes the likelihood for each observable, can be used for aggregation
+default behavior: sum all likelihoods and return a single value</p>
+</dd>
+<dt><strong>grad_postprocessor</strong><span class="classifier">callable, optional, default: None</span></dt><dd><p>A function that takes the gradient for each value in <code class="docutils literal notranslate"><span class="pre">conditions</span></code> as returned by the preprocessor
+default behavior: Reduce shape from (1, N, cond_dim) to (cond_dim) by summing the corresponding values</p>
+</dd>
+<dt><strong>default_pymc_type</strong><span class="classifier">np.dtype, optional, default: np.float64</span></dt><dd><p>The default float type to use for numpy arrays as required by PyMC.</p>
+</dd>
+<dt><strong>default_tf_type</strong><span class="classifier">np.dtype, optional, default: np.float32</span></dt><dd><p>The default float type to use for tensorflow tensors.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.mcmc.PyMCSurrogateLikelihood.perform">
+<span class="sig-name descname"><span class="pre">perform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outputs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/mcmc.html#PyMCSurrogateLikelihood.perform"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.perform" title="Link to this definition">#</a></dt>
+<dd><p>Computes the log-likelihood of <code class="docutils literal notranslate"><span class="pre">inputs</span></code> (typically the parameter vector of a model).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>node</strong><span class="classifier">The symbolic <code class="docutils literal notranslate"><span class="pre">aesara.graph.basic.Apply</span></code> node that represents this computation.</span></dt><dd></dd>
+<dt><strong>inputs</strong><span class="classifier">Immutable sequence of non-symbolic/numeric inputs. These are the values of each</span></dt><dd><p><code class="docutils literal notranslate"><span class="pre">Variable</span></code> in <code class="docutils literal notranslate"><span class="pre">node.inputs</span></code>.</p>
+</dd>
+<dt><strong>outputs</strong><span class="classifier">List of mutable single-element lists (do not change the length of these lists).</span></dt><dd><p>Each sub-list corresponds to value of each <code class="docutils literal notranslate"><span class="pre">Variable</span></code> in <code class="docutils literal notranslate"><span class="pre">node.outputs</span></code>.
+The primary purpose of this method is to set the values of these sub-lists.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.mcmc.PyMCSurrogateLikelihood.grad">
+<span class="sig-name descname"><span class="pre">grad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_grads</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/mcmc.html#PyMCSurrogateLikelihood.grad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.grad" title="Link to this definition">#</a></dt>
+<dd><p>Aggregates gradients with respect to <code class="docutils literal notranslate"><span class="pre">inputs</span></code> (typically the parameter vector)</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>inputs</strong><span class="classifier">The input variables.</span></dt><dd></dd>
+<dt><strong>output_grads</strong><span class="classifier">The gradients of the output variables.</span></dt><dd></dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>grads</strong><span class="classifier">The gradients with respect to each <code class="docutils literal notranslate"><span class="pre">Variable</span></code> in <code class="docutils literal notranslate"><span class="pre">inputs</span></code>.</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="bayesflow.exceptions.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">bayesflow.exceptions module</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bayesflow.version.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">bayesflow.version module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.MCMCSurrogateLikelihood"><code class="docutils literal notranslate"><span class="pre">MCMCSurrogateLikelihood</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.MCMCSurrogateLikelihood.__init__"><code class="docutils literal notranslate"><span class="pre">MCMCSurrogateLikelihood.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.MCMCSurrogateLikelihood.log_likelihood"><code class="docutils literal notranslate"><span class="pre">MCMCSurrogateLikelihood.log_likelihood()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.MCMCSurrogateLikelihood.log_likelihood_grad"><code class="docutils literal notranslate"><span class="pre">MCMCSurrogateLikelihood.log_likelihood_grad()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.PyMCSurrogateLikelihood"><code class="docutils literal notranslate"><span class="pre">PyMCSurrogateLikelihood</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.itypes"><code class="docutils literal notranslate"><span class="pre">PyMCSurrogateLikelihood.itypes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.otypes"><code class="docutils literal notranslate"><span class="pre">PyMCSurrogateLikelihood.otypes</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.__init__"><code class="docutils literal notranslate"><span class="pre">PyMCSurrogateLikelihood.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.perform"><code class="docutils literal notranslate"><span class="pre">PyMCSurrogateLikelihood.perform()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.mcmc.PyMCSurrogateLikelihood.grad"><code class="docutils literal notranslate"><span class="pre">PyMCSurrogateLikelihood.grad()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Author name not set
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

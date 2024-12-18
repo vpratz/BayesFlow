@@ -1,0 +1,930 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>bayesflow.inference_networks module &#8212; BayesFlow: Amortized Bayesian Inference</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/bayesflow.inference_networks';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://www.bayesflow.org/api/bayesflow.inference_networks.html" />
+    <link rel="icon" href="../_static/bayesflow_hex.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="bayesflow.losses module" href="bayesflow.losses.html" />
+    <link rel="prev" title="bayesflow.diagnostics module" href="bayesflow.diagnostics.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <img src="../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BayesFlow</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Intro_Amortized_Posterior_Estimation.html">1. Quickstart: Amortized Posterior Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/TwoMoons_Bimodal_Posterior.html">2. Two Moons: Tackling Bimodal Posteriors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Model_Misspecification.html">3. Detecting Model Misspecification in Amortized Posterior Inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/LCA_Model_Posterior_Estimation.html">4. Principled Amortized Bayesian Workflow for Cognitive Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Linear_ODE_system.html">5. Posterior Estimation for ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Covid19_Initial_Posterior_Estimation.html">6. Posterior Estimation for SIR-like Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Model_Comparison_MPT.html">7. Model Comparison for Cognitive Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../_examples/Hierarchical_Model_Comparison_MPT.html">8. Hierarchical Model Comparison for Cognitive Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="bayesflow.html">Public API: bayesflow package</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.benchmarks.html">bayesflow.benchmarks package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm.html">bayesflow.benchmarks.bernoulli_glm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm_raw.html">bayesflow.benchmarks.bernoulli_glm_raw module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear.html">bayesflow.benchmarks.gaussian_linear module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear_uniform.html">bayesflow.benchmarks.gaussian_linear_uniform module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.gaussian_mixture.html">bayesflow.benchmarks.gaussian_mixture module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.inverse_kinematics.html">bayesflow.benchmarks.inverse_kinematics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.lotka_volterra.html">bayesflow.benchmarks.lotka_volterra module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.sir.html">bayesflow.benchmarks.sir module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.slcp.html">bayesflow.benchmarks.slcp module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.slcp_distractors.html">bayesflow.benchmarks.slcp_distractors module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.benchmarks.two_moons.html">bayesflow.benchmarks.two_moons module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.amortizers.html">bayesflow.amortizers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.attention.html">bayesflow.attention module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.coupling_networks.html">bayesflow.coupling_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.diagnostics.html">bayesflow.diagnostics module</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">bayesflow.inference_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.losses.html">bayesflow.losses module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.networks.html">bayesflow.networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.sensitivity.html">bayesflow.sensitivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.simulation.html">bayesflow.simulation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.summary_networks.html">bayesflow.summary_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.trainers.html">bayesflow.trainers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.configuration.html">bayesflow.configuration module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.default_settings.html">bayesflow.default_settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.computational_utilities.html">bayesflow.computational_utilities module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.helper_classes.html">bayesflow.helper_classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.helper_functions.html">bayesflow.helper_functions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.helper_networks.html">bayesflow.helper_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.exceptions.html">bayesflow.exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.mcmc.html">bayesflow.mcmc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.version.html">bayesflow.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.wrappers.html">bayesflow.wrappers module</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.experimental.html">bayesflow.experimental package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.experimental.rectifiers.html">bayesflow.experimental.rectifiers module</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Full Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to BayesFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About us</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/stefanradev93/BayesFlow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/stefanradev93/BayesFlow/edit/master/api/bayesflow.inference_networks.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/stefanradev93/BayesFlow/issues/new?title=Issue%20on%20page%20%2Fapi/bayesflow.inference_networks.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/api/bayesflow.inference_networks.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>bayesflow.inference_networks module</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork.available_designs"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork.available_designs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork.__init__"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork.call"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork.call()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork.forward"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork.forward()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork.inverse"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork.inverse()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork.create_config"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork.create_config()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.EvidentialNetwork"><code class="docutils literal notranslate"><span class="pre">EvidentialNetwork</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.EvidentialNetwork.__init__"><code class="docutils literal notranslate"><span class="pre">EvidentialNetwork.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.EvidentialNetwork.call"><code class="docutils literal notranslate"><span class="pre">EvidentialNetwork.call()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.EvidentialNetwork.evidence"><code class="docutils literal notranslate"><span class="pre">EvidentialNetwork.evidence()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.EvidentialNetwork.sample"><code class="docutils literal notranslate"><span class="pre">EvidentialNetwork.sample()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.EvidentialNetwork.create_config"><code class="docutils literal notranslate"><span class="pre">EvidentialNetwork.create_config()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.PMPNetwork"><code class="docutils literal notranslate"><span class="pre">PMPNetwork</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.PMPNetwork.__init__"><code class="docutils literal notranslate"><span class="pre">PMPNetwork.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.PMPNetwork.call"><code class="docutils literal notranslate"><span class="pre">PMPNetwork.call()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.PMPNetwork.posterior_probs"><code class="docutils literal notranslate"><span class="pre">PMPNetwork.posterior_probs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.PMPNetwork.logits"><code class="docutils literal notranslate"><span class="pre">PMPNetwork.logits()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.PMPNetwork.create_config"><code class="docutils literal notranslate"><span class="pre">PMPNetwork.create_config()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="module-bayesflow.inference_networks">
+<span id="bayesflow-inference-networks-module"></span><h1>bayesflow.inference_networks module<a class="headerlink" href="#module-bayesflow.inference_networks" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.InvertibleNetwork">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.inference_networks.</span></span><span class="sig-name descname"><span class="pre">InvertibleNetwork</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#InvertibleNetwork"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.InvertibleNetwork" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Implements a chain of conditional invertible coupling layers for conditional density estimation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.InvertibleNetwork.available_designs">
+<span class="sig-name descname"><span class="pre">available_designs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('affine',</span> <span class="pre">'spline',</span> <span class="pre">'interleaved')</span></em><a class="headerlink" href="#bayesflow.inference_networks.InvertibleNetwork.available_designs" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.InvertibleNetwork.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_coupling_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coupling_design</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'affine'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coupling_settings</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">permutation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fixed'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_act_norm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">act_norm_init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_soft_flow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">soft_flow_bounds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0.001,</span> <span class="pre">0.05)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#InvertibleNetwork.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.InvertibleNetwork.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Creates a chain of coupling layers with optional <cite>ActNorm</cite> layers in-between. Implements ideas from:</p>
+<p>[1] Radev, S. T., Mertens, U. K., Voss, A., Ardizzone, L., &amp; Köthe, U. (2020).
+BayesFlow: Learning complex stochastic models with invertible neural networks.
+IEEE Transactions on Neural Networks and Learning Systems.</p>
+<p>[2] Kim, H., Lee, H., Kang, W. H., Lee, J. Y., &amp; Kim, N. S. (2020).
+Softflow: Probabilistic framework for normalizing flow on manifolds.
+Advances in Neural Information Processing Systems, 33, 16388-16397.</p>
+<p>[3] Ardizzone, L., Kruse, J., Lüth, C., Bracher, N., Rother, C., &amp; Köthe, U. (2020).
+Conditional invertible neural networks for diverse image-to-image translation.
+In DAGM German Conference on Pattern Recognition (pp. 373-387). Springer, Cham.</p>
+<p>[4] Durkan, C., Bekasov, A., Murray, I., &amp; Papamakarios, G. (2019).
+Neural spline flows. Advances in Neural Information Processing Systems, 32.</p>
+<p>[5] Kingma, D. P., &amp; Dhariwal, P. (2018).
+Glow: Generative flow with invertible 1x1 convolutions.
+Advances in Neural Information Processing Systems, 31.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>num_params</strong><span class="classifier">int</span></dt><dd><p>The number of parameters to perform inference on. Equivalently, the dimensionality of the
+latent space.</p>
+</dd>
+<dt><strong>num_coupling_layers</strong><span class="classifier">int, optional, default: 6</span></dt><dd><p>The number of coupling layers to use as defined in [1] and [2]. In general, more coupling layers
+will give you more expressive power, but will be slower and may need more simulations to train.
+Typically, between 4 and 10 coupling layers should suffice for most applications.</p>
+</dd>
+<dt><strong>coupling_design</strong><span class="classifier">str or callable, optional, default: ‘affine’</span></dt><dd><p>The type of internal coupling network to use. Must be in [‘affine’, ‘spline’, ‘interleaved’].
+The first corresponds to the architecture in [3, 5], the second corresponds to a modified
+version of [4]. The third option will alternate between affine and spline layers, for example,
+if num_coupling_layers == 3, the chain will consist of [“affine”, “spline”, “affine”] layers.</p>
+<p>In general, spline couplings run slower than affine couplings, but require fewer coupling
+layers. Spline couplings may work best with complex (e.g., multimodal) low-dimensional
+problems. The difference will become less and less pronounced as we move to higher dimensions.</p>
+<p>Note: This is the first setting you may want to change, if inference does not work as expected!</p>
+</dd>
+<dt><strong>coupling_settings</strong><span class="classifier">dict or None, optional, default: None</span></dt><dd><p>The coupling network settings to pass to the internal coupling layers. See <code class="docutils literal notranslate"><span class="pre">default_settings</span></code>
+for possible settings. Below are two examples.</p>
+<p>Examples:</p>
+<p>1. If using <code class="docutils literal notranslate"><span class="pre">coupling_design='affine</span></code>, you may want to turn on Monte Carlo Dropout and
+use an ELU activation function for the internal networks. You can do this by providing:
+``
+coupling_settings={</p>
+<blockquote>
+<div><p>‘mc_dropout’ : True,
+‘dense_args’ : dict(units=128, activation=’elu’)</p>
+</div></blockquote>
+<p>2. If using <code class="docutils literal notranslate"><span class="pre">coupling_design='spline'</span></code>, you may want to change the number of learnable bins
+and increase the dropout probability (i.e., more regularization to guard against overfitting):
+``
+coupling_settings={</p>
+<blockquote>
+<div><p>‘dropout_prob’: 0.2,
+‘bins’ : 32,</p>
+</div></blockquote>
+</dd>
+<dt><strong>permutation</strong><span class="classifier">str or None, optional, default: ‘fixed’</span></dt><dd><p>Whether to use permutations between coupling layers. Highly recommended if <code class="docutils literal notranslate"><span class="pre">num_coupling_layers</span> <span class="pre">&gt;</span> <span class="pre">1</span></code>
+Important: Must be in [‘fixed’, ‘learnable’, None]</p>
+</dd>
+<dt><strong>use_act_norm</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Whether to use activation normalization after each coupling layer, as used in [5].
+Recommended to keep default.</p>
+</dd>
+<dt><strong>act_norm_init</strong><span class="classifier">np.ndarray of shape (num_simulations, num_params) or None, optional, default: None</span></dt><dd><p>Optional data-dependent initialization for the internal <code class="docutils literal notranslate"><span class="pre">ActNorm</span></code> layers, as done in [5]. Could be helpful
+for deep invertible networks.</p>
+</dd>
+<dt><strong>use_soft_flow</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to perturb the target distribution (i.e., parameters) with small amount of independent
+noise, as done in [2]. Could be helpful for degenerate distributions.</p>
+</dd>
+<dt><strong>soft_flow_bounds</strong><span class="classifier">tuple(float, float), optional, default: (1e-3, 5e-2)</span></dt><dd><p>The bounds of the continuous uniform distribution from which the noise scale would be sampled
+at each iteration. Only relevant when <code class="docutils literal notranslate"><span class="pre">use_soft_flow=True</span></code>.</p>
+</dd>
+<dt><strong>**kwargs</strong><span class="classifier">dict</span></dt><dd><p>Optional keyword arguments (e.g., name) passed to the tf.keras.Model __init__ method.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.InvertibleNetwork.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#InvertibleNetwork.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.InvertibleNetwork.call" title="Link to this definition">#</a></dt>
+<dd><p>Performs one pass through an invertible chain (either inverse or forward).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>targets</strong><span class="classifier">tf.Tensor</span></dt><dd><p>The estimation quantities of interest, shape (batch_size, …)</p>
+</dd>
+<dt><strong>condition</strong><span class="classifier">tf.Tensor</span></dt><dd><p>The conditional data x, shape (batch_size, summary_dim)</p>
+</dd>
+<dt><strong>inverse</strong><span class="classifier">bool, default: False</span></dt><dd><p>Flag indicating whether to run the chain forward or backwards</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>(z, log_det_J)</strong><span class="classifier">tuple(tf.Tensor, tf.Tensor)</span></dt><dd><p>If inverse=False: The transformed input and the corresponding Jacobian of the transformation,
+v shape: (batch_size, …), log_det_J shape: (batch_size, …)</p>
+</dd>
+<dt><strong>target</strong><span class="classifier">tf.Tensor</span></dt><dd><p>If inverse=True: The transformed out, shape (batch_size, …)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">inverse=False</span></code>, the return is <code class="docutils literal notranslate"><span class="pre">(z,</span> <span class="pre">log_det_J)</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">inverse=True</span></code>, the return is <code class="docutils literal notranslate"><span class="pre">target</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.InvertibleNetwork.forward">
+<span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">targets</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#InvertibleNetwork.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.InvertibleNetwork.forward" title="Link to this definition">#</a></dt>
+<dd><p>Performs a forward pass through the chain.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.InvertibleNetwork.inverse">
+<span class="sig-name descname"><span class="pre">inverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#InvertibleNetwork.inverse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.InvertibleNetwork.inverse" title="Link to this definition">#</a></dt>
+<dd><p>Performs a reverse pass through the chain. Assumes that it is only used
+in inference mode, so <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> contains <code class="docutils literal notranslate"><span class="pre">training=False</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.InvertibleNetwork.create_config">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#InvertibleNetwork.create_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.InvertibleNetwork.create_config" title="Link to this definition">#</a></dt>
+<dd><p>“Used to create the settings dictionary for the internal networks of the invertible
+network. Will fill in missing</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.EvidentialNetwork">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.inference_networks.</span></span><span class="sig-name descname"><span class="pre">EvidentialNetwork</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#EvidentialNetwork"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.EvidentialNetwork" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Implements a network whose outputs are the concentration parameters of a Dirichlet density.</p>
+<p>Follows ideas from:</p>
+<p>[1] Radev, S. T., D’Alessandro, M., Mertens, U. K., Voss, A., Köthe, U., &amp; Bürkner, P. C. (2021).
+Amortized Bayesian model comparison with evidential deep learning.
+IEEE Transactions on Neural Networks and Learning Systems.</p>
+<p>[2] Sensoy, M., Kaplan, L., &amp; Kandemir, M. (2018).
+Evidential deep learning to quantify classification uncertainty.
+Advances in neural information processing systems, 31.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.EvidentialNetwork.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_models</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dense_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_dense</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_activation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'softplus'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#EvidentialNetwork.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.EvidentialNetwork.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Creates an instance of an evidential network for amortized model comparison.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>num_models</strong><span class="classifier">int</span></dt><dd><p>The number of candidate (competing models) for the comparison scenario.</p>
+</dd>
+<dt><strong>dense_args</strong><span class="classifier">dict or None, optional, default: None</span></dt><dd><p>The arguments for a tf.keras.layers.Dense layer. If None, defaults will be used.</p>
+</dd>
+<dt><strong>num_dense</strong><span class="classifier">int, optional, default: 3</span></dt><dd><p>The number of dense layers for the main network part.</p>
+</dd>
+<dt><strong>output_activation</strong><span class="classifier">str or callable, optional, default: ‘softplus’</span></dt><dd><p>The activation function to use for the network outputs.
+Important: needs to have positive outputs.</p>
+</dd>
+<dt><strong>**kwargs</strong><span class="classifier">dict, optional, default: {}</span></dt><dd><p>Optional keyword arguments (e.g., name) passed to the tf.keras.Model __init__ method.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.EvidentialNetwork.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#EvidentialNetwork.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.EvidentialNetwork.call" title="Link to this definition">#</a></dt>
+<dd><p>Computes evidences for model comparison given a batch of data and optional concatenated context,
+typically passed through a summayr network.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>condition</strong><span class="classifier">tf.Tensor of shape (batch_size, …)</span></dt><dd><p>The input variables used for determining <code class="docutils literal notranslate"><span class="pre">p(model</span> <span class="pre">|</span> <span class="pre">condition)</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>evidence</strong><span class="classifier">tf.Tensor of shape (batch_size, num_models) – the learned model evidences</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.EvidentialNetwork.evidence">
+<span class="sig-name descname"><span class="pre">evidence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#EvidentialNetwork.evidence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.EvidentialNetwork.evidence" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.EvidentialNetwork.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#EvidentialNetwork.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.EvidentialNetwork.sample" title="Link to this definition">#</a></dt>
+<dd><p>Samples posterior model probabilities from the higher-order Dirichlet density.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>condition</strong><span class="classifier">tf.Tensor</span></dt><dd><p>The summary of the observed (or simulated) data, shape (n_data_sets, …)</p>
+</dd>
+<dt><strong>n_samples</strong><span class="classifier">int</span></dt><dd><p>Number of samples to obtain from the approximate posterior</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>pm_samples</strong><span class="classifier">tf.Tensor or np.array</span></dt><dd><p>The posterior draws from the Dirichlet distribution, shape (num_samples, num_batch, num_models)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.EvidentialNetwork.create_config">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#EvidentialNetwork.create_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.EvidentialNetwork.create_config" title="Link to this definition">#</a></dt>
+<dd><p>“Used to create the settings dictionary for the internal networks of the invertible
+network. Will fill in missing</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.PMPNetwork">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.inference_networks.</span></span><span class="sig-name descname"><span class="pre">PMPNetwork</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#PMPNetwork"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.PMPNetwork" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Model</span></code></p>
+<p>Implements a network that approximates posterior model probabilities (PMPs) as employed in [1].</p>
+<dl class="simple">
+<dt>[1] Elsemüller, L., Schnuerch, M., Bürkner, P. C., &amp; Radev, S. T. (2023).</dt><dd><p>A Deep Learning Method for Comparing Bayesian Hierarchical Models.
+arXiv preprint arXiv:2301.11873.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.PMPNetwork.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_models</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dense_args=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_dense=3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mc_dropout=False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dropout_prob=0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_activation=&lt;function</span> <span class="pre">softmax_v2&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#PMPNetwork.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.PMPNetwork.__init__" title="Link to this definition">#</a></dt>
+<dd><p>Creates an instance of a PMP network for amortized model comparison.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>num_models</strong><span class="classifier">int</span></dt><dd><p>The number of candidate (competing models) for the comparison scenario.</p>
+</dd>
+<dt><strong>dense_args</strong><span class="classifier">dict or None, optional, default: None</span></dt><dd><p>The arguments for a tf.keras.layers.Dense layer. If None, defaults will be used.</p>
+</dd>
+<dt><strong>num_dense</strong><span class="classifier">int, optional, default: 3</span></dt><dd><p>The number of dense layers for the main network part.</p>
+</dd>
+<dt><strong>dropout</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Whether to use dropout in-between the hidden layers.</p>
+</dd>
+<dt><strong>mc_dropout</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Whether to use dropout Monte Carlo dropout (i.e., Bayesian approximation) during inference</p>
+</dd>
+<dt><strong>dropout_prob</strong><span class="classifier">float in (0, 1), optional, default: 0.05</span></dt><dd><p>The dropout probability. Only has effecft if <code class="docutils literal notranslate"><span class="pre">dropout=True</span></code> or <code class="docutils literal notranslate"><span class="pre">mc_dropout=True</span></code></p>
+</dd>
+<dt><strong>output_activation</strong><span class="classifier">callable, optional, default: tf.nn.softmax</span></dt><dd><p>The activation function to apply to the network outputs.
+Important: Needs to have positive outputs and be bounded between 0 and 1.</p>
+</dd>
+<dt><strong>**kwargs</strong><span class="classifier">dict, optional, default: {}</span></dt><dd><p>Optional keyword arguments (e.g., name) passed to the <code class="docutils literal notranslate"><span class="pre">tf.keras.Model</span></code> __init__ method.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.PMPNetwork.call">
+<span class="sig-name descname"><span class="pre">call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_probs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#PMPNetwork.call"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.PMPNetwork.call" title="Link to this definition">#</a></dt>
+<dd><p>Forward pass through the network. Computes approximated PMPs given a batch of data
+and optional concatenated context, typically passed through a summary network.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>condition</strong><span class="classifier">tf.Tensor of shape (batch_size, …)</span></dt><dd><p>The input variables used for determining <code class="docutils literal notranslate"><span class="pre">p(model</span> <span class="pre">|</span> <span class="pre">condition)</span></code></p>
+</dd>
+<dt><strong>return_probs</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Whether to return probabilities or logits (pre-activation, unnormalized)</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>out</strong><span class="classifier">tf.Tensor of shape (batch_size, …, num_models)</span></dt><dd><p>The approximated PMPs (post-activation) or logits (pre-activation)</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.PMPNetwork.posterior_probs">
+<span class="sig-name descname"><span class="pre">posterior_probs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#PMPNetwork.posterior_probs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.PMPNetwork.posterior_probs" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut function to obtain posterior probabilities given a
+condition tensor (e.g., summary statistics of data sets).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>condition</strong><span class="classifier">tf.Tensor of shape (batch_size, …)</span></dt><dd><p>The input variables used for determining <code class="docutils literal notranslate"><span class="pre">p(model</span> <span class="pre">|</span> <span class="pre">condition)</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>out</strong><span class="classifier">tf.Tensor of shape (batch_size, …, num_models)</span></dt><dd><p>The approximated PMPs</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.PMPNetwork.logits">
+<span class="sig-name descname"><span class="pre">logits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">condition</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#PMPNetwork.logits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.PMPNetwork.logits" title="Link to this definition">#</a></dt>
+<dd><p>Shortcut function to obtain logits given a condition tensor
+(e.g., summary statistics of data sets).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>condition</strong><span class="classifier">tf.Tensor of shape (batch_size, …)</span></dt><dd><p>The input variables used for determining <code class="docutils literal notranslate"><span class="pre">p(model</span> <span class="pre">|</span> <span class="pre">condition)</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>out</strong><span class="classifier">tf.Tensor of shape (batch_size, …, num_models)</span></dt><dd><p>The approximated PMPs</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.inference_networks.PMPNetwork.create_config">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/inference_networks.html#PMPNetwork.create_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.inference_networks.PMPNetwork.create_config" title="Link to this definition">#</a></dt>
+<dd><p>Used to create the settings dictionary for the internal networks of the
+network. Will fill in missing.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="bayesflow.diagnostics.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">bayesflow.diagnostics module</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="bayesflow.losses.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">bayesflow.losses module</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork.available_designs"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork.available_designs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork.__init__"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork.call"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork.call()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork.forward"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork.forward()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork.inverse"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork.inverse()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.InvertibleNetwork.create_config"><code class="docutils literal notranslate"><span class="pre">InvertibleNetwork.create_config()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.EvidentialNetwork"><code class="docutils literal notranslate"><span class="pre">EvidentialNetwork</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.EvidentialNetwork.__init__"><code class="docutils literal notranslate"><span class="pre">EvidentialNetwork.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.EvidentialNetwork.call"><code class="docutils literal notranslate"><span class="pre">EvidentialNetwork.call()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.EvidentialNetwork.evidence"><code class="docutils literal notranslate"><span class="pre">EvidentialNetwork.evidence()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.EvidentialNetwork.sample"><code class="docutils literal notranslate"><span class="pre">EvidentialNetwork.sample()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.EvidentialNetwork.create_config"><code class="docutils literal notranslate"><span class="pre">EvidentialNetwork.create_config()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.PMPNetwork"><code class="docutils literal notranslate"><span class="pre">PMPNetwork</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.PMPNetwork.__init__"><code class="docutils literal notranslate"><span class="pre">PMPNetwork.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.PMPNetwork.call"><code class="docutils literal notranslate"><span class="pre">PMPNetwork.call()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.PMPNetwork.posterior_probs"><code class="docutils literal notranslate"><span class="pre">PMPNetwork.posterior_probs()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.PMPNetwork.logits"><code class="docutils literal notranslate"><span class="pre">PMPNetwork.logits()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.inference_networks.PMPNetwork.create_config"><code class="docutils literal notranslate"><span class="pre">PMPNetwork.create_config()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Author name not set
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
