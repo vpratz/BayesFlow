@@ -12,7 +12,7 @@ except ImportError:
 
 
 def copy_files(sourcedir):
-    basedir = Path(sourcedir).parent.parent
+    basedir = Path(os.path.abspath(sourcedir)).parent.parent
     print(basedir, sourcedir)
 
     # copy examples
@@ -43,7 +43,7 @@ def patch_conf(sourcedir):
     if USE_POLYVERSION:
         root = Git.root(Path(__file__).parent)
     else:
-        root = str(Path(sourcedir).parent.parent)
+        root = str(Path(os.path.abspath(sourcedir)).parent.parent)
     cursrc = os.path.join(root, "docsrc", "source")
     if os.path.abspath(cursrc) == os.path.abspath(sourcedir):
         return
