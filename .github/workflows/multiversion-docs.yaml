@@ -1,13 +1,14 @@
 
 # From https://github.com/eeholmes/readthedoc-test/blob/main/.github/workflows/docs_pages.yml
-name: docs
+name: multiversion-docs
 
-# execute this workflow automatically when we push to master or dev
 on:
-  push:
-    branches:
-      - master
-      - dev
+  workflow_dispatch:
+# execute this workflow automatically when we push to master or dev
+#   push:
+#     branches:
+#       - master
+#       - dev
 
 jobs:
 
