@@ -217,18 +217,14 @@
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
   <ul>
-      <li><a href="/v1.1.6/index.html" >v1.1.6</a></li>
-      <li><a href="/v1.1.5/index.html" >v1.1.5</a></li>
-      <li><a href="/v1.1.4/index.html" >v1.1.4</a></li>
-      <li><a href="/v1.1.3/index.html" >v1.1.3</a></li>
-      <li><a href="/v1.1.2/index.html" >v1.1.2</a></li>
+      <li><a href="/v1.1.6/api/bayesflow.benchmarks.html" >v1.1.6</a></li>
   </ul>
   
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
   <ul>
-      <li><a href="/dev/index.html" >dev</a></li>
-      <li><a href="/master/index.html" class="current">master</a></li>
+      <li><a href="/dev/api/bayesflow.benchmarks.html" >dev</a></li>
+      <li><a href="/master/api/bayesflow.benchmarks.html" class="current">master</a></li>
   </ul>
   
 </div>
@@ -440,9 +436,32 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-bayesflow.benchmarks">Module contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Benchmark"><code class="docutils literal notranslate"><span class="pre">Benchmark</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.ConfigurationError"><code class="docutils literal notranslate"><span class="pre">ConfigurationError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.ConfigurationError.add_note"><code class="docutils literal notranslate"><span class="pre">ConfigurationError.add_note()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.ConfigurationError.args"><code class="docutils literal notranslate"><span class="pre">ConfigurationError.args</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.ConfigurationError.with_traceback"><code class="docutils literal notranslate"><span class="pre">ConfigurationError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.GenerativeModel"><code class="docutils literal notranslate"><span class="pre">GenerativeModel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.GenerativeModel.__call__"><code class="docutils literal notranslate"><span class="pre">GenerativeModel.__call__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.GenerativeModel.plot_pushforward"><code class="docutils literal notranslate"><span class="pre">GenerativeModel.plot_pushforward()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.GenerativeModel.presimulate_and_save"><code class="docutils literal notranslate"><span class="pre">GenerativeModel.presimulate_and_save()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Prior"><code class="docutils literal notranslate"><span class="pre">Prior</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Prior.__call__"><code class="docutils literal notranslate"><span class="pre">Prior.__call__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Prior.estimate_means_and_stds"><code class="docutils literal notranslate"><span class="pre">Prior.estimate_means_and_stds()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Prior.logpdf"><code class="docutils literal notranslate"><span class="pre">Prior.logpdf()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Prior.plot_prior2d"><code class="docutils literal notranslate"><span class="pre">Prior.plot_prior2d()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.get_benchmark_module"><code class="docutils literal notranslate"><span class="pre">get_benchmark_module()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Benchmark"><code class="docutils literal notranslate"><span class="pre">Benchmark</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Benchmark.__init__"><code class="docutils literal notranslate"><span class="pre">Benchmark.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.partial"><code class="docutils literal notranslate"><span class="pre">partial</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.partial.__call__"><code class="docutils literal notranslate"><span class="pre">partial.__call__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.partial.args"><code class="docutils literal notranslate"><span class="pre">partial.args</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.partial.func"><code class="docutils literal notranslate"><span class="pre">partial.func</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.partial.keywords"><code class="docutils literal notranslate"><span class="pre">partial.keywords</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -465,71 +484,73 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm.html">bayesflow.benchmarks.bernoulli_glm module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm.html#bayesflow.benchmarks.bernoulli_glm.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm.html#bayesflow.benchmarks.bernoulli_glm.prior"><code class="docutils literal notranslate"><span class="pre">prior()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm.html#bayesflow.benchmarks.bernoulli_glm.simulator"><code class="docutils literal notranslate"><span class="pre">simulator()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm.html#bayesflow.benchmarks.bernoulli_glm.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm_raw.html">bayesflow.benchmarks.bernoulli_glm_raw module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm_raw.html#bayesflow.benchmarks.bernoulli_glm_raw.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm_raw.html#bayesflow.benchmarks.bernoulli_glm_raw.prior"><code class="docutils literal notranslate"><span class="pre">prior()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm_raw.html#bayesflow.benchmarks.bernoulli_glm_raw.simulator"><code class="docutils literal notranslate"><span class="pre">simulator()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.bernoulli_glm_raw.html#bayesflow.benchmarks.bernoulli_glm_raw.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear.html">bayesflow.benchmarks.gaussian_linear module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear.html#bayesflow.benchmarks.gaussian_linear.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear.html#bayesflow.benchmarks.gaussian_linear.prior"><code class="docutils literal notranslate"><span class="pre">prior()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear.html#bayesflow.benchmarks.gaussian_linear.simulator"><code class="docutils literal notranslate"><span class="pre">simulator()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear.html#bayesflow.benchmarks.gaussian_linear.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear_uniform.html">bayesflow.benchmarks.gaussian_linear_uniform module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear_uniform.html#bayesflow.benchmarks.gaussian_linear_uniform.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear_uniform.html#bayesflow.benchmarks.gaussian_linear_uniform.prior"><code class="docutils literal notranslate"><span class="pre">prior()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear_uniform.html#bayesflow.benchmarks.gaussian_linear_uniform.simulator"><code class="docutils literal notranslate"><span class="pre">simulator()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.gaussian_linear_uniform.html#bayesflow.benchmarks.gaussian_linear_uniform.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bayesflow.benchmarks.gaussian_mixture.html">bayesflow.benchmarks.gaussian_mixture module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.gaussian_mixture.html#bayesflow.benchmarks.gaussian_mixture.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.gaussian_mixture.html#bayesflow.benchmarks.gaussian_mixture.prior"><code class="docutils literal notranslate"><span class="pre">prior()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.gaussian_mixture.html#bayesflow.benchmarks.gaussian_mixture.simulator"><code class="docutils literal notranslate"><span class="pre">simulator()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.gaussian_mixture.html#bayesflow.benchmarks.gaussian_mixture.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bayesflow.benchmarks.inverse_kinematics.html">bayesflow.benchmarks.inverse_kinematics module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.inverse_kinematics.html#bayesflow.benchmarks.inverse_kinematics.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.inverse_kinematics.html#bayesflow.benchmarks.inverse_kinematics.prior"><code class="docutils literal notranslate"><span class="pre">prior()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.inverse_kinematics.html#bayesflow.benchmarks.inverse_kinematics.simulator"><code class="docutils literal notranslate"><span class="pre">simulator()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.inverse_kinematics.html#bayesflow.benchmarks.inverse_kinematics.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bayesflow.benchmarks.lotka_volterra.html">bayesflow.benchmarks.lotka_volterra module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.lotka_volterra.html#bayesflow.benchmarks.lotka_volterra.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.lotka_volterra.html#bayesflow.benchmarks.lotka_volterra.odeint"><code class="docutils literal notranslate"><span class="pre">odeint()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.lotka_volterra.html#bayesflow.benchmarks.lotka_volterra.prior"><code class="docutils literal notranslate"><span class="pre">prior()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.lotka_volterra.html#bayesflow.benchmarks.lotka_volterra.simulator"><code class="docutils literal notranslate"><span class="pre">simulator()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.lotka_volterra.html#bayesflow.benchmarks.lotka_volterra.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bayesflow.benchmarks.sir.html">bayesflow.benchmarks.sir module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.sir.html#bayesflow.benchmarks.sir.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.sir.html#bayesflow.benchmarks.sir.odeint"><code class="docutils literal notranslate"><span class="pre">odeint()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.sir.html#bayesflow.benchmarks.sir.prior"><code class="docutils literal notranslate"><span class="pre">prior()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.sir.html#bayesflow.benchmarks.sir.simulator"><code class="docutils literal notranslate"><span class="pre">simulator()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.sir.html#bayesflow.benchmarks.sir.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bayesflow.benchmarks.slcp.html">bayesflow.benchmarks.slcp module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.slcp.html#bayesflow.benchmarks.slcp.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.slcp.html#bayesflow.benchmarks.slcp.prior"><code class="docutils literal notranslate"><span class="pre">prior()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.slcp.html#bayesflow.benchmarks.slcp.simulator"><code class="docutils literal notranslate"><span class="pre">simulator()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.slcp.html#bayesflow.benchmarks.slcp.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bayesflow.benchmarks.slcp_distractors.html">bayesflow.benchmarks.slcp_distractors module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.slcp_distractors.html#bayesflow.benchmarks.slcp_distractors.get_random_student_t"><code class="docutils literal notranslate"><span class="pre">get_random_student_t()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.slcp_distractors.html#bayesflow.benchmarks.slcp_distractors.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.slcp_distractors.html#bayesflow.benchmarks.slcp_distractors.draw_mixture_student_t"><code class="docutils literal notranslate"><span class="pre">draw_mixture_student_t()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.slcp_distractors.html#bayesflow.benchmarks.slcp_distractors.get_random_student_t"><code class="docutils literal notranslate"><span class="pre">get_random_student_t()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.slcp_distractors.html#bayesflow.benchmarks.slcp_distractors.prior"><code class="docutils literal notranslate"><span class="pre">prior()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.slcp_distractors.html#bayesflow.benchmarks.slcp_distractors.simulator"><code class="docutils literal notranslate"><span class="pre">simulator()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.slcp_distractors.html#bayesflow.benchmarks.slcp_distractors.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="bayesflow.benchmarks.two_moons.html">bayesflow.benchmarks.two_moons module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.two_moons.html#bayesflow.benchmarks.two_moons.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.two_moons.html#bayesflow.benchmarks.two_moons.prior"><code class="docutils literal notranslate"><span class="pre">prior()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.two_moons.html#bayesflow.benchmarks.two_moons.simulator"><code class="docutils literal notranslate"><span class="pre">simulator()</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="bayesflow.benchmarks.two_moons.html#bayesflow.benchmarks.two_moons.configurator"><code class="docutils literal notranslate"><span class="pre">configurator()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -537,22 +558,12 @@
 </section>
 <section id="module-bayesflow.benchmarks">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-bayesflow.benchmarks" title="Link to this heading">#</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="bayesflow.benchmarks.get_benchmark_module">
-<span class="sig-prename descclassname"><span class="pre">bayesflow.benchmarks.</span></span><span class="sig-name descname"><span class="pre">get_benchmark_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">benchmark_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/benchmarks.html#get_benchmark_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.get_benchmark_module" title="Link to this definition">#</a></dt>
-<dd><p>Loads the corresponding benchmark file under bayesflow.benchmarks.&lt;benchmark_name&gt; as a
-module and returns it.</p>
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="bayesflow.benchmarks.Benchmark">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.benchmarks.</span></span><span class="sig-name descname"><span class="pre">Benchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'joint'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/benchmarks.html#Benchmark"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.Benchmark" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Interface class for a benchmark.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.benchmarks.Benchmark.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'joint'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/benchmarks.html#Benchmark.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.Benchmark.__init__" title="Link to this definition">#</a></dt>
-<dd><p>Creates a benchmark generative model by using the blueprint contained
+<p>Creates a benchmark generative model by using the blueprint contained
 in a benchmark file.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -572,6 +583,308 @@ and propagated accordingly.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.ConfigurationError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.benchmarks.</span></span><span class="sig-name descname"><span class="pre">ConfigurationError</span></span><a class="reference internal" href="../_modules/bayesflow/exceptions.html#ConfigurationError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.ConfigurationError" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Class for error in model configuration, e.g. in meta dict</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.ConfigurationError.add_note">
+<span class="sig-name descname"><span class="pre">add_note</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.benchmarks.ConfigurationError.add_note" title="Link to this definition">#</a></dt>
+<dd><p>Exception.add_note(note) –
+add a note to the exception</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.ConfigurationError.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#bayesflow.benchmarks.ConfigurationError.args" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.ConfigurationError.with_traceback">
+<span class="sig-name descname"><span class="pre">with_traceback</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.benchmarks.ConfigurationError.with_traceback" title="Link to this definition">#</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.GenerativeModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.benchmarks.</span></span><span class="sig-name descname"><span class="pre">GenerativeModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prior</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_test</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prior_is_batched</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">simulator_is_batched</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'anonymous'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/simulation.html#GenerativeModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.GenerativeModel" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Basic interface for a generative model in a simulation-based context.
+Generally, a generative model consists of two mandatory components:</p>
+<ul class="simple">
+<li><p>Prior : A randomized function returning random parameter draws from a prior distribution;</p></li>
+<li><p>Simulator : A function which transforms the parameters into observables in a non-deterministic manner.</p></li>
+</ul>
+<p>Instantiates a generative model responsible for drawing generating params, data, and optional context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>prior</strong><span class="classifier">callable or bayesflow.simulation.Prior</span></dt><dd><p>A function returning random draws from the prior parameter distribution. Should encode
+prior knowledge about plausible parameter ranges</p>
+</dd>
+<dt><strong>simulator</strong><span class="classifier">callable or bayesflow.simulation.Simulator</span></dt><dd><p>A function accepting parameter draws, optional context, and optional arguments as input
+and returning obseravble data</p>
+</dd>
+<dt><strong>skip_test</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>If True, a forward inference pass will be performed.</p>
+</dd>
+<dt><strong>prior_is_batched</strong><span class="classifier">bool, optional, default: False</span></dt><dd><p>Only relevant and mandatory if providing a custom prior without the <code class="docutils literal notranslate"><span class="pre">Prior</span></code> wrapper.</p>
+</dd>
+<dt><strong>simulator_is_batched</strong><span class="classifier">bool or None, optional, default: None</span></dt><dd><p>Only relevant and mandatory if providing a custom simulator without he <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> wrapper.</p>
+</dd>
+<dt><strong>name</strong><span class="classifier">str (default - “anonoymous”)</span></dt><dd><p>An optional name for the generative model. If kept default (None), ‘anonymous’ is set as name.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>If you are not using the provided <code class="docutils literal notranslate"><span class="pre">Prior</span></code> and <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> wrappers for your prior and data generator,
+only functions returning a <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code> in the correct format will be accepted, since these will be
+wrapped internally. In addition, you need to indicate whether your simulator operates on batched of
+parameters or on single parameter vectors via tha <cite>simulator_is_batched</cite> argument.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.GenerativeModel.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/simulation.html#GenerativeModel.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.GenerativeModel.__call__" title="Link to this definition">#</a></dt>
+<dd><p>Carries out forward inference <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> times.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.GenerativeModel.plot_pushforward">
+<span class="sig-name descname"><span class="pre">plot_pushforward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameter_draws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcs_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">funcs_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_raw_sims</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/simulation.html#GenerativeModel.plot_pushforward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.GenerativeModel.plot_pushforward" title="Link to this definition">#</a></dt>
+<dd><p>Creates simulations from <code class="docutils literal notranslate"><span class="pre">parameter_draws</span></code> (generated from <code class="docutils literal notranslate"><span class="pre">self.prior</span></code> if they are not passed as
+an argument) and plots visualizations for them.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>parameter_draws</strong><span class="classifier">np.ndarray of shape (batch_size, num_parameters)</span></dt><dd><p>A sample of parameters. May be drawn from either the prior (which is also the default behavior if no input is specified)
+or from the posterior to do a prior/posterior pushforward.</p>
+</dd>
+<dt><strong>funcs_list</strong><span class="classifier">list of callable</span></dt><dd><p>A list of functions that can be used to aggregate simulation data (map a single simulation to a single real value).
+The default behavior without user input is to use numpy’s mean and standard deviation functions.</p>
+</dd>
+<dt><strong>funcs_labels</strong><span class="classifier">list of str</span></dt><dd><p>A list of labels for the functions in funcs_list.
+The default behavior without user input is to call the functions “Aggregator function 1, Aggregator function 2, etc.”</p>
+</dd>
+<dt><strong>batch_size</strong><span class="classifier">int, optional, default: 1000</span></dt><dd><p>The number of prior draws to generate (and then create and visualizes simulations from)</p>
+</dd>
+<dt><strong>show_raw_sims</strong><span class="classifier">bool, optional, default: True</span></dt><dd><p>Flag determining whether or not a plot of 49 raw (i.e. unaggregated) simulations is generated.
+Useful for very general data exploration.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>A dictionary with the following keys:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>parameter_draws<span class="classifier">np.ndarray</span></dt><dd><p>The parameters provided by the user or generated internally.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>simulations<span class="classifier">np.ndarray</span></dt><dd><p>The simulations generated from parameter_draws (or prior draws generated on the fly)</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>aggregated_data<span class="classifier">list of np.ndarray</span></dt><dd><p>Arrays generated from the simulations with the functions in funcs_list</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.GenerativeModel.presimulate_and_save">
+<span class="sig-name descname"><span class="pre">presimulate_and_save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memory_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations_per_epoch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epochs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extend_from</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">disable_user_input</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/simulation.html#GenerativeModel.presimulate_and_save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.GenerativeModel.presimulate_and_save" title="Link to this definition">#</a></dt>
+<dd><p>Simulates a dataset for single-pass offline training (called via the train_from_presimulation method
+of the Trainer class in the trainers.py script).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>batch_size</strong><span class="classifier">int</span></dt><dd><p>Number of simulations which will be used in each backprop step of training.</p>
+</dd>
+<dt><strong>folder_path</strong><span class="classifier">str</span></dt><dd><p>The folder in which to save the presimulated data.</p>
+</dd>
+<dt><strong>total_iterations</strong><span class="classifier">int or None, optional, default: None</span></dt><dd><p>Total number of iterations to perform during training. If total_iterations divided by epochs is not an integer, it
+will be increased so that said division does result in an integer.</p>
+</dd>
+<dt><strong>memory_limit</strong><span class="classifier">int or None, optional, default: None</span></dt><dd><p>Upper bound on the size of individual files (in Mb); can be useful to avoid running out of RAM during training.</p>
+</dd>
+<dt><strong>iterations_per_epoch</strong><span class="classifier">int or None, optional, default: None</span></dt><dd><p>Number of batch simulations to perform per epoch file. If <code class="docutils literal notranslate"><span class="pre">iterations_per_epoch</span></code> batches per file lead to files
+exceeding the memory_limit, <code class="docutils literal notranslate"><span class="pre">iterations_per_epoch</span></code> will be lowered so that the memory_limit can be enforced.</p>
+</dd>
+<dt><strong>epochs</strong><span class="classifier">int or None, optional, default: None</span></dt><dd><p>Number of epoch files to generate. A higher number will be generated if the memory_limit for individual files requires it.</p>
+</dd>
+<dt><strong>extend_from</strong><span class="classifier">int, optional, default: 0</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">folder_path</span></code> already contains simulations and the user wishes to add further simulations to these,
+extend_from must provide the number of the last presimulation file in <code class="docutils literal notranslate"><span class="pre">folder_path</span></code>.</p>
+</dd>
+<dt><strong>disable_user_input: bool, optional, default: False</strong></dt><dd><p>If True, user will not be asked if memory space is sufficient for presimulation.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>One of the following pairs of parameters has to be provided:</p>
+<ul class="simple">
+<li><p>(iterations_per_epoch, epochs),</p></li>
+<li><p>(total_iterations, iterations_per_epoch)</p></li>
+<li><p>(total_iterations, epochs)</p></li>
+</ul>
+<p>Providing all three of the parameters in these pairs leads to a consistency check,
+since incompatible combinations are possible.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.Prior">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.benchmarks.</span></span><span class="sig-name descname"><span class="pre">Prior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_prior_fun</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prior_fun</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">callable</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">param_names</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/simulation.html#Prior"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.Prior" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Basic interface for a simulation module responsible for generating random draws from a
+prior distribution.</p>
+<p>The prior functions should return a np.array of simulation parameters which will be internally used
+by the GenerativeModel interface for simulations.</p>
+<p>An optional context generator (i.e., an instance of ContextGenerator) or a user-defined callable object
+implementing the following two methods can be provided:
+- context_generator.batchable_context(batch_size)
+- context_generator.non_batchable_context()</p>
+<p>Instantiates a prior generator which will draw random parameter configurations from a user-informed prior
+distribution. No improper priors are allowed, as these may render the generative scope of a model undefined.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>batch_prior_fun</strong><span class="classifier">callable</span></dt><dd><p>A function (callbale object) with optional control arguments responsible for generating batches
+of per-simulation parameters.</p>
+</dd>
+<dt><strong>prior_fun</strong><span class="classifier">callable</span></dt><dd><p>A function (callbale object) with optional control arguments responsible for generating
+per-simulation parameters.</p>
+</dd>
+<dt><strong>context generator</strong><span class="classifier">callable, optional, (default None, recommended instance of ContextGenerator)</span></dt><dd><p>An optional function (ideally an instance of ContextGenerator) for generating prior context variables.</p>
+</dd>
+<dt><strong>param_names</strong><span class="classifier">list of str, optional, (default None)</span></dt><dd><p>A list with strings representing the names of the parameters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.Prior.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/simulation.html#Prior.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.Prior.__call__" title="Link to this definition">#</a></dt>
+<dd><p>Generates <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> draws from the prior given optional context generator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>batch_size</strong><span class="classifier">int</span></dt><dd><p>The number of draws to obtain from the prior + context generator functions.</p>
+</dd>
+<dt><strong>*args</strong><span class="classifier">tuple</span></dt><dd><p>Optional positional arguments passed to the generator functions.</p>
+</dd>
+<dt><strong>**kwargs</strong><span class="classifier">dict</span></dt><dd><p>Optional keyword arguments passed to the generator functions.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>out_dict - a dictionary with the quantities generated from the prior + context funcitons.</dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.Prior.estimate_means_and_stds">
+<span class="sig-name descname"><span class="pre">estimate_means_and_stds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_draws</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/simulation.html#Prior.estimate_means_and_stds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.Prior.estimate_means_and_stds" title="Link to this definition">#</a></dt>
+<dd><p>Estimates prior means and stds given n_draws from the prior, useful
+for z-standardization of the prior draws.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>n_draws: int, optional (default = 1000)</strong></dt><dd><p>The number of random draws to obtain from the joint prior.</p>
+</dd>
+<dt><strong>*args</strong><span class="classifier">tuple</span></dt><dd><p>Optional positional arguments passed to the generator functions.</p>
+</dd>
+<dt><strong>**kwargs</strong><span class="classifier">dict</span></dt><dd><p>Optional keyword arguments passed to the generator functions.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt>(prior_means, prior_stds) - tuple of np.ndarrays</dt><dd><p>The estimated means and stds of the joint prior.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.Prior.logpdf">
+<span class="sig-name descname"><span class="pre">logpdf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prior_draws</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/simulation.html#Prior.logpdf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.Prior.logpdf" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.Prior.plot_prior2d">
+<span class="sig-name descname"><span class="pre">plot_prior2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/simulation.html#Prior.plot_prior2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.Prior.plot_prior2d" title="Link to this definition">#</a></dt>
+<dd><p>Generates a 2D plot representing bivariate prior ditributions. Uses the function
+<code class="docutils literal notranslate"><span class="pre">bayesflow.diagnostics.plot_prior2d()</span></code> internally for generating the plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**kwargs</strong><span class="classifier">dict</span></dt><dd><p>Optional keyword arguments passed to the <code class="docutils literal notranslate"><span class="pre">plot_prior2d</span></code> function.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>f</strong><span class="classifier">plt.Figure - the figure instance for optional saving</span></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.get_benchmark_module">
+<span class="sig-prename descclassname"><span class="pre">bayesflow.benchmarks.</span></span><span class="sig-name descname"><span class="pre">get_benchmark_module</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">benchmark_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/benchmarks.html#get_benchmark_module"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.get_benchmark_module" title="Link to this definition">#</a></dt>
+<dd><p>Loads the corresponding benchmark file under bayesflow.benchmarks.&lt;benchmark_name&gt; as a
+module and returns it.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.partial">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.benchmarks.</span></span><span class="sig-name descname"><span class="pre">partial</span></span><a class="reference internal" href="../_modules/functools.html#partial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.partial" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>partial(func, <a href="#id1"><span class="problematic" id="id2">*</span></a>args, <a href="#id3"><span class="problematic" id="id4">**</span></a>keywords) - new function with partial application
+of the given arguments and keywords.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.partial.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.benchmarks.partial.__call__" title="Link to this definition">#</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.partial.args">
+<span class="sig-name descname"><span class="pre">args</span></span><a class="headerlink" href="#bayesflow.benchmarks.partial.args" title="Link to this definition">#</a></dt>
+<dd><p>tuple of arguments to future partial calls</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.partial.func">
+<span class="sig-name descname"><span class="pre">func</span></span><a class="headerlink" href="#bayesflow.benchmarks.partial.func" title="Link to this definition">#</a></dt>
+<dd><p>function object to use in future partial calls</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bayesflow.benchmarks.partial.keywords">
+<span class="sig-name descname"><span class="pre">keywords</span></span><a class="headerlink" href="#bayesflow.benchmarks.partial.keywords" title="Link to this definition">#</a></dt>
+<dd><p>dictionary of keyword arguments to future partial calls</p>
 </dd></dl>
 
 </dd></dl>
@@ -627,9 +940,32 @@ and propagated accordingly.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submodules">Submodules</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-bayesflow.benchmarks">Module contents</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Benchmark"><code class="docutils literal notranslate"><span class="pre">Benchmark</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.ConfigurationError"><code class="docutils literal notranslate"><span class="pre">ConfigurationError</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.ConfigurationError.add_note"><code class="docutils literal notranslate"><span class="pre">ConfigurationError.add_note()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.ConfigurationError.args"><code class="docutils literal notranslate"><span class="pre">ConfigurationError.args</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.ConfigurationError.with_traceback"><code class="docutils literal notranslate"><span class="pre">ConfigurationError.with_traceback()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.GenerativeModel"><code class="docutils literal notranslate"><span class="pre">GenerativeModel</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.GenerativeModel.__call__"><code class="docutils literal notranslate"><span class="pre">GenerativeModel.__call__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.GenerativeModel.plot_pushforward"><code class="docutils literal notranslate"><span class="pre">GenerativeModel.plot_pushforward()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.GenerativeModel.presimulate_and_save"><code class="docutils literal notranslate"><span class="pre">GenerativeModel.presimulate_and_save()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Prior"><code class="docutils literal notranslate"><span class="pre">Prior</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Prior.__call__"><code class="docutils literal notranslate"><span class="pre">Prior.__call__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Prior.estimate_means_and_stds"><code class="docutils literal notranslate"><span class="pre">Prior.estimate_means_and_stds()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Prior.logpdf"><code class="docutils literal notranslate"><span class="pre">Prior.logpdf()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Prior.plot_prior2d"><code class="docutils literal notranslate"><span class="pre">Prior.plot_prior2d()</span></code></a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.get_benchmark_module"><code class="docutils literal notranslate"><span class="pre">get_benchmark_module()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Benchmark"><code class="docutils literal notranslate"><span class="pre">Benchmark</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.Benchmark.__init__"><code class="docutils literal notranslate"><span class="pre">Benchmark.__init__()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.partial"><code class="docutils literal notranslate"><span class="pre">partial</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.partial.__call__"><code class="docutils literal notranslate"><span class="pre">partial.__call__()</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.partial.args"><code class="docutils literal notranslate"><span class="pre">partial.args</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.partial.func"><code class="docutils literal notranslate"><span class="pre">partial.func</span></code></a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.partial.keywords"><code class="docutils literal notranslate"><span class="pre">partial.keywords</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -658,7 +994,7 @@ By The BayesFlow authors
 
   <p class="copyright">
     
-      © Copyright 2023, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      © Copyright 2023-2025, BayesFlow authors (lead maintainer: Stefan T. Radev).
       <br/>
     
   </p>

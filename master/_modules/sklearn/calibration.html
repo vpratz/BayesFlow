@@ -1,0 +1,1867 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sklearn.calibration &#8212; BayesFlow: Amortized Bayesian Inference</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8fec244e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/sklearn/calibration';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://www.bayesflow.org/_modules/sklearn/calibration.html" />
+    <link rel="icon" href="../../_static/bayesflow_hex.ico"/>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <img src="../../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">BayesFlow</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../_examples/Intro_Amortized_Posterior_Estimation.html">1. Quickstart: Amortized Posterior Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_examples/TwoMoons_Bimodal_Posterior.html">2. Two Moons: Tackling Bimodal Posteriors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_examples/Model_Misspecification.html">3. Detecting Model Misspecification in Amortized Posterior Inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_examples/LCA_Model_Posterior_Estimation.html">4. Principled Amortized Bayesian Workflow for Cognitive Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_examples/Linear_ODE_system.html">5. Posterior Estimation for ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_examples/Covid19_Initial_Posterior_Estimation.html">6. Posterior Estimation for SIR-like Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_examples/Model_Comparison_MPT.html">7. Model Comparison for Cognitive Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../_examples/Hierarchical_Model_Comparison_MPT.html">8. Hierarchical Model Comparison for Cognitive Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../api/bayesflow.html">Public API: bayesflow package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/bayesflow.benchmarks.html">bayesflow.benchmarks package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bayesflow.benchmarks.bernoulli_glm.html">bayesflow.benchmarks.bernoulli_glm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bayesflow.benchmarks.bernoulli_glm_raw.html">bayesflow.benchmarks.bernoulli_glm_raw module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bayesflow.benchmarks.gaussian_linear.html">bayesflow.benchmarks.gaussian_linear module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bayesflow.benchmarks.gaussian_linear_uniform.html">bayesflow.benchmarks.gaussian_linear_uniform module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bayesflow.benchmarks.gaussian_mixture.html">bayesflow.benchmarks.gaussian_mixture module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bayesflow.benchmarks.inverse_kinematics.html">bayesflow.benchmarks.inverse_kinematics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bayesflow.benchmarks.lotka_volterra.html">bayesflow.benchmarks.lotka_volterra module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bayesflow.benchmarks.sir.html">bayesflow.benchmarks.sir module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bayesflow.benchmarks.slcp.html">bayesflow.benchmarks.slcp module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bayesflow.benchmarks.slcp_distractors.html">bayesflow.benchmarks.slcp_distractors module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bayesflow.benchmarks.two_moons.html">bayesflow.benchmarks.two_moons module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.amortizers.html">bayesflow.amortizers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.attention.html">bayesflow.attention module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.coupling_networks.html">bayesflow.coupling_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.diagnostics.html">bayesflow.diagnostics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.inference_networks.html">bayesflow.inference_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.losses.html">bayesflow.losses module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.networks.html">bayesflow.networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.sensitivity.html">bayesflow.sensitivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.simulation.html">bayesflow.simulation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.summary_networks.html">bayesflow.summary_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.trainers.html">bayesflow.trainers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.configuration.html">bayesflow.configuration module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.default_settings.html">bayesflow.default_settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.computational_utilities.html">bayesflow.computational_utilities module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.helper_classes.html">bayesflow.helper_classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.helper_functions.html">bayesflow.helper_functions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.helper_networks.html">bayesflow.helper_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.exceptions.html">bayesflow.exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.mcmc.html">bayesflow.mcmc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.version.html">bayesflow.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/bayesflow.wrappers.html">bayesflow.wrappers module</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../api/bayesflow.experimental.html">bayesflow.experimental package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../api/bayesflow.experimental.rectifiers.html">bayesflow.experimental.rectifiers module</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Full Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About us</a></li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div class="rst-versions">
+   
+  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
+  <ul>
+      <li><a href="/v1.1.6/_modules/sklearn/calibration.html" >v1.1.6</a></li>
+  </ul>
+  
+   
+  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
+  <ul>
+      <li><a href="/dev/_modules/sklearn/calibration.html" >dev</a></li>
+      <li><a href="/master/_modules/sklearn/calibration.html" class="current">master</a></li>
+  </ul>
+  
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow/issues/new?title=Issue%20on%20page%20%2F_modules/sklearn/calibration.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for sklearn.calibration</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Methods for calibrating predicted probabilities.&quot;&quot;&quot;</span>
+
+<span class="c1"># Authors: The scikit-learn developers</span>
+<span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
+
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">signature</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">log</span>
+<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Integral</span><span class="p">,</span> <span class="n">Real</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">minimize</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">expit</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">Bunch</span>
+
+<span class="kn">from</span> <span class="nn">._loss</span> <span class="kn">import</span> <span class="n">HalfBinomialLoss</span>
+<span class="kn">from</span> <span class="nn">.base</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">BaseEstimator</span><span class="p">,</span>
+    <span class="n">ClassifierMixin</span><span class="p">,</span>
+    <span class="n">MetaEstimatorMixin</span><span class="p">,</span>
+    <span class="n">RegressorMixin</span><span class="p">,</span>
+    <span class="n">_fit_context</span><span class="p">,</span>
+    <span class="n">clone</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.frozen</span> <span class="kn">import</span> <span class="n">FrozenEstimator</span>
+<span class="kn">from</span> <span class="nn">.isotonic</span> <span class="kn">import</span> <span class="n">IsotonicRegression</span>
+<span class="kn">from</span> <span class="nn">.model_selection</span> <span class="kn">import</span> <span class="n">LeaveOneOut</span><span class="p">,</span> <span class="n">check_cv</span><span class="p">,</span> <span class="n">cross_val_predict</span>
+<span class="kn">from</span> <span class="nn">.preprocessing</span> <span class="kn">import</span> <span class="n">LabelEncoder</span><span class="p">,</span> <span class="n">label_binarize</span>
+<span class="kn">from</span> <span class="nn">.svm</span> <span class="kn">import</span> <span class="n">LinearSVC</span>
+<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_safe_indexing</span><span class="p">,</span>
+    <span class="n">column_or_1d</span><span class="p">,</span>
+    <span class="n">indexable</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.utils._param_validation</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">HasMethods</span><span class="p">,</span>
+    <span class="n">Hidden</span><span class="p">,</span>
+    <span class="n">Interval</span><span class="p">,</span>
+    <span class="n">StrOptions</span><span class="p">,</span>
+    <span class="n">validate_params</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.utils._plotting</span> <span class="kn">import</span> <span class="n">_BinaryClassifierCurveDisplayMixin</span><span class="p">,</span> <span class="n">_validate_style_kwargs</span>
+<span class="kn">from</span> <span class="nn">.utils._response</span> <span class="kn">import</span> <span class="n">_get_response_values</span><span class="p">,</span> <span class="n">_process_predict_proba</span>
+<span class="kn">from</span> <span class="nn">.utils.metadata_routing</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MetadataRouter</span><span class="p">,</span>
+    <span class="n">MethodMapping</span><span class="p">,</span>
+    <span class="n">_routing_enabled</span><span class="p">,</span>
+    <span class="n">process_routing</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.utils.multiclass</span> <span class="kn">import</span> <span class="n">check_classification_targets</span>
+<span class="kn">from</span> <span class="nn">.utils.parallel</span> <span class="kn">import</span> <span class="n">Parallel</span><span class="p">,</span> <span class="n">delayed</span>
+<span class="kn">from</span> <span class="nn">.utils.validation</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">_check_method_params</span><span class="p">,</span>
+    <span class="n">_check_pos_label_consistency</span><span class="p">,</span>
+    <span class="n">_check_response_method</span><span class="p">,</span>
+    <span class="n">_check_sample_weight</span><span class="p">,</span>
+    <span class="n">_num_samples</span><span class="p">,</span>
+    <span class="n">check_consistent_length</span><span class="p">,</span>
+    <span class="n">check_is_fitted</span><span class="p">,</span>
+<span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">CalibratedClassifierCV</span><span class="p">(</span><span class="n">ClassifierMixin</span><span class="p">,</span> <span class="n">MetaEstimatorMixin</span><span class="p">,</span> <span class="n">BaseEstimator</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Probability calibration with isotonic regression or logistic regression.</span>
+
+<span class="sd">    This class uses cross-validation to both estimate the parameters of a</span>
+<span class="sd">    classifier and subsequently calibrate a classifier. With default</span>
+<span class="sd">    `ensemble=True`, for each cv split it</span>
+<span class="sd">    fits a copy of the base estimator to the training subset, and calibrates it</span>
+<span class="sd">    using the testing subset. For prediction, predicted probabilities are</span>
+<span class="sd">    averaged across these individual calibrated classifiers. When</span>
+<span class="sd">    `ensemble=False`, cross-validation is used to obtain unbiased predictions,</span>
+<span class="sd">    via :func:`~sklearn.model_selection.cross_val_predict`, which are then</span>
+<span class="sd">    used for calibration. For prediction, the base estimator, trained using all</span>
+<span class="sd">    the data, is used. This is the prediction method implemented when</span>
+<span class="sd">    `probabilities=True` for :class:`~sklearn.svm.SVC` and :class:`~sklearn.svm.NuSVC`</span>
+<span class="sd">    estimators (see :ref:`User Guide &lt;scores_probabilities&gt;` for details).</span>
+
+<span class="sd">    Already fitted classifiers can be calibrated by wrapping the model in a</span>
+<span class="sd">    :class:`~sklearn.frozen.FrozenEstimator`. In this case all provided</span>
+<span class="sd">    data is used for calibration. The user has to take care manually that data</span>
+<span class="sd">    for model fitting and calibration are disjoint.</span>
+
+<span class="sd">    The calibration is based on the :term:`decision_function` method of the</span>
+<span class="sd">    `estimator` if it exists, else on :term:`predict_proba`.</span>
+
+<span class="sd">    Read more in the :ref:`User Guide &lt;calibration&gt;`.</span>
+<span class="sd">    In order to learn more on the CalibratedClassifierCV class, see the</span>
+<span class="sd">    following calibration examples:</span>
+<span class="sd">    :ref:`sphx_glr_auto_examples_calibration_plot_calibration.py`,</span>
+<span class="sd">    :ref:`sphx_glr_auto_examples_calibration_plot_calibration_curve.py`, and</span>
+<span class="sd">    :ref:`sphx_glr_auto_examples_calibration_plot_calibration_multiclass.py`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    estimator : estimator instance, default=None</span>
+<span class="sd">        The classifier whose output need to be calibrated to provide more</span>
+<span class="sd">        accurate `predict_proba` outputs. The default classifier is</span>
+<span class="sd">        a :class:`~sklearn.svm.LinearSVC`.</span>
+
+<span class="sd">        .. versionadded:: 1.2</span>
+
+<span class="sd">    method : {&#39;sigmoid&#39;, &#39;isotonic&#39;}, default=&#39;sigmoid&#39;</span>
+<span class="sd">        The method to use for calibration. Can be &#39;sigmoid&#39; which</span>
+<span class="sd">        corresponds to Platt&#39;s method (i.e. a logistic regression model) or</span>
+<span class="sd">        &#39;isotonic&#39; which is a non-parametric approach. It is not advised to</span>
+<span class="sd">        use isotonic calibration with too few calibration samples</span>
+<span class="sd">        ``(&lt;&lt;1000)`` since it tends to overfit.</span>
+
+<span class="sd">    cv : int, cross-validation generator, or iterable, default=None</span>
+<span class="sd">        Determines the cross-validation splitting strategy.</span>
+<span class="sd">        Possible inputs for cv are:</span>
+
+<span class="sd">        - None, to use the default 5-fold cross-validation,</span>
+<span class="sd">        - integer, to specify the number of folds.</span>
+<span class="sd">        - :term:`CV splitter`,</span>
+<span class="sd">        - An iterable yielding (train, test) splits as arrays of indices.</span>
+
+<span class="sd">        For integer/None inputs, if ``y`` is binary or multiclass,</span>
+<span class="sd">        :class:`~sklearn.model_selection.StratifiedKFold` is used. If ``y`` is</span>
+<span class="sd">        neither binary nor multiclass, :class:`~sklearn.model_selection.KFold`</span>
+<span class="sd">        is used.</span>
+
+<span class="sd">        Refer to the :ref:`User Guide &lt;cross_validation&gt;` for the various</span>
+<span class="sd">        cross-validation strategies that can be used here.</span>
+
+<span class="sd">        .. versionchanged:: 0.22</span>
+<span class="sd">            ``cv`` default value if None changed from 3-fold to 5-fold.</span>
+
+<span class="sd">        .. versionchanged:: 1.6</span>
+<span class="sd">            `&quot;prefit&quot;` is deprecated. Use :class:`~sklearn.frozen.FrozenEstimator`</span>
+<span class="sd">            instead.</span>
+
+<span class="sd">    n_jobs : int, default=None</span>
+<span class="sd">        Number of jobs to run in parallel.</span>
+<span class="sd">        ``None`` means 1 unless in a :obj:`joblib.parallel_backend` context.</span>
+<span class="sd">        ``-1`` means using all processors.</span>
+
+<span class="sd">        Base estimator clones are fitted in parallel across cross-validation</span>
+<span class="sd">        iterations. Therefore parallelism happens only when `cv != &quot;prefit&quot;`.</span>
+
+<span class="sd">        See :term:`Glossary &lt;n_jobs&gt;` for more details.</span>
+
+<span class="sd">        .. versionadded:: 0.24</span>
+
+<span class="sd">    ensemble : bool, or &quot;auto&quot;, default=&quot;auto&quot;</span>
+<span class="sd">        Determines how the calibrator is fitted.</span>
+
+<span class="sd">        &quot;auto&quot; will use `False` if the `estimator` is a</span>
+<span class="sd">        :class:`~sklearn.frozen.FrozenEstimator`, and `True` otherwise.</span>
+
+<span class="sd">        If `True`, the `estimator` is fitted using training data, and</span>
+<span class="sd">        calibrated using testing data, for each `cv` fold. The final estimator</span>
+<span class="sd">        is an ensemble of `n_cv` fitted classifier and calibrator pairs, where</span>
+<span class="sd">        `n_cv` is the number of cross-validation folds. The output is the</span>
+<span class="sd">        average predicted probabilities of all pairs.</span>
+
+<span class="sd">        If `False`, `cv` is used to compute unbiased predictions, via</span>
+<span class="sd">        :func:`~sklearn.model_selection.cross_val_predict`, which are then</span>
+<span class="sd">        used for calibration. At prediction time, the classifier used is the</span>
+<span class="sd">        `estimator` trained on all the data.</span>
+<span class="sd">        Note that this method is also internally implemented  in</span>
+<span class="sd">        :mod:`sklearn.svm` estimators with the `probabilities=True` parameter.</span>
+
+<span class="sd">        .. versionadded:: 0.24</span>
+
+<span class="sd">        .. versionchanged:: 1.6</span>
+<span class="sd">            `&quot;auto&quot;` option is added and is the default.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    classes_ : ndarray of shape (n_classes,)</span>
+<span class="sd">        The class labels.</span>
+
+<span class="sd">    n_features_in_ : int</span>
+<span class="sd">        Number of features seen during :term:`fit`. Only defined if the</span>
+<span class="sd">        underlying estimator exposes such an attribute when fit.</span>
+
+<span class="sd">        .. versionadded:: 0.24</span>
+
+<span class="sd">    feature_names_in_ : ndarray of shape (`n_features_in_`,)</span>
+<span class="sd">        Names of features seen during :term:`fit`. Only defined if the</span>
+<span class="sd">        underlying estimator exposes such an attribute when fit.</span>
+
+<span class="sd">        .. versionadded:: 1.0</span>
+
+<span class="sd">    calibrated_classifiers_ : list (len() equal to cv or 1 if `ensemble=False`)</span>
+<span class="sd">        The list of classifier and calibrator pairs.</span>
+
+<span class="sd">        - When `ensemble=True`, `n_cv` fitted `estimator` and calibrator pairs.</span>
+<span class="sd">          `n_cv` is the number of cross-validation folds.</span>
+<span class="sd">        - When `ensemble=False`, the `estimator`, fitted on all the data, and fitted</span>
+<span class="sd">          calibrator.</span>
+
+<span class="sd">        .. versionchanged:: 0.24</span>
+<span class="sd">            Single calibrated classifier case when `ensemble=False`.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    calibration_curve : Compute true and predicted probabilities</span>
+<span class="sd">        for a calibration curve.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    .. [1] Obtaining calibrated probability estimates from decision trees</span>
+<span class="sd">           and naive Bayesian classifiers, B. Zadrozny &amp; C. Elkan, ICML 2001</span>
+
+<span class="sd">    .. [2] Transforming Classifier Scores into Accurate Multiclass</span>
+<span class="sd">           Probability Estimates, B. Zadrozny &amp; C. Elkan, (KDD 2002)</span>
+
+<span class="sd">    .. [3] Probabilistic Outputs for Support Vector Machines and Comparisons to</span>
+<span class="sd">           Regularized Likelihood Methods, J. Platt, (1999)</span>
+
+<span class="sd">    .. [4] Predicting Good Probabilities with Supervised Learning,</span>
+<span class="sd">           A. Niculescu-Mizil &amp; R. Caruana, ICML 2005</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.datasets import make_classification</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.naive_bayes import GaussianNB</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.calibration import CalibratedClassifierCV</span>
+<span class="sd">    &gt;&gt;&gt; X, y = make_classification(n_samples=100, n_features=2,</span>
+<span class="sd">    ...                            n_redundant=0, random_state=42)</span>
+<span class="sd">    &gt;&gt;&gt; base_clf = GaussianNB()</span>
+<span class="sd">    &gt;&gt;&gt; calibrated_clf = CalibratedClassifierCV(base_clf, cv=3)</span>
+<span class="sd">    &gt;&gt;&gt; calibrated_clf.fit(X, y)</span>
+<span class="sd">    CalibratedClassifierCV(...)</span>
+<span class="sd">    &gt;&gt;&gt; len(calibrated_clf.calibrated_classifiers_)</span>
+<span class="sd">    3</span>
+<span class="sd">    &gt;&gt;&gt; calibrated_clf.predict_proba(X)[:5, :]</span>
+<span class="sd">    array([[0.110..., 0.889...],</span>
+<span class="sd">           [0.072..., 0.927...],</span>
+<span class="sd">           [0.928..., 0.071...],</span>
+<span class="sd">           [0.928..., 0.071...],</span>
+<span class="sd">           [0.071..., 0.928...]])</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.model_selection import train_test_split</span>
+<span class="sd">    &gt;&gt;&gt; X, y = make_classification(n_samples=100, n_features=2,</span>
+<span class="sd">    ...                            n_redundant=0, random_state=42)</span>
+<span class="sd">    &gt;&gt;&gt; X_train, X_calib, y_train, y_calib = train_test_split(</span>
+<span class="sd">    ...        X, y, random_state=42</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; base_clf = GaussianNB()</span>
+<span class="sd">    &gt;&gt;&gt; base_clf.fit(X_train, y_train)</span>
+<span class="sd">    GaussianNB()</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.frozen import FrozenEstimator</span>
+<span class="sd">    &gt;&gt;&gt; calibrated_clf = CalibratedClassifierCV(FrozenEstimator(base_clf))</span>
+<span class="sd">    &gt;&gt;&gt; calibrated_clf.fit(X_calib, y_calib)</span>
+<span class="sd">    CalibratedClassifierCV(...)</span>
+<span class="sd">    &gt;&gt;&gt; len(calibrated_clf.calibrated_classifiers_)</span>
+<span class="sd">    1</span>
+<span class="sd">    &gt;&gt;&gt; calibrated_clf.predict_proba([[-0.5, 0.5]])</span>
+<span class="sd">    array([[0.936..., 0.063...]])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_parameter_constraints</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;estimator&quot;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="n">HasMethods</span><span class="p">([</span><span class="s2">&quot;fit&quot;</span><span class="p">,</span> <span class="s2">&quot;predict_proba&quot;</span><span class="p">]),</span>
+            <span class="n">HasMethods</span><span class="p">([</span><span class="s2">&quot;fit&quot;</span><span class="p">,</span> <span class="s2">&quot;decision_function&quot;</span><span class="p">]),</span>
+            <span class="kc">None</span><span class="p">,</span>
+        <span class="p">],</span>
+        <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">StrOptions</span><span class="p">({</span><span class="s2">&quot;isotonic&quot;</span><span class="p">,</span> <span class="s2">&quot;sigmoid&quot;</span><span class="p">})],</span>
+        <span class="s2">&quot;cv&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;cv_object&quot;</span><span class="p">,</span> <span class="n">Hidden</span><span class="p">(</span><span class="n">StrOptions</span><span class="p">({</span><span class="s2">&quot;prefit&quot;</span><span class="p">}))],</span>
+        <span class="s2">&quot;n_jobs&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">Integral</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+        <span class="s2">&quot;ensemble&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;boolean&quot;</span><span class="p">,</span> <span class="n">StrOptions</span><span class="p">({</span><span class="s2">&quot;auto&quot;</span><span class="p">})],</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">estimator</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span>
+        <span class="n">cv</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">n_jobs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">ensemble</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">estimator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cv</span> <span class="o">=</span> <span class="n">cv</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ensemble</span> <span class="o">=</span> <span class="n">ensemble</span>
+
+    <span class="k">def</span> <span class="nf">_get_estimator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Resolve which estimator to return (default is LinearSVC)&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># we want all classifiers that don&#39;t expose a random_state</span>
+            <span class="c1"># to be deterministic (and we don&#39;t want to expose this one).</span>
+            <span class="n">estimator</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">_routing_enabled</span><span class="p">():</span>
+                <span class="n">estimator</span><span class="o">.</span><span class="n">set_fit_request</span><span class="p">(</span><span class="n">sample_weight</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">estimator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span>
+
+        <span class="k">return</span> <span class="n">estimator</span>
+
+    <span class="nd">@_fit_context</span><span class="p">(</span>
+        <span class="c1"># CalibratedClassifierCV.estimator is not validated yet</span>
+        <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">False</span>
+    <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the calibrated model.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            Training data.</span>
+
+<span class="sd">        y : array-like of shape (n_samples,)</span>
+<span class="sd">            Target values.</span>
+
+<span class="sd">        sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">            Sample weights. If None, then samples are equally weighted.</span>
+
+<span class="sd">        **fit_params : dict</span>
+<span class="sd">            Parameters to pass to the `fit` method of the underlying</span>
+<span class="sd">            classifier.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : object</span>
+<span class="sd">            Returns an instance of self.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">check_classification_targets</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">indexable</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">sample_weight</span> <span class="o">=</span> <span class="n">_check_sample_weight</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+
+        <span class="n">estimator</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_estimator</span><span class="p">()</span>
+
+        <span class="n">_ensemble</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensemble</span>
+        <span class="k">if</span> <span class="n">_ensemble</span> <span class="o">==</span> <span class="s2">&quot;auto&quot;</span><span class="p">:</span>
+            <span class="n">_ensemble</span> <span class="o">=</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">estimator</span><span class="p">,</span> <span class="n">FrozenEstimator</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">calibrated_classifiers_</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv</span> <span class="o">==</span> <span class="s2">&quot;prefit&quot;</span><span class="p">:</span>
+            <span class="c1"># TODO(1.8): Remove this code branch and cv=&#39;prefit&#39;</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;The `cv=&#39;prefit&#39;` option is deprecated in 1.6 and will be removed in&quot;</span>
+                <span class="s2">&quot; 1.8. You can use CalibratedClassifierCV(FrozenEstimator(estimator))&quot;</span>
+                <span class="s2">&quot; instead.&quot;</span>
+            <span class="p">)</span>
+            <span class="c1"># `classes_` should be consistent with that of estimator</span>
+            <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span> <span class="n">attributes</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;classes_&quot;</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">classes_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">classes_</span>
+
+            <span class="n">predictions</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_get_response_values</span><span class="p">(</span>
+                <span class="n">estimator</span><span class="p">,</span>
+                <span class="n">X</span><span class="p">,</span>
+                <span class="n">response_method</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;decision_function&quot;</span><span class="p">,</span> <span class="s2">&quot;predict_proba&quot;</span><span class="p">],</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">predictions</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># Reshape binary output from `(n_samples,)` to `(n_samples, 1)`</span>
+                <span class="n">predictions</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="n">calibrated_classifier</span> <span class="o">=</span> <span class="n">_fit_calibrator</span><span class="p">(</span>
+                <span class="n">estimator</span><span class="p">,</span>
+                <span class="n">predictions</span><span class="p">,</span>
+                <span class="n">y</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+                <span class="n">sample_weight</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">calibrated_classifiers_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calibrated_classifier</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Set `classes_` using all `y`</span>
+            <span class="n">label_encoder_</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">classes_</span> <span class="o">=</span> <span class="n">label_encoder_</span><span class="o">.</span><span class="n">classes_</span>
+
+            <span class="k">if</span> <span class="n">_routing_enabled</span><span class="p">():</span>
+                <span class="n">routed_params</span> <span class="o">=</span> <span class="n">process_routing</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="p">,</span>
+                    <span class="s2">&quot;fit&quot;</span><span class="p">,</span>
+                    <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+                    <span class="o">**</span><span class="n">fit_params</span><span class="p">,</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># sample_weight checks</span>
+                <span class="n">fit_parameters</span> <span class="o">=</span> <span class="n">signature</span><span class="p">(</span><span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
+                <span class="n">supports_sw</span> <span class="o">=</span> <span class="s2">&quot;sample_weight&quot;</span> <span class="ow">in</span> <span class="n">fit_parameters</span>
+                <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">supports_sw</span><span class="p">:</span>
+                    <span class="n">estimator_name</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">estimator</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
+                    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                        <span class="sa">f</span><span class="s2">&quot;Since </span><span class="si">{</span><span class="n">estimator_name</span><span class="si">}</span><span class="s2"> does not appear to accept&quot;</span>
+                        <span class="s2">&quot; sample_weight, sample weights will only be used for the&quot;</span>
+                        <span class="s2">&quot; calibration itself. This can be caused by a limitation of&quot;</span>
+                        <span class="s2">&quot; the current scikit-learn API. See the following issue for&quot;</span>
+                        <span class="s2">&quot; more details:&quot;</span>
+                        <span class="s2">&quot; https://github.com/scikit-learn/scikit-learn/issues/21134.&quot;</span>
+                        <span class="s2">&quot; Be warned that the result of the calibration is likely to be&quot;</span>
+                        <span class="s2">&quot; incorrect.&quot;</span>
+                    <span class="p">)</span>
+                <span class="n">routed_params</span> <span class="o">=</span> <span class="n">Bunch</span><span class="p">()</span>
+                <span class="n">routed_params</span><span class="o">.</span><span class="n">splitter</span> <span class="o">=</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">split</span><span class="o">=</span><span class="p">{})</span>  <span class="c1"># no routing for splitter</span>
+                <span class="n">routed_params</span><span class="o">.</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">Bunch</span><span class="p">(</span><span class="n">fit</span><span class="o">=</span><span class="n">fit_params</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">supports_sw</span><span class="p">:</span>
+                    <span class="n">routed_params</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">[</span><span class="s2">&quot;sample_weight&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sample_weight</span>
+
+            <span class="c1"># Check that each cross-validation fold can have at least one</span>
+            <span class="c1"># example per class</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cv</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+                <span class="n">n_folds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv</span>
+            <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cv</span><span class="p">,</span> <span class="s2">&quot;n_splits&quot;</span><span class="p">):</span>
+                <span class="n">n_folds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv</span><span class="o">.</span><span class="n">n_splits</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">n_folds</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">if</span> <span class="n">n_folds</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">return_counts</span><span class="o">=</span><span class="kc">True</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">n_folds</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;Requesting </span><span class="si">{</span><span class="n">n_folds</span><span class="si">}</span><span class="s2">-fold &quot;</span>
+                    <span class="s2">&quot;cross-validation but provided less than &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">n_folds</span><span class="si">}</span><span class="s2"> examples for at least one class.&quot;</span>
+                <span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cv</span><span class="p">,</span> <span class="n">LeaveOneOut</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;LeaveOneOut cross-validation does not allow&quot;</span>
+                    <span class="s2">&quot;all classes to be present in test splits. &quot;</span>
+                    <span class="s2">&quot;Please use a cross-validation generator that allows &quot;</span>
+                    <span class="s2">&quot;all classes to appear in every test and train split.&quot;</span>
+                <span class="p">)</span>
+            <span class="n">cv</span> <span class="o">=</span> <span class="n">check_cv</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cv</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">classifier</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">_ensemble</span><span class="p">:</span>
+                <span class="n">parallel</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">calibrated_classifiers_</span> <span class="o">=</span> <span class="n">parallel</span><span class="p">(</span>
+                    <span class="n">delayed</span><span class="p">(</span><span class="n">_fit_classifier_calibrator_pair</span><span class="p">)(</span>
+                        <span class="n">clone</span><span class="p">(</span><span class="n">estimator</span><span class="p">),</span>
+                        <span class="n">X</span><span class="p">,</span>
+                        <span class="n">y</span><span class="p">,</span>
+                        <span class="n">train</span><span class="o">=</span><span class="n">train</span><span class="p">,</span>
+                        <span class="n">test</span><span class="o">=</span><span class="n">test</span><span class="p">,</span>
+                        <span class="n">method</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+                        <span class="n">classes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
+                        <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+                        <span class="n">fit_params</span><span class="o">=</span><span class="n">routed_params</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">,</span>
+                    <span class="p">)</span>
+                    <span class="k">for</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">routed_params</span><span class="o">.</span><span class="n">splitter</span><span class="o">.</span><span class="n">split</span><span class="p">)</span>
+                <span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">this_estimator</span> <span class="o">=</span> <span class="n">clone</span><span class="p">(</span><span class="n">estimator</span><span class="p">)</span>
+                <span class="n">method_name</span> <span class="o">=</span> <span class="n">_check_response_method</span><span class="p">(</span>
+                    <span class="n">this_estimator</span><span class="p">,</span>
+                    <span class="p">[</span><span class="s2">&quot;decision_function&quot;</span><span class="p">,</span> <span class="s2">&quot;predict_proba&quot;</span><span class="p">],</span>
+                <span class="p">)</span><span class="o">.</span><span class="vm">__name__</span>
+                <span class="n">predictions</span> <span class="o">=</span> <span class="n">cross_val_predict</span><span class="p">(</span>
+                    <span class="n">estimator</span><span class="o">=</span><span class="n">this_estimator</span><span class="p">,</span>
+                    <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
+                    <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+                    <span class="n">cv</span><span class="o">=</span><span class="n">cv</span><span class="p">,</span>
+                    <span class="n">method</span><span class="o">=</span><span class="n">method_name</span><span class="p">,</span>
+                    <span class="n">n_jobs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span><span class="p">,</span>
+                    <span class="n">params</span><span class="o">=</span><span class="n">routed_params</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                    <span class="c1"># Ensure shape (n_samples, 1) in the binary case</span>
+                    <span class="k">if</span> <span class="n">method_name</span> <span class="o">==</span> <span class="s2">&quot;predict_proba&quot;</span><span class="p">:</span>
+                        <span class="c1"># Select the probability column of the postive class</span>
+                        <span class="n">predictions</span> <span class="o">=</span> <span class="n">_process_predict_proba</span><span class="p">(</span>
+                            <span class="n">y_pred</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span>
+                            <span class="n">target_type</span><span class="o">=</span><span class="s2">&quot;binary&quot;</span><span class="p">,</span>
+                            <span class="n">classes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
+                            <span class="n">pos_label</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                        <span class="p">)</span>
+                    <span class="n">predictions</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+                <span class="n">this_estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">routed_params</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">)</span>
+                <span class="c1"># Note: Here we don&#39;t pass on fit_params because the supported</span>
+                <span class="c1"># calibrators don&#39;t support fit_params anyway</span>
+                <span class="n">calibrated_classifier</span> <span class="o">=</span> <span class="n">_fit_calibrator</span><span class="p">(</span>
+                    <span class="n">this_estimator</span><span class="p">,</span>
+                    <span class="n">predictions</span><span class="p">,</span>
+                    <span class="n">y</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">,</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">method</span><span class="p">,</span>
+                    <span class="n">sample_weight</span><span class="p">,</span>
+                <span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">calibrated_classifiers_</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calibrated_classifier</span><span class="p">)</span>
+
+        <span class="n">first_clf</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrated_classifiers_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">estimator</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">first_clf</span><span class="p">,</span> <span class="s2">&quot;n_features_in_&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_features_in_</span> <span class="o">=</span> <span class="n">first_clf</span><span class="o">.</span><span class="n">n_features_in_</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">first_clf</span><span class="p">,</span> <span class="s2">&quot;feature_names_in_&quot;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feature_names_in_</span> <span class="o">=</span> <span class="n">first_clf</span><span class="o">.</span><span class="n">feature_names_in_</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calibrated probabilities of classification.</span>
+
+<span class="sd">        This function returns calibrated probabilities of classification</span>
+<span class="sd">        according to each class on an array of test vectors X.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            The samples, as accepted by `estimator.predict_proba`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        C : ndarray of shape (n_samples, n_classes)</span>
+<span class="sd">            The predicted probas.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="c1"># Compute the arithmetic mean of the predictions of the calibrated</span>
+        <span class="c1"># classifiers</span>
+        <span class="n">mean_proba</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">_num_samples</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">calibrated_classifier</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrated_classifiers_</span><span class="p">:</span>
+            <span class="n">proba</span> <span class="o">=</span> <span class="n">calibrated_classifier</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+            <span class="n">mean_proba</span> <span class="o">+=</span> <span class="n">proba</span>
+
+        <span class="n">mean_proba</span> <span class="o">/=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calibrated_classifiers_</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">mean_proba</span>
+
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Predict the target of new samples.</span>
+
+<span class="sd">        The predicted class is the class that has the highest probability,</span>
+<span class="sd">        and can thus be different from the prediction of the uncalibrated classifier.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples, n_features)</span>
+<span class="sd">            The samples, as accepted by `estimator.predict`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        C : ndarray of shape (n_samples,)</span>
+<span class="sd">            The predicted class.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">classes_</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">predict_proba</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">get_metadata_routing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get metadata routing of this object.</span>
+
+<span class="sd">        Please check :ref:`User Guide &lt;metadata_routing&gt;` on how the routing</span>
+<span class="sd">        mechanism works.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        routing : MetadataRouter</span>
+<span class="sd">            A :class:`~sklearn.utils.metadata_routing.MetadataRouter` encapsulating</span>
+<span class="sd">            routing information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">router</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">MetadataRouter</span><span class="p">(</span><span class="n">owner</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">add_self_request</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                <span class="n">estimator</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_estimator</span><span class="p">(),</span>
+                <span class="n">method_mapping</span><span class="o">=</span><span class="n">MethodMapping</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">caller</span><span class="o">=</span><span class="s2">&quot;fit&quot;</span><span class="p">,</span> <span class="n">callee</span><span class="o">=</span><span class="s2">&quot;fit&quot;</span><span class="p">),</span>
+            <span class="p">)</span>
+            <span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                <span class="n">splitter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cv</span><span class="p">,</span>
+                <span class="n">method_mapping</span><span class="o">=</span><span class="n">MethodMapping</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">caller</span><span class="o">=</span><span class="s2">&quot;fit&quot;</span><span class="p">,</span> <span class="n">callee</span><span class="o">=</span><span class="s2">&quot;split&quot;</span><span class="p">),</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">router</span>
+
+
+<span class="k">def</span> <span class="nf">_fit_classifier_calibrator_pair</span><span class="p">(</span>
+    <span class="n">estimator</span><span class="p">,</span>
+    <span class="n">X</span><span class="p">,</span>
+    <span class="n">y</span><span class="p">,</span>
+    <span class="n">train</span><span class="p">,</span>
+    <span class="n">test</span><span class="p">,</span>
+    <span class="n">method</span><span class="p">,</span>
+    <span class="n">classes</span><span class="p">,</span>
+    <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">fit_params</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fit a classifier/calibration pair on a given train/test split.</span>
+
+<span class="sd">    Fit the classifier on the train set, compute its predictions on the test</span>
+<span class="sd">    set and use the predictions as input to fit the calibrator along with the</span>
+<span class="sd">    test labels.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    estimator : estimator instance</span>
+<span class="sd">        Cloned base estimator.</span>
+
+<span class="sd">    X : array-like, shape (n_samples, n_features)</span>
+<span class="sd">        Sample data.</span>
+
+<span class="sd">    y : array-like, shape (n_samples,)</span>
+<span class="sd">        Targets.</span>
+
+<span class="sd">    train : ndarray, shape (n_train_indices,)</span>
+<span class="sd">        Indices of the training subset.</span>
+
+<span class="sd">    test : ndarray, shape (n_test_indices,)</span>
+<span class="sd">        Indices of the testing subset.</span>
+
+<span class="sd">    method : {&#39;sigmoid&#39;, &#39;isotonic&#39;}</span>
+<span class="sd">        Method to use for calibration.</span>
+
+<span class="sd">    classes : ndarray, shape (n_classes,)</span>
+<span class="sd">        The target classes.</span>
+
+<span class="sd">    sample_weight : array-like, default=None</span>
+<span class="sd">        Sample weights for `X`.</span>
+
+<span class="sd">    fit_params : dict, default=None</span>
+<span class="sd">        Parameters to pass to the `fit` method of the underlying</span>
+<span class="sd">        classifier.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    calibrated_classifier : _CalibratedClassifier instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fit_params_train</span> <span class="o">=</span> <span class="n">_check_method_params</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">fit_params</span><span class="p">,</span> <span class="n">indices</span><span class="o">=</span><span class="n">train</span><span class="p">)</span>
+    <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span> <span class="o">=</span> <span class="n">_safe_indexing</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">train</span><span class="p">),</span> <span class="n">_safe_indexing</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">train</span><span class="p">)</span>
+    <span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">_safe_indexing</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">test</span><span class="p">),</span> <span class="n">_safe_indexing</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span>
+
+    <span class="n">estimator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="o">**</span><span class="n">fit_params_train</span><span class="p">)</span>
+
+    <span class="n">predictions</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_get_response_values</span><span class="p">(</span>
+        <span class="n">estimator</span><span class="p">,</span>
+        <span class="n">X_test</span><span class="p">,</span>
+        <span class="n">response_method</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;decision_function&quot;</span><span class="p">,</span> <span class="s2">&quot;predict_proba&quot;</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="k">if</span> <span class="n">predictions</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="c1"># Reshape binary output from `(n_samples,)` to `(n_samples, 1)`</span>
+        <span class="n">predictions</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">sw_test</span> <span class="o">=</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">_safe_indexing</span><span class="p">(</span><span class="n">sample_weight</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span>
+    <span class="n">calibrated_classifier</span> <span class="o">=</span> <span class="n">_fit_calibrator</span><span class="p">(</span>
+        <span class="n">estimator</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">y_test</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="n">sw_test</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">calibrated_classifier</span>
+
+
+<span class="k">def</span> <span class="nf">_fit_calibrator</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fit calibrator(s) and return a `_CalibratedClassifier`</span>
+<span class="sd">    instance.</span>
+
+<span class="sd">    `n_classes` (i.e. `len(clf.classes_)`) calibrators are fitted.</span>
+<span class="sd">    However, if `n_classes` equals 2, one calibrator is fitted.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    clf : estimator instance</span>
+<span class="sd">        Fitted classifier.</span>
+
+<span class="sd">    predictions : array-like, shape (n_samples, n_classes) or (n_samples, 1) \</span>
+<span class="sd">                    when binary.</span>
+<span class="sd">        Raw predictions returned by the un-calibrated base classifier.</span>
+
+<span class="sd">    y : array-like, shape (n_samples,)</span>
+<span class="sd">        The targets.</span>
+
+<span class="sd">    classes : ndarray, shape (n_classes,)</span>
+<span class="sd">        All the prediction classes.</span>
+
+<span class="sd">    method : {&#39;sigmoid&#39;, &#39;isotonic&#39;}</span>
+<span class="sd">        The method to use for calibration.</span>
+
+<span class="sd">    sample_weight : ndarray, shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights. If None, then samples are equally weighted.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pipeline : _CalibratedClassifier instance</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">label_binarize</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
+    <span class="n">label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">classes</span><span class="p">)</span>
+    <span class="n">pos_class_indices</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">clf</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+    <span class="n">calibrators</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">class_idx</span><span class="p">,</span> <span class="n">this_pred</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">pos_class_indices</span><span class="p">,</span> <span class="n">predictions</span><span class="o">.</span><span class="n">T</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">method</span> <span class="o">==</span> <span class="s2">&quot;isotonic&quot;</span><span class="p">:</span>
+            <span class="n">calibrator</span> <span class="o">=</span> <span class="n">IsotonicRegression</span><span class="p">(</span><span class="n">out_of_bounds</span><span class="o">=</span><span class="s2">&quot;clip&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># &quot;sigmoid&quot;</span>
+            <span class="n">calibrator</span> <span class="o">=</span> <span class="n">_SigmoidCalibration</span><span class="p">()</span>
+        <span class="n">calibrator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">this_pred</span><span class="p">,</span> <span class="n">Y</span><span class="p">[:,</span> <span class="n">class_idx</span><span class="p">],</span> <span class="n">sample_weight</span><span class="p">)</span>
+        <span class="n">calibrators</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">calibrator</span><span class="p">)</span>
+
+    <span class="n">pipeline</span> <span class="o">=</span> <span class="n">_CalibratedClassifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">calibrators</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="n">method</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">pipeline</span>
+
+
+<span class="k">class</span> <span class="nc">_CalibratedClassifier</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Pipeline-like chaining a fitted classifier and its fitted calibrators.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    estimator : estimator instance</span>
+<span class="sd">        Fitted classifier.</span>
+
+<span class="sd">    calibrators : list of fitted estimator instances</span>
+<span class="sd">        List of fitted calibrators (either &#39;IsotonicRegression&#39; or</span>
+<span class="sd">        &#39;_SigmoidCalibration&#39;). The number of calibrators equals the number of</span>
+<span class="sd">        classes. However, if there are 2 classes, the list contains only one</span>
+<span class="sd">        fitted calibrator.</span>
+
+<span class="sd">    classes : array-like of shape (n_classes,)</span>
+<span class="sd">        All the prediction classes.</span>
+
+<span class="sd">    method : {&#39;sigmoid&#39;, &#39;isotonic&#39;}, default=&#39;sigmoid&#39;</span>
+<span class="sd">        The method to use for calibration. Can be &#39;sigmoid&#39; which</span>
+<span class="sd">        corresponds to Platt&#39;s method or &#39;isotonic&#39; which is a</span>
+<span class="sd">        non-parametric approach based on isotonic regression.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">estimator</span><span class="p">,</span> <span class="n">calibrators</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span> <span class="o">=</span> <span class="n">estimator</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">calibrators</span> <span class="o">=</span> <span class="n">calibrators</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">classes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">method</span> <span class="o">=</span> <span class="n">method</span>
+
+    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Calculate calibrated probabilities.</span>
+
+<span class="sd">        Calculates classification calibrated probabilities</span>
+<span class="sd">        for each class, in a one-vs-all manner, for `X`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : ndarray of shape (n_samples, n_features)</span>
+<span class="sd">            The sample data.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        proba : array, shape (n_samples, n_classes)</span>
+<span class="sd">            The predicted probabilities. Can be exact zeros.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">predictions</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">_get_response_values</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">response_method</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;decision_function&quot;</span><span class="p">,</span> <span class="s2">&quot;predict_proba&quot;</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">predictions</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="c1"># Reshape binary output from `(n_samples,)` to `(n_samples, 1)`</span>
+            <span class="n">predictions</span> <span class="o">=</span> <span class="n">predictions</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">n_classes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">)</span>
+
+        <span class="n">label_encoder</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">classes</span><span class="p">)</span>
+        <span class="n">pos_class_indices</span> <span class="o">=</span> <span class="n">label_encoder</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">estimator</span><span class="o">.</span><span class="n">classes_</span><span class="p">)</span>
+
+        <span class="n">proba</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">_num_samples</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">n_classes</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">class_idx</span><span class="p">,</span> <span class="n">this_pred</span><span class="p">,</span> <span class="n">calibrator</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+            <span class="n">pos_class_indices</span><span class="p">,</span> <span class="n">predictions</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calibrators</span>
+        <span class="p">):</span>
+            <span class="k">if</span> <span class="n">n_classes</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="c1"># When binary, `predictions` consists only of predictions for</span>
+                <span class="c1"># clf.classes_[1] but `pos_class_indices` = 0</span>
+                <span class="n">class_idx</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">proba</span><span class="p">[:,</span> <span class="n">class_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">calibrator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">this_pred</span><span class="p">)</span>
+
+        <span class="c1"># Normalize the probabilities</span>
+        <span class="k">if</span> <span class="n">n_classes</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">proba</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">-</span> <span class="n">proba</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">denominator</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">proba</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+            <span class="c1"># In the edge case where for each class calibrator returns a null</span>
+            <span class="c1"># probability for a given sample, use the uniform distribution</span>
+            <span class="c1"># instead.</span>
+            <span class="n">uniform_proba</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">proba</span><span class="p">,</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">n_classes</span><span class="p">)</span>
+            <span class="n">proba</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span>
+                <span class="n">proba</span><span class="p">,</span> <span class="n">denominator</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">uniform_proba</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="n">denominator</span> <span class="o">!=</span> <span class="mi">0</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Deal with cases where the predicted probability minimally exceeds 1.0</span>
+        <span class="n">proba</span><span class="p">[(</span><span class="mf">1.0</span> <span class="o">&lt;</span> <span class="n">proba</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">proba</span> <span class="o">&lt;=</span> <span class="mf">1.0</span> <span class="o">+</span> <span class="mf">1e-5</span><span class="p">)]</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+        <span class="k">return</span> <span class="n">proba</span>
+
+
+<span class="c1"># The max_abs_prediction_threshold was approximated using</span>
+<span class="c1"># logit(np.finfo(np.float64).eps) which is about -36</span>
+<span class="k">def</span> <span class="nf">_sigmoid_calibration</span><span class="p">(</span>
+    <span class="n">predictions</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_abs_prediction_threshold</span><span class="o">=</span><span class="mi">30</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Probability Calibration with sigmoid method (Platt 2000)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    predictions : ndarray of shape (n_samples,)</span>
+<span class="sd">        The decision function or predict proba for the samples.</span>
+
+<span class="sd">    y : ndarray of shape (n_samples,)</span>
+<span class="sd">        The targets.</span>
+
+<span class="sd">    sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">        Sample weights. If None, then samples are equally weighted.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    a : float</span>
+<span class="sd">        The slope.</span>
+
+<span class="sd">    b : float</span>
+<span class="sd">        The intercept.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Platt, &quot;Probabilistic Outputs for Support Vector Machines&quot;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">predictions</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="n">F</span> <span class="o">=</span> <span class="n">predictions</span>  <span class="c1"># F follows Platt&#39;s notations</span>
+
+    <span class="n">scale_constant</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="n">max_prediction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">F</span><span class="p">))</span>
+
+    <span class="c1"># If the predictions have large values we scale them in order to bring</span>
+    <span class="c1"># them within a suitable range. This has no effect on the final</span>
+    <span class="c1"># (prediction) result because linear models like Logisitic Regression</span>
+    <span class="c1"># without a penalty are invariant to multiplying the features by a</span>
+    <span class="c1"># constant.</span>
+    <span class="k">if</span> <span class="n">max_prediction</span> <span class="o">&gt;=</span> <span class="n">max_abs_prediction_threshold</span><span class="p">:</span>
+        <span class="n">scale_constant</span> <span class="o">=</span> <span class="n">max_prediction</span>
+        <span class="c1"># We rescale the features in a copy: inplace rescaling could confuse</span>
+        <span class="c1"># the caller and make the code harder to reason about.</span>
+        <span class="n">F</span> <span class="o">=</span> <span class="n">F</span> <span class="o">/</span> <span class="n">scale_constant</span>
+
+    <span class="c1"># Bayesian priors (see Platt end of section 2.2):</span>
+    <span class="c1"># It corresponds to the number of samples, taking into account the</span>
+    <span class="c1"># `sample_weight`.</span>
+    <span class="n">mask_negative_samples</span> <span class="o">=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">sample_weight</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">prior0</span> <span class="o">=</span> <span class="p">(</span><span class="n">sample_weight</span><span class="p">[</span><span class="n">mask_negative_samples</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">prior1</span> <span class="o">=</span> <span class="p">(</span><span class="n">sample_weight</span><span class="p">[</span><span class="o">~</span><span class="n">mask_negative_samples</span><span class="p">])</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">prior0</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">mask_negative_samples</span><span class="p">))</span>
+        <span class="n">prior1</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">prior0</span>
+    <span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">predictions</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+    <span class="n">T</span><span class="p">[</span><span class="n">y</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">prior1</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">prior1</span> <span class="o">+</span> <span class="mf">2.0</span><span class="p">)</span>
+    <span class="n">T</span><span class="p">[</span><span class="n">y</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="n">prior0</span> <span class="o">+</span> <span class="mf">2.0</span><span class="p">)</span>
+
+    <span class="n">bin_loss</span> <span class="o">=</span> <span class="n">HalfBinomialLoss</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">loss_grad</span><span class="p">(</span><span class="n">AB</span><span class="p">):</span>
+        <span class="c1"># .astype below is needed to ensure y_true and raw_prediction have the</span>
+        <span class="c1"># same dtype. With result = np.float64(0) * np.array([1, 2], dtype=np.float32)</span>
+        <span class="c1"># - in Numpy 2, result.dtype is float64</span>
+        <span class="c1"># - in Numpy&lt;2, result.dtype is float32</span>
+        <span class="n">raw_prediction</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">AB</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">F</span> <span class="o">+</span> <span class="n">AB</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="o">=</span><span class="n">predictions</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+        <span class="n">l</span><span class="p">,</span> <span class="n">g</span> <span class="o">=</span> <span class="n">bin_loss</span><span class="o">.</span><span class="n">loss_gradient</span><span class="p">(</span>
+            <span class="n">y_true</span><span class="o">=</span><span class="n">T</span><span class="p">,</span>
+            <span class="n">raw_prediction</span><span class="o">=</span><span class="n">raw_prediction</span><span class="p">,</span>
+            <span class="n">sample_weight</span><span class="o">=</span><span class="n">sample_weight</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="c1"># TODO: Remove casting to np.float64 when minimum supported SciPy is 1.11.2</span>
+        <span class="c1"># With SciPy &gt;= 1.11.2, the LBFGS implementation will cast to float64</span>
+        <span class="c1"># https://github.com/scipy/scipy/pull/18825.</span>
+        <span class="c1"># Here we cast to float64 to support SciPy &lt; 1.11.2</span>
+        <span class="n">grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="o">-</span><span class="n">g</span> <span class="o">@</span> <span class="n">F</span><span class="p">,</span> <span class="o">-</span><span class="n">g</span><span class="o">.</span><span class="n">sum</span><span class="p">()],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">loss</span><span class="p">,</span> <span class="n">grad</span>
+
+    <span class="n">AB0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">log</span><span class="p">((</span><span class="n">prior0</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">prior1</span> <span class="o">+</span> <span class="mf">1.0</span><span class="p">))])</span>
+
+    <span class="n">opt_result</span> <span class="o">=</span> <span class="n">minimize</span><span class="p">(</span>
+        <span class="n">loss_grad</span><span class="p">,</span>
+        <span class="n">AB0</span><span class="p">,</span>
+        <span class="n">method</span><span class="o">=</span><span class="s2">&quot;L-BFGS-B&quot;</span><span class="p">,</span>
+        <span class="n">jac</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">options</span><span class="o">=</span><span class="p">{</span>
+            <span class="s2">&quot;gtol&quot;</span><span class="p">:</span> <span class="mf">1e-6</span><span class="p">,</span>
+            <span class="s2">&quot;ftol&quot;</span><span class="p">:</span> <span class="mi">64</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span>
+    <span class="n">AB_</span> <span class="o">=</span> <span class="n">opt_result</span><span class="o">.</span><span class="n">x</span>
+
+    <span class="c1"># The tuned multiplicative parameter is converted back to the original</span>
+    <span class="c1"># input feature scale. The offset parameter does not need rescaling since</span>
+    <span class="c1"># we did not rescale the outcome variable.</span>
+    <span class="k">return</span> <span class="n">AB_</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">scale_constant</span><span class="p">,</span> <span class="n">AB_</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">_SigmoidCalibration</span><span class="p">(</span><span class="n">RegressorMixin</span><span class="p">,</span> <span class="n">BaseEstimator</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sigmoid regression model.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    a_ : float</span>
+<span class="sd">        The slope.</span>
+
+<span class="sd">    b_ : float</span>
+<span class="sd">        The intercept.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the model using X, y as training data.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array-like of shape (n_samples,)</span>
+<span class="sd">            Training data.</span>
+
+<span class="sd">        y : array-like of shape (n_samples,)</span>
+<span class="sd">            Training target.</span>
+
+<span class="sd">        sample_weight : array-like of shape (n_samples,), default=None</span>
+<span class="sd">            Sample weights. If None, then samples are equally weighted.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        self : object</span>
+<span class="sd">            Returns an instance of self.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">indexable</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">a_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_</span> <span class="o">=</span> <span class="n">_sigmoid_calibration</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">sample_weight</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Predict new data by linear interpolation.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        T : array-like of shape (n_samples,)</span>
+<span class="sd">            Data to predict from.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        T_ : ndarray of shape (n_samples,)</span>
+<span class="sd">            The predicted data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">T</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">expit</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a_</span> <span class="o">*</span> <span class="n">T</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b_</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="calibration_curve">
+<a class="viewcode-back" href="../../api/bayesflow.computational_utilities.html#bayesflow.computational_utilities.calibration_curve">[docs]</a>
+<span class="nd">@validate_params</span><span class="p">(</span>
+    <span class="p">{</span>
+        <span class="s2">&quot;y_true&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;array-like&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;y_prob&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;array-like&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;pos_label&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">Real</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;boolean&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+        <span class="s2">&quot;n_bins&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">Interval</span><span class="p">(</span><span class="n">Integral</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">closed</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)],</span>
+        <span class="s2">&quot;strategy&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">StrOptions</span><span class="p">({</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span> <span class="s2">&quot;quantile&quot;</span><span class="p">})],</span>
+    <span class="p">},</span>
+    <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">def</span> <span class="nf">calibration_curve</span><span class="p">(</span>
+    <span class="n">y_true</span><span class="p">,</span>
+    <span class="n">y_prob</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">pos_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="n">n_bins</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+    <span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute true and predicted probabilities for a calibration curve.</span>
+
+<span class="sd">    The method assumes the inputs come from a binary classifier, and</span>
+<span class="sd">    discretize the [0, 1] interval into bins.</span>
+
+<span class="sd">    Calibration curves may also be referred to as reliability diagrams.</span>
+
+<span class="sd">    Read more in the :ref:`User Guide &lt;calibration&gt;`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    y_true : array-like of shape (n_samples,)</span>
+<span class="sd">        True targets.</span>
+
+<span class="sd">    y_prob : array-like of shape (n_samples,)</span>
+<span class="sd">        Probabilities of the positive class.</span>
+
+<span class="sd">    pos_label : int, float, bool or str, default=None</span>
+<span class="sd">        The label of the positive class.</span>
+
+<span class="sd">        .. versionadded:: 1.1</span>
+
+<span class="sd">    n_bins : int, default=5</span>
+<span class="sd">        Number of bins to discretize the [0, 1] interval. A bigger number</span>
+<span class="sd">        requires more data. Bins with no samples (i.e. without</span>
+<span class="sd">        corresponding values in `y_prob`) will not be returned, thus the</span>
+<span class="sd">        returned arrays may have less than `n_bins` values.</span>
+
+<span class="sd">    strategy : {&#39;uniform&#39;, &#39;quantile&#39;}, default=&#39;uniform&#39;</span>
+<span class="sd">        Strategy used to define the widths of the bins.</span>
+
+<span class="sd">        uniform</span>
+<span class="sd">            The bins have identical widths.</span>
+<span class="sd">        quantile</span>
+<span class="sd">            The bins have the same number of samples and depend on `y_prob`.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    prob_true : ndarray of shape (n_bins,) or smaller</span>
+<span class="sd">        The proportion of samples whose class is the positive class, in each</span>
+<span class="sd">        bin (fraction of positives).</span>
+
+<span class="sd">    prob_pred : ndarray of shape (n_bins,) or smaller</span>
+<span class="sd">        The mean predicted probability in each bin.</span>
+
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+<span class="sd">    Alexandru Niculescu-Mizil and Rich Caruana (2005) Predicting Good</span>
+<span class="sd">    Probabilities With Supervised Learning, in Proceedings of the 22nd</span>
+<span class="sd">    International Conference on Machine Learning (ICML).</span>
+<span class="sd">    See section 4 (Qualitative Analysis of Predictions).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.calibration import calibration_curve</span>
+<span class="sd">    &gt;&gt;&gt; y_true = np.array([0, 0, 0, 0, 1, 1, 1, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; y_pred = np.array([0.1, 0.2, 0.3, 0.4, 0.65, 0.7, 0.8, 0.9,  1.])</span>
+<span class="sd">    &gt;&gt;&gt; prob_true, prob_pred = calibration_curve(y_true, y_pred, n_bins=3)</span>
+<span class="sd">    &gt;&gt;&gt; prob_true</span>
+<span class="sd">    array([0. , 0.5, 1. ])</span>
+<span class="sd">    &gt;&gt;&gt; prob_pred</span>
+<span class="sd">    array([0.2  , 0.525, 0.85 ])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">y_true</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
+    <span class="n">y_prob</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="n">y_prob</span><span class="p">)</span>
+    <span class="n">check_consistent_length</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">)</span>
+    <span class="n">pos_label</span> <span class="o">=</span> <span class="n">_check_pos_label_consistency</span><span class="p">(</span><span class="n">pos_label</span><span class="p">,</span> <span class="n">y_true</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">y_prob</span><span class="o">.</span><span class="n">min</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">y_prob</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;y_prob has values outside [0, 1].&quot;</span><span class="p">)</span>
+
+    <span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_true</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Only binary classification is supported. Provided labels </span><span class="si">{</span><span class="n">labels</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="p">)</span>
+    <span class="n">y_true</span> <span class="o">=</span> <span class="n">y_true</span> <span class="o">==</span> <span class="n">pos_label</span>
+
+    <span class="k">if</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s2">&quot;quantile&quot;</span><span class="p">:</span>  <span class="c1"># Determine bin edges by distribution of data</span>
+        <span class="n">quantiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_bins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">y_prob</span><span class="p">,</span> <span class="n">quantiles</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">strategy</span> <span class="o">==</span> <span class="s2">&quot;uniform&quot;</span><span class="p">:</span>
+        <span class="n">bins</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">n_bins</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Invalid entry to &#39;strategy&#39; input. Strategy &quot;</span>
+            <span class="s2">&quot;must be either &#39;quantile&#39; or &#39;uniform&#39;.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="n">binids</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">bins</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">y_prob</span><span class="p">)</span>
+
+    <span class="n">bin_sums</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">binids</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">y_prob</span><span class="p">,</span> <span class="n">minlength</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">bins</span><span class="p">))</span>
+    <span class="n">bin_true</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">binids</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">y_true</span><span class="p">,</span> <span class="n">minlength</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">bins</span><span class="p">))</span>
+    <span class="n">bin_total</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bincount</span><span class="p">(</span><span class="n">binids</span><span class="p">,</span> <span class="n">minlength</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">bins</span><span class="p">))</span>
+
+    <span class="n">nonzero</span> <span class="o">=</span> <span class="n">bin_total</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="n">prob_true</span> <span class="o">=</span> <span class="n">bin_true</span><span class="p">[</span><span class="n">nonzero</span><span class="p">]</span> <span class="o">/</span> <span class="n">bin_total</span><span class="p">[</span><span class="n">nonzero</span><span class="p">]</span>
+    <span class="n">prob_pred</span> <span class="o">=</span> <span class="n">bin_sums</span><span class="p">[</span><span class="n">nonzero</span><span class="p">]</span> <span class="o">/</span> <span class="n">bin_total</span><span class="p">[</span><span class="n">nonzero</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">prob_true</span><span class="p">,</span> <span class="n">prob_pred</span></div>
+
+
+
+<span class="k">class</span> <span class="nc">CalibrationDisplay</span><span class="p">(</span><span class="n">_BinaryClassifierCurveDisplayMixin</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Calibration curve (also known as reliability diagram) visualization.</span>
+
+<span class="sd">    It is recommended to use</span>
+<span class="sd">    :func:`~sklearn.calibration.CalibrationDisplay.from_estimator` or</span>
+<span class="sd">    :func:`~sklearn.calibration.CalibrationDisplay.from_predictions`</span>
+<span class="sd">    to create a `CalibrationDisplay`. All parameters are stored as attributes.</span>
+
+<span class="sd">    Read more about calibration in the :ref:`User Guide &lt;calibration&gt;` and</span>
+<span class="sd">    more about the scikit-learn visualization API in :ref:`visualizations`.</span>
+
+<span class="sd">    For an example on how to use the visualization, see</span>
+<span class="sd">    :ref:`sphx_glr_auto_examples_calibration_plot_calibration_curve.py`.</span>
+
+<span class="sd">    .. versionadded:: 1.0</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    prob_true : ndarray of shape (n_bins,)</span>
+<span class="sd">        The proportion of samples whose class is the positive class (fraction</span>
+<span class="sd">        of positives), in each bin.</span>
+
+<span class="sd">    prob_pred : ndarray of shape (n_bins,)</span>
+<span class="sd">        The mean predicted probability in each bin.</span>
+
+<span class="sd">    y_prob : ndarray of shape (n_samples,)</span>
+<span class="sd">        Probability estimates for the positive class, for each sample.</span>
+
+<span class="sd">    estimator_name : str, default=None</span>
+<span class="sd">        Name of estimator. If None, the estimator name is not shown.</span>
+
+<span class="sd">    pos_label : int, float, bool or str, default=None</span>
+<span class="sd">        The positive class when computing the calibration curve.</span>
+<span class="sd">        By default, `pos_label` is set to `estimators.classes_[1]` when using</span>
+<span class="sd">        `from_estimator` and set to 1 when using `from_predictions`.</span>
+
+<span class="sd">        .. versionadded:: 1.1</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    line_ : matplotlib Artist</span>
+<span class="sd">        Calibration curve.</span>
+
+<span class="sd">    ax_ : matplotlib Axes</span>
+<span class="sd">        Axes with calibration curve.</span>
+
+<span class="sd">    figure_ : matplotlib Figure</span>
+<span class="sd">        Figure containing the curve.</span>
+
+<span class="sd">    See Also</span>
+<span class="sd">    --------</span>
+<span class="sd">    calibration_curve : Compute true and predicted probabilities for a</span>
+<span class="sd">        calibration curve.</span>
+<span class="sd">    CalibrationDisplay.from_predictions : Plot calibration curve using true</span>
+<span class="sd">        and predicted labels.</span>
+<span class="sd">    CalibrationDisplay.from_estimator : Plot calibration curve using an</span>
+<span class="sd">        estimator and data.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.datasets import make_classification</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.model_selection import train_test_split</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.linear_model import LogisticRegression</span>
+<span class="sd">    &gt;&gt;&gt; from sklearn.calibration import calibration_curve, CalibrationDisplay</span>
+<span class="sd">    &gt;&gt;&gt; X, y = make_classification(random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; X_train, X_test, y_train, y_test = train_test_split(</span>
+<span class="sd">    ...     X, y, random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; clf = LogisticRegression(random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; clf.fit(X_train, y_train)</span>
+<span class="sd">    LogisticRegression(random_state=0)</span>
+<span class="sd">    &gt;&gt;&gt; y_prob = clf.predict_proba(X_test)[:, 1]</span>
+<span class="sd">    &gt;&gt;&gt; prob_true, prob_pred = calibration_curve(y_test, y_prob, n_bins=10)</span>
+<span class="sd">    &gt;&gt;&gt; disp = CalibrationDisplay(prob_true, prob_pred, y_prob)</span>
+<span class="sd">    &gt;&gt;&gt; disp.plot()</span>
+<span class="sd">    &lt;...&gt;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">prob_true</span><span class="p">,</span> <span class="n">prob_pred</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">estimator_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="kc">None</span>
+    <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prob_true</span> <span class="o">=</span> <span class="n">prob_true</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prob_pred</span> <span class="o">=</span> <span class="n">prob_pred</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y_prob</span> <span class="o">=</span> <span class="n">y_prob</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">estimator_name</span> <span class="o">=</span> <span class="n">estimator_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pos_label</span> <span class="o">=</span> <span class="n">pos_label</span>
+
+    <span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ref_line</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot visualization.</span>
+
+<span class="sd">        Extra keyword arguments will be passed to</span>
+<span class="sd">        :func:`matplotlib.pyplot.plot`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        ax : Matplotlib Axes, default=None</span>
+<span class="sd">            Axes object to plot on. If `None`, a new figure and axes is</span>
+<span class="sd">            created.</span>
+
+<span class="sd">        name : str, default=None</span>
+<span class="sd">            Name for labeling curve. If `None`, use `estimator_name` if</span>
+<span class="sd">            not `None`, otherwise no labeling is shown.</span>
+
+<span class="sd">        ref_line : bool, default=True</span>
+<span class="sd">            If `True`, plots a reference line representing a perfectly</span>
+<span class="sd">            calibrated classifier.</span>
+
+<span class="sd">        **kwargs : dict</span>
+<span class="sd">            Keyword arguments to be passed to :func:`matplotlib.pyplot.plot`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        display : :class:`~sklearn.calibration.CalibrationDisplay`</span>
+<span class="sd">            Object that stores computed values.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax_</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">figure_</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_validate_plot_params</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+        <span class="n">info_pos_label</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;(Positive class: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">pos_label</span><span class="si">}</span><span class="s2">)&quot;</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">pos_label</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+        <span class="p">)</span>
+
+        <span class="n">default_line_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;marker&quot;</span><span class="p">:</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span> <span class="s2">&quot;linestyle&quot;</span><span class="p">:</span> <span class="s2">&quot;-&quot;</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">default_line_kwargs</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="n">line_kwargs</span> <span class="o">=</span> <span class="n">_validate_style_kwargs</span><span class="p">(</span><span class="n">default_line_kwargs</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="n">ref_line_label</span> <span class="o">=</span> <span class="s2">&quot;Perfectly calibrated&quot;</span>
+        <span class="n">existing_ref_line</span> <span class="o">=</span> <span class="n">ref_line_label</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax_</span><span class="o">.</span><span class="n">get_legend_handles_labels</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">ref_line</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">existing_ref_line</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">ax_</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;k:&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">ref_line_label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">line_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ax_</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prob_pred</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">prob_true</span><span class="p">,</span> <span class="o">**</span><span class="n">line_kwargs</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="c1"># We always have to show the legend for at least the reference line</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax_</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;lower right&quot;</span><span class="p">)</span>
+
+        <span class="n">xlabel</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Mean predicted probability </span><span class="si">{</span><span class="n">info_pos_label</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">ylabel</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Fraction of positives </span><span class="si">{</span><span class="n">info_pos_label</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ax_</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="n">ylabel</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_estimator</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">estimator</span><span class="p">,</span>
+        <span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">n_bins</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span>
+        <span class="n">pos_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">ref_line</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot calibration curve using a binary classifier and data.</span>
+
+<span class="sd">        A calibration curve, also known as a reliability diagram, uses inputs</span>
+<span class="sd">        from a binary classifier and plots the average predicted probability</span>
+<span class="sd">        for each bin against the fraction of positive classes, on the</span>
+<span class="sd">        y-axis.</span>
+
+<span class="sd">        Extra keyword arguments will be passed to</span>
+<span class="sd">        :func:`matplotlib.pyplot.plot`.</span>
+
+<span class="sd">        Read more about calibration in the :ref:`User Guide &lt;calibration&gt;` and</span>
+<span class="sd">        more about the scikit-learn visualization API in :ref:`visualizations`.</span>
+
+<span class="sd">        .. versionadded:: 1.0</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        estimator : estimator instance</span>
+<span class="sd">            Fitted classifier or a fitted :class:`~sklearn.pipeline.Pipeline`</span>
+<span class="sd">            in which the last estimator is a classifier. The classifier must</span>
+<span class="sd">            have a :term:`predict_proba` method.</span>
+
+<span class="sd">        X : {array-like, sparse matrix} of shape (n_samples, n_features)</span>
+<span class="sd">            Input values.</span>
+
+<span class="sd">        y : array-like of shape (n_samples,)</span>
+<span class="sd">            Binary target values.</span>
+
+<span class="sd">        n_bins : int, default=5</span>
+<span class="sd">            Number of bins to discretize the [0, 1] interval into when</span>
+<span class="sd">            calculating the calibration curve. A bigger number requires more</span>
+<span class="sd">            data.</span>
+
+<span class="sd">        strategy : {&#39;uniform&#39;, &#39;quantile&#39;}, default=&#39;uniform&#39;</span>
+<span class="sd">            Strategy used to define the widths of the bins.</span>
+
+<span class="sd">            - `&#39;uniform&#39;`: The bins have identical widths.</span>
+<span class="sd">            - `&#39;quantile&#39;`: The bins have the same number of samples and depend</span>
+<span class="sd">              on predicted probabilities.</span>
+
+<span class="sd">        pos_label : int, float, bool or str, default=None</span>
+<span class="sd">            The positive class when computing the calibration curve.</span>
+<span class="sd">            By default, `estimators.classes_[1]` is considered as the</span>
+<span class="sd">            positive class.</span>
+
+<span class="sd">            .. versionadded:: 1.1</span>
+
+<span class="sd">        name : str, default=None</span>
+<span class="sd">            Name for labeling curve. If `None`, the name of the estimator is</span>
+<span class="sd">            used.</span>
+
+<span class="sd">        ref_line : bool, default=True</span>
+<span class="sd">            If `True`, plots a reference line representing a perfectly</span>
+<span class="sd">            calibrated classifier.</span>
+
+<span class="sd">        ax : matplotlib axes, default=None</span>
+<span class="sd">            Axes object to plot on. If `None`, a new figure and axes is</span>
+<span class="sd">            created.</span>
+
+<span class="sd">        **kwargs : dict</span>
+<span class="sd">            Keyword arguments to be passed to :func:`matplotlib.pyplot.plot`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        display : :class:`~sklearn.calibration.CalibrationDisplay`.</span>
+<span class="sd">            Object that stores computed values.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        CalibrationDisplay.from_predictions : Plot calibration curve using true</span>
+<span class="sd">            and predicted labels.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">        &gt;&gt;&gt; from sklearn.datasets import make_classification</span>
+<span class="sd">        &gt;&gt;&gt; from sklearn.model_selection import train_test_split</span>
+<span class="sd">        &gt;&gt;&gt; from sklearn.linear_model import LogisticRegression</span>
+<span class="sd">        &gt;&gt;&gt; from sklearn.calibration import CalibrationDisplay</span>
+<span class="sd">        &gt;&gt;&gt; X, y = make_classification(random_state=0)</span>
+<span class="sd">        &gt;&gt;&gt; X_train, X_test, y_train, y_test = train_test_split(</span>
+<span class="sd">        ...     X, y, random_state=0)</span>
+<span class="sd">        &gt;&gt;&gt; clf = LogisticRegression(random_state=0)</span>
+<span class="sd">        &gt;&gt;&gt; clf.fit(X_train, y_train)</span>
+<span class="sd">        LogisticRegression(random_state=0)</span>
+<span class="sd">        &gt;&gt;&gt; disp = CalibrationDisplay.from_estimator(clf, X_test, y_test)</span>
+<span class="sd">        &gt;&gt;&gt; plt.show()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">y_prob</span><span class="p">,</span> <span class="n">pos_label</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_validate_and_get_response_values</span><span class="p">(</span>
+            <span class="n">estimator</span><span class="p">,</span>
+            <span class="n">X</span><span class="p">,</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">response_method</span><span class="o">=</span><span class="s2">&quot;predict_proba&quot;</span><span class="p">,</span>
+            <span class="n">pos_label</span><span class="o">=</span><span class="n">pos_label</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_predictions</span><span class="p">(</span>
+            <span class="n">y</span><span class="p">,</span>
+            <span class="n">y_prob</span><span class="p">,</span>
+            <span class="n">n_bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">,</span>
+            <span class="n">strategy</span><span class="o">=</span><span class="n">strategy</span><span class="p">,</span>
+            <span class="n">pos_label</span><span class="o">=</span><span class="n">pos_label</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">ref_line</span><span class="o">=</span><span class="n">ref_line</span><span class="p">,</span>
+            <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_predictions</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">y_true</span><span class="p">,</span>
+        <span class="n">y_prob</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">n_bins</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;uniform&quot;</span><span class="p">,</span>
+        <span class="n">pos_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">ref_line</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Plot calibration curve using true labels and predicted probabilities.</span>
+
+<span class="sd">        Calibration curve, also known as reliability diagram, uses inputs</span>
+<span class="sd">        from a binary classifier and plots the average predicted probability</span>
+<span class="sd">        for each bin against the fraction of positive classes, on the</span>
+<span class="sd">        y-axis.</span>
+
+<span class="sd">        Extra keyword arguments will be passed to</span>
+<span class="sd">        :func:`matplotlib.pyplot.plot`.</span>
+
+<span class="sd">        Read more about calibration in the :ref:`User Guide &lt;calibration&gt;` and</span>
+<span class="sd">        more about the scikit-learn visualization API in :ref:`visualizations`.</span>
+
+<span class="sd">        .. versionadded:: 1.0</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        y_true : array-like of shape (n_samples,)</span>
+<span class="sd">            True labels.</span>
+
+<span class="sd">        y_prob : array-like of shape (n_samples,)</span>
+<span class="sd">            The predicted probabilities of the positive class.</span>
+
+<span class="sd">        n_bins : int, default=5</span>
+<span class="sd">            Number of bins to discretize the [0, 1] interval into when</span>
+<span class="sd">            calculating the calibration curve. A bigger number requires more</span>
+<span class="sd">            data.</span>
+
+<span class="sd">        strategy : {&#39;uniform&#39;, &#39;quantile&#39;}, default=&#39;uniform&#39;</span>
+<span class="sd">            Strategy used to define the widths of the bins.</span>
+
+<span class="sd">            - `&#39;uniform&#39;`: The bins have identical widths.</span>
+<span class="sd">            - `&#39;quantile&#39;`: The bins have the same number of samples and depend</span>
+<span class="sd">              on predicted probabilities.</span>
+
+<span class="sd">        pos_label : int, float, bool or str, default=None</span>
+<span class="sd">            The positive class when computing the calibration curve.</span>
+<span class="sd">            By default `pos_label` is set to 1.</span>
+
+<span class="sd">            .. versionadded:: 1.1</span>
+
+<span class="sd">        name : str, default=None</span>
+<span class="sd">            Name for labeling curve.</span>
+
+<span class="sd">        ref_line : bool, default=True</span>
+<span class="sd">            If `True`, plots a reference line representing a perfectly</span>
+<span class="sd">            calibrated classifier.</span>
+
+<span class="sd">        ax : matplotlib axes, default=None</span>
+<span class="sd">            Axes object to plot on. If `None`, a new figure and axes is</span>
+<span class="sd">            created.</span>
+
+<span class="sd">        **kwargs : dict</span>
+<span class="sd">            Keyword arguments to be passed to :func:`matplotlib.pyplot.plot`.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        display : :class:`~sklearn.calibration.CalibrationDisplay`.</span>
+<span class="sd">            Object that stores computed values.</span>
+
+<span class="sd">        See Also</span>
+<span class="sd">        --------</span>
+<span class="sd">        CalibrationDisplay.from_estimator : Plot calibration curve using an</span>
+<span class="sd">            estimator and data.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">        &gt;&gt;&gt; from sklearn.datasets import make_classification</span>
+<span class="sd">        &gt;&gt;&gt; from sklearn.model_selection import train_test_split</span>
+<span class="sd">        &gt;&gt;&gt; from sklearn.linear_model import LogisticRegression</span>
+<span class="sd">        &gt;&gt;&gt; from sklearn.calibration import CalibrationDisplay</span>
+<span class="sd">        &gt;&gt;&gt; X, y = make_classification(random_state=0)</span>
+<span class="sd">        &gt;&gt;&gt; X_train, X_test, y_train, y_test = train_test_split(</span>
+<span class="sd">        ...     X, y, random_state=0)</span>
+<span class="sd">        &gt;&gt;&gt; clf = LogisticRegression(random_state=0)</span>
+<span class="sd">        &gt;&gt;&gt; clf.fit(X_train, y_train)</span>
+<span class="sd">        LogisticRegression(random_state=0)</span>
+<span class="sd">        &gt;&gt;&gt; y_prob = clf.predict_proba(X_test)[:, 1]</span>
+<span class="sd">        &gt;&gt;&gt; disp = CalibrationDisplay.from_predictions(y_test, y_prob)</span>
+<span class="sd">        &gt;&gt;&gt; plt.show()</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pos_label_validated</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_validate_from_predictions_params</span><span class="p">(</span>
+            <span class="n">y_true</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="n">pos_label</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span>
+        <span class="p">)</span>
+
+        <span class="n">prob_true</span><span class="p">,</span> <span class="n">prob_pred</span> <span class="o">=</span> <span class="n">calibration_curve</span><span class="p">(</span>
+            <span class="n">y_true</span><span class="p">,</span> <span class="n">y_prob</span><span class="p">,</span> <span class="n">n_bins</span><span class="o">=</span><span class="n">n_bins</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="n">strategy</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="n">pos_label</span>
+        <span class="p">)</span>
+
+        <span class="n">disp</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">prob_true</span><span class="o">=</span><span class="n">prob_true</span><span class="p">,</span>
+            <span class="n">prob_pred</span><span class="o">=</span><span class="n">prob_pred</span><span class="p">,</span>
+            <span class="n">y_prob</span><span class="o">=</span><span class="n">y_prob</span><span class="p">,</span>
+            <span class="n">estimator_name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">pos_label</span><span class="o">=</span><span class="n">pos_label_validated</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">disp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">ref_line</span><span class="o">=</span><span class="n">ref_line</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The BayesFlow authors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023-2025, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

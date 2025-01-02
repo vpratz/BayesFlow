@@ -3,36 +3,34 @@ bayesflow.workflows.workflow
 
 .. automodule:: bayesflow.workflows.workflow
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      allow_batch_size
-   
-   
+  .. autosummary::
+  
+    allow_batch_size
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      Workflow
-   
-   
+  .. autosummary::
+  
+    Workflow
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

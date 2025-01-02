@@ -3,37 +3,35 @@ bayesflow.networks.embeddings.recurrent\_embedding
 
 .. automodule:: bayesflow.networks.embeddings.recurrent_embedding
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      expand_tile
-      serializable
-   
-   
+  .. autosummary::
+  
+    expand_tile
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      RecurrentEmbedding
-   
-   
+  .. autosummary::
+  
+    RecurrentEmbedding
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

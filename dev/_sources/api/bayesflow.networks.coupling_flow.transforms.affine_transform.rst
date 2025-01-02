@@ -3,38 +3,36 @@ bayesflow.networks.coupling\_flow.transforms.affine\_transform
 
 .. automodule:: bayesflow.networks.coupling_flow.transforms.affine_transform
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      serializable
-      shifted_softplus
-   
-   
+  .. autosummary::
+  
+    serializable
+    shifted_softplus
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      AffineTransform
-      Transform
-   
-   
+  .. autosummary::
+  
+    AffineTransform
+    Transform
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

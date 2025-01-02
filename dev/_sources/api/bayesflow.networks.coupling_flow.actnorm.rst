@@ -3,38 +3,36 @@ bayesflow.networks.coupling\_flow.actnorm
 
 .. automodule:: bayesflow.networks.coupling_flow.actnorm
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      keras_kwargs
-      serializable
-   
-   
+  .. autosummary::
+  
+    keras_kwargs
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      ActNorm
-      InvertibleLayer
-   
-   
+  .. autosummary::
+  
+    ActNorm
+    InvertibleLayer
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

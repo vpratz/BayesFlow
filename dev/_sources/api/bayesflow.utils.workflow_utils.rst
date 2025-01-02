@@ -3,38 +3,36 @@ bayesflow.utils.workflow\_utils
 
 .. automodule:: bayesflow.utils.workflow_utils
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      find_inference_network
-      find_summary_network
-   
-   
+  .. autosummary::
+  
+    find_inference_network
+    find_summary_network
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      InferenceNetwork
-      SummaryNetwork
-   
-   
+  .. autosummary::
+  
+    InferenceNetwork
+    SummaryNetwork
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

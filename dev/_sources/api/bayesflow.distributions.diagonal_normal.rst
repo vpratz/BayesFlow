@@ -3,38 +3,36 @@ bayesflow.distributions.diagonal\_normal
 
 .. automodule:: bayesflow.distributions.diagonal_normal
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      allow_batch_size
-      serializable
-   
-   
+  .. autosummary::
+  
+    allow_batch_size
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      DiagonalNormal
-      Distribution
-   
-   
+  .. autosummary::
+  
+    DiagonalNormal
+    Distribution
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

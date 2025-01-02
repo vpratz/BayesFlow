@@ -3,37 +3,35 @@ bayesflow.networks.transformers.isab
 
 .. automodule:: bayesflow.networks.transformers.isab
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      serializable
-   
-   
+  .. autosummary::
+  
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      InducedSetAttentionBlock
-      MultiHeadAttentionBlock
-   
-   
+  .. autosummary::
+  
+    InducedSetAttentionBlock
+    MultiHeadAttentionBlock
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

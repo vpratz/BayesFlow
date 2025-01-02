@@ -3,43 +3,43 @@ bayesflow.networks.free\_form\_flow.free\_form\_flow
 
 .. automodule:: bayesflow.networks.free_form_flow.free_form_flow
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      concatenate
-      find_network
-      jvp
-      keras_kwargs
-      log_jacobian_determinant
-      serializable
-      vjp
-   
-   
+  .. autosummary::
+  
+    concatenate
+    deserialize_value_or_type
+    find_network
+    jvp
+    keras_kwargs
+    log_jacobian_determinant
+    serializable
+    serialize_value_or_type
+    vjp
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      FreeFormFlow
-      InferenceNetwork
-   
-   
+  .. autosummary::
+  
+    FreeFormFlow
+    InferenceNetwork
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

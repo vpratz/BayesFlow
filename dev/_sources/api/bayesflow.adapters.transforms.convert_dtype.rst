@@ -3,39 +3,37 @@ bayesflow.adapters.transforms.convert\_dtype
 
 .. automodule:: bayesflow.adapters.transforms.convert_dtype
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      deserialize
-      serializable
-      serialize
-   
-   
+  .. autosummary::
+  
+    deserialize
+    serializable
+    serialize
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      ConvertDType
-      ElementwiseTransform
-   
-   
+  .. autosummary::
+  
+    ConvertDType
+    ElementwiseTransform
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

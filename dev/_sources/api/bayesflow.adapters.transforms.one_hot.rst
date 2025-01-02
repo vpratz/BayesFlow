@@ -3,38 +3,36 @@ bayesflow.adapters.transforms.one\_hot
 
 .. automodule:: bayesflow.adapters.transforms.one_hot
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      one_hot
-      serializable
-   
-   
+  .. autosummary::
+  
+    one_hot
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      ElementwiseTransform
-      OneHot
-   
-   
+  .. autosummary::
+  
+    ElementwiseTransform
+    OneHot
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

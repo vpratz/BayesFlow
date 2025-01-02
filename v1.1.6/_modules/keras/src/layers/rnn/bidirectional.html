@@ -1,0 +1,1000 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>keras.src.layers.rnn.bidirectional &#8212; BayesFlow: Amortized Bayesian Inference</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css?v=8fec244e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/keras/src/layers/rnn/bidirectional';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://www.bayesflow.org/_modules/keras/src/layers/rnn/bidirectional.html" />
+    <link rel="icon" href="../../../../../_static/bayesflow_hex.ico"/>
+    <link rel="author" title="About these documents" href="../../../../../about.html" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <img src="../../../../../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../index.html">BayesFlow</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Intro_Amortized_Posterior_Estimation.html">1. Quickstart: Amortized Posterior Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/TwoMoons_Bimodal_Posterior.html">2. Two Moons: Tackling Bimodal Posteriors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Model_Misspecification.html">3. Detecting Model Misspecification in Amortized Posterior Inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/LCA_Model_Posterior_Estimation.html">4. Principled Amortized Bayesian Workflow for Cognitive Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Linear_ODE_system.html">5. Posterior Estimation for ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Covid19_Initial_Posterior_Estimation.html">6. Posterior Estimation for SIR-like Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Model_Comparison_MPT.html">7. Model Comparison for Cognitive Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Hierarchical_Model_Comparison_MPT.html">8. Hierarchical Model Comparison for Cognitive Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../api/bayesflow.html">Public API: bayesflow package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.html">bayesflow.benchmarks package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.bernoulli_glm.html">bayesflow.benchmarks.bernoulli_glm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.bernoulli_glm_raw.html">bayesflow.benchmarks.bernoulli_glm_raw module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.gaussian_linear.html">bayesflow.benchmarks.gaussian_linear module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.gaussian_linear_uniform.html">bayesflow.benchmarks.gaussian_linear_uniform module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.gaussian_mixture.html">bayesflow.benchmarks.gaussian_mixture module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.inverse_kinematics.html">bayesflow.benchmarks.inverse_kinematics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.lotka_volterra.html">bayesflow.benchmarks.lotka_volterra module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.sir.html">bayesflow.benchmarks.sir module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.slcp.html">bayesflow.benchmarks.slcp module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.slcp_distractors.html">bayesflow.benchmarks.slcp_distractors module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.two_moons.html">bayesflow.benchmarks.two_moons module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.amortizers.html">bayesflow.amortizers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.attention.html">bayesflow.attention module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.coupling_networks.html">bayesflow.coupling_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.diagnostics.html">bayesflow.diagnostics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.inference_networks.html">bayesflow.inference_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.losses.html">bayesflow.losses module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.networks.html">bayesflow.networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.sensitivity.html">bayesflow.sensitivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.simulation.html">bayesflow.simulation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.summary_networks.html">bayesflow.summary_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.trainers.html">bayesflow.trainers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.configuration.html">bayesflow.configuration module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.default_settings.html">bayesflow.default_settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.computational_utilities.html">bayesflow.computational_utilities module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.helper_classes.html">bayesflow.helper_classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.helper_functions.html">bayesflow.helper_functions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.helper_networks.html">bayesflow.helper_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.exceptions.html">bayesflow.exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.mcmc.html">bayesflow.mcmc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.version.html">bayesflow.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.wrappers.html">bayesflow.wrappers module</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../api/bayesflow.experimental.html">bayesflow.experimental package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.experimental.rectifiers.html">bayesflow.experimental.rectifiers module</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../installation.html">Full Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about.html">About us</a></li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div class="rst-versions">
+   
+  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
+  <ul>
+      <li><a href="/v1.1.6/_modules/keras/src/layers/rnn/bidirectional.html" class="current">v1.1.6</a></li>
+  </ul>
+  
+   
+  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
+  <ul>
+      <li><a href="/dev/_modules/keras/src/layers/rnn/bidirectional.html" >dev</a></li>
+      <li><a href="/master/_modules/keras/src/layers/rnn/bidirectional.html" >master</a></li>
+  </ul>
+  
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow/issues/new?title=Issue%20on%20page%20%2F_modules/keras/src/layers/rnn/bidirectional.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for keras.src.layers.rnn.bidirectional</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2015 The TensorFlow Authors. All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1"># ==============================================================================</span>
+<span class="sd">&quot;&quot;&quot;Bidirectional wrapper for RNNs.&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">copy</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow.compat.v2</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="kn">from</span> <span class="nn">keras.src</span> <span class="kn">import</span> <span class="n">backend</span>
+<span class="kn">from</span> <span class="nn">keras.src.engine.base_layer</span> <span class="kn">import</span> <span class="n">Layer</span>
+<span class="kn">from</span> <span class="nn">keras.src.engine.input_spec</span> <span class="kn">import</span> <span class="n">InputSpec</span>
+<span class="kn">from</span> <span class="nn">keras.src.layers.rnn</span> <span class="kn">import</span> <span class="n">rnn_utils</span>
+<span class="kn">from</span> <span class="nn">keras.src.layers.rnn.base_wrapper</span> <span class="kn">import</span> <span class="n">Wrapper</span>
+<span class="kn">from</span> <span class="nn">keras.src.saving</span> <span class="kn">import</span> <span class="n">serialization_lib</span>
+<span class="kn">from</span> <span class="nn">keras.src.utils</span> <span class="kn">import</span> <span class="n">generic_utils</span>
+<span class="kn">from</span> <span class="nn">keras.src.utils</span> <span class="kn">import</span> <span class="n">tf_inspect</span>
+<span class="kn">from</span> <span class="nn">keras.src.utils</span> <span class="kn">import</span> <span class="n">tf_utils</span>
+
+<span class="c1"># isort: off</span>
+<span class="kn">from</span> <span class="nn">tensorflow.python.util.tf_export</span> <span class="kn">import</span> <span class="n">keras_export</span>
+
+
+<div class="viewcode-block" id="Bidirectional">
+<a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional">[docs]</a>
+<span class="nd">@keras_export</span><span class="p">(</span><span class="s2">&quot;keras.layers.Bidirectional&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Bidirectional</span><span class="p">(</span><span class="n">Wrapper</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bidirectional wrapper for RNNs.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      layer: `keras.layers.RNN` instance, such as `keras.layers.LSTM` or</span>
+<span class="sd">        `keras.layers.GRU`. It could also be a `keras.layers.Layer` instance</span>
+<span class="sd">        that meets the following criteria:</span>
+<span class="sd">        1. Be a sequence-processing layer (accepts 3D+ inputs).</span>
+<span class="sd">        2. Have a `go_backwards`, `return_sequences` and `return_state`</span>
+<span class="sd">          attribute (with the same semantics as for the `RNN` class).</span>
+<span class="sd">        3. Have an `input_spec` attribute.</span>
+<span class="sd">        4. Implement serialization via `get_config()` and `from_config()`.</span>
+<span class="sd">        Note that the recommended way to create new RNN layers is to write a</span>
+<span class="sd">        custom RNN cell and use it with `keras.layers.RNN`, instead of</span>
+<span class="sd">        subclassing `keras.layers.Layer` directly.</span>
+<span class="sd">        - When the `returns_sequences` is true, the output of the masked</span>
+<span class="sd">        timestep will be zero regardless of the layer&#39;s original</span>
+<span class="sd">        `zero_output_for_mask` value.</span>
+<span class="sd">      merge_mode: Mode by which outputs of the forward and backward RNNs will be</span>
+<span class="sd">        combined. One of {&#39;sum&#39;, &#39;mul&#39;, &#39;concat&#39;, &#39;ave&#39;, None}. If None, the</span>
+<span class="sd">        outputs will not be combined, they will be returned as a list. Default</span>
+<span class="sd">        value is &#39;concat&#39;.</span>
+<span class="sd">      backward_layer: Optional `keras.layers.RNN`, or `keras.layers.Layer`</span>
+<span class="sd">        instance to be used to handle backwards input processing.</span>
+<span class="sd">        If `backward_layer` is not provided, the layer instance passed as the</span>
+<span class="sd">        `layer` argument will be used to generate the backward layer</span>
+<span class="sd">        automatically.</span>
+<span class="sd">        Note that the provided `backward_layer` layer should have properties</span>
+<span class="sd">        matching those of the `layer` argument, in particular it should have the</span>
+<span class="sd">        same values for `stateful`, `return_states`, `return_sequences`, etc.</span>
+<span class="sd">        In addition, `backward_layer` and `layer` should have different</span>
+<span class="sd">        `go_backwards` argument values.</span>
+<span class="sd">        A `ValueError` will be raised if these requirements are not met.</span>
+
+<span class="sd">    Call arguments:</span>
+<span class="sd">      The call arguments for this layer are the same as those of the wrapped RNN</span>
+<span class="sd">        layer.</span>
+<span class="sd">      Beware that when passing the `initial_state` argument during the call of</span>
+<span class="sd">      this layer, the first half in the list of elements in the `initial_state`</span>
+<span class="sd">      list will be passed to the forward RNN call and the last half in the list</span>
+<span class="sd">      of elements will be passed to the backward RNN call.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">      ValueError:</span>
+<span class="sd">        1. If `layer` or `backward_layer` is not a `Layer` instance.</span>
+<span class="sd">        2. In case of invalid `merge_mode` argument.</span>
+<span class="sd">        3. If `backward_layer` has mismatched properties compared to `layer`.</span>
+
+<span class="sd">    Examples:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    model = Sequential()</span>
+<span class="sd">    model.add(Bidirectional(LSTM(10, return_sequences=True),</span>
+<span class="sd">                                 input_shape=(5, 10)))</span>
+<span class="sd">    model.add(Bidirectional(LSTM(10)))</span>
+<span class="sd">    model.add(Dense(5))</span>
+<span class="sd">    model.add(Activation(&#39;softmax&#39;))</span>
+<span class="sd">    model.compile(loss=&#39;categorical_crossentropy&#39;, optimizer=&#39;rmsprop&#39;)</span>
+
+<span class="sd">    # With custom backward layer</span>
+<span class="sd">    model = Sequential()</span>
+<span class="sd">    forward_layer = LSTM(10, return_sequences=True)</span>
+<span class="sd">    backward_layer = LSTM(10, activation=&#39;relu&#39;, return_sequences=True,</span>
+<span class="sd">                          go_backwards=True)</span>
+<span class="sd">    model.add(Bidirectional(forward_layer, backward_layer=backward_layer,</span>
+<span class="sd">                            input_shape=(5, 10)))</span>
+<span class="sd">    model.add(Dense(5))</span>
+<span class="sd">    model.add(Activation(&#39;softmax&#39;))</span>
+<span class="sd">    model.compile(loss=&#39;categorical_crossentropy&#39;, optimizer=&#39;rmsprop&#39;)</span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">layer</span><span class="p">,</span>
+        <span class="n">merge_mode</span><span class="o">=</span><span class="s2">&quot;concat&quot;</span><span class="p">,</span>
+        <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">backward_layer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">Layer</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Please initialize `Bidirectional` layer with a &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;`tf.keras.layers.Layer` instance. Received: </span><span class="si">{</span><span class="n">layer</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">backward_layer</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">backward_layer</span><span class="p">,</span> <span class="n">Layer</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;`backward_layer` need to be a `tf.keras.layers.Layer` &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;instance. Received: </span><span class="si">{</span><span class="n">backward_layer</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">merge_mode</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;sum&quot;</span><span class="p">,</span> <span class="s2">&quot;mul&quot;</span><span class="p">,</span> <span class="s2">&quot;ave&quot;</span><span class="p">,</span> <span class="s2">&quot;concat&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid merge mode. Received: </span><span class="si">{</span><span class="n">merge_mode</span><span class="si">}</span><span class="s2">. &quot;</span>
+                <span class="s2">&quot;Merge mode should be one of &quot;</span>
+                <span class="s1">&#39;{&quot;sum&quot;, &quot;mul&quot;, &quot;ave&quot;, &quot;concat&quot;, None}&#39;</span>
+            <span class="p">)</span>
+        <span class="c1"># We don&#39;t want to track `layer` since we&#39;re already tracking the two</span>
+        <span class="c1"># copies of it we actually run.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setattr_tracking</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_setattr_tracking</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># Recreate the forward layer from the original layer config, so that it</span>
+        <span class="c1"># will not carry over any state from the layer.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recreate_layer_from_config</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">backward_layer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_recreate_layer_from_config</span><span class="p">(</span>
+                <span class="n">layer</span><span class="p">,</span> <span class="n">go_backwards</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span> <span class="o">=</span> <span class="n">backward_layer</span>
+
+            <span class="c1"># Keep the custom backward layer config, so that we can save it</span>
+            <span class="c1"># later. The layer&#39;s name might be updated below with prefix</span>
+            <span class="c1"># &#39;backward_&#39;, and we want to preserve the original config.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_backward_layer_config</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">serialization_lib</span><span class="o">.</span><span class="n">serialize_keras_object</span><span class="p">(</span><span class="n">backward_layer</span><span class="p">)</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="s2">&quot;forward_&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">_name</span> <span class="o">=</span> <span class="s2">&quot;backward_&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">name</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_verify_layer_config</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">force_zero_output_for_mask</span><span class="p">(</span><span class="n">layer</span><span class="p">):</span>
+            <span class="c1"># Force the zero_output_for_mask to be True if returning sequences.</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="s2">&quot;zero_output_for_mask&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">layer</span><span class="o">.</span><span class="n">zero_output_for_mask</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">return_sequences</span>
+
+        <span class="n">force_zero_output_for_mask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="p">)</span>
+        <span class="n">force_zero_output_for_mask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span> <span class="o">=</span> <span class="n">merge_mode</span>
+        <span class="k">if</span> <span class="n">weights</span><span class="p">:</span>
+            <span class="n">nw</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">initial_weights</span> <span class="o">=</span> <span class="n">weights</span><span class="p">[:</span> <span class="n">nw</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">initial_weights</span> <span class="o">=</span> <span class="n">weights</span><span class="p">[</span><span class="n">nw</span> <span class="o">//</span> <span class="mi">2</span> <span class="p">:]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stateful</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">stateful</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">return_sequences</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">return_sequences</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">return_state</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">return_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">supports_masking</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_trainable</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;trainable&quot;</span><span class="p">,</span> <span class="n">layer</span><span class="o">.</span><span class="n">trainable</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_spec</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">input_spec</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_use_input_spec_as_call_signature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">_use_input_spec_as_call_signature</span>
+
+    <span class="k">def</span> <span class="nf">_verify_layer_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure the forward and backward layers have valid common property.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">go_backwards</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">go_backwards</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Forward layer and backward layer should have different &quot;</span>
+                <span class="s2">&quot;`go_backwards` value.&quot;</span>
+                <span class="s2">&quot;forward_layer.go_backwards = &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">go_backwards</span><span class="si">}</span><span class="s2">,&quot;</span>
+                <span class="s2">&quot;backward_layer.go_backwards = &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">go_backwards</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">common_attributes</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;stateful&quot;</span><span class="p">,</span> <span class="s2">&quot;return_sequences&quot;</span><span class="p">,</span> <span class="s2">&quot;return_state&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">common_attributes</span><span class="p">:</span>
+            <span class="n">forward_value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+            <span class="n">backward_value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">forward_value</span> <span class="o">!=</span> <span class="n">backward_value</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Forward layer and backward layer are expected to have &quot;</span>
+                    <span class="sa">f</span><span class="s1">&#39;the same value for attribute &quot;</span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s1">&quot;, got &#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">forward_value</span><span class="si">}</span><span class="s1">&quot; for forward layer and &#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">backward_value</span><span class="si">}</span><span class="s1">&quot; for backward layer&#39;</span>
+                <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_recreate_layer_from_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="n">go_backwards</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># When recreating the layer from its config, it is possible that the</span>
+        <span class="c1"># layer is a RNN layer that contains custom cells. In this case we</span>
+        <span class="c1"># inspect the layer and pass the custom cell class as part of the</span>
+        <span class="c1"># `custom_objects` argument when calling `from_config`.  See</span>
+        <span class="c1"># https://github.com/tensorflow/tensorflow/issues/26581 for more detail.</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">go_backwards</span><span class="p">:</span>
+            <span class="n">config</span><span class="p">[</span><span class="s2">&quot;go_backwards&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="ow">not</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;go_backwards&quot;</span><span class="p">]</span>
+        <span class="k">if</span> <span class="p">(</span>
+            <span class="s2">&quot;custom_objects&quot;</span>
+            <span class="ow">in</span> <span class="n">tf_inspect</span><span class="o">.</span><span class="n">getfullargspec</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_config</span><span class="p">)</span><span class="o">.</span><span class="n">args</span>
+        <span class="p">):</span>
+            <span class="n">custom_objects</span> <span class="o">=</span> <span class="p">{}</span>
+            <span class="n">cell</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="s2">&quot;cell&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">cell</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">custom_objects</span><span class="p">[</span><span class="n">cell</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="vm">__class__</span>
+                <span class="c1"># For StackedRNNCells</span>
+                <span class="n">stacked_cells</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">cell</span><span class="p">,</span> <span class="s2">&quot;cells&quot;</span><span class="p">,</span> <span class="p">[])</span>
+                <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">stacked_cells</span><span class="p">:</span>
+                    <span class="n">custom_objects</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">]</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="vm">__class__</span>
+            <span class="k">return</span> <span class="n">layer</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span>
+                <span class="n">config</span><span class="p">,</span> <span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">layer</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+
+    <span class="nd">@tf_utils</span><span class="o">.</span><span class="n">shape_type_conversion</span>
+    <span class="k">def</span> <span class="nf">compute_output_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="p">):</span>
+        <span class="n">output_shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">compute_output_shape</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_state</span><span class="p">:</span>
+            <span class="n">state_shape</span> <span class="o">=</span> <span class="n">tf_utils</span><span class="o">.</span><span class="n">convert_shapes</span><span class="p">(</span>
+                <span class="n">output_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">to_tuples</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
+            <span class="n">output_shape</span> <span class="o">=</span> <span class="n">tf_utils</span><span class="o">.</span><span class="n">convert_shapes</span><span class="p">(</span>
+                <span class="n">output_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">to_tuples</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output_shape</span> <span class="o">=</span> <span class="n">tf_utils</span><span class="o">.</span><span class="n">convert_shapes</span><span class="p">(</span>
+                <span class="n">output_shape</span><span class="p">,</span> <span class="n">to_tuples</span><span class="o">=</span><span class="kc">False</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span> <span class="o">==</span> <span class="s2">&quot;concat&quot;</span><span class="p">:</span>
+            <span class="n">output_shape</span> <span class="o">=</span> <span class="n">output_shape</span><span class="o">.</span><span class="n">as_list</span><span class="p">()</span>
+            <span class="n">output_shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">2</span>
+            <span class="n">output_shape</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">TensorShape</span><span class="p">(</span><span class="n">output_shape</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">output_shape</span> <span class="o">=</span> <span class="p">[</span><span class="n">output_shape</span><span class="p">,</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">output_shape</span><span class="p">)]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_state</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">output_shape</span> <span class="o">+</span> <span class="n">state_shape</span> <span class="o">+</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">state_shape</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">output_shape</span><span class="p">]</span> <span class="o">+</span> <span class="n">state_shape</span> <span class="o">+</span> <span class="n">copy</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">state_shape</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output_shape</span>
+
+<div class="viewcode-block" id="Bidirectional.__call__">
+<a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.__call__">[docs]</a>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">initial_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">constants</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;`Bidirectional.__call__` implements the same API as the wrapped</span>
+<span class="sd">        `RNN`.&quot;&quot;&quot;</span>
+        <span class="n">inputs</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">constants</span> <span class="o">=</span> <span class="n">rnn_utils</span><span class="o">.</span><span class="n">standardize_args</span><span class="p">(</span>
+            <span class="n">inputs</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">constants</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">initial_state</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">initial_state</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">constants</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Applies the same workaround as in `RNN.__call__`</span>
+        <span class="n">additional_inputs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">additional_specs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">initial_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># Check if `initial_state` can be split into half</span>
+            <span class="n">num_states</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">num_states</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;When passing `initial_state` to a Bidirectional RNN, &quot;</span>
+                    <span class="s2">&quot;the state should be a list containing the states of &quot;</span>
+                    <span class="s2">&quot;the underlying RNNs. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Received: </span><span class="si">{</span><span class="n">initial_state</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;initial_state&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">initial_state</span>
+            <span class="n">additional_inputs</span> <span class="o">+=</span> <span class="n">initial_state</span>
+            <span class="n">state_specs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">map_structure</span><span class="p">(</span>
+                <span class="k">lambda</span> <span class="n">state</span><span class="p">:</span> <span class="n">InputSpec</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">int_shape</span><span class="p">(</span><span class="n">state</span><span class="p">)),</span>
+                <span class="n">initial_state</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">state_spec</span> <span class="o">=</span> <span class="n">state_specs</span><span class="p">[:</span> <span class="n">num_states</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">state_spec</span> <span class="o">=</span> <span class="n">state_specs</span><span class="p">[</span><span class="n">num_states</span> <span class="o">//</span> <span class="mi">2</span> <span class="p">:]</span>
+            <span class="n">additional_specs</span> <span class="o">+=</span> <span class="n">state_specs</span>
+        <span class="k">if</span> <span class="n">constants</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;constants&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">constants</span>
+            <span class="n">additional_inputs</span> <span class="o">+=</span> <span class="n">constants</span>
+            <span class="n">constants_spec</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">InputSpec</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">backend</span><span class="o">.</span><span class="n">int_shape</span><span class="p">(</span><span class="n">constant</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">constant</span> <span class="ow">in</span> <span class="n">constants</span>
+            <span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">constants_spec</span> <span class="o">=</span> <span class="n">constants_spec</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">constants_spec</span> <span class="o">=</span> <span class="n">constants_spec</span>
+            <span class="n">additional_specs</span> <span class="o">+=</span> <span class="n">constants_spec</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">constants</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">_num_constants</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">_num_constants</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span>
+
+        <span class="n">is_keras_tensor</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">is_keras_tensor</span><span class="p">(</span>
+            <span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">additional_inputs</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">tensor</span> <span class="ow">in</span> <span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">additional_inputs</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">backend</span><span class="o">.</span><span class="n">is_keras_tensor</span><span class="p">(</span><span class="n">tensor</span><span class="p">)</span> <span class="o">!=</span> <span class="n">is_keras_tensor</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;The initial state of a Bidirectional&quot;</span>
+                    <span class="s2">&quot; layer cannot be specified with a mix of&quot;</span>
+                    <span class="s2">&quot; Keras tensors and non-Keras tensors&quot;</span>
+                    <span class="s1">&#39; (a &quot;Keras tensor&quot; is a tensor that was&#39;</span>
+                    <span class="s2">&quot; returned by a Keras layer, or by `Input`)&quot;</span>
+                <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">is_keras_tensor</span><span class="p">:</span>
+            <span class="c1"># Compute the full input spec, including state</span>
+            <span class="n">full_input</span> <span class="o">=</span> <span class="p">[</span><span class="n">inputs</span><span class="p">]</span> <span class="o">+</span> <span class="n">additional_inputs</span>
+            <span class="c1"># The original input_spec is None since there could be a nested</span>
+            <span class="c1"># tensor input. Update the input_spec to match the inputs.</span>
+            <span class="n">full_input_spec</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="kc">None</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">inputs</span><span class="p">)))</span>
+            <span class="p">]</span> <span class="o">+</span> <span class="n">additional_specs</span>
+            <span class="c1"># Removing kwargs since the value are passed with input list.</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;initial_state&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;constants&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+            <span class="c1"># Perform the call with temporarily replaced input_spec</span>
+            <span class="n">original_input_spec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_spec</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">input_spec</span> <span class="o">=</span> <span class="n">full_input_spec</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">full_input</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">input_spec</span> <span class="o">=</span> <span class="n">original_input_spec</span>
+            <span class="k">return</span> <span class="n">output</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__call__</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Bidirectional.call">
+<a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.call">[docs]</a>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="p">,</span>
+        <span class="n">training</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">initial_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">constants</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;`Bidirectional.call` implements the same API as the wrapped `RNN`.&quot;&quot;&quot;</span>
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">generic_utils</span><span class="o">.</span><span class="n">has_arg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">call</span><span class="p">,</span> <span class="s2">&quot;training&quot;</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;training&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">training</span>
+        <span class="k">if</span> <span class="n">generic_utils</span><span class="o">.</span><span class="n">has_arg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">call</span><span class="p">,</span> <span class="s2">&quot;mask&quot;</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;mask&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mask</span>
+        <span class="k">if</span> <span class="n">generic_utils</span><span class="o">.</span><span class="n">has_arg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">call</span><span class="p">,</span> <span class="s2">&quot;constants&quot;</span><span class="p">):</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;constants&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">constants</span>
+
+        <span class="k">if</span> <span class="n">generic_utils</span><span class="o">.</span><span class="n">has_arg</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">call</span><span class="p">,</span> <span class="s2">&quot;initial_state&quot;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="c1"># initial_states are keras tensors, which means they are passed</span>
+                <span class="c1"># in together with inputs as list. The initial_states need to be</span>
+                <span class="c1"># split into forward and backward section, and be feed to layers</span>
+                <span class="c1"># accordingly.</span>
+                <span class="n">forward_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+                <span class="n">backward_inputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">inputs</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+                <span class="n">pivot</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="c1"># add forward initial state</span>
+                <span class="n">forward_inputs</span> <span class="o">+=</span> <span class="n">inputs</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">pivot</span><span class="p">]</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span><span class="p">:</span>
+                    <span class="c1"># add backward initial state</span>
+                    <span class="n">backward_inputs</span> <span class="o">+=</span> <span class="n">inputs</span><span class="p">[</span><span class="n">pivot</span><span class="p">:]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="c1"># add backward initial state</span>
+                    <span class="n">backward_inputs</span> <span class="o">+=</span> <span class="n">inputs</span><span class="p">[</span><span class="n">pivot</span> <span class="p">:</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span><span class="p">]</span>
+                    <span class="c1"># add constants for forward and backward layers</span>
+                    <span class="n">forward_inputs</span> <span class="o">+=</span> <span class="n">inputs</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span> <span class="p">:]</span>
+                    <span class="n">backward_inputs</span> <span class="o">+=</span> <span class="n">inputs</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span> <span class="p">:]</span>
+                <span class="n">forward_state</span><span class="p">,</span> <span class="n">backward_state</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+                <span class="k">if</span> <span class="s2">&quot;constants&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                    <span class="n">kwargs</span><span class="p">[</span><span class="s2">&quot;constants&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="k">elif</span> <span class="n">initial_state</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># initial_states are not keras tensors, eg eager tensor from np</span>
+                <span class="c1"># array.  They are only passed in from kwarg initial_state, and</span>
+                <span class="c1"># should be passed to forward/backward layer via kwarg</span>
+                <span class="c1"># initial_state as well.</span>
+                <span class="n">forward_inputs</span><span class="p">,</span> <span class="n">backward_inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">inputs</span>
+                <span class="n">half</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">initial_state</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+                <span class="n">forward_state</span> <span class="o">=</span> <span class="n">initial_state</span><span class="p">[:</span><span class="n">half</span><span class="p">]</span>
+                <span class="n">backward_state</span> <span class="o">=</span> <span class="n">initial_state</span><span class="p">[</span><span class="n">half</span><span class="p">:]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">forward_inputs</span><span class="p">,</span> <span class="n">backward_inputs</span> <span class="o">=</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">inputs</span>
+                <span class="n">forward_state</span><span class="p">,</span> <span class="n">backward_state</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+
+            <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="p">(</span>
+                <span class="n">forward_inputs</span><span class="p">,</span> <span class="n">initial_state</span><span class="o">=</span><span class="n">forward_state</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="p">)</span>
+            <span class="n">y_rev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="p">(</span>
+                <span class="n">backward_inputs</span><span class="p">,</span> <span class="n">initial_state</span><span class="o">=</span><span class="n">backward_state</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">y_rev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_state</span><span class="p">:</span>
+            <span class="n">states</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">y_rev</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">y_rev</span> <span class="o">=</span> <span class="n">y_rev</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_sequences</span><span class="p">:</span>
+            <span class="n">time_dim</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="mi">0</span> <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="p">,</span> <span class="s2">&quot;time_major&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="k">else</span> <span class="mi">1</span>
+            <span class="p">)</span>
+            <span class="n">y_rev</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">y_rev</span><span class="p">,</span> <span class="n">time_dim</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span> <span class="o">==</span> <span class="s2">&quot;concat&quot;</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">y</span><span class="p">,</span> <span class="n">y_rev</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span> <span class="o">==</span> <span class="s2">&quot;sum&quot;</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">y</span> <span class="o">+</span> <span class="n">y_rev</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span> <span class="o">==</span> <span class="s2">&quot;ave&quot;</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">y_rev</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span> <span class="o">==</span> <span class="s2">&quot;mul&quot;</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y_rev</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span><span class="p">,</span> <span class="n">y_rev</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Unrecognized value for `merge_mode`. &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;Received: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="s1">&#39;Expected values are [&quot;concat&quot;, &quot;sum&quot;, &quot;ave&quot;, &quot;mul&quot;]&#39;</span>
+            <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_state</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">output</span> <span class="o">+</span> <span class="n">states</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">output</span><span class="p">]</span> <span class="o">+</span> <span class="n">states</span>
+        <span class="k">return</span> <span class="n">output</span></div>
+
+
+<div class="viewcode-block" id="Bidirectional.reset_states">
+<a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.reset_states">[docs]</a>
+    <span class="k">def</span> <span class="nf">reset_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stateful</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Layer must be stateful.&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">states</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">reset_states</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">reset_states</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">states</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="s2">&quot;Unrecognized value for `states`. &quot;</span>
+                    <span class="s2">&quot;Expected `states` to be list or tuple. &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;Received: </span><span class="si">{</span><span class="n">states</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="p">)</span>
+
+            <span class="n">half</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">states</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">reset_states</span><span class="p">(</span><span class="n">states</span><span class="p">[:</span><span class="n">half</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">reset_states</span><span class="p">(</span><span class="n">states</span><span class="p">[</span><span class="n">half</span><span class="p">:])</span></div>
+
+
+<div class="viewcode-block" id="Bidirectional.build">
+<a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.build">[docs]</a>
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">backend</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">backend</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">built</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="Bidirectional.compute_mask">
+<a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.compute_mask">[docs]</a>
+    <span class="k">def</span> <span class="nf">compute_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_sequences</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span><span class="p">:</span>
+                <span class="n">output_mask</span> <span class="o">=</span> <span class="p">[</span><span class="n">mask</span><span class="p">,</span> <span class="n">mask</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">output_mask</span> <span class="o">=</span> <span class="n">mask</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output_mask</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span> <span class="k">else</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_state</span><span class="p">:</span>
+            <span class="n">states</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">states</span>
+            <span class="n">state_mask</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">states</span><span class="p">]</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">output_mask</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">output_mask</span> <span class="o">+</span> <span class="n">state_mask</span> <span class="o">*</span> <span class="mi">2</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">output_mask</span><span class="p">]</span> <span class="o">+</span> <span class="n">state_mask</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">output_mask</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">constraints</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="p">,</span> <span class="s2">&quot;constraints&quot;</span><span class="p">):</span>
+            <span class="n">constraints</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">constraints</span><span class="p">)</span>
+            <span class="n">constraints</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">constraints</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">constraints</span>
+
+<div class="viewcode-block" id="Bidirectional.get_config">
+<a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.get_config">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;merge_mode&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span><span class="p">}</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span><span class="p">:</span>
+            <span class="n">config</span><span class="p">[</span><span class="s2">&quot;num_constants&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span>
+
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_backward_layer_config&quot;</span><span class="p">):</span>
+            <span class="n">config</span><span class="p">[</span><span class="s2">&quot;backward_layer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backward_layer_config</span>
+        <span class="n">base_config</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">base_config</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span></div>
+
+
+<div class="viewcode-block" id="Bidirectional.from_config">
+<a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.from_config">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_config</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">custom_objects</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># Instead of updating the input, create a copy and use that.</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+        <span class="n">num_constants</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;num_constants&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># Handle forward layer instantiation (as would parent class).</span>
+        <span class="kn">from</span> <span class="nn">keras.src.layers</span> <span class="kn">import</span> <span class="n">deserialize</span> <span class="k">as</span> <span class="n">deserialize_layer</span>
+
+        <span class="n">config</span><span class="p">[</span><span class="s2">&quot;layer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">deserialize_layer</span><span class="p">(</span>
+            <span class="n">config</span><span class="p">[</span><span class="s2">&quot;layer&quot;</span><span class="p">],</span> <span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span>
+        <span class="p">)</span>
+        <span class="c1"># Handle (optional) backward layer instantiation.</span>
+        <span class="n">backward_layer_config</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;backward_layer&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">backward_layer_config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">backward_layer</span> <span class="o">=</span> <span class="n">deserialize_layer</span><span class="p">(</span>
+                <span class="n">backward_layer_config</span><span class="p">,</span> <span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span>
+            <span class="p">)</span>
+            <span class="n">config</span><span class="p">[</span><span class="s2">&quot;backward_layer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">backward_layer</span>
+        <span class="c1"># Instantiate the wrapper, adjust it and return it.</span>
+        <span class="n">layer</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+        <span class="n">layer</span><span class="o">.</span><span class="n">_num_constants</span> <span class="o">=</span> <span class="n">num_constants</span>
+        <span class="k">return</span> <span class="n">layer</span></div>
+</div>
+
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The BayesFlow authors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023-2025, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

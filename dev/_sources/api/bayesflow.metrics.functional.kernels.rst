@@ -3,29 +3,29 @@ bayesflow.metrics.functional.kernels
 
 .. automodule:: bayesflow.metrics.functional.kernels
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      gaussian
-      inverse_multiquadratic
-   
-   
+  .. autosummary::
+  
+    gaussian
+    inverse_multiquadratic
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

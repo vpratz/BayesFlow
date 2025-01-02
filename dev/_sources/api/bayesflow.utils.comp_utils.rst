@@ -3,29 +3,29 @@ bayesflow.utils.comp\_utils
 
 .. automodule:: bayesflow.utils.comp_utils
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      calibration_curve
-      expected_calibration_error
-   
-   
+  .. autosummary::
+  
+    calibration_curve
+    expected_calibration_error
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

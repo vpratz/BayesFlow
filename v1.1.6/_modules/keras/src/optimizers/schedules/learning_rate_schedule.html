@@ -1,0 +1,1714 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>keras.src.optimizers.schedules.learning_rate_schedule &#8212; BayesFlow: Amortized Bayesian Inference</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css?v=8fec244e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/keras/src/optimizers/schedules/learning_rate_schedule';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://www.bayesflow.org/_modules/keras/src/optimizers/schedules/learning_rate_schedule.html" />
+    <link rel="icon" href="../../../../../_static/bayesflow_hex.ico"/>
+    <link rel="author" title="About these documents" href="../../../../../about.html" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <img src="../../../../../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../index.html">BayesFlow</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Intro_Amortized_Posterior_Estimation.html">1. Quickstart: Amortized Posterior Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/TwoMoons_Bimodal_Posterior.html">2. Two Moons: Tackling Bimodal Posteriors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Model_Misspecification.html">3. Detecting Model Misspecification in Amortized Posterior Inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/LCA_Model_Posterior_Estimation.html">4. Principled Amortized Bayesian Workflow for Cognitive Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Linear_ODE_system.html">5. Posterior Estimation for ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Covid19_Initial_Posterior_Estimation.html">6. Posterior Estimation for SIR-like Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Model_Comparison_MPT.html">7. Model Comparison for Cognitive Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Hierarchical_Model_Comparison_MPT.html">8. Hierarchical Model Comparison for Cognitive Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../api/bayesflow.html">Public API: bayesflow package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.html">bayesflow.benchmarks package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.bernoulli_glm.html">bayesflow.benchmarks.bernoulli_glm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.bernoulli_glm_raw.html">bayesflow.benchmarks.bernoulli_glm_raw module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.gaussian_linear.html">bayesflow.benchmarks.gaussian_linear module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.gaussian_linear_uniform.html">bayesflow.benchmarks.gaussian_linear_uniform module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.gaussian_mixture.html">bayesflow.benchmarks.gaussian_mixture module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.inverse_kinematics.html">bayesflow.benchmarks.inverse_kinematics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.lotka_volterra.html">bayesflow.benchmarks.lotka_volterra module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.sir.html">bayesflow.benchmarks.sir module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.slcp.html">bayesflow.benchmarks.slcp module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.slcp_distractors.html">bayesflow.benchmarks.slcp_distractors module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.two_moons.html">bayesflow.benchmarks.two_moons module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.amortizers.html">bayesflow.amortizers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.attention.html">bayesflow.attention module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.coupling_networks.html">bayesflow.coupling_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.diagnostics.html">bayesflow.diagnostics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.inference_networks.html">bayesflow.inference_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.losses.html">bayesflow.losses module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.networks.html">bayesflow.networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.sensitivity.html">bayesflow.sensitivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.simulation.html">bayesflow.simulation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.summary_networks.html">bayesflow.summary_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.trainers.html">bayesflow.trainers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.configuration.html">bayesflow.configuration module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.default_settings.html">bayesflow.default_settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.computational_utilities.html">bayesflow.computational_utilities module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.helper_classes.html">bayesflow.helper_classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.helper_functions.html">bayesflow.helper_functions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.helper_networks.html">bayesflow.helper_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.exceptions.html">bayesflow.exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.mcmc.html">bayesflow.mcmc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.version.html">bayesflow.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.wrappers.html">bayesflow.wrappers module</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../api/bayesflow.experimental.html">bayesflow.experimental package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.experimental.rectifiers.html">bayesflow.experimental.rectifiers module</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../installation.html">Full Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about.html">About us</a></li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div class="rst-versions">
+   
+  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
+  <ul>
+      <li><a href="/v1.1.6/_modules/keras/src/optimizers/schedules/learning_rate_schedule.html" class="current">v1.1.6</a></li>
+  </ul>
+  
+   
+  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
+  <ul>
+      <li><a href="/dev/_modules/keras/src/optimizers/schedules/learning_rate_schedule.html" >dev</a></li>
+      <li><a href="/master/_modules/keras/src/optimizers/schedules/learning_rate_schedule.html" >master</a></li>
+  </ul>
+  
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow/issues/new?title=Issue%20on%20page%20%2F_modules/keras/src/optimizers/schedules/learning_rate_schedule.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for keras.src.optimizers.schedules.learning_rate_schedule</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2015 The TensorFlow Authors. All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1"># ==============================================================================</span>
+<span class="sd">&quot;&quot;&quot;Various learning rate schedule functions.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow.compat.v2</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="kn">from</span> <span class="nn">keras.src</span> <span class="kn">import</span> <span class="n">backend</span>
+<span class="kn">from</span> <span class="nn">keras.src.saving</span> <span class="kn">import</span> <span class="n">serialization_lib</span>
+<span class="kn">from</span> <span class="nn">keras.src.saving.legacy</span> <span class="kn">import</span> <span class="n">serialization</span> <span class="k">as</span> <span class="n">legacy_serialization</span>
+
+<span class="c1"># isort: off</span>
+<span class="kn">from</span> <span class="nn">tensorflow.python.util.tf_export</span> <span class="kn">import</span> <span class="n">keras_export</span>
+
+
+<div class="viewcode-block" id="LearningRateSchedule">
+<a class="viewcode-back" href="../../../../../api/bayesflow.helper_functions.html#bayesflow.helper_functions.LearningRateSchedule">[docs]</a>
+<span class="nd">@keras_export</span><span class="p">(</span><span class="s2">&quot;keras.optimizers.schedules.LearningRateSchedule&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">LearningRateSchedule</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;The learning rate schedule base class.</span>
+
+<span class="sd">    You can use a learning rate schedule to modulate how the learning rate</span>
+<span class="sd">    of your optimizer changes over time.</span>
+
+<span class="sd">    Several built-in learning rate schedules are available, such as</span>
+<span class="sd">    `tf.keras.optimizers.schedules.ExponentialDecay` or</span>
+<span class="sd">    `tf.keras.optimizers.schedules.PiecewiseConstantDecay`:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    lr_schedule = keras.optimizers.schedules.ExponentialDecay(</span>
+<span class="sd">        initial_learning_rate=1e-2,</span>
+<span class="sd">        decay_steps=10000,</span>
+<span class="sd">        decay_rate=0.9)</span>
+<span class="sd">    optimizer = keras.optimizers.SGD(learning_rate=lr_schedule)</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    A `LearningRateSchedule` instance can be passed in as the `learning_rate`</span>
+<span class="sd">    argument of any optimizer.</span>
+
+<span class="sd">    To implement your own schedule object, you should implement the `__call__`</span>
+<span class="sd">    method, which takes a `step` argument (scalar integer tensor, the</span>
+<span class="sd">    current training step count).</span>
+<span class="sd">    Like for any other Keras object, you can also optionally</span>
+<span class="sd">    make your object serializable by implementing the `get_config`</span>
+<span class="sd">    and `from_config` methods.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    class MyLRSchedule(tf.keras.optimizers.schedules.LearningRateSchedule):</span>
+
+<span class="sd">      def __init__(self, initial_learning_rate):</span>
+<span class="sd">        self.initial_learning_rate = initial_learning_rate</span>
+
+<span class="sd">      def __call__(self, step):</span>
+<span class="sd">         return self.initial_learning_rate / (step + 1)</span>
+
+<span class="sd">    optimizer = tf.keras.optimizers.SGD(learning_rate=MyLRSchedule(0.1))</span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="LearningRateSchedule.__call__">
+<a class="viewcode-back" href="../../../../../api/bayesflow.helper_functions.html#bayesflow.helper_functions.LearningRateSchedule.__call__">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Learning rate schedule &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39; &quot;</span>
+            <span class="s2">&quot;must override `__call__(self, step)`.&quot;</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LearningRateSchedule.get_config">
+<a class="viewcode-back" href="../../../../../api/bayesflow.helper_functions.html#bayesflow.helper_functions.LearningRateSchedule.get_config">[docs]</a>
+    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Learning rate schedule &#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39; &quot;</span>
+            <span class="s2">&quot;must override `get_config()` in order to be serializable.&quot;</span>
+        <span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="LearningRateSchedule.from_config">
+<a class="viewcode-back" href="../../../../../api/bayesflow.helper_functions.html#bayesflow.helper_functions.LearningRateSchedule.from_config">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_config</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiates a `LearningRateSchedule` from its config.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            config: Output of `get_config()`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A `LearningRateSchedule` instance.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="nd">@keras_export</span><span class="p">(</span><span class="s2">&quot;keras.optimizers.schedules.ExponentialDecay&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">ExponentialDecay</span><span class="p">(</span><span class="n">LearningRateSchedule</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A LearningRateSchedule that uses an exponential decay schedule.</span>
+
+<span class="sd">    When training a model, it is often useful to lower the learning rate as</span>
+<span class="sd">    the training progresses. This schedule applies an exponential decay function</span>
+<span class="sd">    to an optimizer step, given a provided initial learning rate.</span>
+
+<span class="sd">    The schedule is a 1-arg callable that produces a decayed learning</span>
+<span class="sd">    rate when passed the current optimizer step. This can be useful for changing</span>
+<span class="sd">    the learning rate value across different invocations of optimizer functions.</span>
+<span class="sd">    It is computed as:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    def decayed_learning_rate(step):</span>
+<span class="sd">      return initial_learning_rate * decay_rate ^ (step / decay_steps)</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    If the argument `staircase` is `True`, then `step / decay_steps` is</span>
+<span class="sd">    an integer division and the decayed learning rate follows a</span>
+<span class="sd">    staircase function.</span>
+
+<span class="sd">    You can pass this schedule directly into a `tf.keras.optimizers.Optimizer`</span>
+<span class="sd">    as the learning rate.</span>
+<span class="sd">    Example: When fitting a Keras model, decay every 100000 steps with a base</span>
+<span class="sd">    of 0.96:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    initial_learning_rate = 0.1</span>
+<span class="sd">    lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(</span>
+<span class="sd">        initial_learning_rate,</span>
+<span class="sd">        decay_steps=100000,</span>
+<span class="sd">        decay_rate=0.96,</span>
+<span class="sd">        staircase=True)</span>
+
+<span class="sd">    model.compile(optimizer=tf.keras.optimizers.SGD(learning_rate=lr_schedule),</span>
+<span class="sd">                  loss=&#39;sparse_categorical_crossentropy&#39;,</span>
+<span class="sd">                  metrics=[&#39;accuracy&#39;])</span>
+
+<span class="sd">    model.fit(data, labels, epochs=5)</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    The learning rate schedule is also serializable and deserializable using</span>
+<span class="sd">    `tf.keras.optimizers.schedules.serialize` and</span>
+<span class="sd">    `tf.keras.optimizers.schedules.deserialize`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      A 1-arg callable learning rate schedule that takes the current optimizer</span>
+<span class="sd">      step and outputs the decayed learning rate, a scalar `Tensor` of the same</span>
+<span class="sd">      type as `initial_learning_rate`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">initial_learning_rate</span><span class="p">,</span>
+        <span class="n">decay_steps</span><span class="p">,</span>
+        <span class="n">decay_rate</span><span class="p">,</span>
+        <span class="n">staircase</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Applies exponential decay to the learning rate.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          initial_learning_rate: A scalar `float32` or `float64` `Tensor` or a</span>
+<span class="sd">            Python number.  The initial learning rate.</span>
+<span class="sd">          decay_steps: A scalar `int32` or `int64` `Tensor` or a Python number.</span>
+<span class="sd">            Must be positive.  See the decay computation above.</span>
+<span class="sd">          decay_rate: A scalar `float32` or `float64` `Tensor` or a</span>
+<span class="sd">            Python number.  The decay rate.</span>
+<span class="sd">          staircase: Boolean.  If `True` decay the learning rate at discrete</span>
+<span class="sd">            intervals</span>
+<span class="sd">          name: String.  Optional name of the operation.  Defaults to</span>
+<span class="sd">            &#39;ExponentialDecay&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">initial_learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span> <span class="o">=</span> <span class="n">decay_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decay_rate</span> <span class="o">=</span> <span class="n">decay_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">staircase</span> <span class="o">=</span> <span class="n">staircase</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;ExponentialDecay&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">name</span><span class="p">:</span>
+            <span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;initial_learning_rate&quot;</span>
+            <span class="p">)</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">initial_learning_rate</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="n">decay_steps</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">decay_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decay_rate</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+
+            <span class="n">global_step_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">global_step_recomp</span> <span class="o">/</span> <span class="n">decay_steps</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">staircase</span><span class="p">:</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span>
+                <span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">decay_rate</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;initial_learning_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span>
+            <span class="s2">&quot;decay_steps&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span><span class="p">,</span>
+            <span class="s2">&quot;decay_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay_rate</span><span class="p">,</span>
+            <span class="s2">&quot;staircase&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">staircase</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="p">}</span>
+
+
+<span class="nd">@keras_export</span><span class="p">(</span><span class="s2">&quot;keras.optimizers.schedules.PiecewiseConstantDecay&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">PiecewiseConstantDecay</span><span class="p">(</span><span class="n">LearningRateSchedule</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A LearningRateSchedule that uses a piecewise constant decay schedule.</span>
+
+<span class="sd">    The function returns a 1-arg callable to compute the piecewise constant</span>
+<span class="sd">    when passed the current optimizer step. This can be useful for changing the</span>
+<span class="sd">    learning rate value across different invocations of optimizer functions.</span>
+
+<span class="sd">    Example: use a learning rate that&#39;s 1.0 for the first 100001 steps, 0.5</span>
+<span class="sd">      for the next 10000 steps, and 0.1 for any additional steps.</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    step = tf.Variable(0, trainable=False)</span>
+<span class="sd">    boundaries = [100000, 110000]</span>
+<span class="sd">    values = [1.0, 0.5, 0.1]</span>
+<span class="sd">    learning_rate_fn = keras.optimizers.schedules.PiecewiseConstantDecay(</span>
+<span class="sd">        boundaries, values)</span>
+
+<span class="sd">    # Later, whenever we perform an optimization step, we pass in the step.</span>
+<span class="sd">    learning_rate = learning_rate_fn(step)</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    You can pass this schedule directly into a `tf.keras.optimizers.Optimizer`</span>
+<span class="sd">    as the learning rate. The learning rate schedule is also serializable and</span>
+<span class="sd">    deserializable using `tf.keras.optimizers.schedules.serialize` and</span>
+<span class="sd">    `tf.keras.optimizers.schedules.deserialize`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      A 1-arg callable learning rate schedule that takes the current optimizer</span>
+<span class="sd">      step and outputs the decayed learning rate, a scalar `Tensor` of the same</span>
+<span class="sd">      type as the boundary tensors.</span>
+
+<span class="sd">      The output of the 1-arg function that takes the `step`</span>
+<span class="sd">      is `values[0]` when `step &lt;= boundaries[0]`,</span>
+<span class="sd">      `values[1]` when `step &gt; boundaries[0]` and `step &lt;= boundaries[1]`, ...,</span>
+<span class="sd">      and values[-1] when `step &gt; boundaries[-1]`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">boundaries</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Piecewise constant from boundaries and interval values.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          boundaries: A list of `Tensor`s or `int`s or `float`s with strictly</span>
+<span class="sd">            increasing entries, and with all elements having the same type as</span>
+<span class="sd">            the optimizer step.</span>
+<span class="sd">          values: A list of `Tensor`s or `float`s or `int`s that specifies the</span>
+<span class="sd">            values for the intervals defined by `boundaries`. It should have one</span>
+<span class="sd">            more element than `boundaries`, and all elements should have the</span>
+<span class="sd">            same type.</span>
+<span class="sd">          name: A string. Optional name of the operation. Defaults to</span>
+<span class="sd">            &#39;PiecewiseConstant&#39;.</span>
+
+<span class="sd">        Raises:</span>
+<span class="sd">          ValueError: if the number of elements in the lists do not match.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">boundaries</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;The length of boundaries should be 1 less than the length of &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;values. Received: boundaries=</span><span class="si">{</span><span class="n">boundaries</span><span class="si">}</span><span class="s2"> of length &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">boundaries</span><span class="p">)</span><span class="si">}</span><span class="s2">, and values=</span><span class="si">{</span><span class="n">values</span><span class="si">}</span><span class="s2"> &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;of length </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">boundaries</span> <span class="o">=</span> <span class="n">boundaries</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">values</span> <span class="o">=</span> <span class="n">values</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;PiecewiseConstant&quot;</span><span class="p">):</span>
+            <span class="n">boundaries</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">map_structure</span><span class="p">(</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">boundaries</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">map_structure</span><span class="p">(</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">nest</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">x_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">b</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">boundaries</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">b</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">base_dtype</span> <span class="o">!=</span> <span class="n">x_recomp</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">base_dtype</span><span class="p">:</span>
+                    <span class="c1"># We cast the boundaries to have the same type as the step</span>
+                    <span class="n">b</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">x_recomp</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">base_dtype</span><span class="p">)</span>
+                    <span class="n">boundaries</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">b</span>
+            <span class="n">pred_fn_pairs</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">pred_fn_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">x_recomp</span> <span class="o">&lt;=</span> <span class="n">boundaries</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+            <span class="n">pred_fn_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="p">(</span><span class="n">x_recomp</span> <span class="o">&gt;</span> <span class="n">boundaries</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">values</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="p">)</span>
+            <span class="k">for</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                <span class="n">boundaries</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">boundaries</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="p">):</span>
+                <span class="c1"># Need to bind v here; can do this with lambda v=v: ...</span>
+                <span class="n">pred</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_recomp</span> <span class="o">&gt;</span> <span class="n">low</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">x_recomp</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span>
+                <span class="n">pred_fn_pairs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">pred</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">v</span><span class="o">=</span><span class="n">v</span><span class="p">:</span> <span class="n">v</span><span class="p">))</span>
+
+            <span class="c1"># The default isn&#39;t needed here because our conditions are mutually</span>
+            <span class="c1"># exclusive and exhaustive, but tf.case requires it.</span>
+            <span class="n">default</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">case</span><span class="p">(</span><span class="n">pred_fn_pairs</span><span class="p">,</span> <span class="n">default</span><span class="p">,</span> <span class="n">exclusive</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;boundaries&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">boundaries</span><span class="p">,</span>
+            <span class="s2">&quot;values&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="p">}</span>
+
+
+<span class="nd">@keras_export</span><span class="p">(</span><span class="s2">&quot;keras.optimizers.schedules.PolynomialDecay&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">PolynomialDecay</span><span class="p">(</span><span class="n">LearningRateSchedule</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A LearningRateSchedule that uses a polynomial decay schedule.</span>
+
+<span class="sd">    It is commonly observed that a monotonically decreasing learning rate, whose</span>
+<span class="sd">    degree of change is carefully chosen, results in a better performing model.</span>
+<span class="sd">    This schedule applies a polynomial decay function to an optimizer step,</span>
+<span class="sd">    given a provided `initial_learning_rate`, to reach an `end_learning_rate`</span>
+<span class="sd">    in the given `decay_steps`.</span>
+
+<span class="sd">    It requires a `step` value to compute the decayed learning rate. You</span>
+<span class="sd">    can just pass a TensorFlow variable that you increment at each training</span>
+<span class="sd">    step.</span>
+
+<span class="sd">    The schedule is a 1-arg callable that produces a decayed learning rate</span>
+<span class="sd">    when passed the current optimizer step. This can be useful for changing the</span>
+<span class="sd">    learning rate value across different invocations of optimizer functions.</span>
+<span class="sd">    It is computed as:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    def decayed_learning_rate(step):</span>
+<span class="sd">      step = min(step, decay_steps)</span>
+<span class="sd">      return ((initial_learning_rate - end_learning_rate) *</span>
+<span class="sd">              (1 - step / decay_steps) ^ (power)</span>
+<span class="sd">             ) + end_learning_rate</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    If `cycle` is True then a multiple of `decay_steps` is used, the first one</span>
+<span class="sd">    that is bigger than `step`.</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    def decayed_learning_rate(step):</span>
+<span class="sd">      decay_steps = decay_steps * ceil(step / decay_steps)</span>
+<span class="sd">      return ((initial_learning_rate - end_learning_rate) *</span>
+<span class="sd">              (1 - step / decay_steps) ^ (power)</span>
+<span class="sd">             ) + end_learning_rate</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    You can pass this schedule directly into a `tf.keras.optimizers.Optimizer`</span>
+<span class="sd">    as the learning rate.</span>
+<span class="sd">    Example: Fit a model while decaying from 0.1 to 0.01 in 10000 steps using</span>
+<span class="sd">    sqrt (i.e. power=0.5):</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    ...</span>
+<span class="sd">    starter_learning_rate = 0.1</span>
+<span class="sd">    end_learning_rate = 0.01</span>
+<span class="sd">    decay_steps = 10000</span>
+<span class="sd">    learning_rate_fn = tf.keras.optimizers.schedules.PolynomialDecay(</span>
+<span class="sd">        starter_learning_rate,</span>
+<span class="sd">        decay_steps,</span>
+<span class="sd">        end_learning_rate,</span>
+<span class="sd">        power=0.5)</span>
+
+<span class="sd">    model.compile(optimizer=tf.keras.optimizers.SGD(</span>
+<span class="sd">                      learning_rate=learning_rate_fn),</span>
+<span class="sd">                  loss=&#39;sparse_categorical_crossentropy&#39;,</span>
+<span class="sd">                  metrics=[&#39;accuracy&#39;])</span>
+
+<span class="sd">    model.fit(data, labels, epochs=5)</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    The learning rate schedule is also serializable and deserializable using</span>
+<span class="sd">    `tf.keras.optimizers.schedules.serialize` and</span>
+<span class="sd">    `tf.keras.optimizers.schedules.deserialize`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      A 1-arg callable learning rate schedule that takes the current optimizer</span>
+<span class="sd">      step and outputs the decayed learning rate, a scalar `Tensor` of the same</span>
+<span class="sd">      type as `initial_learning_rate`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">initial_learning_rate</span><span class="p">,</span>
+        <span class="n">decay_steps</span><span class="p">,</span>
+        <span class="n">end_learning_rate</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span>
+        <span class="n">power</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">cycle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Applies a polynomial decay to the learning rate.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          initial_learning_rate: A scalar `float32` or `float64` `Tensor` or a</span>
+<span class="sd">            Python number.  The initial learning rate.</span>
+<span class="sd">          decay_steps: A scalar `int32` or `int64` `Tensor` or a Python number.</span>
+<span class="sd">            Must be positive.  See the decay computation above.</span>
+<span class="sd">          end_learning_rate: A scalar `float32` or `float64` `Tensor` or a</span>
+<span class="sd">            Python number.  The minimal end learning rate.</span>
+<span class="sd">          power: A scalar `float32` or `float64` `Tensor` or a</span>
+<span class="sd">            Python number. The power of the polynomial. Defaults to `1.0`.</span>
+<span class="sd">          cycle: A boolean, whether it should cycle beyond decay_steps.</span>
+<span class="sd">          name: String.  Optional name of the operation. Defaults to</span>
+<span class="sd">            &#39;PolynomialDecay&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">initial_learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span> <span class="o">=</span> <span class="n">decay_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end_learning_rate</span> <span class="o">=</span> <span class="n">end_learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">power</span> <span class="o">=</span> <span class="n">power</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cycle</span> <span class="o">=</span> <span class="n">cycle</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;PolynomialDecay&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">name</span><span class="p">:</span>
+            <span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;initial_learning_rate&quot;</span>
+            <span class="p">)</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">initial_learning_rate</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="n">end_learning_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">end_learning_rate</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">power</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">power</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+
+            <span class="n">global_step_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">decay_steps_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle</span><span class="p">:</span>
+                <span class="c1"># Find the first multiple of decay_steps that is bigger than</span>
+                <span class="c1"># global_step. If global_step is zero set the multiplier to 1</span>
+                <span class="n">multiplier</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                    <span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">global_step_recomp</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+                    <span class="mf">1.0</span><span class="p">,</span>
+                    <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">global_step_recomp</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span><span class="p">),</span>
+                <span class="p">)</span>
+                <span class="n">decay_steps_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">decay_steps_recomp</span><span class="p">,</span> <span class="n">multiplier</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Make sure that the global_step used is not bigger than</span>
+                <span class="c1"># decay_steps.</span>
+                <span class="n">global_step_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span>
+                    <span class="n">global_step_recomp</span><span class="p">,</span> <span class="n">decay_steps_recomp</span>
+                <span class="p">)</span>
+
+            <span class="n">p</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">global_step_recomp</span><span class="p">,</span> <span class="n">decay_steps_recomp</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span>
+                    <span class="n">initial_learning_rate</span> <span class="o">-</span> <span class="n">end_learning_rate</span><span class="p">,</span>
+                    <span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">,</span> <span class="n">power</span><span class="p">),</span>
+                <span class="p">),</span>
+                <span class="n">end_learning_rate</span><span class="p">,</span>
+                <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;initial_learning_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span>
+            <span class="s2">&quot;decay_steps&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span><span class="p">,</span>
+            <span class="s2">&quot;end_learning_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">end_learning_rate</span><span class="p">,</span>
+            <span class="s2">&quot;power&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">power</span><span class="p">,</span>
+            <span class="s2">&quot;cycle&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">cycle</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="p">}</span>
+
+
+<span class="nd">@keras_export</span><span class="p">(</span><span class="s2">&quot;keras.optimizers.schedules.InverseTimeDecay&quot;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">InverseTimeDecay</span><span class="p">(</span><span class="n">LearningRateSchedule</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A LearningRateSchedule that uses an inverse time decay schedule.</span>
+
+<span class="sd">    When training a model, it is often useful to lower the learning rate as</span>
+<span class="sd">    the training progresses. This schedule applies the inverse decay function</span>
+<span class="sd">    to an optimizer step, given a provided initial learning rate.</span>
+<span class="sd">    It requires a `step` value to compute the decayed learning rate. You can</span>
+<span class="sd">    just pass a TensorFlow variable that you increment at each training step.</span>
+
+<span class="sd">    The schedule is a 1-arg callable that produces a decayed learning</span>
+<span class="sd">    rate when passed the current optimizer step. This can be useful for changing</span>
+<span class="sd">    the learning rate value across different invocations of optimizer functions.</span>
+<span class="sd">    It is computed as:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    def decayed_learning_rate(step):</span>
+<span class="sd">      return initial_learning_rate / (1 + decay_rate * step / decay_step)</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    or, if `staircase` is `True`, as:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    def decayed_learning_rate(step):</span>
+<span class="sd">      return initial_learning_rate / (1 + decay_rate * floor(step / decay_step))</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    You can pass this schedule directly into a `tf.keras.optimizers.Optimizer`</span>
+<span class="sd">    as the learning rate.</span>
+<span class="sd">    Example: Fit a Keras model when decaying 1/t with a rate of 0.5:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    ...</span>
+<span class="sd">    initial_learning_rate = 0.1</span>
+<span class="sd">    decay_steps = 1.0</span>
+<span class="sd">    decay_rate = 0.5</span>
+<span class="sd">    learning_rate_fn = keras.optimizers.schedules.InverseTimeDecay(</span>
+<span class="sd">      initial_learning_rate, decay_steps, decay_rate)</span>
+
+<span class="sd">    model.compile(optimizer=tf.keras.optimizers.SGD(</span>
+<span class="sd">                      learning_rate=learning_rate_fn),</span>
+<span class="sd">                  loss=&#39;sparse_categorical_crossentropy&#39;,</span>
+<span class="sd">                  metrics=[&#39;accuracy&#39;])</span>
+
+<span class="sd">    model.fit(data, labels, epochs=5)</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      A 1-arg callable learning rate schedule that takes the current optimizer</span>
+<span class="sd">      step and outputs the decayed learning rate, a scalar `Tensor` of the same</span>
+<span class="sd">      type as `initial_learning_rate`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">initial_learning_rate</span><span class="p">,</span>
+        <span class="n">decay_steps</span><span class="p">,</span>
+        <span class="n">decay_rate</span><span class="p">,</span>
+        <span class="n">staircase</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Applies inverse time decay to the initial learning rate.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          initial_learning_rate: A scalar `float32` or `float64` `Tensor` or a</span>
+<span class="sd">            Python number.  The initial learning rate.</span>
+<span class="sd">          decay_steps: How often to apply decay.</span>
+<span class="sd">          decay_rate: A Python number.  The decay rate.</span>
+<span class="sd">          staircase: Whether to apply decay in a discrete staircase, as opposed</span>
+<span class="sd">            to continuous, fashion.</span>
+<span class="sd">          name: String.  Optional name of the operation.  Defaults to</span>
+<span class="sd">            &#39;InverseTimeDecay&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">initial_learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span> <span class="o">=</span> <span class="n">decay_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decay_rate</span> <span class="o">=</span> <span class="n">decay_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">staircase</span> <span class="o">=</span> <span class="n">staircase</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;InverseTimeDecay&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">name</span><span class="p">:</span>
+            <span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;initial_learning_rate&quot;</span>
+            <span class="p">)</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">initial_learning_rate</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="n">decay_steps</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">decay_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decay_rate</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+
+            <span class="n">global_step_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">global_step_recomp</span> <span class="o">/</span> <span class="n">decay_steps</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">staircase</span><span class="p">:</span>
+                <span class="n">p</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+            <span class="n">const</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">denom</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">const</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">decay_rate</span><span class="p">,</span> <span class="n">p</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">divide</span><span class="p">(</span><span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">denom</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;initial_learning_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span>
+            <span class="s2">&quot;decay_steps&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span><span class="p">,</span>
+            <span class="s2">&quot;decay_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay_rate</span><span class="p">,</span>
+            <span class="s2">&quot;staircase&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">staircase</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="p">}</span>
+
+
+<span class="nd">@keras_export</span><span class="p">(</span>
+    <span class="s2">&quot;keras.optimizers.schedules.CosineDecay&quot;</span><span class="p">,</span> <span class="s2">&quot;keras.experimental.CosineDecay&quot;</span>
+<span class="p">)</span>
+<span class="k">class</span> <span class="nc">CosineDecay</span><span class="p">(</span><span class="n">LearningRateSchedule</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A LearningRateSchedule that uses a cosine decay with optional warmup.</span>
+
+<span class="sd">    See [Loshchilov &amp; Hutter, ICLR2016](https://arxiv.org/abs/1608.03983),</span>
+<span class="sd">    SGDR: Stochastic Gradient Descent with Warm Restarts.</span>
+
+<span class="sd">    For the idea of a linear warmup of our learning rate,</span>
+<span class="sd">    see [Goyal et al.](https://arxiv.org/pdf/1706.02677.pdf).</span>
+
+<span class="sd">    When we begin training a model, we often want an initial increase in our</span>
+<span class="sd">    learning rate followed by a decay. If `warmup_target` is an int, this</span>
+<span class="sd">    schedule applies a linear increase per optimizer step to our learning rate</span>
+<span class="sd">    from `initial_learning_rate` to `warmup_target` for a duration of</span>
+<span class="sd">    `warmup_steps`. Afterwards, it applies a cosine decay function taking our</span>
+<span class="sd">    learning rate from `warmup_target` to `alpha` for a duration of</span>
+<span class="sd">    `decay_steps`. If `warmup_target` is None we skip warmup and our decay</span>
+<span class="sd">    will take our learning rate from `initial_learning_rate` to `alpha`.</span>
+<span class="sd">    It requires a `step` value to  compute the learning rate. You can</span>
+<span class="sd">    just pass a TensorFlow variable that you increment at each training step.</span>
+
+<span class="sd">    The schedule is a 1-arg callable that produces a warmup followed by a</span>
+<span class="sd">    decayed learning rate when passed the current optimizer step. This can be</span>
+<span class="sd">    useful for changing the learning rate value across different invocations of</span>
+<span class="sd">    optimizer functions.</span>
+
+<span class="sd">    Our warmup is computed as:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    def warmup_learning_rate(step):</span>
+<span class="sd">        completed_fraction = step / warmup_steps</span>
+<span class="sd">        total_delta = target_warmup - initial_learning_rate</span>
+<span class="sd">        return completed_fraction * total_delta</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    And our decay is computed as:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    if warmup_target is None:</span>
+<span class="sd">        initial_decay_lr = initial_learning_rate</span>
+<span class="sd">    else:</span>
+<span class="sd">        initial_decay_lr = warmup_target</span>
+
+<span class="sd">    def decayed_learning_rate(step):</span>
+<span class="sd">        step = min(step, decay_steps)</span>
+<span class="sd">        cosine_decay = 0.5 * (1 + cos(pi * step / decay_steps))</span>
+<span class="sd">        decayed = (1 - alpha) * cosine_decay + alpha</span>
+<span class="sd">        return initial_decay_lr * decayed</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    Example usage without warmup:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    decay_steps = 1000</span>
+<span class="sd">    initial_learning_rate = 0.1</span>
+<span class="sd">    lr_decayed_fn = tf.keras.optimizers.schedules.CosineDecay(</span>
+<span class="sd">        initial_learning_rate, decay_steps)</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    Example usage with warmup:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    decay_steps = 1000</span>
+<span class="sd">    initial_learning_rate = 0</span>
+<span class="sd">    warmup_steps = 1000</span>
+<span class="sd">    target_learning_rate = 0.1</span>
+<span class="sd">    lr_warmup_decayed_fn = tf.keras.optimizers.schedules.CosineDecay(</span>
+<span class="sd">        initial_learning_rate, decay_steps, warmup_target=target_learning_rate,</span>
+<span class="sd">        warmup_steps=warmup_steps</span>
+<span class="sd">    )</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    You can pass this schedule directly into a `tf.keras.optimizers.Optimizer`</span>
+<span class="sd">    as the learning rate. The learning rate schedule is also serializable and</span>
+<span class="sd">    deserializable using `tf.keras.optimizers.schedules.serialize` and</span>
+<span class="sd">    `tf.keras.optimizers.schedules.deserialize`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      A 1-arg callable learning rate schedule that takes the current optimizer</span>
+<span class="sd">      step and outputs the decayed learning rate, a scalar `Tensor` of the same</span>
+<span class="sd">      type as `initial_learning_rate`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">initial_learning_rate</span><span class="p">,</span>
+        <span class="n">decay_steps</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">warmup_target</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">warmup_steps</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Applies cosine decay to the learning rate.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          initial_learning_rate: A scalar `float32` or `float64` `Tensor` or a</span>
+<span class="sd">            Python int. The initial learning rate.</span>
+<span class="sd">          decay_steps: A scalar `int32` or `int64` `Tensor` or a Python int.</span>
+<span class="sd">            Number of steps to decay over.</span>
+<span class="sd">          alpha: A scalar `float32` or `float64` `Tensor` or a Python int.</span>
+<span class="sd">            Minimum learning rate value for decay as a fraction of</span>
+<span class="sd">            `initial_learning_rate`.</span>
+<span class="sd">          name: String. Optional name of the operation.  Defaults to</span>
+<span class="sd">            &#39;CosineDecay&#39;.</span>
+<span class="sd">          warmup_target: None or a scalar `float32` or `float64` `Tensor` or a</span>
+<span class="sd">            Python int. The target learning rate for our warmup phase. Will cast</span>
+<span class="sd">            to the `initial_learning_rate` datatype. Setting to None will skip</span>
+<span class="sd">            warmup and begins decay phase from `initial_learning_rate`.</span>
+<span class="sd">            Otherwise scheduler will warmup from `initial_learning_rate` to</span>
+<span class="sd">            `warmup_target`.</span>
+<span class="sd">          warmup_steps: A scalar `int32` or `int64` `Tensor` or a Python int.</span>
+<span class="sd">            Number of steps to warmup over.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">initial_learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span> <span class="o">=</span> <span class="n">decay_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warmup_steps</span> <span class="o">=</span> <span class="n">warmup_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">warmup_target</span> <span class="o">=</span> <span class="n">warmup_target</span>
+
+    <span class="k">def</span> <span class="nf">_decay_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">decay_steps</span><span class="p">,</span> <span class="n">decay_from_lr</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;CosineDecay&quot;</span><span class="p">):</span>
+            <span class="n">completed_fraction</span> <span class="o">=</span> <span class="n">step</span> <span class="o">/</span> <span class="n">decay_steps</span>
+            <span class="n">tf_pi</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span>
+            <span class="n">cosine_decayed</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">tf</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">tf_pi</span> <span class="o">*</span> <span class="n">completed_fraction</span><span class="p">))</span>
+            <span class="n">decayed</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">cosine_decayed</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span>
+            <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">decay_from_lr</span><span class="p">,</span> <span class="n">decayed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_warmup_function</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">,</span> <span class="n">warmup_steps</span><span class="p">,</span> <span class="n">warmup_target</span><span class="p">,</span> <span class="n">initial_learning_rate</span>
+    <span class="p">):</span>
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;CosineDecay&quot;</span><span class="p">):</span>
+            <span class="n">completed_fraction</span> <span class="o">=</span> <span class="n">step</span> <span class="o">/</span> <span class="n">warmup_steps</span>
+            <span class="n">total_step_delta</span> <span class="o">=</span> <span class="n">warmup_target</span> <span class="o">-</span> <span class="n">initial_learning_rate</span>
+            <span class="k">return</span> <span class="n">total_step_delta</span> <span class="o">*</span> <span class="n">completed_fraction</span> <span class="o">+</span> <span class="n">initial_learning_rate</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;CosineDecay&quot;</span><span class="p">):</span>
+            <span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;initial_learning_rate&quot;</span>
+            <span class="p">)</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">initial_learning_rate</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="n">decay_steps</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">global_step_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">warmup_target</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">global_step_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">global_step_recomp</span><span class="p">,</span> <span class="n">decay_steps</span><span class="p">)</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decay_function</span><span class="p">(</span>
+                    <span class="n">global_step_recomp</span><span class="p">,</span>
+                    <span class="n">decay_steps</span><span class="p">,</span>
+                    <span class="n">initial_learning_rate</span><span class="p">,</span>
+                    <span class="n">dtype</span><span class="p">,</span>
+                <span class="p">)</span>
+
+            <span class="n">warmup_target</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">warmup_target</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">warmup_steps</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">warmup_steps</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+
+            <span class="n">global_step_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span>
+                <span class="n">global_step_recomp</span><span class="p">,</span> <span class="n">decay_steps</span> <span class="o">+</span> <span class="n">warmup_steps</span>
+            <span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span>
+                <span class="n">global_step_recomp</span> <span class="o">&lt;</span> <span class="n">warmup_steps</span><span class="p">,</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_warmup_function</span><span class="p">(</span>
+                    <span class="n">global_step_recomp</span><span class="p">,</span>
+                    <span class="n">warmup_steps</span><span class="p">,</span>
+                    <span class="n">warmup_target</span><span class="p">,</span>
+                    <span class="n">initial_learning_rate</span><span class="p">,</span>
+                <span class="p">),</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_decay_function</span><span class="p">(</span>
+                    <span class="n">global_step_recomp</span> <span class="o">-</span> <span class="n">warmup_steps</span><span class="p">,</span>
+                    <span class="n">decay_steps</span><span class="p">,</span>
+                    <span class="n">warmup_target</span><span class="p">,</span>
+                    <span class="n">dtype</span><span class="p">,</span>
+                <span class="p">),</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;initial_learning_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span>
+            <span class="s2">&quot;decay_steps&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span><span class="p">,</span>
+            <span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;warmup_target&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">warmup_target</span><span class="p">,</span>
+            <span class="s2">&quot;warmup_steps&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">warmup_steps</span><span class="p">,</span>
+        <span class="p">}</span>
+
+
+<span class="nd">@keras_export</span><span class="p">(</span>
+    <span class="s2">&quot;keras.optimizers.schedules.CosineDecayRestarts&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;keras.experimental.CosineDecayRestarts&quot;</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="k">class</span> <span class="nc">CosineDecayRestarts</span><span class="p">(</span><span class="n">LearningRateSchedule</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A LearningRateSchedule that uses a cosine decay schedule with restarts.</span>
+
+<span class="sd">    See [Loshchilov &amp; Hutter, ICLR2016](https://arxiv.org/abs/1608.03983),</span>
+<span class="sd">    SGDR: Stochastic Gradient Descent with Warm Restarts.</span>
+
+<span class="sd">    When training a model, it is often useful to lower the learning rate as</span>
+<span class="sd">    the training progresses. This schedule applies a cosine decay function with</span>
+<span class="sd">    restarts to an optimizer step, given a provided initial learning rate.</span>
+<span class="sd">    It requires a `step` value to compute the decayed learning rate. You can</span>
+<span class="sd">    just pass a TensorFlow variable that you increment at each training step.</span>
+
+<span class="sd">    The schedule is a 1-arg callable that produces a decayed learning</span>
+<span class="sd">    rate when passed the current optimizer step. This can be useful for changing</span>
+<span class="sd">    the learning rate value across different invocations of optimizer functions.</span>
+
+<span class="sd">    The learning rate multiplier first decays</span>
+<span class="sd">    from 1 to `alpha` for `first_decay_steps` steps. Then, a warm</span>
+<span class="sd">    restart is performed. Each new warm restart runs for `t_mul` times more</span>
+<span class="sd">    steps and with `m_mul` times initial learning rate as the new learning rate.</span>
+
+<span class="sd">    Example usage:</span>
+<span class="sd">    ```python</span>
+<span class="sd">    first_decay_steps = 1000</span>
+<span class="sd">    lr_decayed_fn = (</span>
+<span class="sd">      tf.keras.optimizers.schedules.CosineDecayRestarts(</span>
+<span class="sd">          initial_learning_rate,</span>
+<span class="sd">          first_decay_steps))</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    You can pass this schedule directly into a `tf.keras.optimizers.Optimizer`</span>
+<span class="sd">    as the learning rate. The learning rate schedule is also serializable and</span>
+<span class="sd">    deserializable using `tf.keras.optimizers.schedules.serialize` and</span>
+<span class="sd">    `tf.keras.optimizers.schedules.deserialize`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      A 1-arg callable learning rate schedule that takes the current optimizer</span>
+<span class="sd">      step and outputs the decayed learning rate, a scalar `Tensor` of the same</span>
+<span class="sd">      type as `initial_learning_rate`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">initial_learning_rate</span><span class="p">,</span>
+        <span class="n">first_decay_steps</span><span class="p">,</span>
+        <span class="n">t_mul</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span>
+        <span class="n">m_mul</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Applies cosine decay with restarts to the learning rate.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          initial_learning_rate: A scalar `float32` or `float64` Tensor or a</span>
+<span class="sd">            Python number. The initial learning rate.</span>
+<span class="sd">          first_decay_steps: A scalar `int32` or `int64` `Tensor` or a Python</span>
+<span class="sd">            number. Number of steps to decay over.</span>
+<span class="sd">          t_mul: A scalar `float32` or `float64` `Tensor` or a Python number.</span>
+<span class="sd">            Used to derive the number of iterations in the i-th period.</span>
+<span class="sd">          m_mul: A scalar `float32` or `float64` `Tensor` or a Python number.</span>
+<span class="sd">            Used to derive the initial learning rate of the i-th period.</span>
+<span class="sd">          alpha: A scalar `float32` or `float64` Tensor or a Python number.</span>
+<span class="sd">            Minimum learning rate value as a fraction of the</span>
+<span class="sd">            initial_learning_rate.</span>
+<span class="sd">          name: String. Optional name of the operation. Defaults to &#39;SGDRDecay&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">initial_learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_decay_steps</span> <span class="o">=</span> <span class="n">first_decay_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_t_mul</span> <span class="o">=</span> <span class="n">t_mul</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_m_mul</span> <span class="o">=</span> <span class="n">m_mul</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;SGDRDecay&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">name</span><span class="p">:</span>
+            <span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;initial_learning_rate&quot;</span>
+            <span class="p">)</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">initial_learning_rate</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="n">first_decay_steps</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">first_decay_steps</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">t_mul</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_t_mul</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">m_mul</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_m_mul</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+
+            <span class="n">global_step_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">completed_fraction</span> <span class="o">=</span> <span class="n">global_step_recomp</span> <span class="o">/</span> <span class="n">first_decay_steps</span>
+
+            <span class="k">def</span> <span class="nf">compute_step</span><span class="p">(</span><span class="n">completed_fraction</span><span class="p">,</span> <span class="n">geometric</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">                </span><span class="sd">&quot;&quot;&quot;Helper for `cond` operation.&quot;&quot;&quot;</span>
+                <span class="k">if</span> <span class="n">geometric</span><span class="p">:</span>
+                    <span class="n">i_restart</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span>
+                        <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">completed_fraction</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">t_mul</span><span class="p">))</span>
+                        <span class="o">/</span> <span class="n">tf</span><span class="o">.</span><span class="n">math</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">t_mul</span><span class="p">)</span>
+                    <span class="p">)</span>
+
+                    <span class="n">sum_r</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">t_mul</span><span class="o">**</span><span class="n">i_restart</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">t_mul</span><span class="p">)</span>
+                    <span class="n">completed_fraction</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">completed_fraction</span> <span class="o">-</span> <span class="n">sum_r</span>
+                    <span class="p">)</span> <span class="o">/</span> <span class="n">t_mul</span><span class="o">**</span><span class="n">i_restart</span>
+
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">i_restart</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">completed_fraction</span><span class="p">)</span>
+                    <span class="n">completed_fraction</span> <span class="o">-=</span> <span class="n">i_restart</span>
+
+                <span class="k">return</span> <span class="n">i_restart</span><span class="p">,</span> <span class="n">completed_fraction</span>
+
+            <span class="n">i_restart</span><span class="p">,</span> <span class="n">completed_fraction</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">t_mul</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="n">compute_step</span><span class="p">(</span><span class="n">completed_fraction</span><span class="p">,</span> <span class="n">geometric</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+                <span class="k">lambda</span><span class="p">:</span> <span class="n">compute_step</span><span class="p">(</span><span class="n">completed_fraction</span><span class="p">,</span> <span class="n">geometric</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="p">)</span>
+
+            <span class="n">m_fac</span> <span class="o">=</span> <span class="n">m_mul</span><span class="o">**</span><span class="n">i_restart</span>
+            <span class="n">cosine_decayed</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="mf">0.5</span>
+                <span class="o">*</span> <span class="n">m_fac</span>
+                <span class="o">*</span> <span class="p">(</span>
+                    <span class="mf">1.0</span>
+                    <span class="o">+</span> <span class="n">tf</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span>
+                        <span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span> <span class="o">*</span> <span class="n">completed_fraction</span>
+                    <span class="p">)</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">decayed</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">cosine_decayed</span> <span class="o">+</span> <span class="n">alpha</span>
+
+            <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span><span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">decayed</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;initial_learning_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span>
+            <span class="s2">&quot;first_decay_steps&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_decay_steps</span><span class="p">,</span>
+            <span class="s2">&quot;t_mul&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_t_mul</span><span class="p">,</span>
+            <span class="s2">&quot;m_mul&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_m_mul</span><span class="p">,</span>
+            <span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="p">}</span>
+
+
+<span class="c1"># Note: this code is still used by V1 APIs.</span>
+<span class="k">class</span> <span class="nc">LinearCosineDecay</span><span class="p">(</span><span class="n">LearningRateSchedule</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A LearningRateSchedule that uses a linear cosine decay schedule.</span>
+
+<span class="sd">    See [Bello et al., ICML2017] Neural Optimizer Search with RL.</span>
+<span class="sd">    https://arxiv.org/abs/1709.07417</span>
+
+<span class="sd">    For the idea of warm starts here controlled by `num_periods`,</span>
+<span class="sd">    see [Loshchilov &amp; Hutter, ICLR2016] SGDR: Stochastic Gradient Descent</span>
+<span class="sd">    with Warm Restarts. https://arxiv.org/abs/1608.03983</span>
+
+<span class="sd">    Note that linear cosine decay is more aggressive than cosine decay and</span>
+<span class="sd">    larger initial learning rates can typically be used.</span>
+
+<span class="sd">    When training a model, it is often recommended to lower the learning rate as</span>
+<span class="sd">    the training progresses. This schedule applies a linear cosine decay</span>
+<span class="sd">    function to an optimizer step, given a provided initial learning rate.</span>
+<span class="sd">    It requires a `step` value to compute the decayed learning rate. You can</span>
+<span class="sd">    just pass a TensorFlow variable that you increment at each training step.</span>
+
+<span class="sd">    The schedule is a 1-arg callable that produces a decayed learning</span>
+<span class="sd">    rate when passed the current optimizer step. This can be useful for changing</span>
+<span class="sd">    the learning rate value across different invocations of optimizer functions.</span>
+<span class="sd">    It is computed as:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    def decayed_learning_rate(step):</span>
+<span class="sd">      step = min(step, decay_steps)</span>
+<span class="sd">      linear_decay = (decay_steps - step) / decay_steps</span>
+<span class="sd">      cosine_decay = 0.5 * (</span>
+<span class="sd">          1 + cos(pi * 2 * num_periods * step / decay_steps))</span>
+<span class="sd">      decayed = (alpha + linear_decay) * cosine_decay + beta</span>
+<span class="sd">      return initial_learning_rate * decayed</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    Example usage:</span>
+<span class="sd">    ```python</span>
+<span class="sd">    decay_steps = 1000</span>
+<span class="sd">    lr_decayed_fn = (</span>
+<span class="sd">      tf.keras.experimental.LinearCosineDecay(</span>
+<span class="sd">        initial_learning_rate, decay_steps))</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    You can pass this schedule directly into a `tf.keras.optimizers.Optimizer`</span>
+<span class="sd">    as the learning rate. The learning rate schedule is also serializable and</span>
+<span class="sd">    deserializable using `tf.keras.optimizers.schedules.serialize` and</span>
+<span class="sd">    `tf.keras.optimizers.schedules.deserialize`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      A 1-arg callable learning rate schedule that takes the current optimizer</span>
+<span class="sd">      step and outputs the decayed learning rate, a scalar `Tensor` of the same</span>
+<span class="sd">      type as `initial_learning_rate`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">initial_learning_rate</span><span class="p">,</span>
+        <span class="n">decay_steps</span><span class="p">,</span>
+        <span class="n">num_periods</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">beta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Applies linear cosine decay to the learning rate.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          initial_learning_rate: A scalar `float32` or `float64` Tensor or a</span>
+<span class="sd">            Python number. The initial learning rate.</span>
+<span class="sd">          decay_steps: A scalar `int32` or `int64` `Tensor` or a Python number.</span>
+<span class="sd">            Number of steps to decay over.</span>
+<span class="sd">          num_periods: Number of periods in the cosine part of the decay.</span>
+<span class="sd">            See computation above.</span>
+<span class="sd">          alpha: See computation above.</span>
+<span class="sd">          beta: See computation above.</span>
+<span class="sd">          name: String.  Optional name of the operation.  Defaults to</span>
+<span class="sd">            &#39;LinearCosineDecay&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">initial_learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span> <span class="o">=</span> <span class="n">decay_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_periods</span> <span class="o">=</span> <span class="n">num_periods</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">beta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;LinearCosineDecay&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">name</span><span class="p">:</span>
+            <span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;initial_learning_rate&quot;</span>
+            <span class="p">)</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">initial_learning_rate</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="n">decay_steps</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">num_periods</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_periods</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">beta</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+
+            <span class="n">global_step_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">global_step_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">global_step_recomp</span><span class="p">,</span> <span class="n">decay_steps</span><span class="p">)</span>
+            <span class="n">linear_decayed</span> <span class="o">=</span> <span class="p">(</span><span class="n">decay_steps</span> <span class="o">-</span> <span class="n">global_step_recomp</span><span class="p">)</span> <span class="o">/</span> <span class="n">decay_steps</span>
+            <span class="n">completed_fraction</span> <span class="o">=</span> <span class="n">global_step_recomp</span> <span class="o">/</span> <span class="n">decay_steps</span>
+            <span class="n">fraction</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">num_periods</span> <span class="o">*</span> <span class="n">completed_fraction</span>
+            <span class="n">cosine_decayed</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span>
+                <span class="mf">1.0</span> <span class="o">+</span> <span class="n">tf</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span> <span class="o">*</span> <span class="n">fraction</span><span class="p">)</span>
+            <span class="p">)</span>
+
+            <span class="n">linear_cosine_decayed</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">alpha</span> <span class="o">+</span> <span class="n">linear_decayed</span>
+            <span class="p">)</span> <span class="o">*</span> <span class="n">cosine_decayed</span> <span class="o">+</span> <span class="n">beta</span>
+            <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span>
+                <span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">linear_cosine_decayed</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;initial_learning_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span>
+            <span class="s2">&quot;decay_steps&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span><span class="p">,</span>
+            <span class="s2">&quot;num_periods&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_periods</span><span class="p">,</span>
+            <span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span>
+            <span class="s2">&quot;beta&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="p">}</span>
+
+
+<span class="c1"># Note: this code is still used by V1 APIs.</span>
+<span class="k">class</span> <span class="nc">NoisyLinearCosineDecay</span><span class="p">(</span><span class="n">LearningRateSchedule</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A LearningRateSchedule that uses a noisy linear cosine decay schedule.</span>
+
+<span class="sd">    See [Bello et al., ICML2017] Neural Optimizer Search with RL.</span>
+<span class="sd">    https://arxiv.org/abs/1709.07417</span>
+
+<span class="sd">    For the idea of warm starts here controlled by `num_periods`,</span>
+<span class="sd">    see [Loshchilov &amp; Hutter, ICLR2016] SGDR: Stochastic Gradient Descent</span>
+<span class="sd">    with Warm Restarts. https://arxiv.org/abs/1608.03983</span>
+
+<span class="sd">    Note that linear cosine decay is more aggressive than cosine decay and</span>
+<span class="sd">    larger initial learning rates can typically be used.</span>
+
+<span class="sd">    When training a model, it is often recommended to lower the learning rate as</span>
+<span class="sd">    the training progresses. This schedule applies a noisy linear cosine decay</span>
+<span class="sd">    function to an optimizer step, given a provided initial learning rate.</span>
+<span class="sd">    It requires a `step` value to compute the decayed learning rate. You can</span>
+<span class="sd">    just pass a TensorFlow variable that you increment at each training step.</span>
+
+<span class="sd">    The schedule is a 1-arg callable that produces a decayed learning</span>
+<span class="sd">    rate when passed the current optimizer step. This can be useful for changing</span>
+<span class="sd">    the learning rate value across different invocations of optimizer functions.</span>
+<span class="sd">    It is computed as:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    def decayed_learning_rate(step):</span>
+<span class="sd">      step = min(step, decay_steps)</span>
+<span class="sd">      linear_decay = (decay_steps - step) / decay_steps)</span>
+<span class="sd">      cosine_decay = 0.5 * (</span>
+<span class="sd">          1 + cos(pi * 2 * num_periods * step / decay_steps))</span>
+<span class="sd">      decayed = (alpha + linear_decay + eps_t) * cosine_decay + beta</span>
+<span class="sd">      return initial_learning_rate * decayed</span>
+<span class="sd">    ```</span>
+<span class="sd">    where eps_t is 0-centered gaussian noise with variance</span>
+<span class="sd">    initial_variance / (1 + global_step) ** variance_decay</span>
+
+<span class="sd">    Example usage:</span>
+<span class="sd">    ```python</span>
+<span class="sd">    decay_steps = 1000</span>
+<span class="sd">    lr_decayed_fn = (</span>
+<span class="sd">      tf.keras.experimental.NoisyLinearCosineDecay(</span>
+<span class="sd">        initial_learning_rate, decay_steps))</span>
+<span class="sd">    ```</span>
+
+<span class="sd">    You can pass this schedule directly into a `tf.keras.optimizers.Optimizer`</span>
+<span class="sd">    as the learning rate. The learning rate schedule is also serializable and</span>
+<span class="sd">    deserializable using `tf.keras.optimizers.schedules.serialize` and</span>
+<span class="sd">    `tf.keras.optimizers.schedules.deserialize`.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      A 1-arg callable learning rate schedule that takes the current optimizer</span>
+<span class="sd">      step and outputs the decayed learning rate, a scalar `Tensor` of the same</span>
+<span class="sd">      type as `initial_learning_rate`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">initial_learning_rate</span><span class="p">,</span>
+        <span class="n">decay_steps</span><span class="p">,</span>
+        <span class="n">initial_variance</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+        <span class="n">variance_decay</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span>
+        <span class="n">num_periods</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">beta</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Applies noisy linear cosine decay to the learning rate.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">          initial_learning_rate: A scalar `float32` or `float64` Tensor or a</span>
+<span class="sd">            Python number. The initial learning rate.</span>
+<span class="sd">          decay_steps: A scalar `int32` or `int64` `Tensor` or a Python number.</span>
+<span class="sd">            Number of steps to decay over.</span>
+<span class="sd">          initial_variance: initial variance for the noise. See computation</span>
+<span class="sd">            above.</span>
+<span class="sd">          variance_decay: decay for the noise&#39;s variance. See computation above.</span>
+<span class="sd">          num_periods: Number of periods in the cosine part of the decay.</span>
+<span class="sd">            See computation above.</span>
+<span class="sd">          alpha: See computation above.</span>
+<span class="sd">          beta: See computation above.</span>
+<span class="sd">          seed: Integer, optional random seed to enable deterministic behavior.</span>
+<span class="sd">          name: String.  Optional name of the operation.  Defaults to</span>
+<span class="sd">            &#39;NoisyLinearCosineDecay&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">initial_learning_rate</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span> <span class="o">=</span> <span class="n">decay_steps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initial_variance</span> <span class="o">=</span> <span class="n">initial_variance</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">variance_decay</span> <span class="o">=</span> <span class="n">variance_decay</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_periods</span> <span class="o">=</span> <span class="n">num_periods</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">beta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seed</span> <span class="o">=</span> <span class="n">seed</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_random_generator</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">RandomGenerator</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">tf</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="ow">or</span> <span class="s2">&quot;NoisyLinearCosineDecay&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">name</span><span class="p">:</span>
+            <span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;initial_learning_rate&quot;</span>
+            <span class="p">)</span>
+            <span class="n">dtype</span> <span class="o">=</span> <span class="n">initial_learning_rate</span><span class="o">.</span><span class="n">dtype</span>
+            <span class="n">decay_steps</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">initial_variance</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">initial_variance</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">variance_decay</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">variance_decay</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">num_periods</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_periods</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">alpha</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">beta</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+
+            <span class="n">global_step_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">step</span><span class="p">,</span> <span class="n">dtype</span><span class="p">)</span>
+            <span class="n">global_step_recomp</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">global_step_recomp</span><span class="p">,</span> <span class="n">decay_steps</span><span class="p">)</span>
+            <span class="n">linear_decayed</span> <span class="o">=</span> <span class="p">(</span><span class="n">decay_steps</span> <span class="o">-</span> <span class="n">global_step_recomp</span><span class="p">)</span> <span class="o">/</span> <span class="n">decay_steps</span>
+            <span class="n">variance</span> <span class="o">=</span> <span class="n">initial_variance</span> <span class="o">/</span> <span class="p">(</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">global_step_recomp</span><span class="p">,</span> <span class="n">variance_decay</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">std</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
+            <span class="n">noisy_linear_decayed</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">linear_decayed</span>
+                <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_random_generator</span><span class="o">.</span><span class="n">random_normal</span><span class="p">(</span>
+                    <span class="n">linear_decayed</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">stddev</span><span class="o">=</span><span class="n">std</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+
+            <span class="n">completed_fraction</span> <span class="o">=</span> <span class="n">global_step_recomp</span> <span class="o">/</span> <span class="n">decay_steps</span>
+            <span class="n">fraction</span> <span class="o">=</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">num_periods</span> <span class="o">*</span> <span class="n">completed_fraction</span>
+            <span class="n">cosine_decayed</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span>
+                <span class="mf">1.0</span> <span class="o">+</span> <span class="n">tf</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dtype</span><span class="p">)</span> <span class="o">*</span> <span class="n">fraction</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">noisy_linear_cosine_decayed</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">alpha</span> <span class="o">+</span> <span class="n">noisy_linear_decayed</span>
+            <span class="p">)</span> <span class="o">*</span> <span class="n">cosine_decayed</span> <span class="o">+</span> <span class="n">beta</span>
+
+            <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">multiply</span><span class="p">(</span>
+                <span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">noisy_linear_cosine_decayed</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span>
+            <span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;initial_learning_rate&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_learning_rate</span><span class="p">,</span>
+            <span class="s2">&quot;decay_steps&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">decay_steps</span><span class="p">,</span>
+            <span class="s2">&quot;initial_variance&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">initial_variance</span><span class="p">,</span>
+            <span class="s2">&quot;variance_decay&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">variance_decay</span><span class="p">,</span>
+            <span class="s2">&quot;num_periods&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_periods</span><span class="p">,</span>
+            <span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span>
+            <span class="s2">&quot;beta&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="p">,</span>
+            <span class="s2">&quot;seed&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">seed</span><span class="p">,</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+        <span class="p">}</span>
+
+
+<span class="nd">@keras_export</span><span class="p">(</span><span class="s2">&quot;keras.optimizers.schedules.serialize&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">serialize</span><span class="p">(</span><span class="n">learning_rate_schedule</span><span class="p">,</span> <span class="n">use_legacy_format</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Serializes a `LearningRateSchedule` into a JSON-compatible dict.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      learning_rate_schedule: The `LearningRateSchedule` object to serialize.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      A JSON-serializable dict representing the object&#39;s config.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    &gt;&gt;&gt; lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(</span>
+<span class="sd">    ...   0.1, decay_steps=100000, decay_rate=0.96, staircase=True)</span>
+<span class="sd">    &gt;&gt;&gt; tf.keras.optimizers.schedules.serialize(lr_schedule)</span>
+<span class="sd">    {&#39;module&#39;: &#39;keras.optimizers.schedules&#39;,</span>
+<span class="sd">    &#39;class_name&#39;: &#39;ExponentialDecay&#39;, &#39;config&#39;: {...},</span>
+<span class="sd">    &#39;registered_name&#39;: None}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">use_legacy_format</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">legacy_serialization</span><span class="o">.</span><span class="n">serialize_keras_object</span><span class="p">(</span>
+            <span class="n">learning_rate_schedule</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">serialization_lib</span><span class="o">.</span><span class="n">serialize_keras_object</span><span class="p">(</span><span class="n">learning_rate_schedule</span><span class="p">)</span>
+
+
+<span class="nd">@keras_export</span><span class="p">(</span><span class="s2">&quot;keras.optimizers.schedules.deserialize&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">deserialize</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">custom_objects</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">use_legacy_format</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Instantiates a `LearningRateSchedule` object from a serialized form.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      config: The serialized form of the `LearningRateSchedule`.</span>
+<span class="sd">        Dictionary of the form {&#39;class_name&#39;: str, &#39;config&#39;: dict}.</span>
+<span class="sd">      custom_objects: A dictionary mapping class names (or function names) of</span>
+<span class="sd">        custom (non-Keras) objects to class/functions.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      A `LearningRateSchedule` object.</span>
+
+<span class="sd">    Example:</span>
+
+<span class="sd">    ```python</span>
+<span class="sd">    # Configuration for PolynomialDecay</span>
+<span class="sd">    config = {</span>
+<span class="sd">      &#39;class_name&#39;: &#39;PolynomialDecay&#39;,</span>
+<span class="sd">      &#39;config&#39;: {&#39;cycle&#39;: False,</span>
+<span class="sd">        &#39;decay_steps&#39;: 10000,</span>
+<span class="sd">        &#39;end_learning_rate&#39;: 0.01,</span>
+<span class="sd">        &#39;initial_learning_rate&#39;: 0.1,</span>
+<span class="sd">        &#39;name&#39;: None,</span>
+<span class="sd">        &#39;power&#39;: 0.5}}</span>
+<span class="sd">    lr_schedule = tf.keras.optimizers.schedules.deserialize(config)</span>
+<span class="sd">    ```</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">use_legacy_format</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">legacy_serialization</span><span class="o">.</span><span class="n">deserialize_keras_object</span><span class="p">(</span>
+            <span class="n">config</span><span class="p">,</span>
+            <span class="n">module_objects</span><span class="o">=</span><span class="nb">globals</span><span class="p">(),</span>
+            <span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span><span class="p">,</span>
+            <span class="n">printable_module_name</span><span class="o">=</span><span class="s2">&quot;decay&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">serialization_lib</span><span class="o">.</span><span class="n">deserialize_keras_object</span><span class="p">(</span>
+        <span class="n">config</span><span class="p">,</span>
+        <span class="n">module_objects</span><span class="o">=</span><span class="nb">globals</span><span class="p">(),</span>
+        <span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span><span class="p">,</span>
+        <span class="n">printable_module_name</span><span class="o">=</span><span class="s2">&quot;decay&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The BayesFlow authors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023-2025, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

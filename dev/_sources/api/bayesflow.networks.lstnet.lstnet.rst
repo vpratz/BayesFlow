@@ -3,38 +3,36 @@ bayesflow.networks.lstnet.lstnet
 
 .. automodule:: bayesflow.networks.lstnet.lstnet
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      serializable
-   
-   
+  .. autosummary::
+  
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      LSTNet
-      SkipRecurrentNet
-      SummaryNetwork
-   
-   
+  .. autosummary::
+  
+    LSTNet
+    SkipRecurrentNet
+    SummaryNetwork
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

@@ -3,47 +3,39 @@
 
 .. automodule:: bayesflow.benchmarks
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      LotkaVolterra
-      TwoMoons
-   
-   
+  .. autosummary::
+  
+    LotkaVolterra
+    TwoMoons
+  
+  
 
-   
-   
-   
+  
+  
+  
 
+  
+  
+  .. rubric:: Modules
 
+  .. autosummary::
+    :toctree:
+    :template: custom-module-template.rst
+    :recursive:
+  
+    simulators
 
-.. rubric:: Modules
-
-.. autosummary::
-   :toctree:
-   :template: custom-module-template.rst                 
-   :recursive:
-
-   simulators
-
-.. rubric:: Submodules
-.. toctree::
-    :maxdepth: 1
-    :titlesonly:
-
-   simulators
-
-
+  
+  

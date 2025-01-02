@@ -3,37 +3,35 @@ bayesflow.benchmarks.simulators.lotka\_volterra
 
 .. automodule:: bayesflow.benchmarks.simulators.lotka_volterra
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      odeint
-   
-   
+  .. autosummary::
+  
+    odeint
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      BenchmarkSimulator
-      LotkaVolterra
-   
-   
+  .. autosummary::
+  
+    BenchmarkSimulator
+    LotkaVolterra
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

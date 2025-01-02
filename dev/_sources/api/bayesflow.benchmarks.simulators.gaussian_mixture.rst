@@ -3,30 +3,29 @@ bayesflow.benchmarks.simulators.gaussian\_mixture
 
 .. automodule:: bayesflow.benchmarks.simulators.gaussian_mixture
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      BenchmarkSimulator
-      GaussianMixture
-   
-   
+  .. autosummary::
+  
+    BenchmarkSimulator
+    GaussianMixture
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

@@ -3,39 +3,37 @@ bayesflow.simulators.model\_comparison\_simulator
 
 .. automodule:: bayesflow.simulators.model_comparison_simulator
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      allow_batch_size
-      tree_stack
-   
-   
+  .. autosummary::
+  
+    allow_batch_size
+    tree_stack
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      ModelComparisonSimulator
-      Sequence
-      Simulator
-   
-   
+  .. autosummary::
+  
+    ModelComparisonSimulator
+    Sequence
+    Simulator
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

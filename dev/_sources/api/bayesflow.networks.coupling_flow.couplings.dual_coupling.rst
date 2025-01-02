@@ -3,39 +3,39 @@ bayesflow.networks.coupling\_flow.couplings.dual\_coupling
 
 .. automodule:: bayesflow.networks.coupling_flow.couplings.dual_coupling
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      keras_kwargs
-      serializable
-   
-   
+  .. autosummary::
+  
+    deserialize_value_or_type
+    keras_kwargs
+    serializable
+    serialize_value_or_type
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      DualCoupling
-      InvertibleLayer
-      SingleCoupling
-   
-   
+  .. autosummary::
+  
+    DualCoupling
+    InvertibleLayer
+    SingleCoupling
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

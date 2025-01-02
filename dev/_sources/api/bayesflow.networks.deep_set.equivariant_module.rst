@@ -3,39 +3,37 @@ bayesflow.networks.deep\_set.equivariant\_module
 
 .. automodule:: bayesflow.networks.deep_set.equivariant_module
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      keras_kwargs
-      serializable
-   
-   
+  .. autosummary::
+  
+    keras_kwargs
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      EquivariantModule
-      InvariantModule
-      Sequence
-   
-   
+  .. autosummary::
+  
+    EquivariantModule
+    InvariantModule
+    Sequence
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

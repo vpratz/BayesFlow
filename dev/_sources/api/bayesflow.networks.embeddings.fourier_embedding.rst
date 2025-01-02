@@ -3,36 +3,34 @@ bayesflow.networks.embeddings.fourier\_embedding
 
 .. automodule:: bayesflow.networks.embeddings.fourier_embedding
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      serializable
-   
-   
+  .. autosummary::
+  
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      FourierEmbedding
-   
-   
+  .. autosummary::
+  
+    FourierEmbedding
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

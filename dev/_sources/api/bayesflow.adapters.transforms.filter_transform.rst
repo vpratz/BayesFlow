@@ -3,44 +3,42 @@ bayesflow.adapters.transforms.filter\_transform
 
 .. automodule:: bayesflow.adapters.transforms.filter_transform
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      deserialize
-      serializable
-      serialize
-   
-   
+  .. autosummary::
+  
+    deserialize
+    serializable
+    serialize
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      Callable
-      ElementwiseTransform
-      FilterTransform
-      Predicate
-      Protocol
-      Sequence
-      Transform
-   
-   
+  .. autosummary::
+  
+    Callable
+    ElementwiseTransform
+    FilterTransform
+    Predicate
+    Protocol
+    Sequence
+    Transform
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

@@ -47,6 +47,8 @@
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/bayesflow.helper_classes';</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <link rel="canonical" href="https://www.bayesflow.org/api/bayesflow.helper_classes.html" />
@@ -217,18 +219,14 @@
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
   <ul>
-      <li><a href="/v1.1.6/index.html" >v1.1.6</a></li>
-      <li><a href="/v1.1.5/index.html" >v1.1.5</a></li>
-      <li><a href="/v1.1.4/index.html" >v1.1.4</a></li>
-      <li><a href="/v1.1.3/index.html" >v1.1.3</a></li>
-      <li><a href="/v1.1.2/index.html" >v1.1.2</a></li>
+      <li><a href="/v1.1.6/api/bayesflow.helper_classes.html" >v1.1.6</a></li>
   </ul>
   
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
   <ul>
-      <li><a href="/dev/index.html" >dev</a></li>
-      <li><a href="/master/index.html" class="current">master</a></li>
+      <li><a href="/dev/api/bayesflow.helper_classes.html" >dev</a></li>
+      <li><a href="/master/api/bayesflow.helper_classes.html" class="current">master</a></li>
   </ul>
   
 </div>
@@ -438,62 +436,65 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationDataset"><code class="docutils literal notranslate"><span class="pre">SimulationDataset</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationDataset.__init__"><code class="docutils literal notranslate"><span class="pre">SimulationDataset.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationDataset.__call__"><code class="docutils literal notranslate"><span class="pre">SimulationDataset.__call__()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MultiSimulationDataset"><code class="docutils literal notranslate"><span class="pre">MultiSimulationDataset</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MultiSimulationDataset.__init__"><code class="docutils literal notranslate"><span class="pre">MultiSimulationDataset.__init__()</span></code></a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.EarlyStopper"><code class="docutils literal notranslate"><span class="pre">EarlyStopper</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.EarlyStopper.__init__"><code class="docutils literal notranslate"><span class="pre">EarlyStopper.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.EarlyStopper.update_and_recommend"><code class="docutils literal notranslate"><span class="pre">EarlyStopper.update_and_recommend()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.file_name"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.file_name</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.__init__"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.get_slope"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.get_slope()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.reset"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.reset()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.save_to_file"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.save_to_file()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.load_from_file"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.load_from_file()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor"><code class="docutils literal notranslate"><span class="pre">HuberRegressor</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.fit"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.get_metadata_routing()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.get_params"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.predict"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.predict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.score"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.score()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.set_fit_request"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.set_fit_request()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.set_params"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.set_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.set_score_request"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.set_score_request()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory"><code class="docutils literal notranslate"><span class="pre">LossHistory</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.add_entry"><code class="docutils literal notranslate"><span class="pre">LossHistory.add_entry()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.add_val_entry"><code class="docutils literal notranslate"><span class="pre">LossHistory.add_val_entry()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.file_name"><code class="docutils literal notranslate"><span class="pre">LossHistory.file_name</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.__init__"><code class="docutils literal notranslate"><span class="pre">LossHistory.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.total_loss"><code class="docutils literal notranslate"><span class="pre">LossHistory.total_loss</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.total_val_loss"><code class="docutils literal notranslate"><span class="pre">LossHistory.total_val_loss</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.flush"><code class="docutils literal notranslate"><span class="pre">LossHistory.flush()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.get_plottable"><code class="docutils literal notranslate"><span class="pre">LossHistory.get_plottable()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.get_running_losses"><code class="docutils literal notranslate"><span class="pre">LossHistory.get_running_losses()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.last_total_loss"><code class="docutils literal notranslate"><span class="pre">LossHistory.last_total_loss()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.last_total_val_loss"><code class="docutils literal notranslate"><span class="pre">LossHistory.last_total_val_loss()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.start_new_run"><code class="docutils literal notranslate"><span class="pre">LossHistory.start_new_run()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.add_val_entry"><code class="docutils literal notranslate"><span class="pre">LossHistory.add_val_entry()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.add_entry"><code class="docutils literal notranslate"><span class="pre">LossHistory.add_entry()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.get_running_losses"><code class="docutils literal notranslate"><span class="pre">LossHistory.get_running_losses()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.get_plottable"><code class="docutils literal notranslate"><span class="pre">LossHistory.get_plottable()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.flush"><code class="docutils literal notranslate"><span class="pre">LossHistory.flush()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.save_to_file"><code class="docutils literal notranslate"><span class="pre">LossHistory.save_to_file()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.load_from_file"><code class="docutils literal notranslate"><span class="pre">LossHistory.load_from_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.save_to_file"><code class="docutils literal notranslate"><span class="pre">LossHistory.save_to_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.start_new_run"><code class="docutils literal notranslate"><span class="pre">LossHistory.start_new_run()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.total_loss"><code class="docutils literal notranslate"><span class="pre">LossHistory.total_loss</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.total_val_loss"><code class="docutils literal notranslate"><span class="pre">LossHistory.total_val_loss</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer.sample"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer.sample()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer.store"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer.store()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MultiSimulationDataset"><code class="docutils literal notranslate"><span class="pre">MultiSimulationDataset</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.file_name"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.file_name</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.get_slope"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.get_slope()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.load_from_file"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.load_from_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.reset"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.reset()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.save_to_file"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.save_to_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationDataset"><code class="docutils literal notranslate"><span class="pre">SimulationDataset</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationDataset.__call__"><code class="docutils literal notranslate"><span class="pre">SimulationDataset.__call__()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory"><code class="docutils literal notranslate"><span class="pre">SimulationMemory</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.file_name"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.file_name</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.__init__"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.store"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.store()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.get_memory"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.get_memory()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.is_full"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.is_full()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.save_to_file"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.save_to_file()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.load_from_file"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.load_from_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.save_to_file"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.save_to_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.store"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.store()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer.__init__"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer.store"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer.store()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer.sample"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer.sample()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.deepcopy"><code class="docutils literal notranslate"><span class="pre">deepcopy()</span></code></a></li>
 </ul>
             </nav>
         </div>
@@ -508,28 +509,171 @@
   <section id="module-bayesflow.helper_classes">
 <span id="bayesflow-helper-classes-module"></span><h1>bayesflow.helper_classes module<a class="headerlink" href="#module-bayesflow.helper_classes" title="Link to this heading">#</a></h1>
 <dl class="py class">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationDataset">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.helper_classes.</span></span><span class="sig-name descname"><span class="pre">SimulationDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forward_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationDataset" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="bayesflow.helper_classes.EarlyStopper">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.helper_classes.</span></span><span class="sig-name descname"><span class="pre">EarlyStopper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patience</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#EarlyStopper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.EarlyStopper" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Helper class to create a tensorflow.data.Dataset which parses simulation dictionaries
-and returns simulation dictionaries as expected by BayesFlow amortizers.</p>
+<p>This class will track the total validation loss and trigger an early stopping
+recommendation based on its hyperparameters.</p>
+<dl class="simple">
+<dt>patience<span class="classifier">int, optional, default: 5</span></dt><dd><p>How many successive times the tolerance value is reached before triggering
+an early stopping recommendation.</p>
+</dd>
+<dt>tolerance<span class="classifier">float, optional, default: 0.05</span></dt><dd><p>The minimum reduction of validation loss to be considered significant.</p>
+</dd>
+</dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationDataset.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forward_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationDataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationDataset.__init__" title="Link to this definition">#</a></dt>
-<dd><p>Creates a wrapper holding a <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code> instance for
-offline training in an amortized estimation context.</p>
+<dt class="sig sig-object py" id="bayesflow.helper_classes.EarlyStopper.update_and_recommend">
+<span class="sig-name descname"><span class="pre">update_and_recommend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_val_loss</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#EarlyStopper.update_and_recommend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.EarlyStopper.update_and_recommend" title="Link to this definition">#</a></dt>
+<dd><p>Adds loss to history and check difference between sequential losses.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.HuberRegressor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.helper_classes.</span></span><span class="sig-name descname"><span class="pre">HuberRegressor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">epsilon</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.35</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warm_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fit_intercept</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sklearn/linear_model/_huber.html#HuberRegressor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.HuberRegressor" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">LinearModel</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">RegressorMixin</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseEstimator</span></code></p>
+<p>L2-regularized linear regression model that is robust to outliers.</p>
+<p>The Huber Regressor optimizes the squared loss for the samples where
+<code class="docutils literal notranslate"><span class="pre">|(y</span> <span class="pre">-</span> <span class="pre">Xw</span> <span class="pre">-</span> <span class="pre">c)</span> <span class="pre">/</span> <span class="pre">sigma|</span> <span class="pre">&lt;</span> <span class="pre">epsilon</span></code> and the absolute loss for the samples
+where <code class="docutils literal notranslate"><span class="pre">|(y</span> <span class="pre">-</span> <span class="pre">Xw</span> <span class="pre">-</span> <span class="pre">c)</span> <span class="pre">/</span> <span class="pre">sigma|</span> <span class="pre">&gt;</span> <span class="pre">epsilon</span></code>, where the model coefficients
+<code class="docutils literal notranslate"><span class="pre">w</span></code>, the intercept <code class="docutils literal notranslate"><span class="pre">c</span></code> and the scale <code class="docutils literal notranslate"><span class="pre">sigma</span></code> are parameters
+to be optimized. The parameter sigma makes sure that if y is scaled up
+or down by a certain factor, one does not need to rescale epsilon to
+achieve the same robustness. Note that this does not take into account
+the fact that the different features of X may be of different scales.</p>
+<p>The Huber loss function has the advantage of not being heavily influenced
+by the outliers while not completely ignoring their effect.</p>
+<p>Read more in the <span class="xref std std-ref">User Guide</span></p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.18.</span></p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>epsilon</strong><span class="classifier">float, default=1.35</span></dt><dd><p>The parameter epsilon controls the number of samples that should be
+classified as outliers. The smaller the epsilon, the more robust it is
+to outliers. Epsilon must be in the range <cite>[1, inf)</cite>.</p>
+</dd>
+<dt><strong>max_iter</strong><span class="classifier">int, default=100</span></dt><dd><p>Maximum number of iterations that
+<code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize(method=&quot;L-BFGS-B&quot;)</span></code> should run for.</p>
+</dd>
+<dt><strong>alpha</strong><span class="classifier">float, default=0.0001</span></dt><dd><p>Strength of the squared L2 regularization. Note that the penalty is
+equal to <code class="docutils literal notranslate"><span class="pre">alpha</span> <span class="pre">*</span> <span class="pre">||w||^2</span></code>.
+Must be in the range <cite>[0, inf)</cite>.</p>
+</dd>
+<dt><strong>warm_start</strong><span class="classifier">bool, default=False</span></dt><dd><p>This is useful if the stored attributes of a previously used model
+has to be reused. If set to False, then the coefficients will
+be rewritten for every call to fit.
+See <span class="xref std std-term">the Glossary</span>.</p>
+</dd>
+<dt><strong>fit_intercept</strong><span class="classifier">bool, default=True</span></dt><dd><p>Whether or not to fit the intercept. This can be set to False
+if the data is already centered around the origin.</p>
+</dd>
+<dt><strong>tol</strong><span class="classifier">float, default=1e-05</span></dt><dd><p>The iteration will stop when
+<code class="docutils literal notranslate"><span class="pre">max{|proj</span> <span class="pre">g_i</span> <span class="pre">|</span> <span class="pre">i</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">...,</span> <span class="pre">n}</span></code> &lt;= <code class="docutils literal notranslate"><span class="pre">tol</span></code>
+where pg_i is the i-th component of the projected gradient.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>coef_</strong><span class="classifier">array, shape (n_features,)</span></dt><dd><p>Features got by optimizing the L2-regularized Huber loss.</p>
+</dd>
+<dt><strong>intercept_</strong><span class="classifier">float</span></dt><dd><p>Bias.</p>
+</dd>
+<dt><strong>scale_</strong><span class="classifier">float</span></dt><dd><p>The value by which <code class="docutils literal notranslate"><span class="pre">|y</span> <span class="pre">-</span> <span class="pre">Xw</span> <span class="pre">-</span> <span class="pre">c|</span></code> is scaled down.</p>
+</dd>
+<dt><strong>n_features_in_</strong><span class="classifier">int</span></dt><dd><p>Number of features seen during <span class="xref std std-term">fit</span>.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 0.24.</span></p>
+</div>
+</dd>
+<dt><strong>feature_names_in_</strong><span class="classifier">ndarray of shape (<cite>n_features_in_</cite>,)</span></dt><dd><p>Names of features seen during <span class="xref std std-term">fit</span>. Defined only when <cite>X</cite>
+has feature names that are all strings.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.0.</span></p>
+</div>
+</dd>
+<dt><strong>n_iter_</strong><span class="classifier">int</span></dt><dd><p>Number of iterations that
+<code class="docutils literal notranslate"><span class="pre">scipy.optimize.minimize(method=&quot;L-BFGS-B&quot;)</span></code> has run for.</p>
+<div class="versionchanged">
+<p><span class="versionmodified changed">Changed in version 0.20: </span>In SciPy &lt;= 1.0.0 the number of lbfgs iterations may exceed
+<code class="docutils literal notranslate"><span class="pre">max_iter</span></code>. <code class="docutils literal notranslate"><span class="pre">n_iter_</span></code> will now report at most <code class="docutils literal notranslate"><span class="pre">max_iter</span></code>.</p>
+</div>
+</dd>
+<dt><strong>outliers_</strong><span class="classifier">array, shape (n_samples,)</span></dt><dd><p>A boolean mask which is set to True where the samples are identified
+as outliers.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">RANSACRegressor</span></code></dt><dd><p>RANSAC (RANdom SAmple Consensus) algorithm.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">TheilSenRegressor</span></code></dt><dd><p>Theil-Sen Estimator robust multivariate regression model.</p>
+</dd>
+<dt><code class="xref py py-obj docutils literal notranslate"><span class="pre">SGDRegressor</span></code></dt><dd><p>Fitted by minimizing a regularized empirical loss with SGD.</p>
+</dd>
+</dl>
+</div>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="re02eef9dc0c4-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<p>Peter J. Huber, Elvezio M. Ronchetti, Robust Statistics
+Concomitant scale estimates, pg 172</p>
+</div>
+<div class="citation" id="re02eef9dc0c4-2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></span>
+<p>Art B. Owen (2006), A robust hybrid of lasso and ridge regression.
+<a class="reference external" href="https://statweb.stanford.edu/~owen/reports/hhu.pdf">https://statweb.stanford.edu/~owen/reports/hhu.pdf</a></p>
+</div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">HuberRegressor</span><span class="p">,</span> <span class="n">LinearRegression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">coef</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">n_samples</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">noise</span><span class="o">=</span><span class="mf">4.0</span><span class="p">,</span> <span class="n">coef</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">y</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">huber</span> <span class="o">=</span> <span class="n">HuberRegressor</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">huber</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="go">-7.284...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">huber</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X</span><span class="p">[:</span><span class="mi">1</span><span class="p">,])</span>
+<span class="go">array([806.7200...])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">linear</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;True coefficients:&quot;</span><span class="p">,</span> <span class="n">coef</span><span class="p">)</span>
+<span class="go">True coefficients: [20.4923...  34.1698...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Huber coefficients:&quot;</span><span class="p">,</span> <span class="n">huber</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="go">Huber coefficients: [17.7906... 31.0106...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Linear Regression coefficients:&quot;</span><span class="p">,</span> <span class="n">linear</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span>
+<span class="go">Linear Regression coefficients: [-1.9221...  7.0226...]</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.HuberRegressor.fit">
+<span class="sig-name descname"><span class="pre">fit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/sklearn/linear_model/_huber.html#HuberRegressor.fit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.HuberRegressor.fit" title="Link to this definition">#</a></dt>
+<dd><p>Fit the model according to the given training data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>forward_dict</strong><span class="classifier">dict</span></dt><dd><p>The outputs from a <code class="docutils literal notranslate"><span class="pre">GenerativeModel</span></code> or a custom function,
-stored in a dictionary with at least the following keys:
-<code class="docutils literal notranslate"><span class="pre">sim_data</span></code>    - an array representing the batched output of the model
-<code class="docutils literal notranslate"><span class="pre">prior_draws</span></code> - an array with prior generated from the model’s prior</p>
+<dt><strong>X</strong><span class="classifier">array-like, shape (n_samples, n_features)</span></dt><dd><p>Training vector, where <cite>n_samples</cite> is the number of samples and
+<cite>n_features</cite> is the number of features.</p>
 </dd>
-<dt><strong>batch_size</strong><span class="classifier">int</span></dt><dd><p>The total number of simulations from all models in a given batch.
-The batch size per model will be calculated as <code class="docutils literal notranslate"><span class="pre">batch_size</span> <span class="pre">//</span> <span class="pre">num_models</span></code></p>
+<dt><strong>y</strong><span class="classifier">array-like, shape (n_samples,)</span></dt><dd><p>Target vector relative to X.</p>
 </dd>
-<dt><strong>buffer_size</strong><span class="classifier">int, optional, default: 1024</span></dt><dd><p>The buffer size for shuffling elements in a <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code></p>
+<dt><strong>sample_weight</strong><span class="classifier">array-like, shape (n_samples,)</span></dt><dd><p>Weight given to each sample.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">object</span></dt><dd><p>Fitted <cite>HuberRegressor</cite> estimator.</p>
 </dd>
 </dl>
 </dd>
@@ -537,9 +681,340 @@ The batch size per model will be calculated as <code class="docutils literal not
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationDataset.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_in</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationDataset.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationDataset.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Convert output of tensorflow.data.Dataset to dict.</p>
+<dt class="sig sig-object py" id="bayesflow.helper_classes.HuberRegressor.get_metadata_routing">
+<span class="sig-name descname"><span class="pre">get_metadata_routing</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.helper_classes.HuberRegressor.get_metadata_routing" title="Link to this definition">#</a></dt>
+<dd><p>Get metadata routing of this object.</p>
+<p>Please check <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>routing</strong><span class="classifier">MetadataRequest</span></dt><dd><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">MetadataRequest</span></code> encapsulating
+routing information.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.HuberRegressor.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">deep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.helper_classes.HuberRegressor.get_params" title="Link to this definition">#</a></dt>
+<dd><p>Get parameters for this estimator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>deep</strong><span class="classifier">bool, default=True</span></dt><dd><p>If True, will return the parameters for this estimator and
+contained subobjects that are estimators.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>params</strong><span class="classifier">dict</span></dt><dd><p>Parameter names mapped to their values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.HuberRegressor.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.helper_classes.HuberRegressor.predict" title="Link to this definition">#</a></dt>
+<dd><p>Predict using the linear model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">array-like or sparse matrix, shape (n_samples, n_features)</span></dt><dd><p>Samples.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>C</strong><span class="classifier">array, shape (n_samples,)</span></dt><dd><p>Returns predicted values.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.HuberRegressor.score">
+<span class="sig-name descname"><span class="pre">score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.helper_classes.HuberRegressor.score" title="Link to this definition">#</a></dt>
+<dd><p>Return the coefficient of determination of the prediction.</p>
+<p>The coefficient of determination <span class="math notranslate nohighlight">\(R^2\)</span> is defined as
+<span class="math notranslate nohighlight">\((1 - \frac{u}{v})\)</span>, where <span class="math notranslate nohighlight">\(u\)</span> is the residual
+sum of squares <code class="docutils literal notranslate"><span class="pre">((y_true</span> <span class="pre">-</span> <span class="pre">y_pred)**</span> <span class="pre">2).sum()</span></code> and <span class="math notranslate nohighlight">\(v\)</span>
+is the total sum of squares <code class="docutils literal notranslate"><span class="pre">((y_true</span> <span class="pre">-</span> <span class="pre">y_true.mean())</span> <span class="pre">**</span> <span class="pre">2).sum()</span></code>.
+The best possible score is 1.0 and it can be negative (because the
+model can be arbitrarily worse). A constant model that always predicts
+the expected value of <cite>y</cite>, disregarding the input features, would get
+a <span class="math notranslate nohighlight">\(R^2\)</span> score of 0.0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>X</strong><span class="classifier">array-like of shape (n_samples, n_features)</span></dt><dd><p>Test samples. For some estimators this may be a precomputed
+kernel matrix or a list of generic objects instead with shape
+<code class="docutils literal notranslate"><span class="pre">(n_samples,</span> <span class="pre">n_samples_fitted)</span></code>, where <code class="docutils literal notranslate"><span class="pre">n_samples_fitted</span></code>
+is the number of samples used in the fitting for the estimator.</p>
+</dd>
+<dt><strong>y</strong><span class="classifier">array-like of shape (n_samples,) or (n_samples, n_outputs)</span></dt><dd><p>True values for <cite>X</cite>.</p>
+</dd>
+<dt><strong>sample_weight</strong><span class="classifier">array-like of shape (n_samples,), default=None</span></dt><dd><p>Sample weights.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>score</strong><span class="classifier">float</span></dt><dd><p><span class="math notranslate nohighlight">\(R^2\)</span> of <code class="docutils literal notranslate"><span class="pre">self.predict(X)</span></code> w.r.t. <cite>y</cite>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The <span class="math notranslate nohighlight">\(R^2\)</span> score used when calling <code class="docutils literal notranslate"><span class="pre">score</span></code> on a regressor uses
+<code class="docutils literal notranslate"><span class="pre">multioutput='uniform_average'</span></code> from version 0.23 to keep consistent
+with default value of <code class="xref py py-func docutils literal notranslate"><span class="pre">r2_score()</span></code>.
+This influences the <code class="docutils literal notranslate"><span class="pre">score</span></code> method of all the multioutput
+regressors (except for
+<code class="xref py py-class docutils literal notranslate"><span class="pre">MultiOutputRegressor</span></code>).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.HuberRegressor.set_fit_request">
+<span class="sig-name descname"><span class="pre">set_fit_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bayesflow.helper_classes.HuberRegressor" title="sklearn.linear_model._huber.HuberRegressor"><span class="pre">HuberRegressor</span></a></span></span><a class="headerlink" href="#bayesflow.helper_classes.HuberRegressor.set_fit_request" title="Link to this definition">#</a></dt>
+<dd><p>Request metadata passed to the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method.</p>
+<p>Note that this method is only relevant if
+<code class="docutils literal notranslate"><span class="pre">enable_metadata_routing=True</span></code> (see <code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.set_config()</span></code>).
+Please see <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<p>The options for each parameter are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: metadata is requested, and passed to <code class="docutils literal notranslate"><span class="pre">fit</span></code> if provided. The request is ignored if metadata is not provided.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: metadata is not requested and the meta-estimator will not pass it to <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: metadata is not requested, and the meta-estimator will raise an error if the user provides it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code>: metadata should be passed to the meta-estimator with this given alias instead of the original name.</p></li>
+</ul>
+<p>The default (<code class="docutils literal notranslate"><span class="pre">sklearn.utils.metadata_routing.UNCHANGED</span></code>) retains the
+existing request. This allows you to change the request for some
+parameters and not others.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is only relevant if this estimator is used as a
+sub-estimator of a meta-estimator, e.g. used inside a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>. Otherwise it has no effect.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>sample_weight</strong><span class="classifier">str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED</span></dt><dd><p>Metadata routing for <code class="docutils literal notranslate"><span class="pre">sample_weight</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">fit</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">object</span></dt><dd><p>The updated object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.HuberRegressor.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.helper_classes.HuberRegressor.set_params" title="Link to this definition">#</a></dt>
+<dd><p>Set the parameters of this estimator.</p>
+<p>The method works on simple estimators as well as on nested objects
+(such as <code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>). The latter have
+parameters of the form <code class="docutils literal notranslate"><span class="pre">&lt;component&gt;__&lt;parameter&gt;</span></code> so that it’s
+possible to update each component of a nested object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**params</strong><span class="classifier">dict</span></dt><dd><p>Estimator parameters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">estimator instance</span></dt><dd><p>Estimator instance.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.HuberRegressor.set_score_request">
+<span class="sig-name descname"><span class="pre">set_score_request</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'$UNCHANGED$'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bayesflow.helper_classes.HuberRegressor" title="sklearn.linear_model._huber.HuberRegressor"><span class="pre">HuberRegressor</span></a></span></span><a class="headerlink" href="#bayesflow.helper_classes.HuberRegressor.set_score_request" title="Link to this definition">#</a></dt>
+<dd><p>Request metadata passed to the <code class="docutils literal notranslate"><span class="pre">score</span></code> method.</p>
+<p>Note that this method is only relevant if
+<code class="docutils literal notranslate"><span class="pre">enable_metadata_routing=True</span></code> (see <code class="xref py py-func docutils literal notranslate"><span class="pre">sklearn.set_config()</span></code>).
+Please see <span class="xref std std-ref">User Guide</span> on how the routing
+mechanism works.</p>
+<p>The options for each parameter are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">True</span></code>: metadata is requested, and passed to <code class="docutils literal notranslate"><span class="pre">score</span></code> if provided. The request is ignored if metadata is not provided.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">False</span></code>: metadata is not requested and the meta-estimator will not pass it to <code class="docutils literal notranslate"><span class="pre">score</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">None</span></code>: metadata is not requested, and the meta-estimator will raise an error if the user provides it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code>: metadata should be passed to the meta-estimator with this given alias instead of the original name.</p></li>
+</ul>
+<p>The default (<code class="docutils literal notranslate"><span class="pre">sklearn.utils.metadata_routing.UNCHANGED</span></code>) retains the
+existing request. This allows you to change the request for some
+parameters and not others.</p>
+<div class="versionadded">
+<p><span class="versionmodified added">Added in version 1.3.</span></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is only relevant if this estimator is used as a
+sub-estimator of a meta-estimator, e.g. used inside a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">Pipeline</span></code>. Otherwise it has no effect.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>sample_weight</strong><span class="classifier">str, True, False, or None,                     default=sklearn.utils.metadata_routing.UNCHANGED</span></dt><dd><p>Metadata routing for <code class="docutils literal notranslate"><span class="pre">sample_weight</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">score</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>self</strong><span class="classifier">object</span></dt><dd><p>The updated object.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.helper_classes.</span></span><span class="sig-name descname"><span class="pre">LossHistory</span></span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Helper class to keep track of losses during training.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.add_entry">
+<span class="sig-name descname"><span class="pre">add_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_loss</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.add_entry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.add_entry" title="Link to this definition">#</a></dt>
+<dd><p>Adds loss entry for current epoch into internal memory data structure.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.add_val_entry">
+<span class="sig-name descname"><span class="pre">add_val_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_loss</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.add_val_entry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.add_val_entry" title="Link to this definition">#</a></dt>
+<dd><p>Add validation entry to loss structure. Assume <code class="docutils literal notranslate"><span class="pre">loss_names</span></code> already exists
+as an attribute, so no attempt will be made to create names.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.file_name">
+<span class="sig-name descname"><span class="pre">file_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'history'</span></em><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.file_name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.flush">
+<span class="sig-name descname"><span class="pre">flush</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.flush"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.flush" title="Link to this definition">#</a></dt>
+<dd><p>Returns current history and removes all existing loss history, but keeps loss names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.get_plottable">
+<span class="sig-name descname"><span class="pre">get_plottable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.get_plottable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.get_plottable" title="Link to this definition">#</a></dt>
+<dd><p>Returns the losses as a nicely formatted pandas DataFrame, in case
+only train losses were collected, otherwise a dict of data frames.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.get_running_losses">
+<span class="sig-name descname"><span class="pre">get_running_losses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.get_running_losses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.get_running_losses" title="Link to this definition">#</a></dt>
+<dd><p>Compute and return running means of the losses for current epoch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.last_total_loss">
+<span class="sig-name descname"><span class="pre">last_total_loss</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.last_total_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.last_total_loss" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.last_total_val_loss">
+<span class="sig-name descname"><span class="pre">last_total_val_loss</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.last_total_val_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.last_total_val_loss" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.load_from_file">
+<span class="sig-name descname"><span class="pre">load_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.load_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.load_from_file" title="Link to this definition">#</a></dt>
+<dd><p>Loads the most recent saved <cite>LossHistory</cite> object from <cite>file_path</cite>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.save_to_file">
+<span class="sig-name descname"><span class="pre">save_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_to_keep</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.save_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.save_to_file" title="Link to this definition">#</a></dt>
+<dd><p>Saves a <cite>LossHistory</cite> object to a pickled dictionary in file_path.
+If max_to_keep saved loss history files are found in file_path, the oldest is deleted before a new one is saved.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.start_new_run">
+<span class="sig-name descname"><span class="pre">start_new_run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.start_new_run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.start_new_run" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.total_loss">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_loss</span></span><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.total_loss" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.total_val_loss">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_val_loss</span></span><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.total_val_loss" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.MemoryReplayBuffer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.helper_classes.</span></span><span class="sig-name descname"><span class="pre">MemoryReplayBuffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">capacity_in_batches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#MemoryReplayBuffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.MemoryReplayBuffer" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Implements a memory replay buffer for simulation-based inference.</p>
+<p>Creates a circular buffer following the logic of experience replay.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>capacity_in_batches</strong><span class="classifier">int, optional, default: 500</span></dt><dd><p>The capacity of the buffer in batches of simulations. Could potentially grow
+very large, so make sure you pick a reasonable number!</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.MemoryReplayBuffer.sample">
+<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#MemoryReplayBuffer.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.MemoryReplayBuffer.sample" title="Link to this definition">#</a></dt>
+<dd><p>Samples <cite>batch_size</cite> number of parameter vectors and simulations from buffer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>forward_dict</strong><span class="classifier">dict</span></dt><dd><p>The (raw or configured) outputs of the forward model.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.MemoryReplayBuffer.store">
+<span class="sig-name descname"><span class="pre">store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forward_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#MemoryReplayBuffer.store"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.MemoryReplayBuffer.store" title="Link to this definition">#</a></dt>
+<dd><p>Stores simulation outputs, if internal buffer is not full.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>forward_dict</strong><span class="classifier">dict</span></dt><dd><p>The confogired outputs of the forward model.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -551,10 +1026,7 @@ The batch size per model will be calculated as <code class="docutils literal not
 <p>Helper class for model comparison training with multiple generative models.</p>
 <p>Will create multiple <code class="docutils literal notranslate"><span class="pre">SimulationDataset</span></code> instances, each parsing their own
 simulation dictionaries and returning these as expected by BayesFlow amortizers.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.MultiSimulationDataset.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forward_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#MultiSimulationDataset.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.MultiSimulationDataset.__init__" title="Link to this definition">#</a></dt>
-<dd><p>Creates a wrapper holding multiple <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code> instances for
+<p>Creates a wrapper holding multiple <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code> instances for
 offline training in an amortized model comparison context.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -576,48 +1048,12 @@ The batch size per model will be calculated as <code class="docutils literal not
 </dl>
 </dd></dl>
 
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.EarlyStopper">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.helper_classes.</span></span><span class="sig-name descname"><span class="pre">EarlyStopper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patience</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#EarlyStopper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.EarlyStopper" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>This class will track the total validation loss and trigger an early stopping
-recommendation based on its hyperparameters.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.EarlyStopper.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">patience</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#EarlyStopper.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.EarlyStopper.__init__" title="Link to this definition">#</a></dt>
-<dd><dl class="simple">
-<dt>patience<span class="classifier">int, optional, default: 5</span></dt><dd><p>How many successive times the tolerance value is reached before triggering
-an early stopping recommendation.</p>
-</dd>
-<dt>tolerance<span class="classifier">float, optional, default: 0.05</span></dt><dd><p>The minimum reduction of validation loss to be considered significant.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.EarlyStopper.update_and_recommend">
-<span class="sig-name descname"><span class="pre">update_and_recommend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">current_val_loss</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#EarlyStopper.update_and_recommend"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.EarlyStopper.update_and_recommend" title="Link to this definition">#</a></dt>
-<dd><p>Adds loss to history and check difference between sequential losses.</p>
-</dd></dl>
-
-</dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="bayesflow.helper_classes.RegressionLRAdjuster">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.helper_classes.</span></span><span class="sig-name descname"><span class="pre">RegressionLRAdjuster</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_between_fits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patience</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cooldown_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_resets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#RegressionLRAdjuster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.RegressionLRAdjuster" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>This class will compute the slope of the loss trajectory and inform learning rate decay.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.RegressionLRAdjuster.file_name">
-<span class="sig-name descname"><span class="pre">file_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lr_adjuster'</span></em><a class="headerlink" href="#bayesflow.helper_classes.RegressionLRAdjuster.file_name" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.RegressionLRAdjuster.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">optimizer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait_between_fits</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">patience</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduction_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cooldown_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_resets</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#RegressionLRAdjuster.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.RegressionLRAdjuster.__init__" title="Link to this definition">#</a></dt>
-<dd><p>Creates an instance with given hyperparameters which will track the slope of the
+<p>Creates an instance with given hyperparameters which will track the slope of the
 loss trajectory according to specified hyperparameters and then issue an optional
 stopping suggestion.</p>
 <dl class="field-list simple">
@@ -645,13 +1081,22 @@ threshold for <cite>patience</cite> number of times</p>
 </dl>
 </dd>
 </dl>
-</dd></dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.RegressionLRAdjuster.file_name">
+<span class="sig-name descname"><span class="pre">file_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lr_adjuster'</span></em><a class="headerlink" href="#bayesflow.helper_classes.RegressionLRAdjuster.file_name" title="Link to this definition">#</a></dt>
+<dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.helper_classes.RegressionLRAdjuster.get_slope">
 <span class="sig-name descname"><span class="pre">get_slope</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">losses</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#RegressionLRAdjuster.get_slope"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.RegressionLRAdjuster.get_slope" title="Link to this definition">#</a></dt>
 <dd><p>Fits a Huber regression on the provided loss trajectory or returns <cite>None</cite> if
 not enough data points present.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.RegressionLRAdjuster.load_from_file">
+<span class="sig-name descname"><span class="pre">load_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#RegressionLRAdjuster.load_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.RegressionLRAdjuster.load_from_file" title="Link to this definition">#</a></dt>
+<dd><p>Loads the saved LRAdjuster object from file_path.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -666,97 +1111,36 @@ not enough data points present.</p>
 <dd><p>Saves the state parameters of a RegressionLRAdjuster object to a pickled dictionary in file_path.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.RegressionLRAdjuster.load_from_file">
-<span class="sig-name descname"><span class="pre">load_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#RegressionLRAdjuster.load_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.RegressionLRAdjuster.load_from_file" title="Link to this definition">#</a></dt>
-<dd><p>Loads the saved LRAdjuster object from file_path.</p>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.helper_classes.</span></span><span class="sig-name descname"><span class="pre">LossHistory</span></span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationDataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.helper_classes.</span></span><span class="sig-name descname"><span class="pre">SimulationDataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forward_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">batch_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1024</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationDataset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationDataset" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Helper class to keep track of losses during training.</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.file_name">
-<span class="sig-name descname"><span class="pre">file_name</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'history'</span></em><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.file_name" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
+<p>Helper class to create a tensorflow.data.Dataset which parses simulation dictionaries
+and returns simulation dictionaries as expected by BayesFlow amortizers.</p>
+<p>Creates a wrapper holding a <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code> instance for
+offline training in an amortized estimation context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>forward_dict</strong><span class="classifier">dict</span></dt><dd><p>The outputs from a <code class="docutils literal notranslate"><span class="pre">GenerativeModel</span></code> or a custom function,
+stored in a dictionary with at least the following keys:
+<code class="docutils literal notranslate"><span class="pre">sim_data</span></code>    - an array representing the batched output of the model
+<code class="docutils literal notranslate"><span class="pre">prior_draws</span></code> - an array with prior generated from the model’s prior</p>
+</dd>
+<dt><strong>batch_size</strong><span class="classifier">int</span></dt><dd><p>The total number of simulations from all models in a given batch.
+The batch size per model will be calculated as <code class="docutils literal notranslate"><span class="pre">batch_size</span> <span class="pre">//</span> <span class="pre">num_models</span></code></p>
+</dd>
+<dt><strong>buffer_size</strong><span class="classifier">int, optional, default: 1024</span></dt><dd><p>The buffer size for shuffling elements in a <code class="docutils literal notranslate"><span class="pre">tf.data.Dataset</span></code></p>
+</dd>
+</dl>
+</dd>
+</dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.__init__" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.total_loss">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_loss</span></span><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.total_loss" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.total_val_loss">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_val_loss</span></span><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.total_val_loss" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.last_total_loss">
-<span class="sig-name descname"><span class="pre">last_total_loss</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.last_total_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.last_total_loss" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.last_total_val_loss">
-<span class="sig-name descname"><span class="pre">last_total_val_loss</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.last_total_val_loss"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.last_total_val_loss" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.start_new_run">
-<span class="sig-name descname"><span class="pre">start_new_run</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.start_new_run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.start_new_run" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.add_val_entry">
-<span class="sig-name descname"><span class="pre">add_val_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">val_loss</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.add_val_entry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.add_val_entry" title="Link to this definition">#</a></dt>
-<dd><p>Add validation entry to loss structure. Assume <code class="docutils literal notranslate"><span class="pre">loss_names</span></code> already exists
-as an attribute, so no attempt will be made to create names.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.add_entry">
-<span class="sig-name descname"><span class="pre">add_entry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current_loss</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.add_entry"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.add_entry" title="Link to this definition">#</a></dt>
-<dd><p>Adds loss entry for current epoch into internal memory data structure.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.get_running_losses">
-<span class="sig-name descname"><span class="pre">get_running_losses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">epoch</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.get_running_losses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.get_running_losses" title="Link to this definition">#</a></dt>
-<dd><p>Compute and return running means of the losses for current epoch.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.get_plottable">
-<span class="sig-name descname"><span class="pre">get_plottable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.get_plottable"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.get_plottable" title="Link to this definition">#</a></dt>
-<dd><p>Returns the losses as a nicely formatted pandas DataFrame, in case
-only train losses were collected, otherwise a dict of data frames.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.flush">
-<span class="sig-name descname"><span class="pre">flush</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.flush"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.flush" title="Link to this definition">#</a></dt>
-<dd><p>Returns current history and removes all existing loss history, but keeps loss names.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.save_to_file">
-<span class="sig-name descname"><span class="pre">save_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_to_keep</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.save_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.save_to_file" title="Link to this definition">#</a></dt>
-<dd><p>Saves a <cite>LossHistory</cite> object to a pickled dictionary in file_path.
-If max_to_keep saved loss history files are found in file_path, the oldest is deleted before a new one is saved.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.LossHistory.load_from_file">
-<span class="sig-name descname"><span class="pre">load_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#LossHistory.load_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.LossHistory.load_from_file" title="Link to this definition">#</a></dt>
-<dd><p>Loads the most recent saved <cite>LossHistory</cite> object from <cite>file_path</cite>.</p>
+<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationDataset.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_in</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationDataset.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationDataset.__call__" title="Link to this definition">#</a></dt>
+<dd><p>Convert output of tensorflow.data.Dataset to dict.</p>
 </dd></dl>
 
 </dd></dl>
@@ -772,9 +1156,27 @@ If max_to_keep saved loss history files are found in file_path, the oldest is de
 <dd></dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationMemory.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stores_raw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capacity_in_batches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationMemory.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationMemory.__init__" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationMemory.get_memory">
+<span class="sig-name descname"><span class="pre">get_memory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationMemory.get_memory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationMemory.get_memory" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationMemory.is_full">
+<span class="sig-name descname"><span class="pre">is_full</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationMemory.is_full"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationMemory.is_full" title="Link to this definition">#</a></dt>
+<dd><p>Returns True if the buffer is full, otherwise False.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationMemory.load_from_file">
+<span class="sig-name descname"><span class="pre">load_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationMemory.load_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationMemory.load_from_file" title="Link to this definition">#</a></dt>
+<dd><p>Loads the saved <cite>SimulationMemory</cite> object from file_path.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationMemory.save_to_file">
+<span class="sig-name descname"><span class="pre">save_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationMemory.save_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationMemory.save_to_file" title="Link to this definition">#</a></dt>
+<dd><p>Saves a <cite>SimulationMemory</cite> object to a pickled dictionary in file_path.</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationMemory.store">
@@ -790,79 +1192,13 @@ If max_to_keep saved loss history files are found in file_path, the oldest is de
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationMemory.get_memory">
-<span class="sig-name descname"><span class="pre">get_memory</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationMemory.get_memory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationMemory.get_memory" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationMemory.is_full">
-<span class="sig-name descname"><span class="pre">is_full</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationMemory.is_full"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationMemory.is_full" title="Link to this definition">#</a></dt>
-<dd><p>Returns True if the buffer is full, otherwise False.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationMemory.save_to_file">
-<span class="sig-name descname"><span class="pre">save_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationMemory.save_to_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationMemory.save_to_file" title="Link to this definition">#</a></dt>
-<dd><p>Saves a <cite>SimulationMemory</cite> object to a pickled dictionary in file_path.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.SimulationMemory.load_from_file">
-<span class="sig-name descname"><span class="pre">load_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#SimulationMemory.load_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.SimulationMemory.load_from_file" title="Link to this definition">#</a></dt>
-<dd><p>Loads the saved <cite>SimulationMemory</cite> object from file_path.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py class">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.MemoryReplayBuffer">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.helper_classes.</span></span><span class="sig-name descname"><span class="pre">MemoryReplayBuffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">capacity_in_batches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#MemoryReplayBuffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.MemoryReplayBuffer" title="Link to this definition">#</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Implements a memory replay buffer for simulation-based inference.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.MemoryReplayBuffer.__init__">
-<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">capacity_in_batches</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#MemoryReplayBuffer.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.MemoryReplayBuffer.__init__" title="Link to this definition">#</a></dt>
-<dd><p>Creates a circular buffer following the logic of experience replay.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>capacity_in_batches</strong><span class="classifier">int, optional, default: 500</span></dt><dd><p>The capacity of the buffer in batches of simulations. Could potentially grow
-very large, so make sure you pick a reasonable number!</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.MemoryReplayBuffer.store">
-<span class="sig-name descname"><span class="pre">store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">forward_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#MemoryReplayBuffer.store"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.MemoryReplayBuffer.store" title="Link to this definition">#</a></dt>
-<dd><p>Stores simulation outputs, if internal buffer is not full.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>forward_dict</strong><span class="classifier">dict</span></dt><dd><p>The confogired outputs of the forward model.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.helper_classes.MemoryReplayBuffer.sample">
-<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/helper_classes.html#MemoryReplayBuffer.sample"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.MemoryReplayBuffer.sample" title="Link to this definition">#</a></dt>
-<dd><p>Samples <cite>batch_size</cite> number of parameter vectors and simulations from buffer.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>forward_dict</strong><span class="classifier">dict</span></dt><dd><p>The (raw or configured) outputs of the forward model.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
+<dl class="py function">
+<dt class="sig sig-object py" id="bayesflow.helper_classes.deepcopy">
+<span class="sig-prename descclassname"><span class="pre">bayesflow.helper_classes.</span></span><span class="sig-name descname"><span class="pre">deepcopy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">memo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_nil</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/copy.html#deepcopy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.helper_classes.deepcopy" title="Link to this definition">#</a></dt>
+<dd><p>Deep copy operation on arbitrary Python objects.</p>
+<p>See the module’s __doc__ string for more info.</p>
 </dd></dl>
 
 </section>
@@ -913,62 +1249,65 @@ very large, so make sure you pick a reasonable number!</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationDataset"><code class="docutils literal notranslate"><span class="pre">SimulationDataset</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationDataset.__init__"><code class="docutils literal notranslate"><span class="pre">SimulationDataset.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationDataset.__call__"><code class="docutils literal notranslate"><span class="pre">SimulationDataset.__call__()</span></code></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MultiSimulationDataset"><code class="docutils literal notranslate"><span class="pre">MultiSimulationDataset</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MultiSimulationDataset.__init__"><code class="docutils literal notranslate"><span class="pre">MultiSimulationDataset.__init__()</span></code></a></li>
-</ul>
-</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.EarlyStopper"><code class="docutils literal notranslate"><span class="pre">EarlyStopper</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.EarlyStopper.__init__"><code class="docutils literal notranslate"><span class="pre">EarlyStopper.__init__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.EarlyStopper.update_and_recommend"><code class="docutils literal notranslate"><span class="pre">EarlyStopper.update_and_recommend()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.file_name"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.file_name</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.__init__"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.get_slope"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.get_slope()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.reset"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.reset()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.save_to_file"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.save_to_file()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.load_from_file"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.load_from_file()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor"><code class="docutils literal notranslate"><span class="pre">HuberRegressor</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.fit"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.fit()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.get_metadata_routing"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.get_metadata_routing()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.get_params"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.get_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.predict"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.predict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.score"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.score()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.set_fit_request"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.set_fit_request()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.set_params"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.set_params()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.HuberRegressor.set_score_request"><code class="docutils literal notranslate"><span class="pre">HuberRegressor.set_score_request()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory"><code class="docutils literal notranslate"><span class="pre">LossHistory</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.add_entry"><code class="docutils literal notranslate"><span class="pre">LossHistory.add_entry()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.add_val_entry"><code class="docutils literal notranslate"><span class="pre">LossHistory.add_val_entry()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.file_name"><code class="docutils literal notranslate"><span class="pre">LossHistory.file_name</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.__init__"><code class="docutils literal notranslate"><span class="pre">LossHistory.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.total_loss"><code class="docutils literal notranslate"><span class="pre">LossHistory.total_loss</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.total_val_loss"><code class="docutils literal notranslate"><span class="pre">LossHistory.total_val_loss</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.flush"><code class="docutils literal notranslate"><span class="pre">LossHistory.flush()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.get_plottable"><code class="docutils literal notranslate"><span class="pre">LossHistory.get_plottable()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.get_running_losses"><code class="docutils literal notranslate"><span class="pre">LossHistory.get_running_losses()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.last_total_loss"><code class="docutils literal notranslate"><span class="pre">LossHistory.last_total_loss()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.last_total_val_loss"><code class="docutils literal notranslate"><span class="pre">LossHistory.last_total_val_loss()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.start_new_run"><code class="docutils literal notranslate"><span class="pre">LossHistory.start_new_run()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.add_val_entry"><code class="docutils literal notranslate"><span class="pre">LossHistory.add_val_entry()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.add_entry"><code class="docutils literal notranslate"><span class="pre">LossHistory.add_entry()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.get_running_losses"><code class="docutils literal notranslate"><span class="pre">LossHistory.get_running_losses()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.get_plottable"><code class="docutils literal notranslate"><span class="pre">LossHistory.get_plottable()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.flush"><code class="docutils literal notranslate"><span class="pre">LossHistory.flush()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.save_to_file"><code class="docutils literal notranslate"><span class="pre">LossHistory.save_to_file()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.load_from_file"><code class="docutils literal notranslate"><span class="pre">LossHistory.load_from_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.save_to_file"><code class="docutils literal notranslate"><span class="pre">LossHistory.save_to_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.start_new_run"><code class="docutils literal notranslate"><span class="pre">LossHistory.start_new_run()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.total_loss"><code class="docutils literal notranslate"><span class="pre">LossHistory.total_loss</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.LossHistory.total_val_loss"><code class="docutils literal notranslate"><span class="pre">LossHistory.total_val_loss</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer.sample"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer.sample()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer.store"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer.store()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MultiSimulationDataset"><code class="docutils literal notranslate"><span class="pre">MultiSimulationDataset</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.file_name"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.file_name</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.get_slope"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.get_slope()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.load_from_file"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.load_from_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.reset"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.reset()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.RegressionLRAdjuster.save_to_file"><code class="docutils literal notranslate"><span class="pre">RegressionLRAdjuster.save_to_file()</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationDataset"><code class="docutils literal notranslate"><span class="pre">SimulationDataset</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationDataset.__call__"><code class="docutils literal notranslate"><span class="pre">SimulationDataset.__call__()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory"><code class="docutils literal notranslate"><span class="pre">SimulationMemory</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.file_name"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.file_name</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.__init__"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.store"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.store()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.get_memory"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.get_memory()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.is_full"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.is_full()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.save_to_file"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.save_to_file()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.load_from_file"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.load_from_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.save_to_file"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.save_to_file()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.SimulationMemory.store"><code class="docutils literal notranslate"><span class="pre">SimulationMemory.store()</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer.__init__"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer.__init__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer.store"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer.store()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.MemoryReplayBuffer.sample"><code class="docutils literal notranslate"><span class="pre">MemoryReplayBuffer.sample()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.helper_classes.deepcopy"><code class="docutils literal notranslate"><span class="pre">deepcopy()</span></code></a></li>
 </ul>
   </nav></div>
 
@@ -993,7 +1332,7 @@ By The BayesFlow authors
 
   <p class="copyright">
     
-      © Copyright 2023, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      © Copyright 2023-2025, BayesFlow authors (lead maintainer: Stefan T. Radev).
       <br/>
     
   </p>

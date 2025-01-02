@@ -3,28 +3,28 @@ bayesflow.utils.exceptions.shape\_error
 
 .. automodule:: bayesflow.utils.exceptions.shape_error
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Exceptions
+  
+  
+  .. rubric:: Exceptions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      ShapeError
-   
-   
+  .. autosummary::
+  
+    ShapeError
+  
+  
 
-
-
+  
+  
+  

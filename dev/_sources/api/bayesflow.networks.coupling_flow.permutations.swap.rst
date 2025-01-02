@@ -3,37 +3,35 @@ bayesflow.networks.coupling\_flow.permutations.swap
 
 .. automodule:: bayesflow.networks.coupling_flow.permutations.swap
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      serializable
-   
-   
+  .. autosummary::
+  
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      FixedPermutation
-      Swap
-   
-   
+  .. autosummary::
+  
+    FixedPermutation
+    Swap
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

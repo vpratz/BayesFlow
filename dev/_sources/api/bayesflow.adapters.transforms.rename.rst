@@ -3,37 +3,35 @@ bayesflow.adapters.transforms.rename
 
 .. automodule:: bayesflow.adapters.transforms.rename
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      serializable
-   
-   
+  .. autosummary::
+  
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      Rename
-      Transform
-   
-   
+  .. autosummary::
+  
+    Rename
+    Transform
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

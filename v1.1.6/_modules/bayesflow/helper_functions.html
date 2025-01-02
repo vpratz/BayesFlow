@@ -216,18 +216,14 @@
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
   <ul>
-      <li><a href="/v1.1.6/index.html" class="current">v1.1.6</a></li>
-      <li><a href="/v1.1.5/index.html" >v1.1.5</a></li>
-      <li><a href="/v1.1.4/index.html" >v1.1.4</a></li>
-      <li><a href="/v1.1.3/index.html" >v1.1.3</a></li>
-      <li><a href="/v1.1.2/index.html" >v1.1.2</a></li>
+      <li><a href="/v1.1.6/_modules/bayesflow/helper_functions.html" class="current">v1.1.6</a></li>
   </ul>
   
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
   <ul>
-      <li><a href="/dev/index.html" >dev</a></li>
-      <li><a href="/master/index.html" >master</a></li>
+      <li><a href="/dev/_modules/bayesflow/helper_functions.html" >dev</a></li>
+      <li><a href="/master/_modules/bayesflow/helper_functions.html" >master</a></li>
   </ul>
   
 </div>
@@ -405,7 +401,7 @@
 
 
 <div class="viewcode-block" id="check_tensor_sanity">
-<a class="viewcode-back" href="../../api/bayesflow.helper_functions.html#bayesflow.helper_functions.check_tensor_sanity">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.helper_functions.html#bayesflow.amortizers.check_tensor_sanity">[docs]</a>
 <span class="k">def</span> <span class="nf">check_tensor_sanity</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">logger</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Tests for the presence of NaNs and Infs in a tensor.&quot;&quot;&quot;</span>
 
@@ -427,7 +423,7 @@
 
 
 <div class="viewcode-block" id="merge_left_into_right">
-<a class="viewcode-back" href="../../api/bayesflow.helper_functions.html#bayesflow.helper_functions.merge_left_into_right">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.helper_functions.html#bayesflow.amortizers.merge_left_into_right">[docs]</a>
 <span class="k">def</span> <span class="nf">merge_left_into_right</span><span class="p">(</span><span class="n">left_dict</span><span class="p">,</span> <span class="n">right_dict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to merge nested dict `left_dict` into nested dict `right_dict`.&quot;&quot;&quot;</span>
     <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">left_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -443,7 +439,7 @@
 
 
 <div class="viewcode-block" id="build_meta_dict">
-<a class="viewcode-back" href="../../api/bayesflow.helper_functions.html#bayesflow.helper_functions.build_meta_dict">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.inference_networks.html#bayesflow.amortizers.build_meta_dict">[docs]</a>
 <span class="k">def</span> <span class="nf">build_meta_dict</span><span class="p">(</span><span class="n">user_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">default_setting</span><span class="p">:</span> <span class="n">default_settings</span><span class="o">.</span><span class="n">MetaDictSetting</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Integrates a user-defined dictionary into a default dictionary.</span>
 
@@ -482,7 +478,7 @@
 
 
 <div class="viewcode-block" id="extract_current_lr">
-<a class="viewcode-back" href="../../api/bayesflow.helper_functions.html#bayesflow.helper_functions.extract_current_lr">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.amortizers.extract_current_lr">[docs]</a>
 <span class="k">def</span> <span class="nf">extract_current_lr</span><span class="p">(</span><span class="n">optimizer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Extracts current learning rate from `optimizer`.</span>
 
@@ -511,7 +507,7 @@
 
 
 <div class="viewcode-block" id="format_loss_string">
-<a class="viewcode-back" href="../../api/bayesflow.helper_functions.html#bayesflow.helper_functions.format_loss_string">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.amortizers.format_loss_string">[docs]</a>
 <span class="k">def</span> <span class="nf">format_loss_string</span><span class="p">(</span>
     <span class="n">ep</span><span class="p">,</span> <span class="n">it</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">avg_dict</span><span class="p">,</span> <span class="n">slope</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ep_str</span><span class="o">=</span><span class="s2">&quot;Epoch&quot;</span><span class="p">,</span> <span class="n">it_str</span><span class="o">=</span><span class="s2">&quot;Iter&quot;</span><span class="p">,</span> <span class="n">scalar_loss_str</span><span class="o">=</span><span class="s2">&quot;Loss&quot;</span>
 <span class="p">):</span>
@@ -537,7 +533,7 @@
 
 
 <div class="viewcode-block" id="loss_to_string">
-<a class="viewcode-back" href="../../api/bayesflow.helper_functions.html#bayesflow.helper_functions.loss_to_string">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.amortizers.loss_to_string">[docs]</a>
 <span class="k">def</span> <span class="nf">loss_to_string</span><span class="p">(</span><span class="n">ep</span><span class="p">,</span> <span class="n">loss</span><span class="p">,</span> <span class="n">ep_str</span><span class="o">=</span><span class="s2">&quot;Epoch&quot;</span><span class="p">,</span> <span class="n">scalar_loss_str</span><span class="o">=</span><span class="s2">&quot;Loss&quot;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Converts output from an amortizer into a string.</span>
 <span class="sd">    For instance, if a ``dict`` is provided, it will be converted as, e.g.,:</span>
@@ -555,7 +551,7 @@
 
 
 <div class="viewcode-block" id="backprop_step">
-<a class="viewcode-back" href="../../api/bayesflow.helper_functions.html#bayesflow.helper_functions.backprop_step">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.amortizers.backprop_step">[docs]</a>
 <span class="k">def</span> <span class="nf">backprop_step</span><span class="p">(</span><span class="n">input_dict</span><span class="p">,</span> <span class="n">amortizer</span><span class="p">,</span> <span class="n">optimizer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Computes the loss of the provided amortizer given an input dictionary and applies gradients.</span>
 
@@ -602,7 +598,7 @@
 
 
 <div class="viewcode-block" id="check_posterior_prior_shapes">
-<a class="viewcode-back" href="../../api/bayesflow.helper_functions.html#bayesflow.helper_functions.check_posterior_prior_shapes">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.helper_functions.html#bayesflow.amortizers.check_posterior_prior_shapes">[docs]</a>
 <span class="k">def</span> <span class="nf">check_posterior_prior_shapes</span><span class="p">(</span><span class="n">post_samples</span><span class="p">,</span> <span class="n">prior_samples</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Checks requirements for the shapes of posterior and prior draws as</span>
 <span class="sd">    necessitated by most diagnostic functions.</span>
@@ -686,7 +682,7 @@ By The BayesFlow authors
 
   <p class="copyright">
     
-      © Copyright 2023, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      © Copyright 2023-2025, BayesFlow authors (lead maintainer: Stefan T. Radev).
       <br/>
     
   </p>

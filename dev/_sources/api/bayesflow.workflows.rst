@@ -3,48 +3,39 @@
 
 .. automodule:: bayesflow.workflows
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      BasicWorkflow
-   
-   
+  .. autosummary::
+  
+    BasicWorkflow
+  
+  
 
-   
-   
-   
+  
+  
+  
 
+  
+  
+  .. rubric:: Modules
 
+  .. autosummary::
+    :toctree:
+    :template: custom-module-template.rst
+    :recursive:
+  
+    basic_workflow
+    workflow
 
-.. rubric:: Modules
-
-.. autosummary::
-   :toctree:
-   :template: custom-module-template.rst                 
-   :recursive:
-
-   basic_workflow
-   workflow
-
-.. rubric:: Submodules
-.. toctree::
-    :maxdepth: 1
-    :titlesonly:
-
-   basic_workflow
-   workflow
-
-
+  
+  

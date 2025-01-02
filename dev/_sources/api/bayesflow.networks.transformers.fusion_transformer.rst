@@ -3,39 +3,37 @@ bayesflow.networks.transformers.fusion\_transformer
 
 .. automodule:: bayesflow.networks.transformers.fusion_transformer
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      check_lengths_same
-      serializable
-   
-   
+  .. autosummary::
+  
+    check_lengths_same
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      FusionTransformer
-      MultiHeadAttentionBlock
-      SummaryNetwork
-   
-   
+  .. autosummary::
+  
+    FusionTransformer
+    MultiHeadAttentionBlock
+    SummaryNetwork
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

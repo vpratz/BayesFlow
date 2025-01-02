@@ -3,37 +3,35 @@ bayesflow.networks.embeddings.time2vec
 
 .. automodule:: bayesflow.networks.embeddings.time2vec
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      expand_tile
-      serializable
-   
-   
+  .. autosummary::
+  
+    expand_tile
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      Time2Vec
-   
-   
+  .. autosummary::
+  
+    Time2Vec
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

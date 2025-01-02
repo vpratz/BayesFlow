@@ -3,29 +3,29 @@ bayesflow.utils.ecdf.ranks
 
 .. automodule:: bayesflow.utils.ecdf.ranks
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      distance_ranks
-      fractional_ranks
-   
-   
+  .. autosummary::
+  
+    distance_ranks
+    fractional_ranks
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

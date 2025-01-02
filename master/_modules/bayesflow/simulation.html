@@ -216,18 +216,14 @@
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
   <ul>
-      <li><a href="/v1.1.6/index.html" >v1.1.6</a></li>
-      <li><a href="/v1.1.5/index.html" >v1.1.5</a></li>
-      <li><a href="/v1.1.4/index.html" >v1.1.4</a></li>
-      <li><a href="/v1.1.3/index.html" >v1.1.3</a></li>
-      <li><a href="/v1.1.2/index.html" >v1.1.2</a></li>
+      <li><a href="/v1.1.6/_modules/bayesflow/simulation.html" >v1.1.6</a></li>
   </ul>
   
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
   <ul>
-      <li><a href="/dev/index.html" >dev</a></li>
-      <li><a href="/master/index.html" class="current">master</a></li>
+      <li><a href="/dev/_modules/bayesflow/simulation.html" >dev</a></li>
+      <li><a href="/master/_modules/bayesflow/simulation.html" class="current">master</a></li>
   </ul>
   
 </div>
@@ -412,7 +408,7 @@
 
 
 <div class="viewcode-block" id="ContextGenerator">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.ContextGenerator">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.ContextGenerator">[docs]</a>
 <span class="k">class</span> <span class="nc">ContextGenerator</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic interface for a simulation module responsible for generating variables over which</span>
 <span class="sd">    we want to amortize during simulation-based training, but do not want to perform inference on.</span>
@@ -440,8 +436,6 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="ContextGenerator.__init__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.ContextGenerator.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">batchable_context_fun</span><span class="p">:</span> <span class="nb">callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -467,11 +461,10 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">batchable_context_fun</span> <span class="o">=</span> <span class="n">batchable_context_fun</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">non_batchable_context_fun</span> <span class="o">=</span> <span class="n">non_batchable_context_fun</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">use_non_batchable_for_batchable</span> <span class="o">=</span> <span class="n">use_non_batchable_for_batchable</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_non_batchable_for_batchable</span> <span class="o">=</span> <span class="n">use_non_batchable_for_batchable</span>
 
 <div class="viewcode-block" id="ContextGenerator.__call__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.ContextGenerator.__call__">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.ContextGenerator.__call__">[docs]</a>
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Wraps the method generate_context, which returns a dictionary with</span>
 <span class="sd">        batchable and non batchable context.</span>
@@ -502,7 +495,7 @@
 
 
 <div class="viewcode-block" id="ContextGenerator.batchable_context">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.ContextGenerator.batchable_context">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.ContextGenerator.batchable_context">[docs]</a>
     <span class="k">def</span> <span class="nf">batchable_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates &#39;batch_size&#39; context variables given optional arguments.</span>
 <span class="sd">        Return type is a list of context variables.</span>
@@ -514,7 +507,7 @@
 
 
 <div class="viewcode-block" id="ContextGenerator.non_batchable_context">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.ContextGenerator.non_batchable_context">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.ContextGenerator.non_batchable_context">[docs]</a>
     <span class="k">def</span> <span class="nf">non_batchable_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates a context variable shared across simulations in a given batch, given optional arguments.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">non_batchable_context_fun</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -523,7 +516,7 @@
 
 
 <div class="viewcode-block" id="ContextGenerator.generate_context">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.ContextGenerator.generate_context">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.ContextGenerator.generate_context">[docs]</a>
     <span class="k">def</span> <span class="nf">generate_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a dictionary with batchable and non batchable context.</span>
 
@@ -559,7 +552,7 @@
 
 
 <div class="viewcode-block" id="Prior">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.Prior">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.Prior">[docs]</a>
 <span class="k">class</span> <span class="nc">Prior</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic interface for a simulation module responsible for generating random draws from a</span>
 <span class="sd">    prior distribution.</span>
@@ -573,8 +566,6 @@
 <span class="sd">    - context_generator.non_batchable_context()</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Prior.__init__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.Prior.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">batch_prior_fun</span><span class="p">:</span> <span class="nb">callable</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -609,11 +600,10 @@
         <span class="k">if</span> <span class="n">prior_fun</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">is_batched</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">is_batched</span> <span class="o">=</span> <span class="kc">False</span></div>
-
+            <span class="bp">self</span><span class="o">.</span><span class="n">is_batched</span> <span class="o">=</span> <span class="kc">False</span>
 
 <div class="viewcode-block" id="Prior.__call__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.Prior.__call__">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.Prior.__call__">[docs]</a>
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates ``batch_size`` draws from the prior given optional context generator.</span>
 
@@ -718,7 +708,7 @@
 
 
 <div class="viewcode-block" id="Prior.plot_prior2d">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.Prior.plot_prior2d">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.Prior.plot_prior2d">[docs]</a>
     <span class="k">def</span> <span class="nf">plot_prior2d</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates a 2D plot representing bivariate prior ditributions. Uses the function</span>
 <span class="sd">        ``bayesflow.diagnostics.plot_prior2d()`` internally for generating the plot.</span>
@@ -737,7 +727,7 @@
 
 
 <div class="viewcode-block" id="Prior.estimate_means_and_stds">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.Prior.estimate_means_and_stds">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.Prior.estimate_means_and_stds">[docs]</a>
     <span class="k">def</span> <span class="nf">estimate_means_and_stds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_draws</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Estimates prior means and stds given n_draws from the prior, useful</span>
 <span class="sd">        for z-standardization of the prior draws.</span>
@@ -765,7 +755,7 @@
 
 
 <div class="viewcode-block" id="Prior.logpdf">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.Prior.logpdf">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.Prior.logpdf">[docs]</a>
     <span class="k">def</span> <span class="nf">logpdf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prior_draws</span><span class="p">):</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Prior density computation is under construction!&quot;</span><span class="p">)</span></div>
 </div>
@@ -773,7 +763,7 @@
 
 
 <div class="viewcode-block" id="TwoLevelPrior">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.TwoLevelPrior">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.TwoLevelPrior">[docs]</a>
 <span class="k">class</span> <span class="nc">TwoLevelPrior</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic interface for a simulation module responsible for generating random draws from a</span>
 <span class="sd">    two-level prior distribution.</span>
@@ -787,8 +777,6 @@
 <span class="sd">    - ``context_generator.non_batchable_context()``</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="TwoLevelPrior.__init__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.TwoLevelPrior.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">hyper_prior_fun</span><span class="p">:</span> <span class="nb">callable</span><span class="p">,</span>
@@ -842,11 +830,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">hyper_prior</span> <span class="o">=</span> <span class="n">hyper_prior_fun</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">local_prior</span> <span class="o">=</span> <span class="n">local_prior_fun</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shared_prior</span> <span class="o">=</span> <span class="n">shared_prior_fun</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">local_context_generator</span> <span class="o">=</span> <span class="n">local_context_generator</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">local_context_generator</span> <span class="o">=</span> <span class="n">local_context_generator</span>
 
 <div class="viewcode-block" id="TwoLevelPrior.__call__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.TwoLevelPrior.__call__">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.TwoLevelPrior.__call__">[docs]</a>
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates ``batch_size`` draws from the hierarchical prior.&quot;&quot;&quot;</span>
 
@@ -899,7 +886,7 @@
 
 
 <div class="viewcode-block" id="TwoLevelPrior.draw_hyper_parameters">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.TwoLevelPrior.draw_hyper_parameters">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.TwoLevelPrior.draw_hyper_parameters">[docs]</a>
     <span class="k">def</span> <span class="nf">draw_hyper_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;TODO&quot;&quot;&quot;</span>
 
@@ -908,7 +895,7 @@
 
 
 <div class="viewcode-block" id="TwoLevelPrior.draw_local_parameters">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.TwoLevelPrior.draw_local_parameters">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.TwoLevelPrior.draw_local_parameters">[docs]</a>
     <span class="k">def</span> <span class="nf">draw_local_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hypers</span><span class="p">,</span> <span class="n">batchable_context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">non_batchable_context</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;TODO&quot;&quot;&quot;</span>
 
@@ -927,7 +914,7 @@
 
 
 <div class="viewcode-block" id="TwoLevelPrior.draw_shared_parameters">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.TwoLevelPrior.draw_shared_parameters">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.TwoLevelPrior.draw_shared_parameters">[docs]</a>
     <span class="k">def</span> <span class="nf">draw_shared_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;TODO&quot;&quot;&quot;</span>
 
@@ -940,7 +927,7 @@
 
 
 <div class="viewcode-block" id="Simulator">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.Simulator">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.Simulator">[docs]</a>
 <span class="k">class</span> <span class="nc">Simulator</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic interface for a simulation module responsible for generating randomized simulations given a prior</span>
 <span class="sd">    parameter distribution and optional context variables, given a user-provided simulation function.</span>
@@ -954,8 +941,6 @@
 <span class="sd">    - ``context_generator.non_batchable_context()``</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Simulator.__init__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.Simulator.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_simulator_fun</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">simulator_fun</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">context_generator</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiates a data generator which will perform randomized simulations given a set of parameters and optional context.</span>
 <span class="sd">        Either a ``batch_simulator_fun`` or ``simulator_fun``, but not both, should be provided to instantiate a ``Simulator`` object.</span>
@@ -988,11 +973,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">simulator</span> <span class="o">=</span> <span class="n">batch_simulator_fun</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">simulator</span> <span class="o">=</span> <span class="n">simulator_fun</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">context_gen</span> <span class="o">=</span> <span class="n">context_generator</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">context_gen</span> <span class="o">=</span> <span class="n">context_generator</span>
 
 <div class="viewcode-block" id="Simulator.__call__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.Simulator.__call__">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.Simulator.__call__">[docs]</a>
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">params</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates simulated data given param draws and optional context variables generated internally.</span>
 
@@ -1136,7 +1120,7 @@
 
 
 <div class="viewcode-block" id="GenerativeModel">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.GenerativeModel">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.benchmarks.GenerativeModel">[docs]</a>
 <span class="k">class</span> <span class="nc">GenerativeModel</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic interface for a generative model in a simulation-based context.</span>
 <span class="sd">    Generally, a generative model consists of two mandatory components:</span>
@@ -1147,8 +1131,6 @@
 
     <span class="n">_N_SIM_TEST</span> <span class="o">=</span> <span class="mi">2</span>
 
-<div class="viewcode-block" id="GenerativeModel.__init__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.GenerativeModel.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">prior</span><span class="p">:</span> <span class="nb">callable</span><span class="p">,</span>
@@ -1207,11 +1189,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">param_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prior</span><span class="o">.</span><span class="n">param_names</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">skip_test</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_test</span><span class="p">()</span></div>
-
+            <span class="bp">self</span><span class="o">.</span><span class="n">_test</span><span class="p">()</span>
 
 <div class="viewcode-block" id="GenerativeModel.__call__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.GenerativeModel.__call__">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.benchmarks.GenerativeModel.__call__">[docs]</a>
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Carries out forward inference ``batch_size`` times.&quot;&quot;&quot;</span>
 
@@ -1247,7 +1228,7 @@
             <span class="k">return</span> <span class="n">Simulator</span><span class="p">(</span><span class="n">simulator_fun</span><span class="o">=</span><span class="n">sim_fun</span><span class="p">)</span>
 
 <div class="viewcode-block" id="GenerativeModel.plot_pushforward">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.GenerativeModel.plot_pushforward">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.benchmarks.GenerativeModel.plot_pushforward">[docs]</a>
     <span class="k">def</span> <span class="nf">plot_pushforward</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">parameter_draws</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">funcs_list</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">funcs_labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">show_raw_sims</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">):</span>
@@ -1380,7 +1361,7 @@
             <span class="p">)</span>
 
 <div class="viewcode-block" id="GenerativeModel.presimulate_and_save">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.GenerativeModel.presimulate_and_save">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.benchmarks.GenerativeModel.presimulate_and_save">[docs]</a>
     <span class="k">def</span> <span class="nf">presimulate_and_save</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">batch_size</span><span class="p">,</span>
@@ -1578,7 +1559,7 @@
 
 
 <div class="viewcode-block" id="TwoLevelGenerativeModel">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.TwoLevelGenerativeModel">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.TwoLevelGenerativeModel">[docs]</a>
 <span class="k">class</span> <span class="nc">TwoLevelGenerativeModel</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic interface for a generative model in a simulation-based context.</span>
 
@@ -1589,8 +1570,6 @@
 
     <span class="n">_N_SIM_TEST</span> <span class="o">=</span> <span class="mi">2</span>
 
-<div class="viewcode-block" id="TwoLevelGenerativeModel.__init__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.TwoLevelGenerativeModel.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">prior</span><span class="p">:</span> <span class="nb">callable</span><span class="p">,</span>
@@ -1637,11 +1616,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="n">skip_test</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_test</span><span class="p">()</span></div>
-
+            <span class="bp">self</span><span class="o">.</span><span class="n">_test</span><span class="p">()</span>
 
 <div class="viewcode-block" id="TwoLevelGenerativeModel.__call__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.TwoLevelGenerativeModel.__call__">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.benchmarks.TwoLevelGenerativeModel.__call__">[docs]</a>
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Carries out forward inference ``batch_size`` times.&quot;&quot;&quot;</span>
 
@@ -1745,15 +1723,13 @@
 
 
 <div class="viewcode-block" id="MultiGenerativeModel">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.MultiGenerativeModel">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.benchmarks.MultiGenerativeModel">[docs]</a>
 <span class="k">class</span> <span class="nc">MultiGenerativeModel</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Basic interface for multiple generative models in a simulation-based context.</span>
 <span class="sd">    A ``MultiveGenerativeModel`` instance consists of a list of ``GenerativeModel`` instances</span>
 <span class="sd">    and a prior distribution over candidate models defined by a list of probabilities.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="MultiGenerativeModel.__init__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.MultiGenerativeModel.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">generative_models</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">model_probs</span><span class="o">=</span><span class="s2">&quot;equal&quot;</span><span class="p">,</span> <span class="n">shared_context_gen</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Instantiates a multi-generative model responsible for generating parameters, data, and optional context</span>
 <span class="sd">        from a list of models according to specified prior model probabilities (PMPs).</span>
@@ -1781,8 +1757,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">generative_models</span> <span class="o">=</span> <span class="n">generative_models</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_models</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">generative_models</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">model_prior</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_determine_model_prior</span><span class="p">(</span><span class="n">model_probs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">shared_context</span> <span class="o">=</span> <span class="n">shared_context_gen</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">shared_context</span> <span class="o">=</span> <span class="n">shared_context_gen</span>
 
     <span class="k">def</span> <span class="nf">_determine_model_prior</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_probs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates the model prior p(M) given user input.&quot;&quot;&quot;</span>
@@ -1792,7 +1767,7 @@
         <span class="k">return</span> <span class="k">lambda</span> <span class="n">b</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">()</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_models</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">b</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="n">model_probs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MultiGenerativeModel.__call__">
-<a class="viewcode-back" href="../../api/bayesflow.simulation.html#bayesflow.simulation.MultiGenerativeModel.__call__">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.benchmarks.MultiGenerativeModel.__call__">[docs]</a>
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates a total of ``batch_size`` simulations from all models.&quot;&quot;&quot;</span>
 
@@ -1862,7 +1837,7 @@ By The BayesFlow authors
 
   <p class="copyright">
     
-      © Copyright 2023, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      © Copyright 2023-2025, BayesFlow authors (lead maintainer: Stefan T. Radev).
       <br/>
     
   </p>

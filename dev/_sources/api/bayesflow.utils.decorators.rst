@@ -3,43 +3,41 @@ bayesflow.utils.decorators
 
 .. automodule:: bayesflow.utils.decorators
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      alias
-      allow_args
-      allow_batch_size
-      argument_callback
-      overload
-      wraps
-   
-   
+  .. autosummary::
+  
+    alias
+    allow_args
+    allow_batch_size
+    argument_callback
+    overload
+    wraps
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      Callable
-      Sequence
-      TypeVar
-   
-   
+  .. autosummary::
+  
+    Callable
+    Sequence
+    TypeVar
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

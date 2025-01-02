@@ -3,39 +3,37 @@ bayesflow.adapters.transforms.standardize
 
 .. automodule:: bayesflow.adapters.transforms.standardize
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      deserialize
-      serializable
-      serialize
-   
-   
+  .. autosummary::
+  
+    deserialize
+    serializable
+    serialize
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      ElementwiseTransform
-      Standardize
-   
-   
+  .. autosummary::
+  
+    ElementwiseTransform
+    Standardize
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

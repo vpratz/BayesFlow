@@ -3,36 +3,35 @@ bayesflow.utils.validators
 
 .. automodule:: bayesflow.utils.validators
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      check_lengths_same
-      check_posterior_prior_shapes
-   
-   
+  .. autosummary::
+  
+    check_lengths_same
+    check_posterior_prior_shapes
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Exceptions
+  
+  
+  .. rubric:: Exceptions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      ShapeError
-   
-   
+  .. autosummary::
+  
+    ShapeError
+  
+  
 
-
-
+  
+  
+  

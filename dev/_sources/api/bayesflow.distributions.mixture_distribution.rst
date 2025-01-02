@@ -3,38 +3,36 @@ bayesflow.distributions.mixture\_distribution
 
 .. automodule:: bayesflow.distributions.mixture_distribution
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      allow_batch_size
-      serializable
-   
-   
+  .. autosummary::
+  
+    allow_batch_size
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      Distribution
-      MixtureDistribution
-   
-   
+  .. autosummary::
+  
+    Distribution
+    MixtureDistribution
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

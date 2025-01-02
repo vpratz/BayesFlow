@@ -3,38 +3,36 @@ bayesflow.networks.cif.conditional\_gaussian
 
 .. automodule:: bayesflow.networks.cif.conditional_gaussian
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      keras_kwargs
-      register_keras_serializable
-   
-   
+  .. autosummary::
+  
+    keras_kwargs
+    register_keras_serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      ConditionalGaussian
-      MLP
-   
-   
+  .. autosummary::
+  
+    ConditionalGaussian
+    MLP
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

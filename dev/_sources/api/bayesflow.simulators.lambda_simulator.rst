@@ -3,40 +3,38 @@ bayesflow.simulators.lambda\_simulator
 
 .. automodule:: bayesflow.simulators.lambda_simulator
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      allow_batch_size
-      batched_call
-      filter_kwargs
-      tree_stack
-   
-   
+  .. autosummary::
+  
+    allow_batch_size
+    batched_call
+    filter_kwargs
+    tree_stack
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      LambdaSimulator
-      Simulator
-   
-   
+  .. autosummary::
+  
+    LambdaSimulator
+    Simulator
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

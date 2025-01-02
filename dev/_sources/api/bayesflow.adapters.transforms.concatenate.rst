@@ -3,40 +3,38 @@ bayesflow.adapters.transforms.concatenate
 
 .. automodule:: bayesflow.adapters.transforms.concatenate
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      deserialize
-      serializable
-      serialize
-   
-   
+  .. autosummary::
+  
+    deserialize
+    serializable
+    serialize
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      Concatenate
-      Sequence
-      Transform
-   
-   
+  .. autosummary::
+  
+    Concatenate
+    Sequence
+    Transform
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

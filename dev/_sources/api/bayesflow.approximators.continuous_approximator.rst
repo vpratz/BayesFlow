@@ -3,44 +3,43 @@ bayesflow.approximators.continuous\_approximator
 
 .. automodule:: bayesflow.approximators.continuous_approximator
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      deserialize
-      serializable
-      serialize
-      split_arrays
-   
-   
+  .. autosummary::
+  
+    deserialize
+    filter_kwargs
+    serializable
+    serialize
+    split_arrays
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      Adapter
-      Approximator
-      ContinuousApproximator
-      InferenceNetwork
-      Sequence
-      SummaryNetwork
-   
-   
+  .. autosummary::
+  
+    Adapter
+    Approximator
+    ContinuousApproximator
+    InferenceNetwork
+    Sequence
+    SummaryNetwork
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

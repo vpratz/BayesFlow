@@ -3,37 +3,35 @@ bayesflow.benchmarks.simulators.benchmark\_simulator
 
 .. automodule:: bayesflow.benchmarks.simulators.benchmark_simulator
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      batched_call
-      tree_stack
-   
-   
+  .. autosummary::
+  
+    batched_call
+    tree_stack
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      BenchmarkSimulator
-   
-   
+  .. autosummary::
+  
+    BenchmarkSimulator
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

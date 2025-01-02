@@ -216,18 +216,14 @@
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
   <ul>
-      <li><a href="/v1.1.6/index.html" >v1.1.6</a></li>
-      <li><a href="/v1.1.5/index.html" >v1.1.5</a></li>
-      <li><a href="/v1.1.4/index.html" >v1.1.4</a></li>
-      <li><a href="/v1.1.3/index.html" >v1.1.3</a></li>
-      <li><a href="/v1.1.2/index.html" >v1.1.2</a></li>
+      <li><a href="/v1.1.6/_modules/bayesflow/attention.html" >v1.1.6</a></li>
   </ul>
   
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
   <ul>
-      <li><a href="/dev/index.html" >dev</a></li>
-      <li><a href="/master/index.html" class="current">master</a></li>
+      <li><a href="/dev/_modules/bayesflow/attention.html" >dev</a></li>
+      <li><a href="/master/_modules/bayesflow/attention.html" class="current">master</a></li>
   </ul>
   
 </div>
@@ -402,7 +398,7 @@
 
 
 <div class="viewcode-block" id="MultiHeadAttentionBlock">
-<a class="viewcode-back" href="../../api/bayesflow.attention.html#bayesflow.attention.MultiHeadAttentionBlock">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.summary_networks.html#bayesflow.attention.MultiHeadAttentionBlock">[docs]</a>
 <span class="k">class</span> <span class="nc">MultiHeadAttentionBlock</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Implements the MAB block from [1] which represents learnable cross-attention.</span>
 
@@ -411,8 +407,6 @@
 <span class="sd">        In International conference on machine learning (pp. 3744-3753). PMLR.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="MultiHeadAttentionBlock.__init__">
-<a class="viewcode-back" href="../../api/bayesflow.attention.html#bayesflow.attention.MultiHeadAttentionBlock.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">,</span> <span class="n">attention_settings</span><span class="p">,</span> <span class="n">num_dense_fc</span><span class="p">,</span> <span class="n">dense_settings</span><span class="p">,</span> <span class="n">use_layer_norm</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a multihead attention block which will typically be used as part of a</span>
 <span class="sd">        set transformer architecture according to [1]. Corresponds to standard cross-attention.</span>
@@ -440,11 +434,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">ln_pre</span> <span class="o">=</span> <span class="n">LayerNormalization</span><span class="p">()</span> <span class="k">if</span> <span class="n">use_layer_norm</span> <span class="k">else</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span><span class="n">Dense</span><span class="p">(</span><span class="o">**</span><span class="n">dense_settings</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_dense_fc</span><span class="p">)])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">input_dim</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ln_post</span> <span class="o">=</span> <span class="n">LayerNormalization</span><span class="p">()</span> <span class="k">if</span> <span class="n">use_layer_norm</span> <span class="k">else</span> <span class="kc">None</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">ln_post</span> <span class="o">=</span> <span class="n">LayerNormalization</span><span class="p">()</span> <span class="k">if</span> <span class="n">use_layer_norm</span> <span class="k">else</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="MultiHeadAttentionBlock.call">
-<a class="viewcode-back" href="../../api/bayesflow.attention.html#bayesflow.attention.MultiHeadAttentionBlock.call">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.summary_networks.html#bayesflow.attention.MultiHeadAttentionBlock.call">[docs]</a>
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Performs the forward pass through the attention layer.</span>
 
@@ -473,7 +466,7 @@
 
 
 <div class="viewcode-block" id="SelfAttentionBlock">
-<a class="viewcode-back" href="../../api/bayesflow.attention.html#bayesflow.attention.SelfAttentionBlock">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.summary_networks.html#bayesflow.attention.SelfAttentionBlock">[docs]</a>
 <span class="k">class</span> <span class="nc">SelfAttentionBlock</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Implements the SAB block from [1] which represents learnable self-attention.</span>
 
@@ -482,8 +475,6 @@
 <span class="sd">        In International conference on machine learning (pp. 3744-3753). PMLR.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="SelfAttentionBlock.__init__">
-<a class="viewcode-back" href="../../api/bayesflow.attention.html#bayesflow.attention.SelfAttentionBlock.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">,</span> <span class="n">attention_settings</span><span class="p">,</span> <span class="n">num_dense_fc</span><span class="p">,</span> <span class="n">dense_settings</span><span class="p">,</span> <span class="n">use_layer_norm</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Creates a self-attention attention block which will typically be used as part of a</span>
 <span class="sd">        set transformer architecture according to [1].</span>
@@ -507,11 +498,10 @@
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">mab</span> <span class="o">=</span> <span class="n">MultiHeadAttentionBlock</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">attention_settings</span><span class="p">,</span> <span class="n">num_dense_fc</span><span class="p">,</span> <span class="n">dense_settings</span><span class="p">,</span> <span class="n">use_layer_norm</span><span class="p">)</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">mab</span> <span class="o">=</span> <span class="n">MultiHeadAttentionBlock</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">attention_settings</span><span class="p">,</span> <span class="n">num_dense_fc</span><span class="p">,</span> <span class="n">dense_settings</span><span class="p">,</span> <span class="n">use_layer_norm</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SelfAttentionBlock.call">
-<a class="viewcode-back" href="../../api/bayesflow.attention.html#bayesflow.attention.SelfAttentionBlock.call">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.summary_networks.html#bayesflow.attention.SelfAttentionBlock.call">[docs]</a>
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Performs the forward pass through the self-attention layer.</span>
 
@@ -532,7 +522,7 @@
 
 
 <div class="viewcode-block" id="InducedSelfAttentionBlock">
-<a class="viewcode-back" href="../../api/bayesflow.attention.html#bayesflow.attention.InducedSelfAttentionBlock">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.summary_networks.html#bayesflow.attention.InducedSelfAttentionBlock">[docs]</a>
 <span class="k">class</span> <span class="nc">InducedSelfAttentionBlock</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Implements the ISAB block from [1] which represents learnable self-attention specifically</span>
 <span class="sd">    designed to deal with large sets via a learnable set of &quot;inducing points&quot;.</span>
@@ -542,8 +532,6 @@
 <span class="sd">        In International conference on machine learning (pp. 3744-3753). PMLR.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="InducedSelfAttentionBlock.__init__">
-<a class="viewcode-back" href="../../api/bayesflow.attention.html#bayesflow.attention.InducedSelfAttentionBlock.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">,</span> <span class="n">attention_settings</span><span class="p">,</span> <span class="n">num_dense_fc</span><span class="p">,</span> <span class="n">dense_settings</span><span class="p">,</span> <span class="n">use_layer_norm</span><span class="p">,</span> <span class="n">num_inducing_points</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
@@ -574,11 +562,10 @@
         <span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">GlorotUniform</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">I</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">init</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_inducing_points</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;I&quot;</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mab0</span> <span class="o">=</span> <span class="n">MultiHeadAttentionBlock</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">attention_settings</span><span class="p">,</span> <span class="n">num_dense_fc</span><span class="p">,</span> <span class="n">dense_settings</span><span class="p">,</span> <span class="n">use_layer_norm</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mab1</span> <span class="o">=</span> <span class="n">MultiHeadAttentionBlock</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">attention_settings</span><span class="p">,</span> <span class="n">num_dense_fc</span><span class="p">,</span> <span class="n">dense_settings</span><span class="p">,</span> <span class="n">use_layer_norm</span><span class="p">)</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">mab1</span> <span class="o">=</span> <span class="n">MultiHeadAttentionBlock</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="n">attention_settings</span><span class="p">,</span> <span class="n">num_dense_fc</span><span class="p">,</span> <span class="n">dense_settings</span><span class="p">,</span> <span class="n">use_layer_norm</span><span class="p">)</span>
 
 <div class="viewcode-block" id="InducedSelfAttentionBlock.call">
-<a class="viewcode-back" href="../../api/bayesflow.attention.html#bayesflow.attention.InducedSelfAttentionBlock.call">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.summary_networks.html#bayesflow.attention.InducedSelfAttentionBlock.call">[docs]</a>
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Performs the forward pass through the self-attention layer.</span>
 
@@ -603,7 +590,7 @@
 
 
 <div class="viewcode-block" id="PoolingWithAttention">
-<a class="viewcode-back" href="../../api/bayesflow.attention.html#bayesflow.attention.PoolingWithAttention">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.summary_networks.html#bayesflow.attention.PoolingWithAttention">[docs]</a>
 <span class="k">class</span> <span class="nc">PoolingWithAttention</span><span class="p">(</span><span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Implements the pooling with multihead attention (PMA) block from [1] which represents</span>
 <span class="sd">    a permutation-invariant encoder for set-based inputs.</span>
@@ -613,8 +600,6 @@
 <span class="sd">        In International conference on machine learning (pp. 3744-3753). PMLR.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="PoolingWithAttention.__init__">
-<a class="viewcode-back" href="../../api/bayesflow.attention.html#bayesflow.attention.PoolingWithAttention.__init__">[docs]</a>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">summary_dim</span><span class="p">,</span> <span class="n">attention_settings</span><span class="p">,</span> <span class="n">num_dense_fc</span><span class="p">,</span> <span class="n">dense_settings</span><span class="p">,</span> <span class="n">use_layer_norm</span><span class="p">,</span> <span class="n">num_seeds</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
@@ -652,11 +637,10 @@
         <span class="n">init</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">keras</span><span class="o">.</span><span class="n">initializers</span><span class="o">.</span><span class="n">GlorotUniform</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">seed_vec</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">Variable</span><span class="p">(</span><span class="n">init</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">num_seeds</span><span class="p">,</span> <span class="n">summary_dim</span><span class="p">)),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;seed_vec&quot;</span><span class="p">,</span> <span class="n">trainable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">Sequential</span><span class="p">([</span><span class="n">Dense</span><span class="p">(</span><span class="o">**</span><span class="n">dense_settings</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_dense_fc</span><span class="p">)])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">summary_dim</span><span class="p">))</span></div>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dense</span><span class="p">(</span><span class="n">summary_dim</span><span class="p">))</span>
 
 <div class="viewcode-block" id="PoolingWithAttention.call">
-<a class="viewcode-back" href="../../api/bayesflow.attention.html#bayesflow.attention.PoolingWithAttention.call">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.summary_networks.html#bayesflow.attention.PoolingWithAttention.call">[docs]</a>
     <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Performs the forward pass through the PMA block.</span>
 
@@ -717,7 +701,7 @@ By The BayesFlow authors
 
   <p class="copyright">
     
-      © Copyright 2023, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      © Copyright 2023-2025, BayesFlow authors (lead maintainer: Stefan T. Radev).
       <br/>
     
   </p>

@@ -3,36 +3,34 @@ bayesflow.networks.mlp.hidden\_block
 
 .. automodule:: bayesflow.networks.mlp.hidden_block
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      serializable
-   
-   
+  .. autosummary::
+  
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      ConfigurableHiddenBlock
-   
-   
+  .. autosummary::
+  
+    ConfigurableHiddenBlock
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

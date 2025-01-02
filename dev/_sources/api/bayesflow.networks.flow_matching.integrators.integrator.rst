@@ -3,36 +3,34 @@ bayesflow.networks.flow\_matching.integrators.integrator
 
 .. automodule:: bayesflow.networks.flow_matching.integrators.integrator
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      keras_kwargs
-   
-   
+  .. autosummary::
+  
+    keras_kwargs
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      Integrator
-   
-   
+  .. autosummary::
+  
+    Integrator
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

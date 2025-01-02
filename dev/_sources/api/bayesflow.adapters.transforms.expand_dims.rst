@@ -3,39 +3,37 @@ bayesflow.adapters.transforms.expand\_dims
 
 .. automodule:: bayesflow.adapters.transforms.expand_dims
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      deserialize
-      serialize
-   
-   
+  .. autosummary::
+  
+    deserialize
+    serialize
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      ElementwiseTransform
-      ExpandDims
-      Sequence
-   
-   
+  .. autosummary::
+  
+    ElementwiseTransform
+    ExpandDims
+    Sequence
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

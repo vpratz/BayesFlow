@@ -3,39 +3,37 @@ bayesflow.networks.mlp.mlp
 
 .. automodule:: bayesflow.networks.mlp.mlp
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      keras_kwargs
-      serializable
-   
-   
+  .. autosummary::
+  
+    keras_kwargs
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      ConfigurableHiddenBlock
-      MLP
-      Sequence
-   
-   
+  .. autosummary::
+  
+    ConfigurableHiddenBlock
+    MLP
+    Sequence
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

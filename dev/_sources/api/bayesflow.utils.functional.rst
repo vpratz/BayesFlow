@@ -3,38 +3,36 @@ bayesflow.utils.functional
 
 .. automodule:: bayesflow.utils.functional
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      batched_call
-   
-   
+  .. autosummary::
+  
+    batched_call
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      Callable
-      Mapping
-      Sequence
-   
-   
+  .. autosummary::
+  
+    Callable
+    Mapping
+    Sequence
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

@@ -3,37 +3,35 @@ bayesflow.networks.coupling\_flow.permutations.orthogonal
 
 .. automodule:: bayesflow.networks.coupling_flow.permutations.orthogonal
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      serializable
-   
-   
+  .. autosummary::
+  
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      InvertibleLayer
-      OrthogonalPermutation
-   
-   
+  .. autosummary::
+  
+    InvertibleLayer
+    OrthogonalPermutation
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

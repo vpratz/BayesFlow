@@ -3,40 +3,38 @@ bayesflow.adapters.transforms.drop
 
 .. automodule:: bayesflow.adapters.transforms.drop
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      deserialize
-      serializable
-      serialize
-   
-   
+  .. autosummary::
+  
+    deserialize
+    serializable
+    serialize
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      Drop
-      Sequence
-      Transform
-   
-   
+  .. autosummary::
+  
+    Drop
+    Sequence
+    Transform
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

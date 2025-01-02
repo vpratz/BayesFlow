@@ -3,38 +3,36 @@ bayesflow.networks.transformers.pma
 
 .. automodule:: bayesflow.networks.transformers.pma
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      serializable
-   
-   
+  .. autosummary::
+  
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      MLP
-      MultiHeadAttentionBlock
-      PoolingByMultiHeadAttention
-   
-   
+  .. autosummary::
+  
+    MLP
+    MultiHeadAttentionBlock
+    PoolingByMultiHeadAttention
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

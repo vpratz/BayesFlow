@@ -3,37 +3,35 @@ bayesflow.metrics.maximum\_mean\_discrepancy
 
 .. automodule:: bayesflow.metrics.maximum_mean_discrepancy
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      maximum_mean_discrepancy
-   
-   
+  .. autosummary::
+  
+    maximum_mean_discrepancy
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      MaximumMeanDiscrepancy
-      partial
-   
-   
+  .. autosummary::
+  
+    MaximumMeanDiscrepancy
+    partial
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

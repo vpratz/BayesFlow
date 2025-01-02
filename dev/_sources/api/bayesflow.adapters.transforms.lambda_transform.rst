@@ -3,41 +3,39 @@ bayesflow.adapters.transforms.lambda\_transform
 
 .. automodule:: bayesflow.adapters.transforms.lambda_transform
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      deserialize
-      filter_kwargs
-      serializable
-      serialize
-   
-   
+  .. autosummary::
+  
+    deserialize
+    filter_kwargs
+    serializable
+    serialize
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      Callable
-      ElementwiseTransform
-      LambdaTransform
-   
-   
+  .. autosummary::
+  
+    Callable
+    ElementwiseTransform
+    LambdaTransform
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

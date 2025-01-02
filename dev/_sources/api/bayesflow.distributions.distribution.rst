@@ -3,36 +3,34 @@ bayesflow.distributions.distribution
 
 .. automodule:: bayesflow.distributions.distribution
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      keras_kwargs
-   
-   
+  .. autosummary::
+  
+    keras_kwargs
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      Distribution
-   
-   
+  .. autosummary::
+  
+    Distribution
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

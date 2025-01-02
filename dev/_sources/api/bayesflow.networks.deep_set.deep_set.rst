@@ -3,40 +3,38 @@ bayesflow.networks.deep\_set.deep\_set
 
 .. automodule:: bayesflow.networks.deep_set.deep_set
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      serializable
-   
-   
+  .. autosummary::
+  
+    serializable
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      DeepSet
-      EquivariantModule
-      InvariantModule
-      Sequence
-      SummaryNetwork
-   
-   
+  .. autosummary::
+  
+    DeepSet
+    EquivariantModule
+    InvariantModule
+    Sequence
+    SummaryNetwork
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

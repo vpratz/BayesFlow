@@ -3,68 +3,54 @@
 
 .. automodule:: bayesflow.simulators
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      make_simulator
-   
-   
+  .. autosummary::
+  
+    make_simulator
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      HierarchicalSimulator
-      LambdaSimulator
-      ModelComparisonSimulator
-      SequentialSimulator
-      Simulator
-      TwoMoons
-   
-   
+  .. autosummary::
+  
+    HierarchicalSimulator
+    LambdaSimulator
+    ModelComparisonSimulator
+    SequentialSimulator
+    Simulator
+    TwoMoons
+  
+  
 
-   
-   
-   
+  
+  
+  
 
+  
+  
+  .. rubric:: Modules
 
+  .. autosummary::
+    :toctree:
+    :template: custom-module-template.rst
+    :recursive:
+  
+    hierarchical_simulator
+    lambda_simulator
+    model_comparison_simulator
+    sequential_simulator
+    simulator
+    two_moons
 
-.. rubric:: Modules
-
-.. autosummary::
-   :toctree:
-   :template: custom-module-template.rst                 
-   :recursive:
-
-   hierarchical_simulator
-   lambda_simulator
-   model_comparison_simulator
-   sequential_simulator
-   simulator
-   two_moons
-
-.. rubric:: Submodules
-.. toctree::
-    :maxdepth: 1
-    :titlesonly:
-
-   hierarchical_simulator
-   lambda_simulator
-   model_comparison_simulator
-   sequential_simulator
-   simulator
-   two_moons
-
-
+  
+  

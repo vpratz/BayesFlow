@@ -1,0 +1,1799 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>keras.src.layers.rnn.lstm &#8212; BayesFlow: Amortized Bayesian Inference</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css?v=8fec244e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/keras/src/layers/rnn/lstm';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://www.bayesflow.org/_modules/keras/src/layers/rnn/lstm.html" />
+    <link rel="icon" href="../../../../../_static/bayesflow_hex.ico"/>
+    <link rel="author" title="About these documents" href="../../../../../about.html" />
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../../../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <img src="../../../../../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../../index.html">BayesFlow</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Intro_Amortized_Posterior_Estimation.html">1. Quickstart: Amortized Posterior Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/TwoMoons_Bimodal_Posterior.html">2. Two Moons: Tackling Bimodal Posteriors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Model_Misspecification.html">3. Detecting Model Misspecification in Amortized Posterior Inference</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/LCA_Model_Posterior_Estimation.html">4. Principled Amortized Bayesian Workflow for Cognitive Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Linear_ODE_system.html">5. Posterior Estimation for ODEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Covid19_Initial_Posterior_Estimation.html">6. Posterior Estimation for SIR-like Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Model_Comparison_MPT.html">7. Model Comparison for Cognitive Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../_examples/Hierarchical_Model_Comparison_MPT.html">8. Hierarchical Model Comparison for Cognitive Models</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../../../../api/bayesflow.html">Public API: bayesflow package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.html">bayesflow.benchmarks package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.bernoulli_glm.html">bayesflow.benchmarks.bernoulli_glm module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.bernoulli_glm_raw.html">bayesflow.benchmarks.bernoulli_glm_raw module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.gaussian_linear.html">bayesflow.benchmarks.gaussian_linear module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.gaussian_linear_uniform.html">bayesflow.benchmarks.gaussian_linear_uniform module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.gaussian_mixture.html">bayesflow.benchmarks.gaussian_mixture module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.inverse_kinematics.html">bayesflow.benchmarks.inverse_kinematics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.lotka_volterra.html">bayesflow.benchmarks.lotka_volterra module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.sir.html">bayesflow.benchmarks.sir module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.slcp.html">bayesflow.benchmarks.slcp module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.slcp_distractors.html">bayesflow.benchmarks.slcp_distractors module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.benchmarks.two_moons.html">bayesflow.benchmarks.two_moons module</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.amortizers.html">bayesflow.amortizers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.attention.html">bayesflow.attention module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.coupling_networks.html">bayesflow.coupling_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.diagnostics.html">bayesflow.diagnostics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.inference_networks.html">bayesflow.inference_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.losses.html">bayesflow.losses module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.networks.html">bayesflow.networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.sensitivity.html">bayesflow.sensitivity module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.simulation.html">bayesflow.simulation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.summary_networks.html">bayesflow.summary_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.trainers.html">bayesflow.trainers module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.configuration.html">bayesflow.configuration module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.default_settings.html">bayesflow.default_settings module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.computational_utilities.html">bayesflow.computational_utilities module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.helper_classes.html">bayesflow.helper_classes module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.helper_functions.html">bayesflow.helper_functions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.helper_networks.html">bayesflow.helper_networks module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.exceptions.html">bayesflow.exceptions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.mcmc.html">bayesflow.mcmc module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.version.html">bayesflow.version module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../api/bayesflow.wrappers.html">bayesflow.wrappers module</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../../api/bayesflow.experimental.html">bayesflow.experimental package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../../api/bayesflow.experimental.rectifiers.html">bayesflow.experimental.rectifiers module</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../installation.html">Full Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../about.html">About us</a></li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div class="rst-versions">
+   
+  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
+  <ul>
+      <li><a href="/v1.1.6/_modules/keras/src/layers/rnn/lstm.html" >v1.1.6</a></li>
+  </ul>
+  
+   
+  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
+  <ul>
+      <li><a href="/dev/_modules/keras/src/layers/rnn/lstm.html" >dev</a></li>
+      <li><a href="/master/_modules/keras/src/layers/rnn/lstm.html" class="current">master</a></li>
+  </ul>
+  
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow/issues/new?title=Issue%20on%20page%20%2F_modules/keras/src/layers/rnn/lstm.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for keras.src.layers.rnn.lstm</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright 2019 The TensorFlow Authors. All Rights Reserved.</span>
+<span class="c1">#</span>
+<span class="c1"># Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span>
+<span class="c1"># you may not use this file except in compliance with the License.</span>
+<span class="c1"># You may obtain a copy of the License at</span>
+<span class="c1">#</span>
+<span class="c1">#     http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="c1">#</span>
+<span class="c1"># Unless required by applicable law or agreed to in writing, software</span>
+<span class="c1"># distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span>
+<span class="c1"># WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span>
+<span class="c1"># See the License for the specific language governing permissions and</span>
+<span class="c1"># limitations under the License.</span>
+<span class="c1"># ==============================================================================</span>
+<span class="sd">&quot;&quot;&quot;Long Short-Term Memory layer.&quot;&quot;&quot;</span>
+
+
+<span class="kn">import</span> <span class="nn">uuid</span>
+
+<span class="kn">import</span> <span class="nn">tensorflow.compat.v2</span> <span class="k">as</span> <span class="nn">tf</span>
+
+<span class="kn">from</span> <span class="nn">keras.src</span> <span class="kn">import</span> <span class="n">activations</span>
+<span class="kn">from</span> <span class="nn">keras.src</span> <span class="kn">import</span> <span class="n">backend</span>
+<span class="kn">from</span> <span class="nn">keras.src</span> <span class="kn">import</span> <span class="n">constraints</span>
+<span class="kn">from</span> <span class="nn">keras.src</span> <span class="kn">import</span> <span class="n">initializers</span>
+<span class="kn">from</span> <span class="nn">keras.src</span> <span class="kn">import</span> <span class="n">regularizers</span>
+<span class="kn">from</span> <span class="nn">keras.src.engine</span> <span class="kn">import</span> <span class="n">base_layer</span>
+<span class="kn">from</span> <span class="nn">keras.src.engine.input_spec</span> <span class="kn">import</span> <span class="n">InputSpec</span>
+<span class="kn">from</span> <span class="nn">keras.src.layers.rnn</span> <span class="kn">import</span> <span class="n">gru_lstm_utils</span>
+<span class="kn">from</span> <span class="nn">keras.src.layers.rnn</span> <span class="kn">import</span> <span class="n">rnn_utils</span>
+<span class="kn">from</span> <span class="nn">keras.src.layers.rnn.base_rnn</span> <span class="kn">import</span> <span class="n">RNN</span>
+<span class="kn">from</span> <span class="nn">keras.src.layers.rnn.dropout_rnn_cell_mixin</span> <span class="kn">import</span> <span class="n">DropoutRNNCellMixin</span>
+<span class="kn">from</span> <span class="nn">keras.src.utils</span> <span class="kn">import</span> <span class="n">tf_utils</span>
+
+<span class="c1"># isort: off</span>
+<span class="kn">from</span> <span class="nn">tensorflow.python.platform</span> <span class="kn">import</span> <span class="n">tf_logging</span> <span class="k">as</span> <span class="n">logging</span>
+<span class="kn">from</span> <span class="nn">tensorflow.python.util.tf_export</span> <span class="kn">import</span> <span class="n">keras_export</span>
+
+<span class="n">RECURRENT_DROPOUT_WARNING_MSG</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;RNN `implementation=2` is not supported when `recurrent_dropout` is set. &quot;</span>
+    <span class="s2">&quot;Using `implementation=1`.&quot;</span>
+<span class="p">)</span>
+
+
+<span class="nd">@keras_export</span><span class="p">(</span><span class="s2">&quot;keras.layers.LSTMCell&quot;</span><span class="p">,</span> <span class="n">v1</span><span class="o">=</span><span class="p">[])</span>
+<span class="k">class</span> <span class="nc">LSTMCell</span><span class="p">(</span><span class="n">DropoutRNNCellMixin</span><span class="p">,</span> <span class="n">base_layer</span><span class="o">.</span><span class="n">BaseRandomLayer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cell class for the LSTM layer.</span>
+
+<span class="sd">    See [the Keras RNN API guide](https://www.tensorflow.org/guide/keras/rnn)</span>
+<span class="sd">    for details about the usage of RNN API.</span>
+
+<span class="sd">    This class processes one step within the whole time sequence input, whereas</span>
+<span class="sd">    `tf.keras.layer.LSTM` processes the whole sequence.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">    &gt;&gt;&gt; inputs = tf.random.normal([32, 10, 8])</span>
+<span class="sd">    &gt;&gt;&gt; rnn = tf.keras.layers.RNN(tf.keras.layers.LSTMCell(4))</span>
+<span class="sd">    &gt;&gt;&gt; output = rnn(inputs)</span>
+<span class="sd">    &gt;&gt;&gt; print(output.shape)</span>
+<span class="sd">    (32, 4)</span>
+<span class="sd">    &gt;&gt;&gt; rnn = tf.keras.layers.RNN(</span>
+<span class="sd">    ...    tf.keras.layers.LSTMCell(4),</span>
+<span class="sd">    ...    return_sequences=True,</span>
+<span class="sd">    ...    return_state=True)</span>
+<span class="sd">    &gt;&gt;&gt; whole_seq_output, final_memory_state, final_carry_state = rnn(inputs)</span>
+<span class="sd">    &gt;&gt;&gt; print(whole_seq_output.shape)</span>
+<span class="sd">    (32, 10, 4)</span>
+<span class="sd">    &gt;&gt;&gt; print(final_memory_state.shape)</span>
+<span class="sd">    (32, 4)</span>
+<span class="sd">    &gt;&gt;&gt; print(final_carry_state.shape)</span>
+<span class="sd">    (32, 4)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      units: Positive integer, dimensionality of the output space.</span>
+<span class="sd">      activation: Activation function to use. Default: hyperbolic tangent</span>
+<span class="sd">        (`tanh`). If you pass `None`, no activation is applied (ie. &quot;linear&quot;</span>
+<span class="sd">        activation: `a(x) = x`).</span>
+<span class="sd">      recurrent_activation: Activation function to use for the recurrent step.</span>
+<span class="sd">        Default: sigmoid (`sigmoid`). If you pass `None`, no activation is</span>
+<span class="sd">        applied (ie. &quot;linear&quot; activation: `a(x) = x`).</span>
+<span class="sd">      use_bias: Boolean, (default `True`), whether the layer uses a bias vector.</span>
+<span class="sd">      kernel_initializer: Initializer for the `kernel` weights matrix, used for</span>
+<span class="sd">        the linear transformation of the inputs. Default: `glorot_uniform`.</span>
+<span class="sd">      recurrent_initializer: Initializer for the `recurrent_kernel` weights</span>
+<span class="sd">        matrix, used for the linear transformation of the recurrent state.</span>
+<span class="sd">        Default: `orthogonal`.</span>
+<span class="sd">      bias_initializer: Initializer for the bias vector. Default: `zeros`.</span>
+<span class="sd">      unit_forget_bias: Boolean (default `True`). If True, add 1 to the bias of</span>
+<span class="sd">        the forget gate at initialization. Setting it to true will also force</span>
+<span class="sd">        `bias_initializer=&quot;zeros&quot;`. This is recommended in [Jozefowicz et</span>
+<span class="sd">          al.](https://github.com/mlresearch/v37/blob/gh-pages/jozefowicz15.pdf)</span>
+<span class="sd">      kernel_regularizer: Regularizer function applied to the `kernel` weights</span>
+<span class="sd">        matrix. Default: `None`.</span>
+<span class="sd">      recurrent_regularizer: Regularizer function applied to</span>
+<span class="sd">        the `recurrent_kernel` weights matrix. Default: `None`.</span>
+<span class="sd">      bias_regularizer: Regularizer function applied to the bias vector.</span>
+<span class="sd">        Default: `None`.</span>
+<span class="sd">      kernel_constraint: Constraint function applied to the `kernel` weights</span>
+<span class="sd">        matrix. Default: `None`.</span>
+<span class="sd">      recurrent_constraint: Constraint function applied to the</span>
+<span class="sd">        `recurrent_kernel` weights matrix. Default: `None`.</span>
+<span class="sd">      bias_constraint: Constraint function applied to the bias vector. Default:</span>
+<span class="sd">        `None`.</span>
+<span class="sd">      dropout: Float between 0 and 1. Fraction of the units to drop for the</span>
+<span class="sd">        linear transformation of the inputs. Default: 0.</span>
+<span class="sd">      recurrent_dropout: Float between 0 and 1. Fraction of the units to drop</span>
+<span class="sd">        for the linear transformation of the recurrent state. Default: 0.</span>
+
+<span class="sd">    Call arguments:</span>
+<span class="sd">      inputs: A 2D tensor, with shape of `[batch, feature]`.</span>
+<span class="sd">      states: List of 2 tensors that corresponding to the cell&#39;s units. Both of</span>
+<span class="sd">        them have shape `[batch, units]`, the first tensor is the memory state</span>
+<span class="sd">        from previous time step, the second tensor is the carry state from</span>
+<span class="sd">        previous time step. For timestep 0, the initial state provided by user</span>
+<span class="sd">        will be feed to cell.</span>
+<span class="sd">      training: Python boolean indicating whether the layer should behave in</span>
+<span class="sd">        training mode or in inference mode. Only relevant when `dropout` or</span>
+<span class="sd">        `recurrent_dropout` is used.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">units</span><span class="p">,</span>
+        <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;tanh&quot;</span><span class="p">,</span>
+        <span class="n">recurrent_activation</span><span class="o">=</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span>
+        <span class="n">use_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">kernel_initializer</span><span class="o">=</span><span class="s2">&quot;glorot_uniform&quot;</span><span class="p">,</span>
+        <span class="n">recurrent_initializer</span><span class="o">=</span><span class="s2">&quot;orthogonal&quot;</span><span class="p">,</span>
+        <span class="n">bias_initializer</span><span class="o">=</span><span class="s2">&quot;zeros&quot;</span><span class="p">,</span>
+        <span class="n">unit_forget_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">kernel_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">recurrent_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">bias_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">kernel_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">recurrent_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">bias_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">dropout</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">recurrent_dropout</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="k">if</span> <span class="n">units</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Received an invalid value for argument `units`, &quot;</span>
+                <span class="sa">f</span><span class="s2">&quot;expected a positive integer, got </span><span class="si">{</span><span class="n">units</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="p">)</span>
+        <span class="c1"># By default use cached variable under v2 mode, see b/143699808.</span>
+        <span class="k">if</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">executing_eagerly_outside_functions</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_enable_caching_device</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span>
+                <span class="s2">&quot;enable_caching_device&quot;</span><span class="p">,</span> <span class="kc">True</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_enable_caching_device</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span>
+                <span class="s2">&quot;enable_caching_device&quot;</span><span class="p">,</span> <span class="kc">False</span>
+            <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="n">units</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activation</span> <span class="o">=</span> <span class="n">activations</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">activation</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_activation</span> <span class="o">=</span> <span class="n">activations</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">recurrent_activation</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_bias</span> <span class="o">=</span> <span class="n">use_bias</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel_initializer</span> <span class="o">=</span> <span class="n">initializers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kernel_initializer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_initializer</span> <span class="o">=</span> <span class="n">initializers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">recurrent_initializer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias_initializer</span> <span class="o">=</span> <span class="n">initializers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">bias_initializer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">unit_forget_bias</span> <span class="o">=</span> <span class="n">unit_forget_bias</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel_regularizer</span> <span class="o">=</span> <span class="n">regularizers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kernel_regularizer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_regularizer</span> <span class="o">=</span> <span class="n">regularizers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">recurrent_regularizer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias_regularizer</span> <span class="o">=</span> <span class="n">regularizers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">bias_regularizer</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel_constraint</span> <span class="o">=</span> <span class="n">constraints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kernel_constraint</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_constraint</span> <span class="o">=</span> <span class="n">constraints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">recurrent_constraint</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">bias_constraint</span> <span class="o">=</span> <span class="n">constraints</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">bias_constraint</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">dropout</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_dropout</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">recurrent_dropout</span><span class="p">))</span>
+        <span class="n">implementation</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;implementation&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_dropout</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">implementation</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">RECURRENT_DROPOUT_WARNING_MSG</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">implementation</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">implementation</span> <span class="o">=</span> <span class="n">implementation</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_size</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span>
+
+    <span class="nd">@tf_utils</span><span class="o">.</span><span class="n">shape_type_conversion</span>
+    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
+        <span class="n">default_caching_device</span> <span class="o">=</span> <span class="n">rnn_utils</span><span class="o">.</span><span class="n">caching_device</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="n">input_dim</span> <span class="o">=</span> <span class="n">input_shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_weight</span><span class="p">(</span>
+            <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">*</span> <span class="mi">4</span><span class="p">),</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;kernel&quot;</span><span class="p">,</span>
+            <span class="n">initializer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_initializer</span><span class="p">,</span>
+            <span class="n">regularizer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_regularizer</span><span class="p">,</span>
+            <span class="n">constraint</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_constraint</span><span class="p">,</span>
+            <span class="n">caching_device</span><span class="o">=</span><span class="n">default_caching_device</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_kernel</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_weight</span><span class="p">(</span>
+            <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">*</span> <span class="mi">4</span><span class="p">),</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;recurrent_kernel&quot;</span><span class="p">,</span>
+            <span class="n">initializer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">recurrent_initializer</span><span class="p">,</span>
+            <span class="n">regularizer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">recurrent_regularizer</span><span class="p">,</span>
+            <span class="n">constraint</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">recurrent_constraint</span><span class="p">,</span>
+            <span class="n">caching_device</span><span class="o">=</span><span class="n">default_caching_device</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bias</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_forget_bias</span><span class="p">:</span>
+
+                <span class="k">def</span> <span class="nf">bias_initializer</span><span class="p">(</span><span class="n">_</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                    <span class="k">return</span> <span class="n">backend</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+                        <span class="p">[</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">bias_initializer</span><span class="p">(</span>
+                                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">,),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+                            <span class="p">),</span>
+                            <span class="n">initializers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;ones&quot;</span><span class="p">)(</span>
+                                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">,),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+                            <span class="p">),</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">bias_initializer</span><span class="p">(</span>
+                                <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+                            <span class="p">),</span>
+                        <span class="p">]</span>
+                    <span class="p">)</span>
+
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">bias_initializer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias_initializer</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_weight</span><span class="p">(</span>
+                <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,),</span>
+                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;bias&quot;</span><span class="p">,</span>
+                <span class="n">initializer</span><span class="o">=</span><span class="n">bias_initializer</span><span class="p">,</span>
+                <span class="n">regularizer</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bias_regularizer</span><span class="p">,</span>
+                <span class="n">constraint</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">bias_constraint</span><span class="p">,</span>
+                <span class="n">caching_device</span><span class="o">=</span><span class="n">default_caching_device</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bias</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">built</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">_compute_carry_and_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">h_tm1</span><span class="p">,</span> <span class="n">c_tm1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes carry and output using split kernels.&quot;&quot;&quot;</span>
+        <span class="n">x_i</span><span class="p">,</span> <span class="n">x_f</span><span class="p">,</span> <span class="n">x_c</span><span class="p">,</span> <span class="n">x_o</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="n">h_tm1_i</span><span class="p">,</span> <span class="n">h_tm1_f</span><span class="p">,</span> <span class="n">h_tm1_c</span><span class="p">,</span> <span class="n">h_tm1_o</span> <span class="o">=</span> <span class="n">h_tm1</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_activation</span><span class="p">(</span>
+            <span class="n">x_i</span> <span class="o">+</span> <span class="n">backend</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">h_tm1_i</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_kernel</span><span class="p">[:,</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">])</span>
+        <span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_activation</span><span class="p">(</span>
+            <span class="n">x_f</span>
+            <span class="o">+</span> <span class="n">backend</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
+                <span class="n">h_tm1_f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_kernel</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="n">c_tm1</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">(</span>
+            <span class="n">x_c</span>
+            <span class="o">+</span> <span class="n">backend</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span>
+                <span class="n">h_tm1_c</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_kernel</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">*</span> <span class="mi">2</span> <span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">*</span> <span class="mi">3</span><span class="p">],</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_activation</span><span class="p">(</span>
+            <span class="n">x_o</span>
+            <span class="o">+</span> <span class="n">backend</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">h_tm1_o</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_kernel</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">*</span> <span class="mi">3</span> <span class="p">:])</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">c</span><span class="p">,</span> <span class="n">o</span>
+
+    <span class="k">def</span> <span class="nf">_compute_carry_and_output_fused</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">c_tm1</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Computes carry and output using fused kernels.&quot;&quot;&quot;</span>
+        <span class="n">z0</span><span class="p">,</span> <span class="n">z1</span><span class="p">,</span> <span class="n">z2</span><span class="p">,</span> <span class="n">z3</span> <span class="o">=</span> <span class="n">z</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_activation</span><span class="p">(</span><span class="n">z0</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_activation</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="n">c_tm1</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_activation</span><span class="p">(</span><span class="n">z3</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">c</span><span class="p">,</span> <span class="n">o</span>
+
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">h_tm1</span> <span class="o">=</span> <span class="n">states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># previous memory state</span>
+        <span class="n">c_tm1</span> <span class="o">=</span> <span class="n">states</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># previous carry state</span>
+
+        <span class="n">dp_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_dropout_mask_for_cell</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">training</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">rec_dp_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_recurrent_dropout_mask_for_cell</span><span class="p">(</span>
+            <span class="n">h_tm1</span><span class="p">,</span> <span class="n">training</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">4</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">implementation</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+                <span class="n">inputs_i</span> <span class="o">=</span> <span class="n">inputs</span> <span class="o">*</span> <span class="n">dp_mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">inputs_f</span> <span class="o">=</span> <span class="n">inputs</span> <span class="o">*</span> <span class="n">dp_mask</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">inputs_c</span> <span class="o">=</span> <span class="n">inputs</span> <span class="o">*</span> <span class="n">dp_mask</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">inputs_o</span> <span class="o">=</span> <span class="n">inputs</span> <span class="o">*</span> <span class="n">dp_mask</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">inputs_i</span> <span class="o">=</span> <span class="n">inputs</span>
+                <span class="n">inputs_f</span> <span class="o">=</span> <span class="n">inputs</span>
+                <span class="n">inputs_c</span> <span class="o">=</span> <span class="n">inputs</span>
+                <span class="n">inputs_o</span> <span class="o">=</span> <span class="n">inputs</span>
+            <span class="n">k_i</span><span class="p">,</span> <span class="n">k_f</span><span class="p">,</span> <span class="n">k_c</span><span class="p">,</span> <span class="n">k_o</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span><span class="p">,</span> <span class="n">num_or_size_splits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span>
+            <span class="p">)</span>
+            <span class="n">x_i</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">inputs_i</span><span class="p">,</span> <span class="n">k_i</span><span class="p">)</span>
+            <span class="n">x_f</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">inputs_f</span><span class="p">,</span> <span class="n">k_f</span><span class="p">)</span>
+            <span class="n">x_c</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">inputs_c</span><span class="p">,</span> <span class="n">k_c</span><span class="p">)</span>
+            <span class="n">x_o</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">inputs_o</span><span class="p">,</span> <span class="n">k_o</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bias</span><span class="p">:</span>
+                <span class="n">b_i</span><span class="p">,</span> <span class="n">b_f</span><span class="p">,</span> <span class="n">b_c</span><span class="p">,</span> <span class="n">b_o</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">,</span> <span class="n">num_or_size_splits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+                <span class="p">)</span>
+                <span class="n">x_i</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">bias_add</span><span class="p">(</span><span class="n">x_i</span><span class="p">,</span> <span class="n">b_i</span><span class="p">)</span>
+                <span class="n">x_f</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">bias_add</span><span class="p">(</span><span class="n">x_f</span><span class="p">,</span> <span class="n">b_f</span><span class="p">)</span>
+                <span class="n">x_c</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">bias_add</span><span class="p">(</span><span class="n">x_c</span><span class="p">,</span> <span class="n">b_c</span><span class="p">)</span>
+                <span class="n">x_o</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">bias_add</span><span class="p">(</span><span class="n">x_o</span><span class="p">,</span> <span class="n">b_o</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_dropout</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+                <span class="n">h_tm1_i</span> <span class="o">=</span> <span class="n">h_tm1</span> <span class="o">*</span> <span class="n">rec_dp_mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                <span class="n">h_tm1_f</span> <span class="o">=</span> <span class="n">h_tm1</span> <span class="o">*</span> <span class="n">rec_dp_mask</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">h_tm1_c</span> <span class="o">=</span> <span class="n">h_tm1</span> <span class="o">*</span> <span class="n">rec_dp_mask</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+                <span class="n">h_tm1_o</span> <span class="o">=</span> <span class="n">h_tm1</span> <span class="o">*</span> <span class="n">rec_dp_mask</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">h_tm1_i</span> <span class="o">=</span> <span class="n">h_tm1</span>
+                <span class="n">h_tm1_f</span> <span class="o">=</span> <span class="n">h_tm1</span>
+                <span class="n">h_tm1_c</span> <span class="o">=</span> <span class="n">h_tm1</span>
+                <span class="n">h_tm1_o</span> <span class="o">=</span> <span class="n">h_tm1</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="p">(</span><span class="n">x_i</span><span class="p">,</span> <span class="n">x_f</span><span class="p">,</span> <span class="n">x_c</span><span class="p">,</span> <span class="n">x_o</span><span class="p">)</span>
+            <span class="n">h_tm1</span> <span class="o">=</span> <span class="p">(</span><span class="n">h_tm1_i</span><span class="p">,</span> <span class="n">h_tm1_f</span><span class="p">,</span> <span class="n">h_tm1_c</span><span class="p">,</span> <span class="n">h_tm1_o</span><span class="p">)</span>
+            <span class="n">c</span><span class="p">,</span> <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_carry_and_output</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">h_tm1</span><span class="p">,</span> <span class="n">c_tm1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="mf">0.0</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">&lt;</span> <span class="mf">1.0</span><span class="p">:</span>
+                <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span> <span class="o">*</span> <span class="n">dp_mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel</span><span class="p">)</span>
+            <span class="n">z</span> <span class="o">+=</span> <span class="n">backend</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">h_tm1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_kernel</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bias</span><span class="p">:</span>
+                <span class="n">z</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">bias_add</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">bias</span><span class="p">)</span>
+
+            <span class="n">z</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">num_or_size_splits</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">c</span><span class="p">,</span> <span class="n">o</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_carry_and_output_fused</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">c_tm1</span><span class="p">)</span>
+
+        <span class="n">h</span> <span class="o">=</span> <span class="n">o</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">h</span><span class="p">,</span> <span class="p">[</span><span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">,</span>
+            <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="n">activations</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">),</span>
+            <span class="s2">&quot;recurrent_activation&quot;</span><span class="p">:</span> <span class="n">activations</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_activation</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;use_bias&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bias</span><span class="p">,</span>
+            <span class="s2">&quot;kernel_initializer&quot;</span><span class="p">:</span> <span class="n">initializers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">kernel_initializer</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;recurrent_initializer&quot;</span><span class="p">:</span> <span class="n">initializers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_initializer</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;bias_initializer&quot;</span><span class="p">:</span> <span class="n">initializers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bias_initializer</span><span class="p">),</span>
+            <span class="s2">&quot;unit_forget_bias&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_forget_bias</span><span class="p">,</span>
+            <span class="s2">&quot;kernel_regularizer&quot;</span><span class="p">:</span> <span class="n">regularizers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">kernel_regularizer</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;recurrent_regularizer&quot;</span><span class="p">:</span> <span class="n">regularizers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_regularizer</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;bias_regularizer&quot;</span><span class="p">:</span> <span class="n">regularizers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bias_regularizer</span><span class="p">),</span>
+            <span class="s2">&quot;kernel_constraint&quot;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_constraint</span><span class="p">),</span>
+            <span class="s2">&quot;recurrent_constraint&quot;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_constraint</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;bias_constraint&quot;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bias_constraint</span><span class="p">),</span>
+            <span class="s2">&quot;dropout&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">,</span>
+            <span class="s2">&quot;recurrent_dropout&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_dropout</span><span class="p">,</span>
+            <span class="s2">&quot;implementation&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">implementation</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rnn_utils</span><span class="o">.</span><span class="n">config_for_enable_caching_device</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="n">base_config</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">base_config</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+
+    <span class="k">def</span> <span class="nf">get_initial_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span>
+            <span class="n">rnn_utils</span><span class="o">.</span><span class="n">generate_zero_filled_state_for_cell</span><span class="p">(</span>
+                <span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">,</span> <span class="n">dtype</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+
+<div class="viewcode-block" id="LSTM">
+<a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.LSTM">[docs]</a>
+<span class="nd">@keras_export</span><span class="p">(</span><span class="s2">&quot;keras.layers.LSTM&quot;</span><span class="p">,</span> <span class="n">v1</span><span class="o">=</span><span class="p">[])</span>
+<span class="k">class</span> <span class="nc">LSTM</span><span class="p">(</span><span class="n">DropoutRNNCellMixin</span><span class="p">,</span> <span class="n">RNN</span><span class="p">,</span> <span class="n">base_layer</span><span class="o">.</span><span class="n">BaseRandomLayer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Long Short-Term Memory layer - Hochreiter 1997.</span>
+
+<span class="sd">    See [the Keras RNN API guide](https://www.tensorflow.org/guide/keras/rnn)</span>
+<span class="sd">    for details about the usage of RNN API.</span>
+
+<span class="sd">    Based on available runtime hardware and constraints, this layer</span>
+<span class="sd">    will choose different implementations (cuDNN-based or pure-TensorFlow)</span>
+<span class="sd">    to maximize the performance. If a GPU is available and all</span>
+<span class="sd">    the arguments to the layer meet the requirement of the cuDNN kernel</span>
+<span class="sd">    (see below for details), the layer will use a fast cuDNN implementation.</span>
+
+<span class="sd">    The requirements to use the cuDNN implementation are:</span>
+
+<span class="sd">    1. `activation` == `tanh`</span>
+<span class="sd">    2. `recurrent_activation` == `sigmoid`</span>
+<span class="sd">    3. `recurrent_dropout` == 0</span>
+<span class="sd">    4. `unroll` is `False`</span>
+<span class="sd">    5. `use_bias` is `True`</span>
+<span class="sd">    6. Inputs, if use masking, are strictly right-padded.</span>
+<span class="sd">    7. Eager execution is enabled in the outermost context.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">    &gt;&gt;&gt; inputs = tf.random.normal([32, 10, 8])</span>
+<span class="sd">    &gt;&gt;&gt; lstm = tf.keras.layers.LSTM(4)</span>
+<span class="sd">    &gt;&gt;&gt; output = lstm(inputs)</span>
+<span class="sd">    &gt;&gt;&gt; print(output.shape)</span>
+<span class="sd">    (32, 4)</span>
+<span class="sd">    &gt;&gt;&gt; lstm = tf.keras.layers.LSTM(4, return_sequences=True, return_state=True)</span>
+<span class="sd">    &gt;&gt;&gt; whole_seq_output, final_memory_state, final_carry_state = lstm(inputs)</span>
+<span class="sd">    &gt;&gt;&gt; print(whole_seq_output.shape)</span>
+<span class="sd">    (32, 10, 4)</span>
+<span class="sd">    &gt;&gt;&gt; print(final_memory_state.shape)</span>
+<span class="sd">    (32, 4)</span>
+<span class="sd">    &gt;&gt;&gt; print(final_carry_state.shape)</span>
+<span class="sd">    (32, 4)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      units: Positive integer, dimensionality of the output space.</span>
+<span class="sd">      activation: Activation function to use.</span>
+<span class="sd">        Default: hyperbolic tangent (`tanh`). If you pass `None`, no activation</span>
+<span class="sd">        is applied (ie. &quot;linear&quot; activation: `a(x) = x`).</span>
+<span class="sd">      recurrent_activation: Activation function to use for the recurrent step.</span>
+<span class="sd">        Default: sigmoid (`sigmoid`). If you pass `None`, no activation is</span>
+<span class="sd">        applied (ie. &quot;linear&quot; activation: `a(x) = x`).</span>
+<span class="sd">      use_bias: Boolean (default `True`), whether the layer uses a bias vector.</span>
+<span class="sd">      kernel_initializer: Initializer for the `kernel` weights matrix, used for</span>
+<span class="sd">        the linear transformation of the inputs. Default: `glorot_uniform`.</span>
+<span class="sd">      recurrent_initializer: Initializer for the `recurrent_kernel` weights</span>
+<span class="sd">        matrix, used for the linear transformation of the recurrent state.</span>
+<span class="sd">        Default: `orthogonal`.</span>
+<span class="sd">      bias_initializer: Initializer for the bias vector. Default: `zeros`.</span>
+<span class="sd">      unit_forget_bias: Boolean (default `True`). If True, add 1 to the bias of</span>
+<span class="sd">        the forget gate at initialization. Setting it to true will also force</span>
+<span class="sd">        `bias_initializer=&quot;zeros&quot;`. This is recommended in [Jozefowicz et</span>
+<span class="sd">            al.](http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf).</span>
+<span class="sd">      kernel_regularizer: Regularizer function applied to the `kernel` weights</span>
+<span class="sd">        matrix. Default: `None`.</span>
+<span class="sd">      recurrent_regularizer: Regularizer function applied to the</span>
+<span class="sd">        `recurrent_kernel` weights matrix. Default: `None`.</span>
+<span class="sd">      bias_regularizer: Regularizer function applied to the bias vector.</span>
+<span class="sd">        Default: `None`.</span>
+<span class="sd">      activity_regularizer: Regularizer function applied to the output of the</span>
+<span class="sd">        layer (its &quot;activation&quot;). Default: `None`.</span>
+<span class="sd">      kernel_constraint: Constraint function applied to the `kernel` weights</span>
+<span class="sd">        matrix. Default: `None`.</span>
+<span class="sd">      recurrent_constraint: Constraint function applied to the</span>
+<span class="sd">        `recurrent_kernel` weights matrix. Default: `None`.</span>
+<span class="sd">      bias_constraint: Constraint function applied to the bias vector. Default:</span>
+<span class="sd">        `None`.</span>
+<span class="sd">      dropout: Float between 0 and 1. Fraction of the units to drop for the</span>
+<span class="sd">        linear transformation of the inputs. Default: 0.</span>
+<span class="sd">      recurrent_dropout: Float between 0 and 1. Fraction of the units to drop</span>
+<span class="sd">        for the linear transformation of the recurrent state. Default: 0.</span>
+<span class="sd">      return_sequences: Boolean. Whether to return the last output in the output</span>
+<span class="sd">        sequence, or the full sequence. Default: `False`.</span>
+<span class="sd">      return_state: Boolean. Whether to return the last state in addition to the</span>
+<span class="sd">        output. Default: `False`.</span>
+<span class="sd">      go_backwards: Boolean (default `False`). If True, process the input</span>
+<span class="sd">        sequence backwards and return the reversed sequence.</span>
+<span class="sd">      stateful: Boolean (default `False`). If True, the last state for each</span>
+<span class="sd">      sample at index i in a batch will be used as initial state for the sample</span>
+<span class="sd">        of index i in the following batch.</span>
+<span class="sd">      time_major: The shape format of the `inputs` and `outputs` tensors.</span>
+<span class="sd">        If True, the inputs and outputs will be in shape</span>
+<span class="sd">        `[timesteps, batch, feature]`, whereas in the False case, it will be</span>
+<span class="sd">        `[batch, timesteps, feature]`. Using `time_major = True` is a bit more</span>
+<span class="sd">        efficient because it avoids transposes at the beginning and end of the</span>
+<span class="sd">        RNN calculation. However, most TensorFlow data is batch-major, so by</span>
+<span class="sd">        default this function accepts input and emits output in batch-major</span>
+<span class="sd">        form.</span>
+<span class="sd">      unroll: Boolean (default `False`). If True, the network will be unrolled,</span>
+<span class="sd">        else a symbolic loop will be used. Unrolling can speed-up a RNN,</span>
+<span class="sd">        although it tends to be more memory-intensive. Unrolling is only</span>
+<span class="sd">        suitable for short sequences.</span>
+
+<span class="sd">    Call arguments:</span>
+<span class="sd">      inputs: A 3D tensor with shape `[batch, timesteps, feature]`.</span>
+<span class="sd">      mask: Binary tensor of shape `[batch, timesteps]` indicating whether</span>
+<span class="sd">        a given timestep should be masked (optional).</span>
+<span class="sd">        An individual `True` entry indicates that the corresponding timestep</span>
+<span class="sd">        should be utilized, while a `False` entry indicates that the</span>
+<span class="sd">        corresponding timestep should be ignored. Defaults to `None`.</span>
+<span class="sd">      training: Python boolean indicating whether the layer should behave in</span>
+<span class="sd">        training mode or in inference mode. This argument is passed to the cell</span>
+<span class="sd">        when calling it. This is only relevant if `dropout` or</span>
+<span class="sd">        `recurrent_dropout` is used (optional). Defaults to `None`.</span>
+<span class="sd">      initial_state: List of initial state tensors to be passed to the first</span>
+<span class="sd">        call of the cell (optional, `None` causes creation</span>
+<span class="sd">        of zero-filled initial state tensors). Defaults to `None`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">units</span><span class="p">,</span>
+        <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;tanh&quot;</span><span class="p">,</span>
+        <span class="n">recurrent_activation</span><span class="o">=</span><span class="s2">&quot;sigmoid&quot;</span><span class="p">,</span>
+        <span class="n">use_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">kernel_initializer</span><span class="o">=</span><span class="s2">&quot;glorot_uniform&quot;</span><span class="p">,</span>
+        <span class="n">recurrent_initializer</span><span class="o">=</span><span class="s2">&quot;orthogonal&quot;</span><span class="p">,</span>
+        <span class="n">bias_initializer</span><span class="o">=</span><span class="s2">&quot;zeros&quot;</span><span class="p">,</span>
+        <span class="n">unit_forget_bias</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">kernel_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">recurrent_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">bias_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">activity_regularizer</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">kernel_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">recurrent_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">bias_constraint</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">dropout</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">recurrent_dropout</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
+        <span class="n">return_sequences</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">return_state</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">go_backwards</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">stateful</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">time_major</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">unroll</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="c1"># return_runtime is a flag for testing, which shows the real backend</span>
+        <span class="c1"># implementation chosen by grappler in graph mode.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">return_runtime</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;return_runtime&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">implementation</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;implementation&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">implementation</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="s2">&quot;`implementation=0` has been deprecated, &quot;</span>
+                <span class="s2">&quot;and now defaults to `implementation=1`.&quot;</span>
+                <span class="s2">&quot;Please update your layer call.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="s2">&quot;enable_caching_device&quot;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="n">cell_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;enable_caching_device&quot;</span><span class="p">:</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;enable_caching_device&quot;</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cell_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">cell</span> <span class="o">=</span> <span class="n">LSTMCell</span><span class="p">(</span>
+            <span class="n">units</span><span class="p">,</span>
+            <span class="n">activation</span><span class="o">=</span><span class="n">activation</span><span class="p">,</span>
+            <span class="n">recurrent_activation</span><span class="o">=</span><span class="n">recurrent_activation</span><span class="p">,</span>
+            <span class="n">use_bias</span><span class="o">=</span><span class="n">use_bias</span><span class="p">,</span>
+            <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">kernel_initializer</span><span class="p">,</span>
+            <span class="n">recurrent_initializer</span><span class="o">=</span><span class="n">recurrent_initializer</span><span class="p">,</span>
+            <span class="n">unit_forget_bias</span><span class="o">=</span><span class="n">unit_forget_bias</span><span class="p">,</span>
+            <span class="n">bias_initializer</span><span class="o">=</span><span class="n">bias_initializer</span><span class="p">,</span>
+            <span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">kernel_regularizer</span><span class="p">,</span>
+            <span class="n">recurrent_regularizer</span><span class="o">=</span><span class="n">recurrent_regularizer</span><span class="p">,</span>
+            <span class="n">bias_regularizer</span><span class="o">=</span><span class="n">bias_regularizer</span><span class="p">,</span>
+            <span class="n">kernel_constraint</span><span class="o">=</span><span class="n">kernel_constraint</span><span class="p">,</span>
+            <span class="n">recurrent_constraint</span><span class="o">=</span><span class="n">recurrent_constraint</span><span class="p">,</span>
+            <span class="n">bias_constraint</span><span class="o">=</span><span class="n">bias_constraint</span><span class="p">,</span>
+            <span class="n">dropout</span><span class="o">=</span><span class="n">dropout</span><span class="p">,</span>
+            <span class="n">recurrent_dropout</span><span class="o">=</span><span class="n">recurrent_dropout</span><span class="p">,</span>
+            <span class="n">implementation</span><span class="o">=</span><span class="n">implementation</span><span class="p">,</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;dtype&quot;</span><span class="p">),</span>
+            <span class="n">trainable</span><span class="o">=</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;trainable&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;lstm_cell&quot;</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">cell_kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">cell</span><span class="p">,</span>
+            <span class="n">return_sequences</span><span class="o">=</span><span class="n">return_sequences</span><span class="p">,</span>
+            <span class="n">return_state</span><span class="o">=</span><span class="n">return_state</span><span class="p">,</span>
+            <span class="n">go_backwards</span><span class="o">=</span><span class="n">go_backwards</span><span class="p">,</span>
+            <span class="n">stateful</span><span class="o">=</span><span class="n">stateful</span><span class="p">,</span>
+            <span class="n">time_major</span><span class="o">=</span><span class="n">time_major</span><span class="p">,</span>
+            <span class="n">unroll</span><span class="o">=</span><span class="n">unroll</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">activity_regularizer</span> <span class="o">=</span> <span class="n">regularizers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">activity_regularizer</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_spec</span> <span class="o">=</span> <span class="p">[</span><span class="n">InputSpec</span><span class="p">(</span><span class="n">ndim</span><span class="o">=</span><span class="mi">3</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state_spec</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">InputSpec</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">dim</span><span class="p">))</span> <span class="k">for</span> <span class="n">dim</span> <span class="ow">in</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_could_use_gpu_kernel</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">activation</span> <span class="ow">in</span> <span class="p">(</span><span class="n">activations</span><span class="o">.</span><span class="n">tanh</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">tanh</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_activation</span> <span class="ow">in</span> <span class="p">(</span><span class="n">activations</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">)</span>
+            <span class="ow">and</span> <span class="n">recurrent_dropout</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="ow">and</span> <span class="ow">not</span> <span class="n">unroll</span>
+            <span class="ow">and</span> <span class="n">use_bias</span>
+            <span class="ow">and</span> <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">executing_eagerly_outside_functions</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_logical_devices</span><span class="p">(</span><span class="s2">&quot;GPU&quot;</span><span class="p">):</span>
+            <span class="c1"># Only show the message when there is GPU available, user will not</span>
+            <span class="c1"># care about the cuDNN if there isn&#39;t any GPU.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_could_use_gpu_kernel</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">CUDNN_AVAILABLE_MSG</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">CUDNN_NOT_AVAILABLE_MSG</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+                <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">use_new_gru_lstm_impl</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_defun_wrapper</span> <span class="o">=</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">DefunWrapper</span><span class="p">(</span>
+                <span class="n">time_major</span><span class="p">,</span> <span class="n">go_backwards</span><span class="p">,</span> <span class="s2">&quot;lstm&quot;</span>
+            <span class="p">)</span>
+
+<div class="viewcode-block" id="LSTM.call">
+<a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.LSTM.call">[docs]</a>
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">training</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">initial_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># The input should be dense, padded with zeros. If a ragged input is fed</span>
+        <span class="c1"># into the layer, it is padded and the row lengths are used for masking.</span>
+        <span class="n">inputs</span><span class="p">,</span> <span class="n">row_lengths</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">convert_inputs_if_ragged</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">is_ragged_input</span> <span class="o">=</span> <span class="n">row_lengths</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_args_if_ragged</span><span class="p">(</span><span class="n">is_ragged_input</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+
+        <span class="c1"># LSTM does not support constants. Ignore it during process.</span>
+        <span class="n">inputs</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_process_inputs</span><span class="p">(</span>
+            <span class="n">inputs</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">input_shape</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">int_shape</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">timesteps</span> <span class="o">=</span> <span class="n">input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_major</span> <span class="k">else</span> <span class="n">input_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_could_use_gpu_kernel</span><span class="p">:</span>
+            <span class="c1"># Fall back to use the normal LSTM.</span>
+            <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;training&quot;</span><span class="p">:</span> <span class="n">training</span><span class="p">}</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_maybe_reset_cell_dropout_mask</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="p">)</span>
+
+            <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">states</span><span class="p">):</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">states</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+            <span class="n">last_output</span><span class="p">,</span> <span class="n">outputs</span><span class="p">,</span> <span class="n">states</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span>
+                <span class="n">step</span><span class="p">,</span>
+                <span class="n">inputs</span><span class="p">,</span>
+                <span class="n">initial_state</span><span class="p">,</span>
+                <span class="n">constants</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">go_backwards</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">go_backwards</span><span class="p">,</span>
+                <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+                <span class="n">unroll</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">unroll</span><span class="p">,</span>
+                <span class="n">input_length</span><span class="o">=</span><span class="n">row_lengths</span>
+                <span class="k">if</span> <span class="n">row_lengths</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+                <span class="k">else</span> <span class="n">timesteps</span><span class="p">,</span>
+                <span class="n">time_major</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">time_major</span><span class="p">,</span>
+                <span class="n">zero_output_for_mask</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">zero_output_for_mask</span><span class="p">,</span>
+                <span class="n">return_all_outputs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">return_sequences</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">runtime</span> <span class="o">=</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">runtime</span><span class="p">(</span><span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">RUNTIME_UNKNOWN</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Use the new defun approach for backend implementation swap.</span>
+            <span class="c1"># Note that different implementations need to have same function</span>
+            <span class="c1"># signature, eg, the tensor parameters need to have same shape and</span>
+            <span class="c1"># dtypes. Since the cuDNN has an extra set of bias, those bias will</span>
+            <span class="c1"># be passed to both normal and cuDNN implementations.</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reset_dropout_mask</span><span class="p">()</span>
+            <span class="n">dropout_mask</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_dropout_mask_for_cell</span><span class="p">(</span>
+                <span class="n">inputs</span><span class="p">,</span> <span class="n">training</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">4</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">dropout_mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">inputs</span> <span class="o">=</span> <span class="n">inputs</span> <span class="o">*</span> <span class="n">dropout_mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">use_new_gru_lstm_impl</span><span class="p">():</span>
+                <span class="n">lstm_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="n">inputs</span><span class="p">,</span>
+                    <span class="s2">&quot;init_h&quot;</span><span class="p">:</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">read_variable_value</span><span class="p">(</span>
+                        <span class="n">initial_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="p">),</span>
+                    <span class="s2">&quot;init_c&quot;</span><span class="p">:</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">read_variable_value</span><span class="p">(</span>
+                        <span class="n">initial_state</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="p">),</span>
+                    <span class="s2">&quot;kernel&quot;</span><span class="p">:</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">read_variable_value</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">kernel</span>
+                    <span class="p">),</span>
+                    <span class="s2">&quot;recurrent_kernel&quot;</span><span class="p">:</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">read_variable_value</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">recurrent_kernel</span>
+                    <span class="p">),</span>
+                    <span class="s2">&quot;bias&quot;</span><span class="p">:</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">read_variable_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">bias</span><span class="p">),</span>
+                    <span class="s2">&quot;mask&quot;</span><span class="p">:</span> <span class="n">mask</span><span class="p">,</span>
+                    <span class="s2">&quot;time_major&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_major</span><span class="p">,</span>
+                    <span class="s2">&quot;go_backwards&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">go_backwards</span><span class="p">,</span>
+                    <span class="s2">&quot;sequence_lengths&quot;</span><span class="p">:</span> <span class="n">row_lengths</span><span class="p">,</span>
+                    <span class="s2">&quot;zero_output_for_mask&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">zero_output_for_mask</span><span class="p">,</span>
+                <span class="p">}</span>
+                <span class="p">(</span>
+                    <span class="n">last_output</span><span class="p">,</span>
+                    <span class="n">outputs</span><span class="p">,</span>
+                    <span class="n">new_h</span><span class="p">,</span>
+                    <span class="n">new_c</span><span class="p">,</span>
+                    <span class="n">runtime</span><span class="p">,</span>
+                <span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_defun_wrapper</span><span class="o">.</span><span class="n">defun_layer</span><span class="p">(</span><span class="o">**</span><span class="n">lstm_kwargs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">gpu_lstm_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+                    <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="n">inputs</span><span class="p">,</span>
+                    <span class="s2">&quot;init_h&quot;</span><span class="p">:</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">read_variable_value</span><span class="p">(</span>
+                        <span class="n">initial_state</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                    <span class="p">),</span>
+                    <span class="s2">&quot;init_c&quot;</span><span class="p">:</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">read_variable_value</span><span class="p">(</span>
+                        <span class="n">initial_state</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                    <span class="p">),</span>
+                    <span class="s2">&quot;kernel&quot;</span><span class="p">:</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">read_variable_value</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">kernel</span>
+                    <span class="p">),</span>
+                    <span class="s2">&quot;recurrent_kernel&quot;</span><span class="p">:</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">read_variable_value</span><span class="p">(</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">recurrent_kernel</span>
+                    <span class="p">),</span>
+                    <span class="s2">&quot;bias&quot;</span><span class="p">:</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">read_variable_value</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">bias</span><span class="p">),</span>
+                    <span class="s2">&quot;mask&quot;</span><span class="p">:</span> <span class="n">mask</span><span class="p">,</span>
+                    <span class="s2">&quot;time_major&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_major</span><span class="p">,</span>
+                    <span class="s2">&quot;go_backwards&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">go_backwards</span><span class="p">,</span>
+                    <span class="s2">&quot;sequence_lengths&quot;</span><span class="p">:</span> <span class="n">row_lengths</span><span class="p">,</span>
+                    <span class="s2">&quot;return_sequences&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_sequences</span><span class="p">,</span>
+                <span class="p">}</span>
+                <span class="n">normal_lstm_kwargs</span> <span class="o">=</span> <span class="n">gpu_lstm_kwargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">normal_lstm_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;zero_output_for_mask&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">zero_output_for_mask</span><span class="p">,</span>
+                    <span class="p">}</span>
+                <span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">tf</span><span class="o">.</span><span class="n">executing_eagerly</span><span class="p">():</span>
+                    <span class="n">device_type</span> <span class="o">=</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">get_context_device_type</span><span class="p">()</span>
+                    <span class="n">can_use_gpu</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="c1"># Either user specified GPU or unspecified but GPU is</span>
+                        <span class="c1"># available.</span>
+                        <span class="p">(</span>
+                            <span class="n">device_type</span> <span class="o">==</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">GPU_DEVICE_NAME</span>
+                            <span class="ow">or</span> <span class="p">(</span>
+                                <span class="n">device_type</span> <span class="ow">is</span> <span class="kc">None</span>
+                                <span class="ow">and</span> <span class="n">tf</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">list_logical_devices</span><span class="p">(</span><span class="s2">&quot;GPU&quot;</span><span class="p">)</span>
+                            <span class="p">)</span>
+                        <span class="p">)</span>
+                        <span class="ow">and</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">is_cudnn_supported_inputs</span><span class="p">(</span>
+                            <span class="n">mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_major</span><span class="p">,</span> <span class="n">row_lengths</span>
+                        <span class="p">)</span>
+                    <span class="p">)</span>
+                    <span class="c1"># Under eager context, check the device placement and prefer</span>
+                    <span class="c1"># the GPU implementation when GPU is available.</span>
+                    <span class="k">if</span> <span class="n">can_use_gpu</span><span class="p">:</span>
+                        <span class="n">last_output</span><span class="p">,</span> <span class="n">outputs</span><span class="p">,</span> <span class="n">new_h</span><span class="p">,</span> <span class="n">new_c</span><span class="p">,</span> <span class="n">runtime</span> <span class="o">=</span> <span class="n">gpu_lstm</span><span class="p">(</span>
+                            <span class="o">**</span><span class="n">gpu_lstm_kwargs</span>
+                        <span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="p">(</span>
+                            <span class="n">last_output</span><span class="p">,</span>
+                            <span class="n">outputs</span><span class="p">,</span>
+                            <span class="n">new_h</span><span class="p">,</span>
+                            <span class="n">new_c</span><span class="p">,</span>
+                            <span class="n">runtime</span><span class="p">,</span>
+                        <span class="p">)</span> <span class="o">=</span> <span class="n">standard_lstm</span><span class="p">(</span><span class="o">**</span><span class="n">normal_lstm_kwargs</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="p">(</span>
+                        <span class="n">last_output</span><span class="p">,</span>
+                        <span class="n">outputs</span><span class="p">,</span>
+                        <span class="n">new_h</span><span class="p">,</span>
+                        <span class="n">new_c</span><span class="p">,</span>
+                        <span class="n">runtime</span><span class="p">,</span>
+                    <span class="p">)</span> <span class="o">=</span> <span class="n">lstm_with_backend_selection</span><span class="p">(</span><span class="o">**</span><span class="n">normal_lstm_kwargs</span><span class="p">)</span>
+
+            <span class="n">states</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_h</span><span class="p">,</span> <span class="n">new_c</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">stateful</span><span class="p">:</span>
+            <span class="n">updates</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">tf</span><span class="o">.</span><span class="n">compat</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">assign</span><span class="p">(</span>
+                    <span class="n">self_state</span><span class="p">,</span> <span class="n">tf</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">self_state</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+                <span class="p">)</span>
+                <span class="k">for</span> <span class="n">self_state</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">,</span> <span class="n">states</span><span class="p">)</span>
+            <span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_update</span><span class="p">(</span><span class="n">updates</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_sequences</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">maybe_convert_to_ragged</span><span class="p">(</span>
+                <span class="n">is_ragged_input</span><span class="p">,</span>
+                <span class="n">outputs</span><span class="p">,</span>
+                <span class="n">row_lengths</span><span class="p">,</span>
+                <span class="n">go_backwards</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">go_backwards</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">=</span> <span class="n">last_output</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_state</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">output</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">states</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_runtime</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">output</span><span class="p">,</span> <span class="n">runtime</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">output</span></div>
+
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">units</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">units</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">activation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">activation</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">recurrent_activation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">recurrent_activation</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">use_bias</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">use_bias</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">kernel_initializer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">kernel_initializer</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">recurrent_initializer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">recurrent_initializer</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bias_initializer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">bias_initializer</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">unit_forget_bias</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">unit_forget_bias</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">kernel_regularizer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">kernel_regularizer</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">recurrent_regularizer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">recurrent_regularizer</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bias_regularizer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">bias_regularizer</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">kernel_constraint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">kernel_constraint</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">recurrent_constraint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">recurrent_constraint</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">bias_constraint</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">bias_constraint</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dropout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">dropout</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">recurrent_dropout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">recurrent_dropout</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">implementation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="o">.</span><span class="n">implementation</span>
+
+<div class="viewcode-block" id="LSTM.get_config">
+<a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.LSTM.get_config">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;units&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">,</span>
+            <span class="s2">&quot;activation&quot;</span><span class="p">:</span> <span class="n">activations</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">),</span>
+            <span class="s2">&quot;recurrent_activation&quot;</span><span class="p">:</span> <span class="n">activations</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_activation</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;use_bias&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_bias</span><span class="p">,</span>
+            <span class="s2">&quot;kernel_initializer&quot;</span><span class="p">:</span> <span class="n">initializers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">kernel_initializer</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;recurrent_initializer&quot;</span><span class="p">:</span> <span class="n">initializers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_initializer</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;bias_initializer&quot;</span><span class="p">:</span> <span class="n">initializers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bias_initializer</span><span class="p">),</span>
+            <span class="s2">&quot;unit_forget_bias&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_forget_bias</span><span class="p">,</span>
+            <span class="s2">&quot;kernel_regularizer&quot;</span><span class="p">:</span> <span class="n">regularizers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">kernel_regularizer</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;recurrent_regularizer&quot;</span><span class="p">:</span> <span class="n">regularizers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_regularizer</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;bias_regularizer&quot;</span><span class="p">:</span> <span class="n">regularizers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bias_regularizer</span><span class="p">),</span>
+            <span class="s2">&quot;activity_regularizer&quot;</span><span class="p">:</span> <span class="n">regularizers</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">activity_regularizer</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;kernel_constraint&quot;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kernel_constraint</span><span class="p">),</span>
+            <span class="s2">&quot;recurrent_constraint&quot;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_constraint</span>
+            <span class="p">),</span>
+            <span class="s2">&quot;bias_constraint&quot;</span><span class="p">:</span> <span class="n">constraints</span><span class="o">.</span><span class="n">serialize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bias_constraint</span><span class="p">),</span>
+            <span class="s2">&quot;dropout&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">,</span>
+            <span class="s2">&quot;recurrent_dropout&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">recurrent_dropout</span><span class="p">,</span>
+            <span class="s2">&quot;implementation&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">implementation</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rnn_utils</span><span class="o">.</span><span class="n">config_for_enable_caching_device</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cell</span><span class="p">))</span>
+        <span class="n">base_config</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_config</span><span class="p">()</span>
+        <span class="k">del</span> <span class="n">base_config</span><span class="p">[</span><span class="s2">&quot;cell&quot;</span><span class="p">]</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">base_config</span><span class="o">.</span><span class="n">items</span><span class="p">())</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">config</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span></div>
+
+
+<div class="viewcode-block" id="LSTM.from_config">
+<a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.LSTM.from_config">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_config</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s2">&quot;implementation&quot;</span> <span class="ow">in</span> <span class="n">config</span> <span class="ow">and</span> <span class="n">config</span><span class="p">[</span><span class="s2">&quot;implementation&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">config</span><span class="p">[</span><span class="s2">&quot;implementation&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span></div>
+</div>
+
+
+
+<span class="k">def</span> <span class="nf">standard_lstm</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">init_h</span><span class="p">,</span>
+    <span class="n">init_c</span><span class="p">,</span>
+    <span class="n">kernel</span><span class="p">,</span>
+    <span class="n">recurrent_kernel</span><span class="p">,</span>
+    <span class="n">bias</span><span class="p">,</span>
+    <span class="n">mask</span><span class="p">,</span>
+    <span class="n">time_major</span><span class="p">,</span>
+    <span class="n">go_backwards</span><span class="p">,</span>
+    <span class="n">sequence_lengths</span><span class="p">,</span>
+    <span class="n">zero_output_for_mask</span><span class="p">,</span>
+    <span class="n">return_sequences</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;LSTM with standard kernel implementation.</span>
+
+<span class="sd">    This implementation can be run on all types for hardware.</span>
+
+<span class="sd">    This implementation lifts out all the layer weights and make them function</span>
+<span class="sd">    parameters. It has same number of tensor input params as the cuDNN</span>
+<span class="sd">    counterpart. The RNN step logic has been simplified, eg dropout and mask is</span>
+<span class="sd">    removed since cuDNN implementation does not support that.</span>
+
+<span class="sd">    Note that the first half of the bias tensor should be ignored by this impl.</span>
+<span class="sd">    The cuDNN impl need an extra set of input gate bias. In order to make the</span>
+<span class="sd">    both function take same shape of parameter, that extra set of bias is also</span>
+<span class="sd">    feed</span>
+<span class="sd">    here.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      inputs: input tensor of LSTM layer.</span>
+<span class="sd">      init_h: initial state tensor for the cell output.</span>
+<span class="sd">      init_c: initial state tensor for the cell hidden state.</span>
+<span class="sd">      kernel: weights for cell kernel.</span>
+<span class="sd">      recurrent_kernel: weights for cell recurrent kernel.</span>
+<span class="sd">      bias: weights for cell kernel bias and recurrent bias. Only recurrent bias</span>
+<span class="sd">        is used in this case.</span>
+<span class="sd">      mask: Boolean tensor for mask out the steps within sequence.</span>
+<span class="sd">        An individual `True` entry indicates that the corresponding timestep</span>
+<span class="sd">        should be utilized, while a `False` entry indicates that the</span>
+<span class="sd">        corresponding timestep should be ignored.</span>
+<span class="sd">      time_major: boolean, whether the inputs are in the format of</span>
+<span class="sd">        [time, batch, feature] or [batch, time, feature].</span>
+<span class="sd">      go_backwards: Boolean (default False). If True, process the input sequence</span>
+<span class="sd">        backwards and return the reversed sequence.</span>
+<span class="sd">      sequence_lengths: The lengths of all sequences coming from a variable</span>
+<span class="sd">        length input, such as ragged tensors. If the input has a fixed timestep</span>
+<span class="sd">        size, this should be None.</span>
+<span class="sd">      zero_output_for_mask: Boolean, whether to output zero for masked timestep.</span>
+<span class="sd">      return_sequences: Boolean. If True, return the recurrent outputs for all</span>
+<span class="sd">        timesteps in the sequence. If False, only return the output for the</span>
+<span class="sd">        last timestep (which consumes less memory).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      last_output: output tensor for the last timestep, which has shape</span>
+<span class="sd">        [batch, units].</span>
+<span class="sd">      outputs:</span>
+<span class="sd">        - If `return_sequences=True`: output tensor for all timesteps,</span>
+<span class="sd">          which has shape [batch, time, units].</span>
+<span class="sd">        - Else, a tensor equal to `last_output` with shape [batch, 1, units]</span>
+<span class="sd">      state_0: the cell output, which has same shape as init_h.</span>
+<span class="sd">      state_1: the cell hidden state, which has same shape as init_c.</span>
+<span class="sd">      runtime: constant string tensor which indicate real runtime hardware. This</span>
+<span class="sd">        value is for testing purpose and should be used by user.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">input_shape</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">int_shape</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="n">timesteps</span> <span class="o">=</span> <span class="n">input_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">time_major</span> <span class="k">else</span> <span class="n">input_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">step</span><span class="p">(</span><span class="n">cell_inputs</span><span class="p">,</span> <span class="n">cell_states</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Step function that will be used by Keras RNN backend.&quot;&quot;&quot;</span>
+        <span class="n">h_tm1</span> <span class="o">=</span> <span class="n">cell_states</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># previous memory state</span>
+        <span class="n">c_tm1</span> <span class="o">=</span> <span class="n">cell_states</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># previous carry state</span>
+
+        <span class="n">z</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">cell_inputs</span><span class="p">,</span> <span class="n">kernel</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">+=</span> <span class="n">backend</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">h_tm1</span><span class="p">,</span> <span class="n">recurrent_kernel</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">bias_add</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">bias</span><span class="p">)</span>
+
+        <span class="n">z0</span><span class="p">,</span> <span class="n">z1</span><span class="p">,</span> <span class="n">z2</span><span class="p">,</span> <span class="n">z3</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">z0</span><span class="p">)</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">f</span> <span class="o">*</span> <span class="n">c_tm1</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span>
+        <span class="n">o</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">z3</span><span class="p">)</span>
+
+        <span class="n">h</span> <span class="o">=</span> <span class="n">o</span> <span class="o">*</span> <span class="n">tf</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">h</span><span class="p">,</span> <span class="p">[</span><span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">]</span>
+
+    <span class="n">last_output</span><span class="p">,</span> <span class="n">outputs</span><span class="p">,</span> <span class="n">new_states</span> <span class="o">=</span> <span class="n">backend</span><span class="o">.</span><span class="n">rnn</span><span class="p">(</span>
+        <span class="n">step</span><span class="p">,</span>
+        <span class="n">inputs</span><span class="p">,</span>
+        <span class="p">[</span><span class="n">init_h</span><span class="p">,</span> <span class="n">init_c</span><span class="p">],</span>
+        <span class="n">constants</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">unroll</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="n">time_major</span><span class="o">=</span><span class="n">time_major</span><span class="p">,</span>
+        <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+        <span class="n">go_backwards</span><span class="o">=</span><span class="n">go_backwards</span><span class="p">,</span>
+        <span class="n">input_length</span><span class="o">=</span><span class="p">(</span>
+            <span class="n">sequence_lengths</span> <span class="k">if</span> <span class="n">sequence_lengths</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">timesteps</span>
+        <span class="p">),</span>
+        <span class="n">zero_output_for_mask</span><span class="o">=</span><span class="n">zero_output_for_mask</span><span class="p">,</span>
+        <span class="n">return_all_outputs</span><span class="o">=</span><span class="n">return_sequences</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">last_output</span><span class="p">,</span>
+        <span class="n">outputs</span><span class="p">,</span>
+        <span class="n">new_states</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+        <span class="n">new_states</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">runtime</span><span class="p">(</span><span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">RUNTIME_CPU</span><span class="p">),</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">gpu_lstm</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">init_h</span><span class="p">,</span>
+    <span class="n">init_c</span><span class="p">,</span>
+    <span class="n">kernel</span><span class="p">,</span>
+    <span class="n">recurrent_kernel</span><span class="p">,</span>
+    <span class="n">bias</span><span class="p">,</span>
+    <span class="n">mask</span><span class="p">,</span>
+    <span class="n">time_major</span><span class="p">,</span>
+    <span class="n">go_backwards</span><span class="p">,</span>
+    <span class="n">sequence_lengths</span><span class="p">,</span>
+    <span class="n">return_sequences</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;LSTM with either cuDNN or ROCm implementation which is only available for</span>
+<span class="sd">    GPU.</span>
+
+<span class="sd">    Note that currently only right padded data is supported, or the result will</span>
+<span class="sd">    be polluted by the unmasked data which should be filtered.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      inputs: Input tensor of LSTM layer.</span>
+<span class="sd">      init_h: Initial state tensor for the cell output.</span>
+<span class="sd">      init_c: Initial state tensor for the cell hidden state.</span>
+<span class="sd">      kernel: Weights for cell kernel.</span>
+<span class="sd">      recurrent_kernel: Weights for cell recurrent kernel.</span>
+<span class="sd">      bias: Weights for cell kernel bias and recurrent bias. Only recurrent bias</span>
+<span class="sd">        is used in this case.</span>
+<span class="sd">      mask: Boolean tensor for mask out the steps within sequence. An individual</span>
+<span class="sd">        `True` entry indicates that the corresponding timestep should be</span>
+<span class="sd">        utilized, while a `False` entry indicates that the corresponding</span>
+<span class="sd">        timestep should be ignored.</span>
+<span class="sd">      time_major: Boolean, whether the inputs are in the format of [time, batch,</span>
+<span class="sd">        feature] or [batch, time, feature].</span>
+<span class="sd">      go_backwards: Boolean (default False). If True, process the input sequence</span>
+<span class="sd">        backwards and return the reversed sequence.</span>
+<span class="sd">      sequence_lengths: The lengths of all sequences coming from a variable</span>
+<span class="sd">        length input, such as ragged tensors. If the input has a fixed timestep</span>
+<span class="sd">        size, this should be None.</span>
+<span class="sd">      return_sequences: Boolean. If True, return the recurrent outputs for all</span>
+<span class="sd">        timesteps in the sequence. If False, only return the output for the</span>
+<span class="sd">        last timestep, matching the CPU function output format.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      last_output: Output tensor for the last timestep, which has shape</span>
+<span class="sd">        [batch, units].</span>
+<span class="sd">      outputs:</span>
+<span class="sd">        - If `return_sequences=True`: output tensor for all timesteps,</span>
+<span class="sd">          which has shape [batch, time, units].</span>
+<span class="sd">        - Else, a tensor equal to `last_output` with shape [batch, 1, units]</span>
+<span class="sd">      state_0: The cell output, which has same shape as init_h.</span>
+<span class="sd">      state_1: The cell hidden state, which has same shape as init_c.</span>
+<span class="sd">      runtime: Constant string tensor which indicate real runtime hardware. This</span>
+<span class="sd">        value is for testing purpose and should not be used by user.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">sequence_lengths</span> <span class="o">=</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">calculate_sequence_by_mask</span><span class="p">(</span>
+            <span class="n">mask</span><span class="p">,</span> <span class="n">time_major</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">time_major</span> <span class="ow">and</span> <span class="n">sequence_lengths</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">perm</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">seq_axis</span><span class="p">,</span> <span class="n">batch_axis</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">seq_axis</span><span class="p">,</span> <span class="n">batch_axis</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">time_major</span> <span class="k">else</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># For init_h and init_c, cuDNN expects one more dim of num_layers before or</span>
+    <span class="c1"># after batch dim for time major or batch major inputs respectively</span>
+    <span class="n">init_h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">init_h</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">seq_axis</span><span class="p">)</span>
+    <span class="n">init_c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">init_c</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">seq_axis</span><span class="p">)</span>
+
+    <span class="n">weights</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">kernel</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">weights</span> <span class="o">+=</span> <span class="n">tf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">recurrent_kernel</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="c1"># cuDNN has an extra set of bias for inputs, we disable them (setting to 0),</span>
+    <span class="c1"># so that mathematically it is same as the canonical LSTM implementation.</span>
+    <span class="n">full_bias</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">concat</span><span class="p">((</span><span class="n">tf</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">bias</span><span class="p">),</span> <span class="n">bias</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">tf</span><span class="o">.</span><span class="n">sysconfig</span><span class="o">.</span><span class="n">get_build_info</span><span class="p">()[</span><span class="s2">&quot;is_rocm_build&quot;</span><span class="p">]:</span>
+        <span class="c1"># ROCm MIOpen&#39;s weight sequence for LSTM is different from both</span>
+        <span class="c1"># canonical and Cudnn format</span>
+        <span class="c1"># MIOpen: [i, f, o, c] Cudnn/Canonical: [i, f, c, o]</span>
+        <span class="c1"># i is input gate weights.</span>
+        <span class="c1"># f is forget gate weights.</span>
+        <span class="c1"># o is output gate weights.</span>
+        <span class="c1"># c is cell gate weights.</span>
+        <span class="n">weights</span> <span class="o">=</span> <span class="p">[</span><span class="n">weights</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
+        <span class="c1"># full_bias is a tensor of shape (8*n,)</span>
+        <span class="n">full_bias</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">full_bias</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">full_bias</span> <span class="o">=</span> <span class="p">[</span><span class="n">full_bias</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
+
+    <span class="n">params</span> <span class="o">=</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">canonical_to_params</span><span class="p">(</span>
+        <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span>
+        <span class="n">biases</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">full_bias</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+        <span class="n">shape</span><span class="o">=</span><span class="n">tf</span><span class="o">.</span><span class="n">constant</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+        <span class="n">transpose_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">sequence_lengths</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">go_backwards</span><span class="p">:</span>
+            <span class="c1"># Three reversals are required. E.g.,</span>
+            <span class="c1"># normal input = [1, 2, 3, 0, 0]  # where 0 need to be masked</span>
+            <span class="c1"># reversed_input_to_cudnn = [3, 2, 1, 0, 0]</span>
+            <span class="c1"># output_from_cudnn = [6, 5, 4, 0, 0]</span>
+            <span class="c1"># expected_output = [0, 0, 6, 5 ,4]</span>
+            <span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reverse_sequence</span><span class="p">(</span>
+                <span class="n">inputs</span><span class="p">,</span>
+                <span class="n">sequence_lengths</span><span class="p">,</span>
+                <span class="n">seq_axis</span><span class="o">=</span><span class="n">seq_axis</span><span class="p">,</span>
+                <span class="n">batch_axis</span><span class="o">=</span><span class="n">batch_axis</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="n">outputs</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">raw_ops</span><span class="o">.</span><span class="n">CudnnRNNV3</span><span class="p">(</span>
+            <span class="nb">input</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+            <span class="n">input_h</span><span class="o">=</span><span class="n">init_h</span><span class="p">,</span>
+            <span class="n">input_c</span><span class="o">=</span><span class="n">init_c</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+            <span class="n">is_training</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">rnn_mode</span><span class="o">=</span><span class="s2">&quot;lstm&quot;</span><span class="p">,</span>
+            <span class="n">sequence_lengths</span><span class="o">=</span><span class="n">sequence_lengths</span><span class="p">,</span>
+            <span class="n">time_major</span><span class="o">=</span><span class="n">time_major</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">if</span> <span class="n">go_backwards</span><span class="p">:</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reverse_sequence</span><span class="p">(</span>
+                <span class="n">outputs</span><span class="p">,</span>
+                <span class="n">sequence_lengths</span><span class="p">,</span>
+                <span class="n">seq_axis</span><span class="o">=</span><span class="n">seq_axis</span><span class="p">,</span>
+                <span class="n">batch_axis</span><span class="o">=</span><span class="n">batch_axis</span><span class="p">,</span>
+            <span class="p">)</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">[</span><span class="n">seq_axis</span><span class="p">])</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># # Fill the array with shape [batch] with value of max timesteps.</span>
+        <span class="c1"># sequence_length = array_ops.fill([array_ops.shape(inputs)[1]],</span>
+        <span class="c1">#                                  array_ops.shape(inputs)[0])</span>
+        <span class="k">if</span> <span class="n">go_backwards</span><span class="p">:</span>
+            <span class="c1"># Reverse axis 0 since the input is already convert to time major.</span>
+            <span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">outputs</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">raw_ops</span><span class="o">.</span><span class="n">CudnnRNN</span><span class="p">(</span>
+            <span class="nb">input</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+            <span class="n">input_h</span><span class="o">=</span><span class="n">init_h</span><span class="p">,</span>
+            <span class="n">input_c</span><span class="o">=</span><span class="n">init_c</span><span class="p">,</span>
+            <span class="n">params</span><span class="o">=</span><span class="n">params</span><span class="p">,</span>
+            <span class="n">is_training</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">rnn_mode</span><span class="o">=</span><span class="s2">&quot;lstm&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="n">last_output</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">time_major</span> <span class="ow">and</span> <span class="n">sequence_lengths</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">return_sequences</span><span class="p">:</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">perm</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">seq_axis</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">seq_axis</span><span class="p">)</span>
+
+    <span class="c1"># In the case of variable length input, the cudnn kernel will fill zeros for</span>
+    <span class="c1"># the output, whereas the default keras behavior is to bring over the</span>
+    <span class="c1"># previous output for t-1, so that in the return_sequence=False case, user</span>
+    <span class="c1"># can quickly get the final effect output instead just 0s at the last</span>
+    <span class="c1"># timestep.  In order to mimic the default keras behavior, we copy the final</span>
+    <span class="c1"># h state as the last_output, since it is numerically same as the output.</span>
+    <span class="k">if</span> <span class="n">sequence_lengths</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">last_output</span> <span class="o">=</span> <span class="n">h</span>
+
+    <span class="c1"># Match CPU return format</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">return_sequences</span><span class="p">:</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">last_output</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span> <span class="k">if</span> <span class="n">time_major</span> <span class="k">else</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">last_output</span><span class="p">,</span>
+        <span class="n">outputs</span><span class="p">,</span>
+        <span class="n">h</span><span class="p">,</span>
+        <span class="n">c</span><span class="p">,</span>
+        <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">runtime</span><span class="p">(</span><span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">RUNTIME_GPU</span><span class="p">),</span>
+    <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">lstm_with_backend_selection</span><span class="p">(</span>
+    <span class="n">inputs</span><span class="p">,</span>
+    <span class="n">init_h</span><span class="p">,</span>
+    <span class="n">init_c</span><span class="p">,</span>
+    <span class="n">kernel</span><span class="p">,</span>
+    <span class="n">recurrent_kernel</span><span class="p">,</span>
+    <span class="n">bias</span><span class="p">,</span>
+    <span class="n">mask</span><span class="p">,</span>
+    <span class="n">time_major</span><span class="p">,</span>
+    <span class="n">go_backwards</span><span class="p">,</span>
+    <span class="n">sequence_lengths</span><span class="p">,</span>
+    <span class="n">zero_output_for_mask</span><span class="p">,</span>
+    <span class="n">return_sequences</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Call the LSTM with optimized backend kernel selection.</span>
+
+<span class="sd">    Under the hood, this function will create two TF function, one with the most</span>
+<span class="sd">    generic kernel and can run on all device condition, and the second one with</span>
+<span class="sd">    cuDNN specific kernel, which can only run on GPU.</span>
+
+<span class="sd">    The first function will be called with normal_lstm_params, while the second</span>
+<span class="sd">    function is not called, but only registered in the graph. The Grappler will</span>
+<span class="sd">    do the proper graph rewrite and swap the optimized TF function based on the</span>
+<span class="sd">    device placement.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">      inputs: Input tensor of LSTM layer.</span>
+<span class="sd">      init_h: Initial state tensor for the cell output.</span>
+<span class="sd">      init_c: Initial state tensor for the cell hidden state.</span>
+<span class="sd">      kernel: Weights for cell kernel.</span>
+<span class="sd">      recurrent_kernel: Weights for cell recurrent kernel.</span>
+<span class="sd">      bias: Weights for cell kernel bias and recurrent bias. Only recurrent bias</span>
+<span class="sd">        is used in this case.</span>
+<span class="sd">      mask: Boolean tensor for mask out the steps within sequence.</span>
+<span class="sd">        An individual `True` entry indicates that the corresponding timestep</span>
+<span class="sd">        should be utilized, while a `False` entry indicates that the</span>
+<span class="sd">        corresponding timestep should be ignored.</span>
+<span class="sd">      time_major: Boolean, whether the inputs are in the format of</span>
+<span class="sd">        [time, batch, feature] or [batch, time, feature].</span>
+<span class="sd">      go_backwards: Boolean (default False). If True, process the input sequence</span>
+<span class="sd">        backwards and return the reversed sequence.</span>
+<span class="sd">      sequence_lengths: The lengths of all sequences coming from a variable</span>
+<span class="sd">        length input, such as ragged tensors. If the input has a fixed timestep</span>
+<span class="sd">        size, this should be None.</span>
+<span class="sd">      zero_output_for_mask: Boolean, whether to output zero for masked timestep.</span>
+<span class="sd">      return_sequences: Boolean. If True, return the recurrent outputs for all</span>
+<span class="sd">        timesteps in the sequence. If False, only return the output for the</span>
+<span class="sd">        last timestep (which consumes less memory).</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">      List of output tensors, same as standard_lstm.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;inputs&quot;</span><span class="p">:</span> <span class="n">inputs</span><span class="p">,</span>
+        <span class="s2">&quot;init_h&quot;</span><span class="p">:</span> <span class="n">init_h</span><span class="p">,</span>
+        <span class="s2">&quot;init_c&quot;</span><span class="p">:</span> <span class="n">init_c</span><span class="p">,</span>
+        <span class="s2">&quot;kernel&quot;</span><span class="p">:</span> <span class="n">kernel</span><span class="p">,</span>
+        <span class="s2">&quot;recurrent_kernel&quot;</span><span class="p">:</span> <span class="n">recurrent_kernel</span><span class="p">,</span>
+        <span class="s2">&quot;bias&quot;</span><span class="p">:</span> <span class="n">bias</span><span class="p">,</span>
+        <span class="s2">&quot;mask&quot;</span><span class="p">:</span> <span class="n">mask</span><span class="p">,</span>
+        <span class="s2">&quot;time_major&quot;</span><span class="p">:</span> <span class="n">time_major</span><span class="p">,</span>
+        <span class="s2">&quot;go_backwards&quot;</span><span class="p">:</span> <span class="n">go_backwards</span><span class="p">,</span>
+        <span class="s2">&quot;sequence_lengths&quot;</span><span class="p">:</span> <span class="n">sequence_lengths</span><span class="p">,</span>
+        <span class="s2">&quot;zero_output_for_mask&quot;</span><span class="p">:</span> <span class="n">zero_output_for_mask</span><span class="p">,</span>
+        <span class="s2">&quot;return_sequences&quot;</span><span class="p">:</span> <span class="n">return_sequences</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">gpu_lstm_with_fallback</span><span class="p">(</span>
+        <span class="n">inputs</span><span class="p">,</span>
+        <span class="n">init_h</span><span class="p">,</span>
+        <span class="n">init_c</span><span class="p">,</span>
+        <span class="n">kernel</span><span class="p">,</span>
+        <span class="n">recurrent_kernel</span><span class="p">,</span>
+        <span class="n">bias</span><span class="p">,</span>
+        <span class="n">mask</span><span class="p">,</span>
+        <span class="n">time_major</span><span class="p">,</span>
+        <span class="n">go_backwards</span><span class="p">,</span>
+        <span class="n">sequence_lengths</span><span class="p">,</span>
+        <span class="n">zero_output_for_mask</span><span class="p">,</span>
+        <span class="n">return_sequences</span><span class="p">,</span>
+    <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Use cuDNN kernel when mask is none or strictly right padded.&quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="nf">cudnn_lstm_fn</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">gpu_lstm</span><span class="p">(</span>
+                <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+                <span class="n">init_h</span><span class="o">=</span><span class="n">init_h</span><span class="p">,</span>
+                <span class="n">init_c</span><span class="o">=</span><span class="n">init_c</span><span class="p">,</span>
+                <span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span>
+                <span class="n">recurrent_kernel</span><span class="o">=</span><span class="n">recurrent_kernel</span><span class="p">,</span>
+                <span class="n">bias</span><span class="o">=</span><span class="n">bias</span><span class="p">,</span>
+                <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+                <span class="n">time_major</span><span class="o">=</span><span class="n">time_major</span><span class="p">,</span>
+                <span class="n">go_backwards</span><span class="o">=</span><span class="n">go_backwards</span><span class="p">,</span>
+                <span class="n">sequence_lengths</span><span class="o">=</span><span class="n">sequence_lengths</span><span class="p">,</span>
+                <span class="n">return_sequences</span><span class="o">=</span><span class="n">return_sequences</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">stardard_lstm_fn</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">standard_lstm</span><span class="p">(</span>
+                <span class="n">inputs</span><span class="o">=</span><span class="n">inputs</span><span class="p">,</span>
+                <span class="n">init_h</span><span class="o">=</span><span class="n">init_h</span><span class="p">,</span>
+                <span class="n">init_c</span><span class="o">=</span><span class="n">init_c</span><span class="p">,</span>
+                <span class="n">kernel</span><span class="o">=</span><span class="n">kernel</span><span class="p">,</span>
+                <span class="n">recurrent_kernel</span><span class="o">=</span><span class="n">recurrent_kernel</span><span class="p">,</span>
+                <span class="n">bias</span><span class="o">=</span><span class="n">bias</span><span class="p">,</span>
+                <span class="n">mask</span><span class="o">=</span><span class="n">mask</span><span class="p">,</span>
+                <span class="n">time_major</span><span class="o">=</span><span class="n">time_major</span><span class="p">,</span>
+                <span class="n">go_backwards</span><span class="o">=</span><span class="n">go_backwards</span><span class="p">,</span>
+                <span class="n">sequence_lengths</span><span class="o">=</span><span class="n">sequence_lengths</span><span class="p">,</span>
+                <span class="n">zero_output_for_mask</span><span class="o">=</span><span class="n">zero_output_for_mask</span><span class="p">,</span>
+                <span class="n">return_sequences</span><span class="o">=</span><span class="n">return_sequences</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">tf</span><span class="o">.</span><span class="n">__internal__</span><span class="o">.</span><span class="n">smart_cond</span><span class="o">.</span><span class="n">smart_cond</span><span class="p">(</span>
+            <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">is_cudnn_supported_inputs</span><span class="p">(</span>
+                <span class="n">mask</span><span class="p">,</span> <span class="n">time_major</span><span class="p">,</span> <span class="n">sequence_lengths</span>
+            <span class="p">),</span>
+            <span class="n">true_fn</span><span class="o">=</span><span class="n">cudnn_lstm_fn</span><span class="p">,</span>
+            <span class="n">false_fn</span><span class="o">=</span><span class="n">stardard_lstm_fn</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">use_new_gru_lstm_impl</span><span class="p">():</span>
+        <span class="c1"># Chooses the implementation dynamically based on the running device.</span>
+        <span class="p">(</span>
+            <span class="n">last_output</span><span class="p">,</span>
+            <span class="n">outputs</span><span class="p">,</span>
+            <span class="n">new_h</span><span class="p">,</span>
+            <span class="n">new_c</span><span class="p">,</span>
+            <span class="n">runtime</span><span class="p">,</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="o">.</span><span class="n">__internal__</span><span class="o">.</span><span class="n">execute_fn_for_device</span><span class="p">(</span>
+            <span class="p">{</span>
+                <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">CPU_DEVICE_NAME</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">standard_lstm</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">),</span>
+                <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">GPU_DEVICE_NAME</span><span class="p">:</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">gpu_lstm_with_fallback</span><span class="p">(</span>
+                    <span class="o">**</span><span class="n">params</span>
+                <span class="p">),</span>
+            <span class="p">},</span>
+            <span class="k">lambda</span><span class="p">:</span> <span class="n">standard_lstm</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">),</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Each time a `tf.function` is called, we will give it a unique</span>
+        <span class="c1"># identifiable API name, so that Grappler won&#39;t get confused when it</span>
+        <span class="c1"># sees multiple LSTM layers added into same graph, and it will be able</span>
+        <span class="c1"># to pair up the different implementations across them.</span>
+        <span class="n">api_name</span> <span class="o">=</span> <span class="s2">&quot;lstm_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+        <span class="n">supportive_attribute</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;time_major&quot;</span><span class="p">:</span> <span class="n">time_major</span><span class="p">,</span>
+            <span class="s2">&quot;go_backwards&quot;</span><span class="p">:</span> <span class="n">go_backwards</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">defun_standard_lstm</span> <span class="o">=</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">generate_defun_backend</span><span class="p">(</span>
+            <span class="n">api_name</span><span class="p">,</span>
+            <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">CPU_DEVICE_NAME</span><span class="p">,</span>
+            <span class="n">standard_lstm</span><span class="p">,</span>
+            <span class="n">supportive_attribute</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">defun_gpu_lstm</span> <span class="o">=</span> <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">generate_defun_backend</span><span class="p">(</span>
+            <span class="n">api_name</span><span class="p">,</span>
+            <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">GPU_DEVICE_NAME</span><span class="p">,</span>
+            <span class="n">gpu_lstm_with_fallback</span><span class="p">,</span>
+            <span class="n">supportive_attribute</span><span class="p">,</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Call the normal LSTM impl and register the cuDNN impl function. The</span>
+        <span class="c1"># grappler will kick in during session execution to optimize the graph.</span>
+        <span class="n">last_output</span><span class="p">,</span> <span class="n">outputs</span><span class="p">,</span> <span class="n">new_h</span><span class="p">,</span> <span class="n">new_c</span><span class="p">,</span> <span class="n">runtime</span> <span class="o">=</span> <span class="n">defun_standard_lstm</span><span class="p">(</span>
+            <span class="o">**</span><span class="n">params</span>
+        <span class="p">)</span>
+        <span class="n">gru_lstm_utils</span><span class="o">.</span><span class="n">function_register</span><span class="p">(</span><span class="n">defun_gpu_lstm</span><span class="p">,</span> <span class="o">**</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">last_output</span><span class="p">,</span> <span class="n">outputs</span><span class="p">,</span> <span class="n">new_h</span><span class="p">,</span> <span class="n">new_c</span><span class="p">,</span> <span class="n">runtime</span>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The BayesFlow authors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023-2025, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

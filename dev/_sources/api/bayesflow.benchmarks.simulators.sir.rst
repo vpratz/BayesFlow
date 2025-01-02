@@ -3,37 +3,35 @@ bayesflow.benchmarks.simulators.sir
 
 .. automodule:: bayesflow.benchmarks.simulators.sir
 
-   
-   
-   
+  
+  
+  
 
-   
-   
-   .. rubric:: Functions
+  
+  
+  .. rubric:: Functions
 
-   .. autosummary::
-      :toctree:                                          
-   
-      odeint
-   
-   
+  .. autosummary::
+  
+    odeint
+  
+  
 
-   
-   
-   .. rubric:: Classes
+  
+  
+  .. rubric:: Classes
 
-   .. autosummary::
-      :toctree:                                          
-      :template: custom-class-template.rst               
-   
-      BenchmarkSimulator
-      SIR
-   
-   
+  .. autosummary::
+  
+    BenchmarkSimulator
+    SIR
+  
+  
 
-   
-   
-   
+  
+  
+  
 
-
-
+  
+  
+  

@@ -216,18 +216,14 @@
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
   <ul>
-      <li><a href="/v1.1.6/index.html" class="current">v1.1.6</a></li>
-      <li><a href="/v1.1.5/index.html" >v1.1.5</a></li>
-      <li><a href="/v1.1.4/index.html" >v1.1.4</a></li>
-      <li><a href="/v1.1.3/index.html" >v1.1.3</a></li>
-      <li><a href="/v1.1.2/index.html" >v1.1.2</a></li>
+      <li><a href="/v1.1.6/_modules/bayesflow/exceptions.html" class="current">v1.1.6</a></li>
   </ul>
   
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
   <ul>
-      <li><a href="/dev/index.html" >dev</a></li>
-      <li><a href="/master/index.html" >master</a></li>
+      <li><a href="/dev/_modules/bayesflow/exceptions.html" >dev</a></li>
+      <li><a href="/master/_modules/bayesflow/exceptions.html" >master</a></li>
   </ul>
   
 </div>
@@ -397,7 +393,7 @@
 
 
 <div class="viewcode-block" id="SimulationError">
-<a class="viewcode-back" href="../../api/bayesflow.exceptions.html#bayesflow.exceptions.SimulationError">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.amortizers.SimulationError">[docs]</a>
 <span class="k">class</span> <span class="nc">SimulationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for an error in simulation.&quot;&quot;&quot;</span>
 
@@ -406,7 +402,7 @@
 
 
 <div class="viewcode-block" id="SummaryStatsError">
-<a class="viewcode-back" href="../../api/bayesflow.exceptions.html#bayesflow.exceptions.SummaryStatsError">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.experimental.rectifiers.html#bayesflow.amortizers.SummaryStatsError">[docs]</a>
 <span class="k">class</span> <span class="nc">SummaryStatsError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for error in summary statistics.&quot;&quot;&quot;</span>
 
@@ -415,7 +411,7 @@
 
 
 <div class="viewcode-block" id="LossError">
-<a class="viewcode-back" href="../../api/bayesflow.exceptions.html#bayesflow.exceptions.LossError">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.exceptions.html#bayesflow.amortizers.LossError">[docs]</a>
 <span class="k">class</span> <span class="nc">LossError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for error in applying loss.&quot;&quot;&quot;</span>
 
@@ -424,7 +420,7 @@
 
 
 <div class="viewcode-block" id="ShapeError">
-<a class="viewcode-back" href="../../api/bayesflow.exceptions.html#bayesflow.exceptions.ShapeError">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.helper_functions.html#bayesflow.amortizers.ShapeError">[docs]</a>
 <span class="k">class</span> <span class="nc">ShapeError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for error in expected shapes.&quot;&quot;&quot;</span>
 
@@ -433,7 +429,7 @@
 
 
 <div class="viewcode-block" id="ConfigurationError">
-<a class="viewcode-back" href="../../api/bayesflow.exceptions.html#bayesflow.exceptions.ConfigurationError">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.amortizers.ConfigurationError">[docs]</a>
 <span class="k">class</span> <span class="nc">ConfigurationError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for error in model configuration, e.g. in meta dict&quot;&quot;&quot;</span>
 
@@ -442,7 +438,7 @@
 
 
 <div class="viewcode-block" id="InferenceError">
-<a class="viewcode-back" href="../../api/bayesflow.exceptions.html#bayesflow.exceptions.InferenceError">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.exceptions.html#bayesflow.amortizers.InferenceError">[docs]</a>
 <span class="k">class</span> <span class="nc">InferenceError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for error in forward/inverse pass of a neural components.&quot;&quot;&quot;</span>
 
@@ -451,7 +447,7 @@
 
 
 <div class="viewcode-block" id="OperationNotSupportedError">
-<a class="viewcode-back" href="../../api/bayesflow.exceptions.html#bayesflow.exceptions.OperationNotSupportedError">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.exceptions.html#bayesflow.amortizers.OperationNotSupportedError">[docs]</a>
 <span class="k">class</span> <span class="nc">OperationNotSupportedError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for error that occurs when an operation is demanded but not supported,</span>
 <span class="sd">    e.g., when a trainer is initialized without generative model but the user demands it to simulate data.</span>
@@ -462,7 +458,7 @@
 
 
 <div class="viewcode-block" id="ArgumentError">
-<a class="viewcode-back" href="../../api/bayesflow.exceptions.html#bayesflow.exceptions.ArgumentError">[docs]</a>
+<a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.amortizers.ArgumentError">[docs]</a>
 <span class="k">class</span> <span class="nc">ArgumentError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class for error that occurs as a result of a function call which is invalid due to the input arguments.&quot;&quot;&quot;</span>
     <span class="k">pass</span></div>
@@ -505,7 +501,7 @@ By The BayesFlow authors
 
   <p class="copyright">
     
-      © Copyright 2023, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      © Copyright 2023-2025, BayesFlow authors (lead maintainer: Stefan T. Radev).
       <br/>
     
   </p>
