@@ -18,9 +18,9 @@
   .. autosummary::
   
     DiskDataset
-    OnlineDataset
-    RoundsDataset
     OfflineDataset
+    RoundsDataset
+    OnlineDataset
   
   
 

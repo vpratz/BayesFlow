@@ -197,8 +197,8 @@
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.types.html">bayesflow.types</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.utils.html">bayesflow.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.logging.html">bayesflow.utils.logging</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.workflows.html">bayesflow.workflows</a></li>
@@ -216,11 +216,6 @@
 </nav></div>
         <div class="sidebar-primary-item">
 <div class="rst-versions">
-   
-  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
-  <ul>
-      <li><a href="/v1.1.6/api/bayesflow.simulators.html" >v1.1.6</a></li>
-  </ul>
   
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
@@ -494,22 +489,22 @@ document.write(`
 <p class="rubric">Classes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.simulators.TwoMoons" title="bayesflow.simulators.TwoMoons"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoMoons</span></code></a>([lower_bound, upper_bound, seed])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.simulators.HierarchicalSimulator" title="bayesflow.simulators.HierarchicalSimulator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HierarchicalSimulator</span></code></a>(hierarchy)</p></td>
 <td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.simulators.Simulator" title="bayesflow.simulators.Simulator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Simulator</span></code></a>()</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.simulators.LambdaSimulator" title="bayesflow.simulators.LambdaSimulator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LambdaSimulator</span></code></a>(sample_fn, *[, is_batched])</p></td>
-<td><p>Implements a simulator based on a sampling function.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.simulators.ModelComparisonSimulator" title="bayesflow.simulators.ModelComparisonSimulator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ModelComparisonSimulator</span></code></a>(simulators[, p, ...])</p></td>
 <td><p>Wraps a sequence of simulators for use with a model comparison approximator.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.simulators.SequentialSimulator" title="bayesflow.simulators.SequentialSimulator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SequentialSimulator</span></code></a>(simulators[, expand_outputs])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.simulators.Simulator" title="bayesflow.simulators.Simulator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Simulator</span></code></a>()</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.simulators.SequentialSimulator" title="bayesflow.simulators.SequentialSimulator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SequentialSimulator</span></code></a>(simulators[, expand_outputs])</p></td>
 <td><p>Combines multiple simulators into one, sequentially.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.simulators.HierarchicalSimulator" title="bayesflow.simulators.HierarchicalSimulator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HierarchicalSimulator</span></code></a>(hierarchy)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.simulators.LambdaSimulator" title="bayesflow.simulators.LambdaSimulator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LambdaSimulator</span></code></a>(sample_fn, *[, is_batched])</p></td>
+<td><p>Implements a simulator based on a sampling function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.simulators.TwoMoons" title="bayesflow.simulators.TwoMoons"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoMoons</span></code></a>([lower_bound, upper_bound, seed])</p></td>
 <td><p></p></td>
 </tr>
 </tbody>

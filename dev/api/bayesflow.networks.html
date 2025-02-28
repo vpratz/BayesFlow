@@ -197,8 +197,8 @@
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.types.html">bayesflow.types</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.utils.html">bayesflow.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.logging.html">bayesflow.utils.logging</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.workflows.html">bayesflow.workflows</a></li>
@@ -216,11 +216,6 @@
 </nav></div>
         <div class="sidebar-primary-item">
 <div class="rst-versions">
-   
-  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
-  <ul>
-      <li><a href="/v1.1.6/api/bayesflow.networks.html" >v1.1.6</a></li>
-  </ul>
   
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
@@ -1116,44 +1111,44 @@ document.write(`
 <p class="rubric">Classes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.networks.SetTransformer" title="bayesflow.networks.SetTransformer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetTransformer</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Implements the set transformer architecture from [1] which ultimately represents a learnable permutation-invariant function.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.networks.DeepSet" title="bayesflow.networks.DeepSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeepSet</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Implements a deep set encoder introduced in [1].</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.networks.CouplingFlow" title="bayesflow.networks.CouplingFlow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CouplingFlow</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Implements a coupling flow as a sequence of dual couplings with permutations and activation normalization.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.networks.MLP" title="bayesflow.networks.MLP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLP</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Implements a simple configurable MLP with optional residual connections and dropout.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.networks.SummaryNetwork" title="bayesflow.networks.SummaryNetwork"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SummaryNetwork</span></code></a>(*args, **kwargs)</p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.networks.TimeSeriesTransformer" title="bayesflow.networks.TimeSeriesTransformer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeSeriesTransformer</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Creates a regular transformer coupled with Time2Vec embeddings of time used to flexibly compress time series.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.networks.ConsistencyModel" title="bayesflow.networks.ConsistencyModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConsistencyModel</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Implements a Consistency Model with Consistency Training (CT) as described in [1-2].</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.networks.CIF" title="bayesflow.networks.CIF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CIF</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Implements a continuously indexed flow (CIF) with a <cite>CouplingFlow</cite> bijection and <cite>ConditionalGaussian</cite> distributions p and q.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.networks.FlowMatching" title="bayesflow.networks.FlowMatching"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FlowMatching</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Implements Optimal Transport Flow Matching, originally introduced as Rectified Flow, with ideas incorporated from [1-3].</p></td>
 </tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.networks.SetTransformer" title="bayesflow.networks.SetTransformer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SetTransformer</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Implements the set transformer architecture from [1] which ultimately represents a learnable permutation-invariant function.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.networks.TimeSeriesTransformer" title="bayesflow.networks.TimeSeriesTransformer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TimeSeriesTransformer</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Creates a regular transformer coupled with Time2Vec embeddings of time used to flexibly compress time series.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.networks.CouplingFlow" title="bayesflow.networks.CouplingFlow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CouplingFlow</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Implements a coupling flow as a sequence of dual couplings with permutations and activation normalization.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.networks.ConsistencyModel" title="bayesflow.networks.ConsistencyModel"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConsistencyModel</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Implements a Consistency Model with Consistency Training (CT) as described in [1-2].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.networks.InferenceNetwork" title="bayesflow.networks.InferenceNetwork"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InferenceNetwork</span></code></a>(*args, **kwargs)</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.networks.FusionTransformer" title="bayesflow.networks.FusionTransformer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FusionTransformer</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Implements a more flexible version of the TimeSeriesTransformer that applies a series of self-attention layers followed by cross-attention between the representation and a learnable template summarized via a recurrent net.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.networks.DeepSet" title="bayesflow.networks.DeepSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DeepSet</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Implements a deep set encoder introduced in [1].</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.networks.FreeFormFlow" title="bayesflow.networks.FreeFormFlow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FreeFormFlow</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Implements a dimensionality-preserving Free-form Flow.</p></td>
+</tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.networks.LSTNet" title="bayesflow.networks.LSTNet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LSTNet</span></code></a>(*args, **kwargs)</p></td>
 <td><p>Implements a LSTNet Architecture as described in [1]</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.networks.InferenceNetwork" title="bayesflow.networks.InferenceNetwork"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InferenceNetwork</span></code></a>(*args, **kwargs)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.networks.SummaryNetwork" title="bayesflow.networks.SummaryNetwork"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SummaryNetwork</span></code></a>(*args, **kwargs)</p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.networks.FreeFormFlow" title="bayesflow.networks.FreeFormFlow"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FreeFormFlow</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Implements a dimensionality-preserving Free-form Flow.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.networks.CIF" title="bayesflow.networks.CIF"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CIF</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Implements a continuously indexed flow (CIF) with a <cite>CouplingFlow</cite> bijection and <cite>ConditionalGaussian</cite> distributions p and q.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.networks.FusionTransformer" title="bayesflow.networks.FusionTransformer"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FusionTransformer</span></code></a>(*args, **kwargs)</p></td>
-<td><p>Implements a more flexible version of the TimeSeriesTransformer that applies a series of self-attention layers followed by cross-attention between the representation and a learnable template summarized via a recurrent net.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.networks.MLP" title="bayesflow.networks.MLP"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MLP</span></code></a>(*args, **kwargs)</p></td>
+<td><p>Implements a simple configurable MLP with optional residual connections and dropout.</p></td>
 </tr>
 </tbody>
 </table>

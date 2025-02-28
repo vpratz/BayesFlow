@@ -197,8 +197,8 @@
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.types.html">bayesflow.types</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.utils.html">bayesflow.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.logging.html">bayesflow.utils.logging</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.workflows.html">bayesflow.workflows</a></li>
@@ -216,11 +216,6 @@
 </nav></div>
         <div class="sidebar-primary-item">
 <div class="rst-versions">
-   
-  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
-  <ul>
-      <li><a href="/v1.1.6/api/bayesflow.datasets.html" >v1.1.6</a></li>
-  </ul>
   
    
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
@@ -496,14 +491,14 @@ document.write(`
 <tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.datasets.DiskDataset" title="bayesflow.datasets.DiskDataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DiskDataset</span></code></a>(root, *[, pattern, load_fn])</p></td>
 <td><p>A dataset used to load pre-simulated files from disk.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.datasets.OnlineDataset" title="bayesflow.datasets.OnlineDataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OnlineDataset</span></code></a>(simulator, batch_size, ...)</p></td>
-<td><p>A dataset that is generated on-the-fly.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.datasets.OfflineDataset" title="bayesflow.datasets.OfflineDataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OfflineDataset</span></code></a>(data, batch_size, adapter, ...)</p></td>
+<td><p>A dataset that is pre-simulated and stored in memory.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.datasets.RoundsDataset" title="bayesflow.datasets.RoundsDataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RoundsDataset</span></code></a>(simulator, batch_size, ...)</p></td>
 <td><p>A dataset that is generated on-the-fly at the beginning of every n-th epoch.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.datasets.OfflineDataset" title="bayesflow.datasets.OfflineDataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OfflineDataset</span></code></a>(data, batch_size, adapter, ...)</p></td>
-<td><p>A dataset that is pre-simulated and stored in memory.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.datasets.OnlineDataset" title="bayesflow.datasets.OnlineDataset"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OnlineDataset</span></code></a>(simulator, batch_size, ...)</p></td>
+<td><p>A dataset that is generated on-the-fly.</p></td>
 </tr>
 </tbody>
 </table>
