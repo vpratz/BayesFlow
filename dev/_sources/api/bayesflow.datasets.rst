@@ -18,9 +18,9 @@
   .. autosummary::
   
     DiskDataset
-    OfflineDataset
     OnlineDataset
     RoundsDataset
+    OfflineDataset
   
   
 
@@ -29,18 +29,5 @@
   
 
   
-  
-  .. rubric:: Modules
-
-  .. autosummary::
-    :toctree:
-    :template: custom-module-template.rst
-    :recursive:
-  
-    disk_dataset
-    offline_dataset
-    online_dataset
-    rounds_dataset
-
   
   

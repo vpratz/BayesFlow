@@ -15,31 +15,28 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=8fec244e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
@@ -55,7 +52,6 @@
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -71,8 +67,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -80,6 +87,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -87,8 +95,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -106,8 +114,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -137,17 +144,21 @@
     
     
     <img src="../../../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
-    <img src="../../../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <script>document.write(`<img src="../../../_static/bayesflow_hex.png" class="logo__image only-dark" alt="BayesFlow: Amortized Bayesian Inference - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -223,7 +234,6 @@
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
   <ul>
       <li><a href="/dev/_modules/sklearn/neural_network/_multilayer_perceptron.html" >dev</a></li>
-      <li><a href="/master/_modules/sklearn/neural_network/_multilayer_perceptron.html" >master</a></li>
   </ul>
   
 </div>
@@ -232,14 +242,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -335,16 +340,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 
 </div></div>
       
@@ -376,54 +389,54 @@
 <span class="c1"># Authors: The scikit-learn developers</span>
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
 
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span>
-<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Integral</span><span class="p">,</span> <span class="n">Real</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">chain</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numbers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Integral</span><span class="p">,</span> <span class="n">Real</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.optimize</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.optimize</span>
 
-<span class="kn">from</span> <span class="nn">..base</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..base</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">BaseEstimator</span><span class="p">,</span>
     <span class="n">ClassifierMixin</span><span class="p">,</span>
     <span class="n">RegressorMixin</span><span class="p">,</span>
     <span class="n">_fit_context</span><span class="p">,</span>
     <span class="n">is_classifier</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">ConvergenceWarning</span>
-<span class="kn">from</span> <span class="nn">..metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">r2_score</span>
-<span class="kn">from</span> <span class="nn">..model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">..preprocessing</span> <span class="kn">import</span> <span class="n">LabelBinarizer</span>
-<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConvergenceWarning</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">r2_score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelBinarizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">_safe_indexing</span><span class="p">,</span>
     <span class="n">check_random_state</span><span class="p">,</span>
     <span class="n">column_or_1d</span><span class="p">,</span>
     <span class="n">gen_batches</span><span class="p">,</span>
     <span class="n">shuffle</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">..utils._param_validation</span> <span class="kn">import</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">Options</span><span class="p">,</span> <span class="n">StrOptions</span>
-<span class="kn">from</span> <span class="nn">..utils.extmath</span> <span class="kn">import</span> <span class="n">safe_sparse_dot</span>
-<span class="kn">from</span> <span class="nn">..utils.metaestimators</span> <span class="kn">import</span> <span class="n">available_if</span>
-<span class="kn">from</span> <span class="nn">..utils.multiclass</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils._param_validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">Options</span><span class="p">,</span> <span class="n">StrOptions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.extmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_sparse_dot</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.metaestimators</span><span class="w"> </span><span class="kn">import</span> <span class="n">available_if</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.multiclass</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">_check_partial_fit_first_call</span><span class="p">,</span>
     <span class="n">type_of_target</span><span class="p">,</span>
     <span class="n">unique_labels</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">..utils.optimize</span> <span class="kn">import</span> <span class="n">_check_optimize_result</span>
-<span class="kn">from</span> <span class="nn">..utils.validation</span> <span class="kn">import</span> <span class="n">check_is_fitted</span><span class="p">,</span> <span class="n">validate_data</span>
-<span class="kn">from</span> <span class="nn">._base</span> <span class="kn">import</span> <span class="n">ACTIVATIONS</span><span class="p">,</span> <span class="n">DERIVATIVES</span><span class="p">,</span> <span class="n">LOSS_FUNCTIONS</span>
-<span class="kn">from</span> <span class="nn">._stochastic_optimizers</span> <span class="kn">import</span> <span class="n">AdamOptimizer</span><span class="p">,</span> <span class="n">SGDOptimizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">_check_optimize_result</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">check_is_fitted</span><span class="p">,</span> <span class="n">validate_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._base</span><span class="w"> </span><span class="kn">import</span> <span class="n">ACTIVATIONS</span><span class="p">,</span> <span class="n">DERIVATIVES</span><span class="p">,</span> <span class="n">LOSS_FUNCTIONS</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._stochastic_optimizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AdamOptimizer</span><span class="p">,</span> <span class="n">SGDOptimizer</span>
 
 <span class="n">_STOCHASTIC_SOLVERS</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;sgd&quot;</span><span class="p">,</span> <span class="s2">&quot;adam&quot;</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">_pack</span><span class="p">(</span><span class="n">coefs_</span><span class="p">,</span> <span class="n">intercepts_</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_pack</span><span class="p">(</span><span class="n">coefs_</span><span class="p">,</span> <span class="n">intercepts_</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Pack the parameters into a single vector.&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">l</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">coefs_</span> <span class="o">+</span> <span class="n">intercepts_</span><span class="p">])</span>
 
 
-<span class="k">class</span> <span class="nc">BaseMultilayerPerceptron</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BaseMultilayerPerceptron</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for MLP classification and regression.</span>
 
 <span class="sd">    Warning: This class should not be used directly.</span>
@@ -468,7 +481,7 @@
     <span class="p">}</span>
 
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">hidden_layer_sizes</span><span class="p">,</span>
         <span class="n">activation</span><span class="p">,</span>
@@ -520,7 +533,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">n_iter_no_change</span> <span class="o">=</span> <span class="n">n_iter_no_change</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_fun</span> <span class="o">=</span> <span class="n">max_fun</span>
 
-    <span class="k">def</span> <span class="nf">_unpack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">packed_parameters</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_unpack</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">packed_parameters</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract the coefficients and intercepts from packed_parameters.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_layers_</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_coef_indptr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -529,7 +542,7 @@
             <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intercept_indptr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">intercepts_</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">packed_parameters</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">_forward_pass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">activations</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_forward_pass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">activations</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Perform a forward pass on the network by computing the values</span>
 <span class="sd">        of the neurons in the hidden layers and the output layer.</span>
 
@@ -554,7 +567,7 @@
 
         <span class="k">return</span> <span class="n">activations</span>
 
-    <span class="k">def</span> <span class="nf">_forward_pass_fast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_forward_pass_fast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Predict using the trained model</span>
 
 <span class="sd">        This is the same as _forward_pass but does not record the activations</span>
@@ -591,7 +604,7 @@
 
         <span class="k">return</span> <span class="n">activation</span>
 
-    <span class="k">def</span> <span class="nf">_compute_loss_grad</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_loss_grad</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">,</span> <span class="n">activations</span><span class="p">,</span> <span class="n">deltas</span><span class="p">,</span> <span class="n">coef_grads</span><span class="p">,</span> <span class="n">intercept_grads</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the gradient of loss with respect to coefs and intercept for</span>
@@ -605,7 +618,7 @@
 
         <span class="n">intercept_grads</span><span class="p">[</span><span class="n">layer</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">deltas</span><span class="p">[</span><span class="n">layer</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_loss_grad_lbfgs</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_loss_grad_lbfgs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">packed_coef_inter</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">activations</span><span class="p">,</span> <span class="n">deltas</span><span class="p">,</span> <span class="n">coef_grads</span><span class="p">,</span> <span class="n">intercept_grads</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the MLP loss function and its corresponding derivatives</span>
@@ -655,7 +668,7 @@
         <span class="n">grad</span> <span class="o">=</span> <span class="n">_pack</span><span class="p">(</span><span class="n">coef_grads</span><span class="p">,</span> <span class="n">intercept_grads</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">loss</span><span class="p">,</span> <span class="n">grad</span>
 
-    <span class="k">def</span> <span class="nf">_backprop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">activations</span><span class="p">,</span> <span class="n">deltas</span><span class="p">,</span> <span class="n">coef_grads</span><span class="p">,</span> <span class="n">intercept_grads</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_backprop</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">activations</span><span class="p">,</span> <span class="n">deltas</span><span class="p">,</span> <span class="n">coef_grads</span><span class="p">,</span> <span class="n">intercept_grads</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the MLP loss function and its corresponding derivatives</span>
 <span class="sd">        with respect to each parameter: weights and bias vectors.</span>
 
@@ -734,7 +747,7 @@
 
         <span class="k">return</span> <span class="n">loss</span><span class="p">,</span> <span class="n">coef_grads</span><span class="p">,</span> <span class="n">intercept_grads</span>
 
-    <span class="k">def</span> <span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">layer_units</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_initialize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">layer_units</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
         <span class="c1"># set all attributes, allocate weights etc. for first call</span>
         <span class="c1"># Initialize parameters</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_iter_</span> <span class="o">=</span> <span class="mi">0</span>
@@ -780,7 +793,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">validation_scores_</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">best_validation_score_</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">_init_coef</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fan_in</span><span class="p">,</span> <span class="n">fan_out</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_coef</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fan_in</span><span class="p">,</span> <span class="n">fan_out</span><span class="p">,</span> <span class="n">dtype</span><span class="p">):</span>
         <span class="c1"># Use the initialization method recommended by</span>
         <span class="c1"># Glorot et al.</span>
         <span class="n">factor</span> <span class="o">=</span> <span class="mf">6.0</span>
@@ -797,7 +810,7 @@
         <span class="n">intercept_init</span> <span class="o">=</span> <span class="n">intercept_init</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">dtype</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">coef_init</span><span class="p">,</span> <span class="n">intercept_init</span>
 
-    <span class="k">def</span> <span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">incremental</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">incremental</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="c1"># Make sure self.hidden_layer_sizes is a list</span>
         <span class="n">hidden_layer_sizes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">hidden_layer_sizes</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">hidden_layer_sizes</span><span class="p">,</span> <span class="s2">&quot;__iter__&quot;</span><span class="p">):</span>
@@ -873,7 +886,7 @@
 
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="nf">_fit_lbfgs</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_fit_lbfgs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">activations</span><span class="p">,</span> <span class="n">deltas</span><span class="p">,</span> <span class="n">coef_grads</span><span class="p">,</span> <span class="n">intercept_grads</span><span class="p">,</span> <span class="n">layer_units</span>
     <span class="p">):</span>
         <span class="c1"># Store meta information for the parameters</span>
@@ -920,7 +933,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">loss_</span> <span class="o">=</span> <span class="n">opt_res</span><span class="o">.</span><span class="n">fun</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_unpack</span><span class="p">(</span><span class="n">opt_res</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_fit_stochastic</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_fit_stochastic</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">X</span><span class="p">,</span>
         <span class="n">y</span><span class="p">,</span>
@@ -1075,7 +1088,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">coefs_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_best_coefs</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">intercepts_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_best_intercepts</span>
 
-    <span class="k">def</span> <span class="nf">_update_no_improvement_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">early_stopping</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_no_improvement_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">early_stopping</span><span class="p">,</span> <span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">early_stopping</span><span class="p">:</span>
             <span class="c1"># compute validation score (can be NaN), use that for stopping</span>
             <span class="n">val_score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_score</span><span class="p">(</span><span class="n">X_val</span><span class="p">,</span> <span class="n">y_val</span><span class="p">)</span>
@@ -1107,7 +1120,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">best_loss_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loss_curve_</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
     <span class="nd">@_fit_context</span><span class="p">(</span><span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Fit the model to data matrix X and target(s) y.</span>
 
 <span class="sd">        Parameters</span>
@@ -1126,7 +1139,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">incremental</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_check_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_solver</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">solver</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_STOCHASTIC_SOLVERS</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
                 <span class="s2">&quot;partial_fit is only available for stochastic&quot;</span>
@@ -1134,7 +1147,7 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="kc">True</span>
 
-    <span class="k">def</span> <span class="nf">_score_with_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">score_function</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_score_with_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">score_function</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Private score method without input validation.&quot;&quot;&quot;</span>
         <span class="c1"># Input validation would remove feature names, so we disable it</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predict</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1144,10 +1157,15 @@
 
         <span class="k">return</span> <span class="n">score_function</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
 
+    <span class="k">def</span><span class="w"> </span><span class="nf">__sklearn_tags__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tags</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__sklearn_tags__</span><span class="p">()</span>
+        <span class="n">tags</span><span class="o">.</span><span class="n">input_tags</span><span class="o">.</span><span class="n">sparse</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">tags</span>
+
 
 <div class="viewcode-block" id="MLPClassifier">
 <a class="viewcode-back" href="../../../api/bayesflow.computational_utilities.html#bayesflow.computational_utilities.MLPClassifier">[docs]</a>
-<span class="k">class</span> <span class="nc">MLPClassifier</span><span class="p">(</span><span class="n">ClassifierMixin</span><span class="p">,</span> <span class="n">BaseMultilayerPerceptron</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MLPClassifier</span><span class="p">(</span><span class="n">ClassifierMixin</span><span class="p">,</span> <span class="n">BaseMultilayerPerceptron</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Multi-layer Perceptron classifier.</span>
 
 <span class="sd">    This model optimizes the log-loss function using LBFGS or stochastic</span>
@@ -1426,7 +1444,7 @@
 <span class="sd">    0.8...</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,),</span>
         <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span>
@@ -1480,7 +1498,7 @@
             <span class="n">max_fun</span><span class="o">=</span><span class="n">max_fun</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_validate_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">incremental</span><span class="p">,</span> <span class="n">reset</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">incremental</span><span class="p">,</span> <span class="n">reset</span><span class="p">):</span>
         <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">validate_data</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">X</span><span class="p">,</span>
@@ -1537,7 +1555,7 @@
 
 <div class="viewcode-block" id="MLPClassifier.predict">
 <a class="viewcode-back" href="../../../api/bayesflow.computational_utilities.html#bayesflow.computational_utilities.MLPClassifier.predict">[docs]</a>
-    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Predict using the multi-layer perceptron classifier.</span>
 
 <span class="sd">        Parameters</span>
@@ -1554,7 +1572,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="nf">_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Private predict method with optional input validation&quot;&quot;&quot;</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pass_fast</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="n">check_input</span><span class="p">)</span>
 
@@ -1563,14 +1581,14 @@
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_label_binarizer</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_score_with_function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">score_function</span><span class="o">=</span><span class="n">accuracy_score</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MLPClassifier.partial_fit">
 <a class="viewcode-back" href="../../../api/bayesflow.computational_utilities.html#bayesflow.computational_utilities.MLPClassifier.partial_fit">[docs]</a>
     <span class="nd">@available_if</span><span class="p">(</span><span class="k">lambda</span> <span class="n">est</span><span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">_check_solver</span><span class="p">())</span>
     <span class="nd">@_fit_context</span><span class="p">(</span><span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">partial_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">partial_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the model with a single iteration over the given data.</span>
 
 <span class="sd">        Parameters</span>
@@ -1606,7 +1624,7 @@
 
 <div class="viewcode-block" id="MLPClassifier.predict_log_proba">
 <a class="viewcode-back" href="../../../api/bayesflow.computational_utilities.html#bayesflow.computational_utilities.MLPClassifier.predict_log_proba">[docs]</a>
-    <span class="k">def</span> <span class="nf">predict_log_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict_log_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the log of probability estimates.</span>
 
 <span class="sd">        Parameters</span>
@@ -1627,7 +1645,7 @@
 
 <div class="viewcode-block" id="MLPClassifier.predict_proba">
 <a class="viewcode-back" href="../../../api/bayesflow.computational_utilities.html#bayesflow.computational_utilities.MLPClassifier.predict_proba">[docs]</a>
-    <span class="k">def</span> <span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict_proba</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Probability estimates.</span>
 
 <span class="sd">        Parameters</span>
@@ -1653,14 +1671,14 @@
             <span class="k">return</span> <span class="n">y_pred</span></div>
 
 
-    <span class="k">def</span> <span class="nf">__sklearn_tags__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__sklearn_tags__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">tags</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">__sklearn_tags__</span><span class="p">()</span>
         <span class="n">tags</span><span class="o">.</span><span class="n">classifier_tags</span><span class="o">.</span><span class="n">multi_label</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="n">tags</span></div>
 
 
 
-<span class="k">class</span> <span class="nc">MLPRegressor</span><span class="p">(</span><span class="n">RegressorMixin</span><span class="p">,</span> <span class="n">BaseMultilayerPerceptron</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MLPRegressor</span><span class="p">(</span><span class="n">RegressorMixin</span><span class="p">,</span> <span class="n">BaseMultilayerPerceptron</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Multi-layer Perceptron regressor.</span>
 
 <span class="sd">    This model optimizes the squared error using LBFGS or stochastic gradient</span>
@@ -1938,7 +1956,7 @@
 <span class="sd">    0.98...</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,),</span>
         <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">,</span>
@@ -1992,7 +2010,7 @@
             <span class="n">max_fun</span><span class="o">=</span><span class="n">max_fun</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Predict using the multi-layer perceptron model.</span>
 
 <span class="sd">        Parameters</span>
@@ -2008,17 +2026,17 @@
         <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Private predict method with optional input validation&quot;&quot;&quot;</span>
         <span class="n">y_pred</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_forward_pass_fast</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">check_input</span><span class="o">=</span><span class="n">check_input</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">y_pred</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">y_pred</span>
 
-    <span class="k">def</span> <span class="nf">_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_score_with_function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">score_function</span><span class="o">=</span><span class="n">r2_score</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_validate_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">incremental</span><span class="p">,</span> <span class="n">reset</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">incremental</span><span class="p">,</span> <span class="n">reset</span><span class="p">):</span>
         <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">validate_data</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">X</span><span class="p">,</span>
@@ -2035,7 +2053,7 @@
 
     <span class="nd">@available_if</span><span class="p">(</span><span class="k">lambda</span> <span class="n">est</span><span class="p">:</span> <span class="n">est</span><span class="o">.</span><span class="n">_check_solver</span><span class="p">)</span>
     <span class="nd">@_fit_context</span><span class="p">(</span><span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">partial_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">partial_fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Update the model with a single iteration over the given data.</span>
 
 <span class="sd">        Parameters</span>
@@ -2114,8 +2132,8 @@ By The BayesFlow authors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

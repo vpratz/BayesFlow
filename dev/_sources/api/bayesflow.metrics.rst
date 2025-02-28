@@ -17,8 +17,8 @@
 
   .. autosummary::
   
-    MaximumMeanDiscrepancy
     RootMeanSquaredError
+    MaximumMeanDiscrepancy
   
   
 
@@ -36,8 +36,6 @@
     :recursive:
   
     functional
-    maximum_mean_discrepancy
-    root_mean_squard_error
 
   
   

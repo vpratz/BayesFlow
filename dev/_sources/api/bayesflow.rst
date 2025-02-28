@@ -1,10 +1,5 @@
-﻿.. currentmodule:: bayesflow
-
-Public API: bayesflow package
+﻿Public API: bayesflow package
 =============================
-
-Autosummary
------------
 
 .. autosummary::
     :toctree: .
@@ -17,6 +12,7 @@ Autosummary
     bayesflow.datasets
     bayesflow.diagnostics
     bayesflow.distributions
+    bayesflow.experimental
     bayesflow.metrics
     bayesflow.networks
     bayesflow.simulators

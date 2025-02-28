@@ -15,31 +15,28 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=8fec244e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
@@ -55,7 +52,6 @@
     <link rel="search" title="Search" href="../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -71,8 +67,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -80,6 +87,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -87,8 +95,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -106,8 +114,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -137,17 +144,21 @@
     
     
     <img src="../../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
-    <img src="../../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <script>document.write(`<img src="../../_static/bayesflow_hex.png" class="logo__image only-dark" alt="BayesFlow: Amortized Bayesian Inference - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -223,7 +234,6 @@
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
   <ul>
       <li><a href="/dev/_modules/tqdm/std.html" >dev</a></li>
-      <li><a href="/master/_modules/tqdm/std.html" >master</a></li>
   </ul>
   
 </div>
@@ -232,14 +242,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -335,16 +340,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 
 </div></div>
       
@@ -380,17 +393,17 @@
 <span class="sd">&gt;&gt;&gt; for i in trange(10):</span>
 <span class="sd">...     ...</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span><span class="p">,</span> <span class="n">defaultdict</span>
-<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
-<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span><span class="p">,</span> <span class="n">timezone</span>
-<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Number</span>
-<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
-<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
-<span class="kn">from</span> <span class="nn">weakref</span> <span class="kn">import</span> <span class="n">WeakSet</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span><span class="p">,</span> <span class="n">defaultdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">contextlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span><span class="p">,</span> <span class="n">timezone</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numbers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Number</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">time</span><span class="w"> </span><span class="kn">import</span> <span class="n">time</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">weakref</span><span class="w"> </span><span class="kn">import</span> <span class="n">WeakSet</span>
 
-<span class="kn">from</span> <span class="nn">._monitor</span> <span class="kn">import</span> <span class="n">TMonitor</span>
-<span class="kn">from</span> <span class="nn">.utils</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._monitor</span><span class="w"> </span><span class="kn">import</span> <span class="n">TMonitor</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">CallbackIOWrapper</span><span class="p">,</span> <span class="n">Comparable</span><span class="p">,</span> <span class="n">DisableOnWriteError</span><span class="p">,</span> <span class="n">FormatReplace</span><span class="p">,</span> <span class="n">SimpleTextIOWrapper</span><span class="p">,</span>
     <span class="n">_is_ascii</span><span class="p">,</span> <span class="n">_screen_shape_wrapper</span><span class="p">,</span> <span class="n">_supports_unicode</span><span class="p">,</span> <span class="n">_term_move_up</span><span class="p">,</span> <span class="n">disp_len</span><span class="p">,</span> <span class="n">disp_trim</span><span class="p">,</span>
     <span class="n">envwrap</span><span class="p">)</span>
@@ -402,51 +415,51 @@
            <span class="s1">&#39;TqdmMonitorWarning&#39;</span><span class="p">]</span>
 
 
-<span class="k">class</span> <span class="nc">TqdmTypeError</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TqdmTypeError</span><span class="p">(</span><span class="ne">TypeError</span><span class="p">):</span>
     <span class="k">pass</span>
 
 
-<span class="k">class</span> <span class="nc">TqdmKeyError</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TqdmKeyError</span><span class="p">(</span><span class="ne">KeyError</span><span class="p">):</span>
     <span class="k">pass</span>
 
 
-<span class="k">class</span> <span class="nc">TqdmWarning</span><span class="p">(</span><span class="ne">Warning</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TqdmWarning</span><span class="p">(</span><span class="ne">Warning</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;base class for all tqdm warnings.</span>
 
 <span class="sd">    Used for non-external-code-breaking errors, such as garbled printing.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">fp_write</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">fp_write</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">fp_write</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">fp_write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">TqdmExperimentalWarning</span><span class="p">(</span><span class="n">TqdmWarning</span><span class="p">,</span> <span class="ne">FutureWarning</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TqdmExperimentalWarning</span><span class="p">(</span><span class="n">TqdmWarning</span><span class="p">,</span> <span class="ne">FutureWarning</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;beta feature, unstable API and behaviour&quot;&quot;&quot;</span>
     <span class="k">pass</span>
 
 
-<span class="k">class</span> <span class="nc">TqdmDeprecationWarning</span><span class="p">(</span><span class="n">TqdmWarning</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TqdmDeprecationWarning</span><span class="p">(</span><span class="n">TqdmWarning</span><span class="p">,</span> <span class="ne">DeprecationWarning</span><span class="p">):</span>
     <span class="c1"># not suppressed if raised</span>
     <span class="k">pass</span>
 
 
-<span class="k">class</span> <span class="nc">TqdmMonitorWarning</span><span class="p">(</span><span class="n">TqdmWarning</span><span class="p">,</span> <span class="ne">RuntimeWarning</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TqdmMonitorWarning</span><span class="p">(</span><span class="n">TqdmWarning</span><span class="p">,</span> <span class="ne">RuntimeWarning</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;tqdm monitor errors which do not affect external functionality&quot;&quot;&quot;</span>
     <span class="k">pass</span>
 
 
-<span class="k">def</span> <span class="nf">TRLock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">TRLock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;threading RLock&quot;&quot;&quot;</span>
     <span class="k">try</span><span class="p">:</span>
-        <span class="kn">from</span> <span class="nn">threading</span> <span class="kn">import</span> <span class="n">RLock</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">threading</span><span class="w"> </span><span class="kn">import</span> <span class="n">RLock</span>
         <span class="k">return</span> <span class="n">RLock</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
         <span class="k">pass</span>
 
 
-<span class="k">class</span> <span class="nc">TqdmDefaultWriteLock</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TqdmDefaultWriteLock</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Provide a default write lock for thread and multiprocessing safety.</span>
 <span class="sd">    Works only on platforms supporting `fork` (so Windows is excluded).</span>
@@ -460,7 +473,7 @@
     <span class="c1"># context, disallowing `spawn()`/`forkserver()`</span>
     <span class="n">th_lock</span> <span class="o">=</span> <span class="n">TRLock</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Create global parallelism locks to avoid racing issues with parallel</span>
         <span class="c1"># bars works only if fork available (Linux/MacOSX, but not Windows)</span>
         <span class="bp">cls</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
@@ -472,36 +485,36 @@
         <span class="k">if</span> <span class="n">root_lock</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">root_lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">acquire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">acquire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">lock</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">locks</span><span class="p">:</span>
             <span class="n">lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="o">**</span><span class="n">k</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">release</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">lock</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">locks</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>  <span class="c1"># Release in inverse order of acquisition</span>
             <span class="n">lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exc</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">exc</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">create_mp_lock</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_mp_lock</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s1">&#39;mp_lock&#39;</span><span class="p">):</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="kn">from</span> <span class="nn">multiprocessing</span> <span class="kn">import</span> <span class="n">RLock</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">multiprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">RLock</span>
                 <span class="bp">cls</span><span class="o">.</span><span class="n">mp_lock</span> <span class="o">=</span> <span class="n">RLock</span><span class="p">()</span>
             <span class="k">except</span> <span class="p">(</span><span class="ne">ImportError</span><span class="p">,</span> <span class="ne">OSError</span><span class="p">):</span>  <span class="c1"># pragma: no cover</span>
                 <span class="bp">cls</span><span class="o">.</span><span class="n">mp_lock</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">create_th_lock</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_th_lock</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
         <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s1">&#39;th_lock&#39;</span><span class="p">)</span>
         <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;create_th_lock not needed anymore&quot;</span><span class="p">,</span> <span class="n">TqdmDeprecationWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">Bar</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Bar</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    `str.format`-able bar with format specifiers: `[width][type]`</span>
 
@@ -523,7 +536,7 @@
                <span class="s1">&#39;YELLOW&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">[33m&#39;</span><span class="p">,</span> <span class="s1">&#39;BLUE&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">[34m&#39;</span><span class="p">,</span> <span class="s1">&#39;MAGENTA&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">[35m&#39;</span><span class="p">,</span>
                <span class="s1">&#39;CYAN&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">[36m&#39;</span><span class="p">,</span> <span class="s1">&#39;WHITE&#39;</span><span class="p">:</span> <span class="s1">&#39;</span><span class="se">\x1b</span><span class="s1">[37m&#39;</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frac</span><span class="p">,</span> <span class="n">default_len</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">charset</span><span class="o">=</span><span class="n">UTF</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">frac</span><span class="p">,</span> <span class="n">default_len</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">charset</span><span class="o">=</span><span class="n">UTF</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">frac</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;clamping frac to range [0, 1]&quot;</span><span class="p">,</span> <span class="n">TqdmWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="n">frac</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">frac</span><span class="p">))</span>
@@ -534,11 +547,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">colour</span> <span class="o">=</span> <span class="n">colour</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">colour</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">colour</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_colour</span>
 
     <span class="nd">@colour</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span> <span class="nf">colour</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">colour</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_colour</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">return</span>
@@ -556,7 +569,7 @@
                  <span class="n">TqdmWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_colour</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="fm">__format__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format_spec</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__format__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format_spec</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">format_spec</span><span class="p">:</span>
             <span class="n">_type</span> <span class="o">=</span> <span class="n">format_spec</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
             <span class="k">try</span><span class="p">:</span>
@@ -584,7 +597,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">colour</span> <span class="o">+</span> <span class="n">res</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">COLOUR_RESET</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">colour</span> <span class="k">else</span> <span class="n">res</span>
 
 
-<span class="k">class</span> <span class="nc">EMA</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">EMA</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Exponential moving average: smoothing to give progressively lower</span>
 <span class="sd">    weights to older values.</span>
@@ -596,12 +609,12 @@
 <span class="sd">        Increase to give more weight to recent values.</span>
 <span class="sd">        Ranges from 0 (yields old value) to 1 (yields new value).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">smoothing</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">smoothing</span><span class="o">=</span><span class="mf">0.3</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">smoothing</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">last</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">calls</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -617,7 +630,7 @@
 
 <div class="viewcode-block" id="tqdm">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm">[docs]</a>
-<span class="k">class</span> <span class="nc">tqdm</span><span class="p">(</span><span class="n">Comparable</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">tqdm</span><span class="p">(</span><span class="n">Comparable</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Decorate an iterable object, returning an iterator which acts exactly</span>
 <span class="sd">    like the original iterable, but prints a dynamically updating</span>
@@ -745,7 +758,7 @@
 <div class="viewcode-block" id="tqdm.format_sizeof">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.format_sizeof">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">format_sizeof</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">divisor</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">format_sizeof</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">suffix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">divisor</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Formats a number (greater than unity) with SI Order of Magnitude</span>
 <span class="sd">        prefixes.</span>
@@ -778,7 +791,7 @@
 <div class="viewcode-block" id="tqdm.format_interval">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.format_interval">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">format_interval</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">format_interval</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Formats a number of seconds as a clock time, [H:]MM:SS</span>
 
@@ -800,7 +813,7 @@
 <div class="viewcode-block" id="tqdm.format_num">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.format_num">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">format_num</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">format_num</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Intelligent scientific notation (.3g).</span>
 
@@ -822,7 +835,7 @@
 <div class="viewcode-block" id="tqdm.status_printer">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.status_printer">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">status_printer</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">status_printer</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Manage the printing and in-place updating of a line of characters.</span>
 <span class="sd">        Note that if the string is longer than a line, then in-place</span>
@@ -834,13 +847,13 @@
             <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">,</span> <span class="s1">&#39;flush&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">)()</span>
             <span class="nb">getattr</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="p">,</span> <span class="s1">&#39;flush&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">)()</span>
 
-        <span class="k">def</span> <span class="nf">fp_write</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">fp_write</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
             <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
             <span class="n">fp_flush</span><span class="p">()</span>
 
         <span class="n">last_len</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-        <span class="k">def</span> <span class="nf">print_status</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">print_status</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
             <span class="n">len_s</span> <span class="o">=</span> <span class="n">disp_len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
             <span class="n">fp_write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span> <span class="o">+</span> <span class="n">s</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39; &#39;</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="n">last_len</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">len_s</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
             <span class="n">last_len</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">len_s</span>
@@ -851,7 +864,7 @@
 <div class="viewcode-block" id="tqdm.format_meter">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.format_meter">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">format_meter</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">total</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;it&#39;</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">format_meter</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">total</span><span class="p">,</span> <span class="n">elapsed</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">prefix</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">ascii</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;it&#39;</span><span class="p">,</span>
                      <span class="n">unit_scale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rate</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">bar_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">postfix</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                      <span class="n">unit_divisor</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">colour</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">extra_kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1050,7 +1063,7 @@
                     <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">n_fmt</span><span class="si">}{</span><span class="n">unit</span><span class="si">}</span><span class="s1"> [</span><span class="si">{</span><span class="n">elapsed_str</span><span class="si">}</span><span class="s1">, </span><span class="si">{</span><span class="n">rate_fmt</span><span class="si">}{</span><span class="n">postfix</span><span class="si">}</span><span class="s1">]&#39;</span><span class="p">)</span></div>
 
 
-    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">,</span> <span class="o">**</span><span class="n">__</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">,</span> <span class="o">**</span><span class="n">__</span><span class="p">):</span>
         <span class="n">instance</span> <span class="o">=</span> <span class="nb">object</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
         <span class="k">with</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_lock</span><span class="p">():</span>  <span class="c1"># also constructs lock if non-existent</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">_instances</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">instance</span><span class="p">)</span>
@@ -1067,14 +1080,14 @@
         <span class="k">return</span> <span class="n">instance</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">_get_free_pos</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_free_pos</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Skips specified instance.&quot;&quot;&quot;</span>
         <span class="n">positions</span> <span class="o">=</span> <span class="p">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">inst</span><span class="o">.</span><span class="n">pos</span><span class="p">)</span> <span class="k">for</span> <span class="n">inst</span> <span class="ow">in</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_instances</span>
                      <span class="k">if</span> <span class="n">inst</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">instance</span> <span class="ow">and</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">inst</span><span class="p">,</span> <span class="s2">&quot;pos&quot;</span><span class="p">)}</span>
         <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">positions</span><span class="p">))</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">_decr_instances</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_decr_instances</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">instance</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Remove from list and reposition another unfixed bar</span>
 <span class="sd">        to fill the new gap.</span>
@@ -1106,7 +1119,7 @@
 <div class="viewcode-block" id="tqdm.write">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.write">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">nolock</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">write</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">nolock</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Print a message via tqdm (without overlap with bars).&quot;&quot;&quot;</span>
         <span class="n">fp</span> <span class="o">=</span> <span class="n">file</span> <span class="k">if</span> <span class="n">file</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span>
         <span class="k">with</span> <span class="bp">cls</span><span class="o">.</span><span class="n">external_write_mode</span><span class="p">(</span><span class="n">file</span><span class="o">=</span><span class="n">file</span><span class="p">,</span> <span class="n">nolock</span><span class="o">=</span><span class="n">nolock</span><span class="p">):</span>
@@ -1119,7 +1132,7 @@
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.external_write_mode">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="nd">@contextmanager</span>
-    <span class="k">def</span> <span class="nf">external_write_mode</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nolock</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">external_write_mode</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">nolock</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Disable tqdm within context and refresh tqdm when exits.</span>
 <span class="sd">        Useful when writing to standard output stream</span>
@@ -1151,7 +1164,7 @@
 <div class="viewcode-block" id="tqdm.set_lock">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.set_lock">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">set_lock</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">lock</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_lock</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">lock</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the global lock.&quot;&quot;&quot;</span>
         <span class="bp">cls</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">lock</span></div>
 
@@ -1159,7 +1172,7 @@
 <div class="viewcode-block" id="tqdm.get_lock">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.get_lock">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">get_lock</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_lock</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the global lock. Construct it if it does not exist.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="s1">&#39;_lock&#39;</span><span class="p">):</span>
             <span class="bp">cls</span><span class="o">.</span><span class="n">_lock</span> <span class="o">=</span> <span class="n">TqdmDefaultWriteLock</span><span class="p">()</span>
@@ -1169,7 +1182,7 @@
 <div class="viewcode-block" id="tqdm.pandas">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.pandas">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">pandas</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">tqdm_kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pandas</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">**</span><span class="n">tqdm_kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Registers the current `tqdm` class with</span>
 <span class="sd">            pandas.core.</span>
@@ -1203,55 +1216,55 @@
 <span class="sd">        &lt;https://stackoverflow.com/questions/18603270/\</span>
 <span class="sd">        progress-indicator-during-pandas-operations-python&gt;</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">catch_warnings</span><span class="p">,</span> <span class="n">simplefilter</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">catch_warnings</span><span class="p">,</span> <span class="n">simplefilter</span>
 
-        <span class="kn">from</span> <span class="nn">pandas.core.frame</span> <span class="kn">import</span> <span class="n">DataFrame</span>
-        <span class="kn">from</span> <span class="nn">pandas.core.series</span> <span class="kn">import</span> <span class="n">Series</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.frame</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrame</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.series</span><span class="w"> </span><span class="kn">import</span> <span class="n">Series</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">with</span> <span class="n">catch_warnings</span><span class="p">():</span>
                 <span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;ignore&quot;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="ne">FutureWarning</span><span class="p">)</span>
-                <span class="kn">from</span> <span class="nn">pandas</span> <span class="kn">import</span> <span class="n">Panel</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="kn">import</span> <span class="n">Panel</span>
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pandas&gt;=1.2.0</span>
             <span class="n">Panel</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">Rolling</span><span class="p">,</span> <span class="n">Expanding</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
         <span class="k">try</span><span class="p">:</span>  <span class="c1"># pandas&gt;=1.0.0</span>
-            <span class="kn">from</span> <span class="nn">pandas.core.window.rolling</span> <span class="kn">import</span> <span class="n">_Rolling_and_Expanding</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.window.rolling</span><span class="w"> </span><span class="kn">import</span> <span class="n">_Rolling_and_Expanding</span>
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>  <span class="c1"># pandas&gt;=0.18.0</span>
-                <span class="kn">from</span> <span class="nn">pandas.core.window</span> <span class="kn">import</span> <span class="n">_Rolling_and_Expanding</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.window</span><span class="w"> </span><span class="kn">import</span> <span class="n">_Rolling_and_Expanding</span>
             <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pandas&gt;=1.2.0</span>
                 <span class="k">try</span><span class="p">:</span>  <span class="c1"># pandas&gt;=1.2.0</span>
-                    <span class="kn">from</span> <span class="nn">pandas.core.window.expanding</span> <span class="kn">import</span> <span class="n">Expanding</span>
-                    <span class="kn">from</span> <span class="nn">pandas.core.window.rolling</span> <span class="kn">import</span> <span class="n">Rolling</span>
+                    <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.window.expanding</span><span class="w"> </span><span class="kn">import</span> <span class="n">Expanding</span>
+                    <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.window.rolling</span><span class="w"> </span><span class="kn">import</span> <span class="n">Rolling</span>
                     <span class="n">_Rolling_and_Expanding</span> <span class="o">=</span> <span class="n">Rolling</span><span class="p">,</span> <span class="n">Expanding</span>
                 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
                     <span class="n">_Rolling_and_Expanding</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">try</span><span class="p">:</span>  <span class="c1"># pandas&gt;=0.25.0</span>
-            <span class="kn">from</span> <span class="nn">pandas.core.groupby.generic</span> <span class="kn">import</span> <span class="n">SeriesGroupBy</span>  <span class="c1"># , NDFrameGroupBy</span>
-            <span class="kn">from</span> <span class="nn">pandas.core.groupby.generic</span> <span class="kn">import</span> <span class="n">DataFrameGroupBy</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.groupby.generic</span><span class="w"> </span><span class="kn">import</span> <span class="n">SeriesGroupBy</span>  <span class="c1"># , NDFrameGroupBy</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.groupby.generic</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrameGroupBy</span>
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
             <span class="k">try</span><span class="p">:</span>  <span class="c1"># pandas&gt;=0.23.0</span>
-                <span class="kn">from</span> <span class="nn">pandas.core.groupby.groupby</span> <span class="kn">import</span> <span class="n">DataFrameGroupBy</span><span class="p">,</span> <span class="n">SeriesGroupBy</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.groupby.groupby</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrameGroupBy</span><span class="p">,</span> <span class="n">SeriesGroupBy</span>
             <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
-                <span class="kn">from</span> <span class="nn">pandas.core.groupby</span> <span class="kn">import</span> <span class="n">DataFrameGroupBy</span><span class="p">,</span> <span class="n">SeriesGroupBy</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.groupby</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataFrameGroupBy</span><span class="p">,</span> <span class="n">SeriesGroupBy</span>
         <span class="k">try</span><span class="p">:</span>  <span class="c1"># pandas&gt;=0.23.0</span>
-            <span class="kn">from</span> <span class="nn">pandas.core.groupby.groupby</span> <span class="kn">import</span> <span class="n">GroupBy</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.groupby.groupby</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupBy</span>
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-            <span class="kn">from</span> <span class="nn">pandas.core.groupby</span> <span class="kn">import</span> <span class="n">GroupBy</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.groupby</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupBy</span>
 
         <span class="k">try</span><span class="p">:</span>  <span class="c1"># pandas&gt;=0.23.0</span>
-            <span class="kn">from</span> <span class="nn">pandas.core.groupby.groupby</span> <span class="kn">import</span> <span class="n">PanelGroupBy</span>
+            <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.groupby.groupby</span><span class="w"> </span><span class="kn">import</span> <span class="n">PanelGroupBy</span>
         <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="kn">from</span> <span class="nn">pandas.core.groupby</span> <span class="kn">import</span> <span class="n">PanelGroupBy</span>
+                <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.groupby</span><span class="w"> </span><span class="kn">import</span> <span class="n">PanelGroupBy</span>
             <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  <span class="c1"># pandas&gt;=0.25.0</span>
                 <span class="n">PanelGroupBy</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="n">tqdm_kwargs</span> <span class="o">=</span> <span class="n">tqdm_kwargs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
         <span class="n">deprecated_t</span> <span class="o">=</span> <span class="p">[</span><span class="n">tqdm_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;deprecated_t&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)]</span>
 
-        <span class="k">def</span> <span class="nf">inner_generator</span><span class="p">(</span><span class="n">df_function</span><span class="o">=</span><span class="s1">&#39;apply&#39;</span><span class="p">):</span>
-            <span class="k">def</span> <span class="nf">inner</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">inner_generator</span><span class="p">(</span><span class="n">df_function</span><span class="o">=</span><span class="s1">&#39;apply&#39;</span><span class="p">):</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">inner</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">                </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">                Parameters</span>
 <span class="sd">                ----------</span>
@@ -1298,7 +1311,7 @@
                         <span class="n">fp_write</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">fp</span><span class="p">,</span> <span class="s1">&#39;write&#39;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="o">.</span><span class="n">write</span><span class="p">))</span>
 
                 <span class="k">try</span><span class="p">:</span>  <span class="c1"># pandas&gt;=1.3.0</span>
-                    <span class="kn">from</span> <span class="nn">pandas.core.common</span> <span class="kn">import</span> <span class="n">is_builtin_func</span>
+                    <span class="kn">from</span><span class="w"> </span><span class="nn">pandas.core.common</span><span class="w"> </span><span class="kn">import</span> <span class="n">is_builtin_func</span>
                 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
                     <span class="n">is_builtin_func</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">_is_builtin_func</span>
                 <span class="k">try</span><span class="p">:</span>
@@ -1307,7 +1320,7 @@
                     <span class="k">pass</span>
 
                 <span class="c1"># Define bar updating wrapper</span>
-                <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
                     <span class="c1"># update tbar correctly</span>
                     <span class="c1"># it seems `pandas apply` calls `func` twice</span>
                     <span class="c1"># on the first column/row to decide whether it can</span>
@@ -1356,7 +1369,7 @@
     <span class="c1"># override defaults via env vars</span>
     <span class="nd">@envwrap</span><span class="p">(</span><span class="s2">&quot;TQDM_&quot;</span><span class="p">,</span> <span class="n">is_method</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">types</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;total&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="s1">&#39;ncols&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s1">&#39;miniters&#39;</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
                                              <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="s1">&#39;nrows&#39;</span><span class="p">:</span> <span class="nb">int</span><span class="p">})</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">iterable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">leave</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">ncols</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">mininterval</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">maxinterval</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">miniters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="n">ascii</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">disable</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;it&#39;</span><span class="p">,</span> <span class="n">unit_scale</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
                  <span class="n">dynamic_ncols</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">smoothing</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">bar_format</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
@@ -1507,14 +1520,14 @@
         <span class="c1"># NB: Avoid race conditions by setting start_t at the very end of init</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">last_print_t</span>
 
-    <span class="k">def</span> <span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__bool__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">total</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">total</span> <span class="o">&gt;</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterable</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;bool() undefined when iterable == total == None&#39;</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iterable</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">total</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterable</span> <span class="ow">is</span> <span class="kc">None</span>
             <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterable</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iterable</span><span class="p">,</span> <span class="s2">&quot;shape&quot;</span><span class="p">)</span>
@@ -1522,7 +1535,7 @@
             <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterable</span><span class="o">.</span><span class="fm">__length_hint__</span><span class="p">()</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iterable</span><span class="p">,</span> <span class="s2">&quot;__length_hint__&quot;</span><span class="p">)</span>
             <span class="k">else</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;total&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__reversed__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__reversed__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">orig</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">iterable</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
@@ -1533,14 +1546,14 @@
         <span class="k">finally</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">iterable</span> <span class="o">=</span> <span class="n">orig</span>
 
-    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
         <span class="n">contains</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">iterable</span><span class="p">,</span> <span class="s1">&#39;__contains__&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">contains</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">if</span> <span class="n">contains</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span>
 
-    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">traceback</span><span class="p">):</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
         <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
@@ -1549,20 +1562,20 @@
                 <span class="k">raise</span>
             <span class="n">warn</span><span class="p">(</span><span class="s2">&quot;AttributeError ignored&quot;</span><span class="p">,</span> <span class="n">TqdmWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_meter</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">format_dict</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">_comparable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_comparable</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;pos&quot;</span><span class="p">,</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Backward-compatibility to use: for x in tqdm(iterable)&quot;&quot;&quot;</span>
 
         <span class="c1"># Inlining instance variables as locals (speed optimisation)</span>
@@ -1602,7 +1615,7 @@
 
 <div class="viewcode-block" id="tqdm.update">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.update">[docs]</a>
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Manually update the progress bar, useful for streams</span>
 <span class="sd">        such as reading files.</span>
@@ -1672,7 +1685,7 @@
 
 <div class="viewcode-block" id="tqdm.close">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.close">[docs]</a>
-    <span class="k">def</span> <span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Cleanup and (if leave=False) close the progressbar.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">disable</span><span class="p">:</span>
             <span class="k">return</span>
@@ -1693,7 +1706,7 @@
             <span class="k">return</span>
 
         <span class="c1"># annoyingly, _supports_unicode isn&#39;t good enough</span>
-        <span class="k">def</span> <span class="nf">fp_write</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">fp_write</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
 
         <span class="k">try</span><span class="p">:</span>
@@ -1719,7 +1732,7 @@
 
 <div class="viewcode-block" id="tqdm.clear">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.clear">[docs]</a>
-    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nolock</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nolock</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Clear current bar display.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">disable</span><span class="p">:</span>
             <span class="k">return</span>
@@ -1738,7 +1751,7 @@
 
 <div class="viewcode-block" id="tqdm.refresh">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.refresh">[docs]</a>
-    <span class="k">def</span> <span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nolock</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lock_args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nolock</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">lock_args</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Force refresh the display of this bar.</span>
 
@@ -1768,7 +1781,7 @@
 
 <div class="viewcode-block" id="tqdm.unpause">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.unpause">[docs]</a>
-    <span class="k">def</span> <span class="nf">unpause</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">unpause</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Restart tqdm timer from last print time.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">disable</span><span class="p">:</span>
             <span class="k">return</span>
@@ -1779,7 +1792,7 @@
 
 <div class="viewcode-block" id="tqdm.reset">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.reset">[docs]</a>
-    <span class="k">def</span> <span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Resets to 0 iterations for repeated use.</span>
 
@@ -1804,7 +1817,7 @@
 
 <div class="viewcode-block" id="tqdm.set_description">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.set_description">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_description</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set/modify description of the progress bar.</span>
 
@@ -1821,7 +1834,7 @@
 
 <div class="viewcode-block" id="tqdm.set_description_str">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.set_description_str">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_description_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_description_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desc</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set/modify description without &#39;: &#39; appended.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">desc</span> <span class="o">=</span> <span class="n">desc</span> <span class="ow">or</span> <span class="s1">&#39;&#39;</span>
         <span class="k">if</span> <span class="n">refresh</span><span class="p">:</span>
@@ -1830,7 +1843,7 @@
 
 <div class="viewcode-block" id="tqdm.set_postfix">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.set_postfix">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_postfix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ordered_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_postfix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ordered_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Set/modify postfix (additional stats)</span>
 <span class="sd">        with automatic formatting based on datatype.</span>
@@ -1864,7 +1877,7 @@
 
 <div class="viewcode-block" id="tqdm.set_postfix_str">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.set_postfix_str">[docs]</a>
-    <span class="k">def</span> <span class="nf">set_postfix_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_postfix_str</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">refresh</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Postfix without dictionary expansion, similar to prefix handling.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -1875,14 +1888,14 @@
 
 <div class="viewcode-block" id="tqdm.moveto">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.moveto">[docs]</a>
-    <span class="k">def</span> <span class="nf">moveto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">moveto</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
         <span class="c1"># TODO: private method</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="n">_term_move_up</span><span class="p">()</span> <span class="o">*</span> <span class="o">-</span><span class="n">n</span><span class="p">)</span>
         <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fp</span><span class="p">,</span> <span class="s1">&#39;flush&#39;</span><span class="p">,</span> <span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">)()</span></div>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">format_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">format_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Public API for read-only member access.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">disable</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;unit&#39;</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">defaultdict</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span> <span class="p">{</span>
@@ -1901,7 +1914,7 @@
 
 <div class="viewcode-block" id="tqdm.display">
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.display">[docs]</a>
-    <span class="k">def</span> <span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Use `self.sp` to display `msg` in the specified `pos`.</span>
 
@@ -1942,7 +1955,7 @@
 <a class="viewcode-back" href="../../api/bayesflow.trainers.html#bayesflow.sensitivity.tqdm.wrapattr">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="nd">@contextmanager</span>
-    <span class="k">def</span> <span class="nf">wrapattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">bytes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">tqdm_kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">stream</span><span class="p">,</span> <span class="n">method</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="nb">bytes</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">tqdm_kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        stream  : file-like object.</span>
 <span class="sd">        method  : str, &quot;read&quot; or &quot;write&quot;. The result of `read()` and</span>
@@ -1964,7 +1977,7 @@
 
 
 
-<span class="k">def</span> <span class="nf">trange</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">trange</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Shortcut for tqdm(range(*args), **kwargs).&quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 </pre></div>
@@ -2029,8 +2042,8 @@ By The BayesFlow authors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

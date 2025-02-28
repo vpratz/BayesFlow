@@ -120,5 +120,12 @@ Indices
     self
     examples
     api/bayesflow
-    contributing
     about
+
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Development
+
+    contributing
+    development/index

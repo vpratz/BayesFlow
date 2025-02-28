@@ -17,24 +17,24 @@ bayesflow.adapters.transforms
 
   .. autosummary::
   
-    AsSet
-    AsTimeSeries
-    Broadcast
-    Concatenate
-    Constrain
     ConvertDType
-    Drop
-    ElementwiseTransform
-    ExpandDims
-    FilterTransform
-    Keep
-    LambdaTransform
-    MapTransform
-    OneHot
-    Rename
-    Standardize
-    ToArray
     Transform
+    Standardize
+    AsTimeSeries
+    Keep
+    AsSet
+    LambdaTransform
+    ElementwiseTransform
+    OneHot
+    Drop
+    ExpandDims
+    Constrain
+    MapTransform
+    ToArray
+    FilterTransform
+    Rename
+    Concatenate
+    Broadcast
   
   
 
@@ -43,32 +43,5 @@ bayesflow.adapters.transforms
   
 
   
-  
-  .. rubric:: Modules
-
-  .. autosummary::
-    :toctree:
-    :template: custom-module-template.rst
-    :recursive:
-  
-    as_set
-    as_time_series
-    broadcast
-    concatenate
-    constrain
-    convert_dtype
-    drop
-    elementwise_transform
-    expand_dims
-    filter_transform
-    keep
-    lambda_transform
-    map_transform
-    one_hot
-    rename
-    standardize
-    to_array
-    transform
-
   
   

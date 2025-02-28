@@ -1,0 +1,897 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>7. Simple Model Comparison - One Sample T-Test &#8212; BayesFlow: Amortized Bayesian Inference</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8fec244e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_examples/One_Sample_TTest';</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="canonical" href="https://www.bayesflow.org/_examples/One_Sample_TTest.html" />
+    <link rel="icon" href="../_static/bayesflow_hex.ico"/>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Public API: bayesflow package" href="../api/bayesflow.html" />
+    <link rel="prev" title="6. From pyABC to BayesFlow" href="From_ABC_to_BayesFlow.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <script>document.write(`<img src="../_static/bayesflow_hex.png" class="logo__image only-dark" alt="BayesFlow: Amortized Bayesian Inference - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BayesFlow</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../examples.html">Examples</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Linear_Regression_Starter.html">1. Amortized Posterior Estimation for Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Two_Moons_Starter.html">2. Two Moons: Tackling Bimodal Posteriors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SIR_Posterior_Estimation.html">3. Posterior Estimation for SIR-like Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Hyperparameter_Optimization.html">4. Hyperparameter Optimization Using Optuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Bayesian_Experimental_Design.html">5. Bayesian Experimental Design (BED) with BayesFlow and PyTorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="From_ABC_to_BayesFlow.html">6. From pyABC to BayesFlow</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">7. Simple Model Comparison - One Sample T-Test</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/bayesflow.html">Public API: bayesflow package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/bayesflow.adapters.html">bayesflow.adapters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/bayesflow.adapters.transforms.html">bayesflow.adapters.transforms</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/bayesflow.approximators.html">bayesflow.approximators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/bayesflow.benchmarks.html">bayesflow.benchmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/bayesflow.datasets.html">bayesflow.datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/bayesflow.diagnostics.html">bayesflow.diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/bayesflow.distributions.html">bayesflow.distributions</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/bayesflow.experimental.html">bayesflow.experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/bayesflow.experimental.continuous_time_consistency_model.html">bayesflow.experimental.continuous_time_consistency_model</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/bayesflow.metrics.html">bayesflow.metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/bayesflow.metrics.functional.html">bayesflow.metrics.functional</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/bayesflow.networks.html">bayesflow.networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/bayesflow.simulators.html">bayesflow.simulators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/bayesflow.types.html">bayesflow.types</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../api/bayesflow.utils.html">bayesflow.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../api/bayesflow.utils.logging.html">bayesflow.utils.logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api/bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/bayesflow.workflows.html">bayesflow.workflows</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About us</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing to BayesFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../development/index.html">Patterns &amp; Caveats</a></li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="sidebar-primary-item">
+<div class="rst-versions">
+   
+  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Tags</span></p>
+  <ul>
+      <li><a href="/v1.1.6/_examples/One_Sample_TTest.html" >v1.1.6</a></li>
+  </ul>
+  
+   
+  <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
+  <ul>
+      <li><a href="/dev/_examples/One_Sample_TTest.html" class="current">dev</a></li>
+  </ul>
+  
+</div>
+</div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow/edit/master/_examples/One_Sample_TTest.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/bayesflow-org/bayesflow/issues/new?title=Issue%20on%20page%20%2F_examples/One_Sample_TTest.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/_examples/One_Sample_TTest.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Simple Model Comparison - One Sample T-Test</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulator">7.1. Simulator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-neural-networks">7.2. Defining the neural networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">7.3. Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validation">7.4. Validation</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="simple-model-comparison-one-sample-t-test">
+<h1><span class="section-number">7. </span>Simple Model Comparison - One Sample T-Test<a class="headerlink" href="#simple-model-comparison-one-sample-t-test" title="Link to this heading">#</a></h1>
+<p><em>Authors: Šimon Kucharský</em></p>
+<p>In this notebook, we will show how to do a simple model comparison in bayesflow, amortized over the number of observations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use the latest version of bayesflow</span>
+<span class="c1"># !pip install git+https://github.com/bayesflow-org/bayesflow.git@dev</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="k">if</span> <span class="s2">&quot;KERAS_BACKEND&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+    <span class="c1"># set this to &quot;torch&quot;, &quot;tensorflow&quot;, or &quot;jax&quot;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;KERAS_BACKEND&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;jax&quot;</span>
+    
+<span class="kn">import</span><span class="w"> </span><span class="nn">keras</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">bayesflow</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bf</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="simulator">
+<h2><span class="section-number">7.1. </span>Simulator<a class="headerlink" href="#simulator" title="Link to this heading">#</a></h2>
+<p>First we define our simulators, one for every model that we want to compare. In this notebook, we will use two simple models</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\mathcal{M}_0: \mu &amp; = 0 \\
+\mathcal{M}_1: \mu &amp; \sim \text{Normal}(0, 1) \\ 
+\\
+n &amp; \sim \text{Uniform}(10, 100) \\
+x_i &amp; \sim \text{Normal}(\mu, 1) \text{ for } i \in \{1, \dots, n \} \\
+\end{aligned}
+\end{split}\]</div>
+<p>Each model has their own prior but the likelihood (that is responsible for simulating the data <span class="math notranslate nohighlight">\(x\)</span>) remains the same for both models.</p>
+<p>Once we define the two simulators, we wrap them in one overarching simulator that simulates from both models at the same time, for the purpose of training the networks from either of the models. Our context variable <span class="math notranslate nohighlight">\(n\)</span> is the <em>sample size</em> that we amortize over as is used as a shared simulator for both models, so that data within each simulated batch can consist of simulations from either model, buth with the same sample size.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">context</span><span class="p">(</span><span class="n">batch_shape</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">prior_null</span><span class="p">():</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mu</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">prior_alternative</span><span class="p">():</span>
+    <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">mu</span> <span class="o">=</span> <span class="n">mu</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">likelihood</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">mu</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">mu</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">n</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">simulator_null</span> <span class="o">=</span> <span class="n">bf</span><span class="o">.</span><span class="n">make_simulator</span><span class="p">([</span><span class="n">prior_null</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">])</span>
+<span class="n">simulator_alternative</span> <span class="o">=</span> <span class="n">bf</span><span class="o">.</span><span class="n">make_simulator</span><span class="p">([</span><span class="n">prior_alternative</span><span class="p">,</span> <span class="n">likelihood</span><span class="p">])</span>
+<span class="n">simulator</span> <span class="o">=</span> <span class="n">bf</span><span class="o">.</span><span class="n">simulators</span><span class="o">.</span><span class="n">ModelComparisonSimulator</span><span class="p">(</span>
+    <span class="n">simulators</span><span class="o">=</span><span class="p">[</span><span class="n">simulator_null</span><span class="p">,</span> <span class="n">simulator_alternative</span><span class="p">],</span> 
+    <span class="n">use_mixed_batches</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+    <span class="n">shared_simulator</span><span class="o">=</span><span class="n">context</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we can simulate some data to see what the simulator produces.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">simulator</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;n =&quot;</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s2">&quot; shape:&quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>n = 41
+n shape: ()
+mu shape: (100, 1)
+x shape: (100, 41)
+model_indices shape: (100, 2)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the simulator automaticall adds <code class="docutils literal notranslate"><span class="pre">model_indices</span></code>, which indicates which data was generated which model (it is one-hot encoded, therefore will have as many columns as models).</p>
+<p>The size of the observations <code class="docutils literal notranslate"><span class="pre">x</span></code> depends on the context variable <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p>
+</section>
+<section id="defining-the-neural-networks">
+<h2><span class="section-number">7.2. </span>Defining the neural networks<a class="headerlink" href="#defining-the-neural-networks" title="Link to this heading">#</a></h2>
+<p>To ensure that the training data generated by the simulator can be used for deep learning, we have to do some transformations that will put the data into necessary structures. Here, we will define an <code class="docutils literal notranslate"><span class="pre">adapter</span></code> that takes the data and transforms the input.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adapter</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">bf</span><span class="o">.</span><span class="n">Adapter</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">as_set</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;n&quot;</span><span class="p">,</span> <span class="s2">&quot;classifier_conditions&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="s2">&quot;summary_variables&quot;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;mu&#39;</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Here is what the adapter is doing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.broadcast(&quot;n&quot;,</span> <span class="pre">to=&quot;x&quot;)</span></code> copies the value of <code class="docutils literal notranslate"><span class="pre">n</span></code> <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> times to ensure that it will also have a dimension <code class="docutils literal notranslate"><span class="pre">(batch_size,)</span></code> even though during simulations it was just a single value that is constant over all simulations within the batch. The batch size is inferred from the shape of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.as_set(&quot;n&quot;)</span></code> indicates that <code class="docutils literal notranslate"><span class="pre">x</span></code> is treated as a set. Their values will be treated as <em>exchangeable</em>, meaning that the inference will be the same regardless of their order.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.rename(&quot;n&quot;,</span> <span class="pre">&quot;classifier_conditions&quot;)</span></code> to make an inference for model comparison, we need to know the sample size. Here, we make sure that <code class="docutils literal notranslate"><span class="pre">n</span></code> is passed directly into the classification network as its condition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.rename(&quot;x&quot;,</span> <span class="pre">&quot;summary_variables&quot;)</span></code> the data <code class="docutils literal notranslate"><span class="pre">x</span></code> will be passed through a summary network. The output of the summary network will be automatically concatenated with <code class="docutils literal notranslate"><span class="pre">classifier_conditions</span></code> before passing them together into the classification network.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.drop(&quot;mu&quot;)</span></code> drops the parameter values <code class="docutils literal notranslate"><span class="pre">mu</span></code> which are not used during model comparison.</p></li>
+</ul>
+<p>We can now apply the adapter to simulated data to see the results</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">processed_data</span><span class="o">=</span><span class="n">adapter</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">processed_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s2">&quot; shape:&quot;</span><span class="p">,</span> <span class="n">value</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>model_indices shape: (100, 2)
+classifier_conditions shape: (100, 1)
+summary_variables shape: (100, 41, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<p>All those shapes are correct now. To summarise, we have</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">model_indices</span></code>: The indicators of which model produced the data (one-hot encoded)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">classifier_conditions</span></code>: <code class="docutils literal notranslate"><span class="pre">n</span></code> repeated <code class="docutils literal notranslate"><span class="pre">batch_size</span></code> times</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">summary_variables</span></code>: The observations <code class="docutils literal notranslate"><span class="pre">x</span></code> with shape <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">n,</span> <span class="pre">1)</span></code>. The last axis is added by <code class="docutils literal notranslate"><span class="pre">as_set</span></code> such that it can be passed into a summary network</p></li>
+</ul>
+<p>Now we can finally define our networks.</p>
+<p>As a summary network, we will use a simple deep set architecture which is appropriate for summarising exchangeable data.</p>
+<p>As a classification network, we will use a simple multilayer perceptron with 8 hidden layers, each with 32 neurons and ReLU activation function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">summary_network</span> <span class="o">=</span> <span class="n">bf</span><span class="o">.</span><span class="n">networks</span><span class="o">.</span><span class="n">DeepSet</span><span class="p">(</span><span class="n">summary_dim</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+<span class="n">classifier_network</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">keras</span><span class="o">.</span><span class="n">layers</span><span class="o">.</span><span class="n">Dense</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="s2">&quot;relu&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">8</span><span class="p">)]</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can now define our <code class="docutils literal notranslate"><span class="pre">approximator</span></code> consisting of the two networks and the adapter defined above.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">approximator</span> <span class="o">=</span> <span class="n">bf</span><span class="o">.</span><span class="n">approximators</span><span class="o">.</span><span class="n">ModelComparisonApproximator</span><span class="p">(</span>
+    <span class="n">num_models</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+    <span class="n">classifier_network</span><span class="o">=</span><span class="n">classifier_network</span><span class="p">,</span>
+    <span class="n">summary_network</span><span class="o">=</span><span class="n">summary_network</span><span class="p">,</span> 
+    <span class="n">adapter</span><span class="o">=</span><span class="n">adapter</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="training">
+<h2><span class="section-number">7.3. </span>Training<a class="headerlink" href="#training" title="Link to this heading">#</a></h2>
+<p>Now we are ready to train our approximator that will alow us to compare the two models.</p>
+<p>To achieve this, we will define a bunch of parameters that indicate how long and on how much data we want the train the models.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">num_batches</span> <span class="o">=</span> <span class="mi">64</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">512</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="mi">20</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, we define our optimizer, and specify a schedule for its learning rate. In here, we use a <code class="docutils literal notranslate"><span class="pre">CosineDecay</span></code> schedule for <code class="docutils literal notranslate"><span class="pre">Adam</span></code> optimizer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">learning_rate</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">schedules</span><span class="o">.</span><span class="n">CosineDecay</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span> <span class="n">decay_steps</span><span class="o">=</span><span class="n">epochs</span><span class="o">*</span><span class="n">num_batches</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">)</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">optimizers</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">,</span> <span class="n">clipnorm</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">approximator</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>And we can fit the networks now!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">history</span> <span class="o">=</span> <span class="n">approximator</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
+    <span class="n">num_batches</span><span class="o">=</span><span class="n">num_batches</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
+    <span class="n">simulator</span><span class="o">=</span><span class="n">simulator</span><span class="p">,</span>
+    <span class="n">adapter</span><span class="o">=</span><span class="n">adapter</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:bayesflow:Building dataset from simulator instance of ModelComparisonSimulator.
+INFO:bayesflow:Using 10 data loading workers.
+INFO:bayesflow:Building on a test batch.
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Epoch 1/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">47s</span> 718ms/step - loss: 0.6690 - loss/classifier_loss: 0.6690
+Epoch 2/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">13s</span> 184ms/step - loss: 0.5315 - loss/classifier_loss: 0.5315
+Epoch 3/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">7s</span> 107ms/step - loss: 0.4293 - loss/classifier_loss: 0.4293
+Epoch 4/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 42ms/step - loss: 0.4099 - loss/classifier_loss: 0.4099
+Epoch 5/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 49ms/step - loss: 0.3929 - loss/classifier_loss: 0.3929
+Epoch 6/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">4s</span> 52ms/step - loss: 0.4036 - loss/classifier_loss: 0.4036
+Epoch 7/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 46ms/step - loss: 0.4066 - loss/classifier_loss: 0.4066
+Epoch 8/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 45ms/step - loss: 0.3983 - loss/classifier_loss: 0.3983
+Epoch 9/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 45ms/step - loss: 0.4059 - loss/classifier_loss: 0.4059
+Epoch 10/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 43ms/step - loss: 0.4010 - loss/classifier_loss: 0.4010
+Epoch 11/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 48ms/step - loss: 0.4011 - loss/classifier_loss: 0.4011
+Epoch 12/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">4s</span> 54ms/step - loss: 0.3972 - loss/classifier_loss: 0.3972
+Epoch 13/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 45ms/step - loss: 0.4088 - loss/classifier_loss: 0.4088
+Epoch 14/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 47ms/step - loss: 0.4018 - loss/classifier_loss: 0.4018
+Epoch 15/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">4s</span> 48ms/step - loss: 0.3787 - loss/classifier_loss: 0.3787
+Epoch 16/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 42ms/step - loss: 0.4122 - loss/classifier_loss: 0.4122
+Epoch 17/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 47ms/step - loss: 0.3896 - loss/classifier_loss: 0.3896
+Epoch 18/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 49ms/step - loss: 0.3895 - loss/classifier_loss: 0.3895
+Epoch 19/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 42ms/step - loss: 0.3969 - loss/classifier_loss: 0.3969
+Epoch 20/20
+<span class=" -Color -Color-Bold">64/64</span> <span class=" -Color -Color-Green">━━━━━━━━━━━━━━━━━━━━</span> <span class=" -Color -Color-Bold">3s</span> 48ms/step - loss: 0.3744 - loss/classifier_loss: 0.3744
+</pre></div>
+</div>
+</div>
+</div>
+<p>Once training is done, we can visualise the losses.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="n">bf</span><span class="o">.</span><span class="n">diagnostics</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">loss</span><span class="p">(</span><span class="n">history</span><span class="o">=</span><span class="n">history</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/41bfee833cae504213a330e3ea84e21a24c613c1099fadb5d24c8a1e03b77473.png" src="../_images/41bfee833cae504213a330e3ea84e21a24c613c1099fadb5d24c8a1e03b77473.png" />
+</div>
+</div>
+</section>
+<section id="validation">
+<h2><span class="section-number">7.4. </span>Validation<a class="headerlink" href="#validation" title="Link to this heading">#</a></h2>
+<p>Once we trained the model, we can inspect whether the classification does what we expect it to do.</p>
+<p>Here, we will generate a validation dataset which has been fixed to generate data of <em>sample size</em> <span class="math notranslate nohighlight">\(n=10\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">=</span><span class="n">simulator</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;n&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;x&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10
+(5000, 10)
+</pre></div>
+</div>
+</div>
+</div>
+<p>To apply our approximator on this dataset, we simply use the <code class="docutils literal notranslate"><span class="pre">.predict</span></code> method to obtain the predicted posterior model probabilities, given the data and the approximator.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pred_models</span><span class="o">=</span><span class="n">approximator</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">conditions</span><span class="o">=</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We inspect the model comparison calibration now.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="n">bf</span><span class="o">.</span><span class="n">diagnostics</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">mc_calibration</span><span class="p">(</span>
+    <span class="n">pred_models</span><span class="o">=</span><span class="n">pred_models</span><span class="p">,</span> 
+    <span class="n">true_models</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;model_indices&quot;</span><span class="p">],</span>
+    <span class="n">model_names</span><span class="o">=</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$\mathcal</span><span class="si">{M}</span><span class="s2">_0$&quot;</span><span class="p">,</span><span class="sa">r</span><span class="s2">&quot;$\mathcal</span><span class="si">{M}</span><span class="s2">_1$&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:matplotlib.mathtext:Substituting symbol M from STIXNonUnicode
+INFO:matplotlib.mathtext:Substituting symbol M from STIXNonUnicode
+INFO:matplotlib.mathtext:Substituting symbol M from STIXNonUnicode
+INFO:matplotlib.mathtext:Substituting symbol M from STIXNonUnicode
+</pre></div>
+</div>
+<img alt="../_images/aca5e85b954cea563581a83f054890fe86fd69aa6401972d2288064913c97984.png" src="../_images/aca5e85b954cea563581a83f054890fe86fd69aa6401972d2288064913c97984.png" />
+</div>
+</div>
+<p>And the confusion matrix to inspect how often we would make an accurate decision based on picking the model with the highest posterior probability.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f</span><span class="o">=</span><span class="n">bf</span><span class="o">.</span><span class="n">diagnostics</span><span class="o">.</span><span class="n">plots</span><span class="o">.</span><span class="n">mc_confusion_matrix</span><span class="p">(</span>
+    <span class="n">pred_models</span><span class="o">=</span><span class="n">pred_models</span><span class="p">,</span> 
+    <span class="n">true_models</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;model_indices&#39;</span><span class="p">],</span> 
+    <span class="n">model_names</span><span class="o">=</span><span class="p">[</span><span class="sa">r</span><span class="s2">&quot;$\mathcal</span><span class="si">{M}</span><span class="s2">_0$&quot;</span><span class="p">,</span><span class="sa">r</span><span class="s2">&quot;$\mathcal</span><span class="si">{M}</span><span class="s2">_1$&quot;</span><span class="p">],</span>
+    <span class="n">normalize</span><span class="o">=</span><span class="s2">&quot;true&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>INFO:matplotlib.mathtext:Substituting symbol M from STIXNonUnicode
+INFO:matplotlib.mathtext:Substituting symbol M from STIXNonUnicode
+INFO:matplotlib.mathtext:Substituting symbol M from STIXNonUnicode
+INFO:matplotlib.mathtext:Substituting symbol M from STIXNonUnicode
+</pre></div>
+</div>
+<img alt="../_images/152090d5686854ba15b1ca32265d4fd72fdd4993a60666a4316869677f489fdc.png" src="../_images/152090d5686854ba15b1ca32265d4fd72fdd4993a60666a4316869677f489fdc.png" />
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="From_ABC_to_BayesFlow.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>From pyABC to BayesFlow</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../api/bayesflow.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Public API: bayesflow package</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simulator">7.1. Simulator</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-the-neural-networks">7.2. Defining the neural networks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training">7.3. Training</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validation">7.4. Validation</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By The BayesFlow authors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023-2025, BayesFlow authors (lead maintainer: Stefan T. Radev).
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

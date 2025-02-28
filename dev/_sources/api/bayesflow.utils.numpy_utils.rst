@@ -18,7 +18,6 @@ bayesflow.utils.numpy\_utils
     inverse_softplus
     one_hot
     shifted_softplus
-    softmax
     softplus
   
   

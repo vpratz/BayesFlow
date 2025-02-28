@@ -13,55 +13,60 @@
 
   .. autosummary::
   
-    add_metric
-    add_titles_and_labels
-    batched_call
-    check_lengths_same
-    check_posterior_prior_shapes
-    compute_jacobian
-    concatenate
-    convert_args
-    convert_kwargs
-    deserialize_value_or_type
-    detailed_loss_callback
-    expand_left
-    expand_left_as
-    expand_left_to
-    expand_right
-    expand_right_as
-    expand_right_to
-    expand_tile
-    expected_calibration_error
-    filter_kwargs
-    find_batch_size
-    find_distribution
-    find_inference_network
-    find_memory_budget
-    find_network
-    find_permutation
-    find_pooling
-    find_recurrent_net
-    find_summary_network
-    format_bytes
-    jacobian_trace
-    jvp
-    keras_kwargs
-    log_jacobian_determinant
-    make_quadratic
-    optimal_transport
-    parse_bytes
-    pickle_load
-    prepare_plot_data
-    prettify_subplots
-    serialize_value_or_type
-    simultaneous_ecdf_bands
     size_of
-    split_arrays
+    check_lengths_same
     split_tensors
-    tile_axis
-    tree_concatenate
-    tree_stack
+    optimal_transport
     vjp
+    jacobian_trace
+    expand_left_as
+    concatenate
+    pickle_load
+    deserialize_value_or_type
+    expand_right_as
+    convert_kwargs
+    prettify_subplots
+    find_network
+    jvp
+    add_titles_and_labels
+    find_distribution
+    tree_concatenate
+    keras_kwargs
+    devices
+    prepare_plot_data
+    integrate
+    expand_to
+    format_bytes
+    filter_kwargs
+    find_memory_budget
+    expand_right
+    tree_stack
+    find_batch_size
+    serialize_value_or_type
+    pad
+    expand_as
+    find_recurrent_net
+    find_inference_network
+    expand_left_to
+    expand_right_to
+    jacobian
+    make_quadratic
+    tile_axis
+    parse_bytes
+    expand
+    split_arrays
+    find_permutation
+    searchsorted
+    check_estimates_prior_shapes
+    detailed_loss_callback
+    batched_call
+    add_metric
+    simultaneous_ecdf_bands
+    find_pooling
+    expand_left
+    expand_tile
+    find_summary_network
+    convert_args
   
   
 
@@ -82,26 +87,9 @@
     :template: custom-module-template.rst
     :recursive:
   
-    callbacks
-    comp_utils
-    decorators
-    dict_utils
-    dispatch
-    ecdf
-    exceptions
-    functional
-    git
-    hparam_utils
-    io
-    jacobian
-    keras_utils
     logging
+    keras_utils
     numpy_utils
-    plot_utils
-    serialization
-    tensor_utils
-    validators
-    workflow_utils
 
   
   

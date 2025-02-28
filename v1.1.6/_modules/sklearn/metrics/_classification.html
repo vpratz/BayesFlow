@@ -15,31 +15,28 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=8fec244e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
@@ -55,7 +52,6 @@
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -71,8 +67,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -80,6 +87,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -87,8 +95,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -106,8 +114,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -137,17 +144,21 @@
     
     
     <img src="../../../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
-    <img src="../../../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <script>document.write(`<img src="../../../_static/bayesflow_hex.png" class="logo__image only-dark" alt="BayesFlow: Amortized Bayesian Inference - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -223,7 +234,6 @@
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
   <ul>
       <li><a href="/dev/_modules/sklearn/metrics/_classification.html" >dev</a></li>
-      <li><a href="/master/_modules/sklearn/metrics/_classification.html" >master</a></li>
   </ul>
   
 </div>
@@ -232,14 +242,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -335,16 +340,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 
 </div></div>
       
@@ -384,22 +397,22 @@
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
 
 
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Integral</span><span class="p">,</span> <span class="n">Real</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">numbers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Integral</span><span class="p">,</span> <span class="n">Real</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">coo_matrix</span><span class="p">,</span> <span class="n">csr_matrix</span><span class="p">,</span> <span class="n">issparse</span>
-<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">xlogy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.sparse</span><span class="w"> </span><span class="kn">import</span> <span class="n">coo_matrix</span><span class="p">,</span> <span class="n">csr_matrix</span><span class="p">,</span> <span class="n">issparse</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.special</span><span class="w"> </span><span class="kn">import</span> <span class="n">xlogy</span>
 
-<span class="kn">from</span> <span class="nn">..exceptions</span> <span class="kn">import</span> <span class="n">UndefinedMetricWarning</span>
-<span class="kn">from</span> <span class="nn">..preprocessing</span> <span class="kn">import</span> <span class="n">LabelBinarizer</span><span class="p">,</span> <span class="n">LabelEncoder</span>
-<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">UndefinedMetricWarning</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelBinarizer</span><span class="p">,</span> <span class="n">LabelEncoder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">assert_all_finite</span><span class="p">,</span>
     <span class="n">check_array</span><span class="p">,</span>
     <span class="n">check_consistent_length</span><span class="p">,</span>
     <span class="n">column_or_1d</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">..utils._array_api</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils._array_api</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">_average</span><span class="p">,</span>
     <span class="n">_bincount</span><span class="p">,</span>
     <span class="n">_count_nonzero</span><span class="p">,</span>
@@ -413,25 +426,25 @@
     <span class="n">get_namespace</span><span class="p">,</span>
     <span class="n">get_namespace_and_device</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">..utils._param_validation</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils._param_validation</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Hidden</span><span class="p">,</span>
     <span class="n">Interval</span><span class="p">,</span>
     <span class="n">Options</span><span class="p">,</span>
     <span class="n">StrOptions</span><span class="p">,</span>
     <span class="n">validate_params</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">..utils._unique</span> <span class="kn">import</span> <span class="n">attach_unique</span>
-<span class="kn">from</span> <span class="nn">..utils.extmath</span> <span class="kn">import</span> <span class="n">_nanaverage</span>
-<span class="kn">from</span> <span class="nn">..utils.multiclass</span> <span class="kn">import</span> <span class="n">type_of_target</span><span class="p">,</span> <span class="n">unique_labels</span>
-<span class="kn">from</span> <span class="nn">..utils.sparsefuncs</span> <span class="kn">import</span> <span class="n">count_nonzero</span>
-<span class="kn">from</span> <span class="nn">..utils.validation</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils._unique</span><span class="w"> </span><span class="kn">import</span> <span class="n">attach_unique</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.extmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">_nanaverage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.multiclass</span><span class="w"> </span><span class="kn">import</span> <span class="n">type_of_target</span><span class="p">,</span> <span class="n">unique_labels</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.sparsefuncs</span><span class="w"> </span><span class="kn">import</span> <span class="n">count_nonzero</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.validation</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">_check_pos_label_consistency</span><span class="p">,</span>
     <span class="n">_check_sample_weight</span><span class="p">,</span>
     <span class="n">_num_samples</span><span class="p">,</span>
 <span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_check_zero_division</span><span class="p">(</span><span class="n">zero_division</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_check_zero_division</span><span class="p">(</span><span class="n">zero_division</span><span class="p">):</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">zero_division</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="ow">and</span> <span class="n">zero_division</span> <span class="o">==</span> <span class="s2">&quot;warn&quot;</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">zero_division</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">))</span> <span class="ow">and</span> <span class="n">zero_division</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]:</span>
@@ -440,7 +453,7 @@
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">nan</span>
 
 
-<span class="k">def</span> <span class="nf">_check_targets</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_check_targets</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that y_true and y_pred belong to the same classification task.</span>
 
 <span class="sd">    This converts multiclass or binary types to a common shape, and raises a</span>
@@ -508,7 +521,7 @@
                     <span class="sa">f</span><span class="s2">&quot;y_pred=</span><span class="si">{</span><span class="n">xp</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">y_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">. Make sure that the &quot;</span>
                     <span class="s2">&quot;predictions provided by the classifier coincides with &quot;</span>
                     <span class="s2">&quot;the true labels.&quot;</span>
-                <span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+                <span class="p">)</span> <span class="kn">from</span><span class="w"> </span><span class="nn">e</span>
             <span class="k">if</span> <span class="n">unique_values</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
                 <span class="n">y_type</span> <span class="o">=</span> <span class="s2">&quot;multiclass&quot;</span>
 
@@ -534,7 +547,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Accuracy classification score.</span>
 
 <span class="sd">    In multilabel classification, this function computes subset accuracy:</span>
@@ -626,7 +639,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">confusion_matrix</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">confusion_matrix</span><span class="p">(</span>
     <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">None</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute confusion matrix to evaluate the accuracy of a classification.</span>
@@ -802,7 +815,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">multilabel_confusion_matrix</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">multilabel_confusion_matrix</span><span class="p">(</span>
     <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">samplewise</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute a confusion matrix for each class or sample.</span>
@@ -1050,7 +1063,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">cohen_kappa_score</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">cohen_kappa_score</span><span class="p">(</span><span class="n">y1</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Compute Cohen&#39;s kappa: a statistic that measures inter-annotator agreement.</span>
 
 <span class="sd">    This function computes Cohen&#39;s kappa [1]_, a score that expresses the level</span>
@@ -1153,7 +1166,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">jaccard_score</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">jaccard_score</span><span class="p">(</span>
     <span class="n">y_true</span><span class="p">,</span>
     <span class="n">y_pred</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -1343,7 +1356,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">matthews_corrcoef</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">matthews_corrcoef</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the Matthews correlation coefficient (MCC).</span>
 
 <span class="sd">    The Matthews correlation coefficient is used in machine learning as a</span>
@@ -1441,7 +1454,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">zero_one_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">zero_one_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Zero-one classification loss.</span>
 
 <span class="sd">    If normalize is ``True``, return the fraction of misclassifications</span>
@@ -1536,7 +1549,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">f1_score</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">f1_score</span><span class="p">(</span>
     <span class="n">y_true</span><span class="p">,</span>
     <span class="n">y_pred</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -1729,7 +1742,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">fbeta_score</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">fbeta_score</span><span class="p">(</span>
     <span class="n">y_true</span><span class="p">,</span>
     <span class="n">y_pred</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -1904,7 +1917,7 @@
     <span class="k">return</span> <span class="n">f</span>
 
 
-<span class="k">def</span> <span class="nf">_prf_divide</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_prf_divide</span><span class="p">(</span>
     <span class="n">numerator</span><span class="p">,</span> <span class="n">denominator</span><span class="p">,</span> <span class="n">metric</span><span class="p">,</span> <span class="n">modifier</span><span class="p">,</span> <span class="n">average</span><span class="p">,</span> <span class="n">warn_for</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="s2">&quot;warn&quot;</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Performs division and handles divide-by-zero.</span>
@@ -1943,7 +1956,7 @@
     <span class="k">return</span> <span class="n">result</span>
 
 
-<span class="k">def</span> <span class="nf">_warn_prf</span><span class="p">(</span><span class="n">average</span><span class="p">,</span> <span class="n">modifier</span><span class="p">,</span> <span class="n">msg_start</span><span class="p">,</span> <span class="n">result_size</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_warn_prf</span><span class="p">(</span><span class="n">average</span><span class="p">,</span> <span class="n">modifier</span><span class="p">,</span> <span class="n">msg_start</span><span class="p">,</span> <span class="n">result_size</span><span class="p">):</span>
     <span class="n">axis0</span><span class="p">,</span> <span class="n">axis1</span> <span class="o">=</span> <span class="s2">&quot;sample&quot;</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span>
     <span class="k">if</span> <span class="n">average</span> <span class="o">==</span> <span class="s2">&quot;samples&quot;</span><span class="p">:</span>
         <span class="n">axis0</span><span class="p">,</span> <span class="n">axis1</span> <span class="o">=</span> <span class="n">axis1</span><span class="p">,</span> <span class="n">axis0</span>
@@ -1959,7 +1972,7 @@
     <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">UndefinedMetricWarning</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_check_set_wise_labels</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">pos_label</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_check_set_wise_labels</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">average</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">pos_label</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Validation associated with set-wise metrics.</span>
 
 <span class="sd">    Returns identified labels.</span>
@@ -2022,7 +2035,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">precision_recall_fscore_support</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">precision_recall_fscore_support</span><span class="p">(</span>
     <span class="n">y_true</span><span class="p">,</span>
     <span class="n">y_pred</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -2284,7 +2297,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">class_likelihood_ratios</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">class_likelihood_ratios</span><span class="p">(</span>
     <span class="n">y_true</span><span class="p">,</span>
     <span class="n">y_pred</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -2471,7 +2484,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">precision_score</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">precision_score</span><span class="p">(</span>
     <span class="n">y_true</span><span class="p">,</span>
     <span class="n">y_pred</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -2652,7 +2665,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">recall_score</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">recall_score</span><span class="p">(</span>
     <span class="n">y_true</span><span class="p">,</span>
     <span class="n">y_pred</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -2824,7 +2837,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">balanced_accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">adjusted</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">balanced_accuracy_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">adjusted</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the balanced accuracy.</span>
 
 <span class="sd">    The balanced accuracy in binary and multiclass classification problems to</span>
@@ -2925,7 +2938,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">classification_report</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">classification_report</span><span class="p">(</span>
     <span class="n">y_true</span><span class="p">,</span>
     <span class="n">y_pred</span><span class="p">,</span>
     <span class="o">*</span><span class="p">,</span>
@@ -3157,7 +3170,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">hamming_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hamming_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the average Hamming loss.</span>
 
 <span class="sd">    The Hamming loss is the fraction of labels that are incorrectly predicted.</span>
@@ -3261,7 +3274,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">log_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">log_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;Log loss, aka logistic loss or cross-entropy loss.</span>
 
 <span class="sd">    This is the loss function used in (multinomial) logistic regression</span>
@@ -3416,7 +3429,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">hinge_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">pred_decision</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hinge_loss</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">pred_decision</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Average hinge loss (non-regularized).</span>
 
 <span class="sd">    In binary class case, assuming labels in y_true are encoded with +1 and -1,</span>
@@ -3569,7 +3582,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">brier_score_loss</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">brier_score_loss</span><span class="p">(</span>
     <span class="n">y_true</span><span class="p">,</span> <span class="n">y_proba</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">pos_label</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y_prob</span><span class="o">=</span><span class="s2">&quot;deprecated&quot;</span>
 <span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the Brier score loss.</span>
@@ -3707,7 +3720,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">d2_log_loss_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">d2_log_loss_score</span><span class="p">(</span><span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    :math:`D^2` score function, fraction of log loss explained.</span>
 
@@ -3851,8 +3864,8 @@ By The BayesFlow authors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

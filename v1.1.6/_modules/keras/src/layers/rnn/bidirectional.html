@@ -15,31 +15,28 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../../../_static/custom.css?v=8fec244e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../../../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
@@ -55,7 +52,6 @@
     <link rel="search" title="Search" href="../../../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -71,8 +67,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../../../../search.html"
       method="get">
@@ -80,6 +87,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -87,8 +95,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -106,8 +114,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -137,17 +144,21 @@
     
     
     <img src="../../../../../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
-    <img src="../../../../../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <script>document.write(`<img src="../../../../../_static/bayesflow_hex.png" class="logo__image only-dark" alt="BayesFlow: Amortized Bayesian Inference - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -223,7 +234,6 @@
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
   <ul>
       <li><a href="/dev/_modules/keras/src/layers/rnn/bidirectional.html" >dev</a></li>
-      <li><a href="/master/_modules/keras/src/layers/rnn/bidirectional.html" >master</a></li>
   </ul>
   
 </div>
@@ -232,14 +242,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -335,16 +340,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 
 </div></div>
       
@@ -388,28 +401,28 @@
 <span class="sd">&quot;&quot;&quot;Bidirectional wrapper for RNNs.&quot;&quot;&quot;</span>
 
 
-<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
 
-<span class="kn">import</span> <span class="nn">tensorflow.compat.v2</span> <span class="k">as</span> <span class="nn">tf</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">tensorflow.compat.v2</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">tf</span>
 
-<span class="kn">from</span> <span class="nn">keras.src</span> <span class="kn">import</span> <span class="n">backend</span>
-<span class="kn">from</span> <span class="nn">keras.src.engine.base_layer</span> <span class="kn">import</span> <span class="n">Layer</span>
-<span class="kn">from</span> <span class="nn">keras.src.engine.input_spec</span> <span class="kn">import</span> <span class="n">InputSpec</span>
-<span class="kn">from</span> <span class="nn">keras.src.layers.rnn</span> <span class="kn">import</span> <span class="n">rnn_utils</span>
-<span class="kn">from</span> <span class="nn">keras.src.layers.rnn.base_wrapper</span> <span class="kn">import</span> <span class="n">Wrapper</span>
-<span class="kn">from</span> <span class="nn">keras.src.saving</span> <span class="kn">import</span> <span class="n">serialization_lib</span>
-<span class="kn">from</span> <span class="nn">keras.src.utils</span> <span class="kn">import</span> <span class="n">generic_utils</span>
-<span class="kn">from</span> <span class="nn">keras.src.utils</span> <span class="kn">import</span> <span class="n">tf_inspect</span>
-<span class="kn">from</span> <span class="nn">keras.src.utils</span> <span class="kn">import</span> <span class="n">tf_utils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">keras.src</span><span class="w"> </span><span class="kn">import</span> <span class="n">backend</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">keras.src.engine.base_layer</span><span class="w"> </span><span class="kn">import</span> <span class="n">Layer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">keras.src.engine.input_spec</span><span class="w"> </span><span class="kn">import</span> <span class="n">InputSpec</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">keras.src.layers.rnn</span><span class="w"> </span><span class="kn">import</span> <span class="n">rnn_utils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">keras.src.layers.rnn.base_wrapper</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wrapper</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">keras.src.saving</span><span class="w"> </span><span class="kn">import</span> <span class="n">serialization_lib</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">keras.src.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">generic_utils</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">keras.src.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">tf_inspect</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">keras.src.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">tf_utils</span>
 
 <span class="c1"># isort: off</span>
-<span class="kn">from</span> <span class="nn">tensorflow.python.util.tf_export</span> <span class="kn">import</span> <span class="n">keras_export</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tensorflow.python.util.tf_export</span><span class="w"> </span><span class="kn">import</span> <span class="n">keras_export</span>
 
 
 <div class="viewcode-block" id="Bidirectional">
 <a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional">[docs]</a>
 <span class="nd">@keras_export</span><span class="p">(</span><span class="s2">&quot;keras.layers.Bidirectional&quot;</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">Bidirectional</span><span class="p">(</span><span class="n">Wrapper</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Bidirectional</span><span class="p">(</span><span class="n">Wrapper</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Bidirectional wrapper for RNNs.</span>
 
 <span class="sd">    Args:</span>
@@ -481,7 +494,7 @@
 <span class="sd">    ```</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">layer</span><span class="p">,</span>
         <span class="n">merge_mode</span><span class="o">=</span><span class="s2">&quot;concat&quot;</span><span class="p">,</span>
@@ -534,7 +547,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_verify_layer_config</span><span class="p">()</span>
 
-        <span class="k">def</span> <span class="nf">force_zero_output_for_mask</span><span class="p">(</span><span class="n">layer</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">force_zero_output_for_mask</span><span class="p">(</span><span class="n">layer</span><span class="p">):</span>
             <span class="c1"># Force the zero_output_for_mask to be True if returning sequences.</span>
             <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="s2">&quot;zero_output_for_mask&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">layer</span><span class="o">.</span><span class="n">zero_output_for_mask</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">return_sequences</span>
@@ -556,10 +569,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">input_spec</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">input_spec</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">_use_input_spec_as_call_signature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_use_input_spec_as_call_signature</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">_use_input_spec_as_call_signature</span>
 
-    <span class="k">def</span> <span class="nf">_verify_layer_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_verify_layer_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Ensure the forward and backward layers have valid common property.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">go_backwards</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">go_backwards</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -583,7 +596,7 @@
                     <span class="sa">f</span><span class="s1">&#39;&quot;</span><span class="si">{</span><span class="n">backward_value</span><span class="si">}</span><span class="s1">&quot; for backward layer&#39;</span>
                 <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_recreate_layer_from_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="n">go_backwards</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_recreate_layer_from_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="n">go_backwards</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
         <span class="c1"># When recreating the layer from its config, it is possible that the</span>
         <span class="c1"># layer is a RNN layer that contains custom cells. In this case we</span>
         <span class="c1"># inspect the layer and pass the custom cell class as part of the</span>
@@ -611,7 +624,7 @@
             <span class="k">return</span> <span class="n">layer</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
 
     <span class="nd">@tf_utils</span><span class="o">.</span><span class="n">shape_type_conversion</span>
-    <span class="k">def</span> <span class="nf">compute_output_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_output_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="p">):</span>
         <span class="n">output_shape</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">compute_output_shape</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_state</span><span class="p">:</span>
             <span class="n">state_shape</span> <span class="o">=</span> <span class="n">tf_utils</span><span class="o">.</span><span class="n">convert_shapes</span><span class="p">(</span>
@@ -640,7 +653,7 @@
 
 <div class="viewcode-block" id="Bidirectional.__call__">
 <a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.__call__">[docs]</a>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">initial_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">constants</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">initial_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">constants</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;`Bidirectional.__call__` implements the same API as the wrapped</span>
 <span class="sd">        `RNN`.&quot;&quot;&quot;</span>
         <span class="n">inputs</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">,</span> <span class="n">constants</span> <span class="o">=</span> <span class="n">rnn_utils</span><span class="o">.</span><span class="n">standardize_args</span><span class="p">(</span>
@@ -730,7 +743,7 @@
 
 <div class="viewcode-block" id="Bidirectional.call">
 <a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.call">[docs]</a>
-    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">call</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">inputs</span><span class="p">,</span>
         <span class="n">training</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -829,7 +842,7 @@
 
 <div class="viewcode-block" id="Bidirectional.reset_states">
 <a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.reset_states">[docs]</a>
-    <span class="k">def</span> <span class="nf">reset_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stateful</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Layer must be stateful.&quot;</span><span class="p">)</span>
 
@@ -851,7 +864,7 @@
 
 <div class="viewcode-block" id="Bidirectional.build">
 <a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.build">[docs]</a>
-    <span class="k">def</span> <span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="p">):</span>
         <span class="k">with</span> <span class="n">backend</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">input_shape</span><span class="p">)</span>
         <span class="k">with</span> <span class="n">backend</span><span class="o">.</span><span class="n">name_scope</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">backward_layer</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
@@ -861,7 +874,7 @@
 
 <div class="viewcode-block" id="Bidirectional.compute_mask">
 <a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.compute_mask">[docs]</a>
-    <span class="k">def</span> <span class="nf">compute_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inputs</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">return_sequences</span><span class="p">:</span>
@@ -882,7 +895,7 @@
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">constraints</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="p">,</span> <span class="s2">&quot;constraints&quot;</span><span class="p">):</span>
             <span class="n">constraints</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">forward_layer</span><span class="o">.</span><span class="n">constraints</span><span class="p">)</span>
@@ -891,7 +904,7 @@
 
 <div class="viewcode-block" id="Bidirectional.get_config">
 <a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.get_config">[docs]</a>
-    <span class="k">def</span> <span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_config</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">config</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;merge_mode&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">merge_mode</span><span class="p">}</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span><span class="p">:</span>
             <span class="n">config</span><span class="p">[</span><span class="s2">&quot;num_constants&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_constants</span>
@@ -905,12 +918,12 @@
 <div class="viewcode-block" id="Bidirectional.from_config">
 <a class="viewcode-back" href="../../../../../api/bayesflow.summary_networks.html#bayesflow.summary_networks.Bidirectional.from_config">[docs]</a>
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_config</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">custom_objects</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_config</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">custom_objects</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="c1"># Instead of updating the input, create a copy and use that.</span>
         <span class="n">config</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
         <span class="n">num_constants</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;num_constants&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="c1"># Handle forward layer instantiation (as would parent class).</span>
-        <span class="kn">from</span> <span class="nn">keras.src.layers</span> <span class="kn">import</span> <span class="n">deserialize</span> <span class="k">as</span> <span class="n">deserialize_layer</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">keras.src.layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">deserialize</span> <span class="k">as</span> <span class="n">deserialize_layer</span>
 
         <span class="n">config</span><span class="p">[</span><span class="s2">&quot;layer&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">deserialize_layer</span><span class="p">(</span>
             <span class="n">config</span><span class="p">[</span><span class="s2">&quot;layer&quot;</span><span class="p">],</span> <span class="n">custom_objects</span><span class="o">=</span><span class="n">custom_objects</span>
@@ -991,8 +1004,8 @@ By The BayesFlow authors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

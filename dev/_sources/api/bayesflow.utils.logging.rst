@@ -19,6 +19,7 @@ bayesflow.utils.logging
     exception
     info
     log
+    warn_once
     warning
   
   

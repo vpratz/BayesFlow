@@ -15,31 +15,28 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=8fec244e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
@@ -55,7 +52,6 @@
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -71,8 +67,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -80,6 +87,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -87,8 +95,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -106,8 +114,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -137,17 +144,21 @@
     
     
     <img src="../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
-    <img src="../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <script>document.write(`<img src="../_static/bayesflow_hex.png" class="logo__image only-dark" alt="BayesFlow: Amortized Bayesian Inference - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -223,7 +234,6 @@
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
   <ul>
       <li><a href="/dev/_modules/copy.html" >dev</a></li>
-      <li><a href="/master/_modules/copy.html" >master</a></li>
   </ul>
   
 </div>
@@ -232,14 +242,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -335,16 +340,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 
 </div></div>
       
@@ -421,22 +434,22 @@
 <span class="sd">&quot;pickle&quot; for information on these methods.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span> <span class="nn">types</span>
-<span class="kn">import</span> <span class="nn">weakref</span>
-<span class="kn">from</span> <span class="nn">copyreg</span> <span class="kn">import</span> <span class="n">dispatch_table</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">types</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">weakref</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">copyreg</span><span class="w"> </span><span class="kn">import</span> <span class="n">dispatch_table</span>
 
-<span class="k">class</span> <span class="nc">Error</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Error</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
     <span class="k">pass</span>
 <span class="n">error</span> <span class="o">=</span> <span class="n">Error</span>   <span class="c1"># backward compatibility</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">org.python.core</span> <span class="kn">import</span> <span class="n">PyStringMap</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">org.python.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">PyStringMap</span>
 <span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
     <span class="n">PyStringMap</span> <span class="o">=</span> <span class="kc">None</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Error&quot;</span><span class="p">,</span> <span class="s2">&quot;copy&quot;</span><span class="p">,</span> <span class="s2">&quot;deepcopy&quot;</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">copy</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Shallow copy operation on arbitrary Python objects.</span>
 
 <span class="sd">    See the module&#39;s __doc__ string for more info.</span>
@@ -477,7 +490,7 @@
 
 <span class="n">_copy_dispatch</span> <span class="o">=</span> <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
 
-<span class="k">def</span> <span class="nf">_copy_immutable</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_copy_immutable</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span>
 <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">),</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">complex</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">,</span>
           <span class="nb">bytes</span><span class="p">,</span> <span class="nb">frozenset</span><span class="p">,</span> <span class="nb">type</span><span class="p">,</span> <span class="nb">range</span><span class="p">,</span> <span class="nb">slice</span><span class="p">,</span> <span class="nb">property</span><span class="p">,</span>
@@ -500,7 +513,7 @@
 
 <div class="viewcode-block" id="deepcopy">
 <a class="viewcode-back" href="../api/bayesflow.helper_classes.html#bayesflow.helper_classes.deepcopy">[docs]</a>
-<span class="k">def</span> <span class="nf">deepcopy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_nil</span><span class="o">=</span><span class="p">[]):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">deepcopy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_nil</span><span class="o">=</span><span class="p">[]):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Deep copy operation on arbitrary Python objects.</span>
 
 <span class="sd">    See the module&#39;s __doc__ string for more info.</span>
@@ -555,7 +568,7 @@
 
 <span class="n">_deepcopy_dispatch</span> <span class="o">=</span> <span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
 
-<span class="k">def</span> <span class="nf">_deepcopy_atomic</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_deepcopy_atomic</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span>
 <span class="n">d</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">=</span> <span class="n">_deepcopy_atomic</span>
 <span class="n">d</span><span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="bp">Ellipsis</span><span class="p">)]</span> <span class="o">=</span> <span class="n">_deepcopy_atomic</span>
@@ -574,7 +587,7 @@
 <span class="n">d</span><span class="p">[</span><span class="n">weakref</span><span class="o">.</span><span class="n">ref</span><span class="p">]</span> <span class="o">=</span> <span class="n">_deepcopy_atomic</span>
 <span class="n">d</span><span class="p">[</span><span class="nb">property</span><span class="p">]</span> <span class="o">=</span> <span class="n">_deepcopy_atomic</span>
 
-<span class="k">def</span> <span class="nf">_deepcopy_list</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="n">deepcopy</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_deepcopy_list</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="n">deepcopy</span><span class="p">):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">memo</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span> <span class="o">=</span> <span class="n">y</span>
     <span class="n">append</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">append</span>
@@ -583,7 +596,7 @@
     <span class="k">return</span> <span class="n">y</span>
 <span class="n">d</span><span class="p">[</span><span class="nb">list</span><span class="p">]</span> <span class="o">=</span> <span class="n">_deepcopy_list</span>
 
-<span class="k">def</span> <span class="nf">_deepcopy_tuple</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="n">deepcopy</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_deepcopy_tuple</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="n">deepcopy</span><span class="p">):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">[</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">memo</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">x</span><span class="p">]</span>
     <span class="c1"># We&#39;re not going to put the tuple in the memo, but it&#39;s still important we</span>
     <span class="c1"># check for it, in case the tuple contains recursive mutable structures.</span>
@@ -600,7 +613,7 @@
     <span class="k">return</span> <span class="n">y</span>
 <span class="n">d</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]</span> <span class="o">=</span> <span class="n">_deepcopy_tuple</span>
 
-<span class="k">def</span> <span class="nf">_deepcopy_dict</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="n">deepcopy</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_deepcopy_dict</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="n">deepcopy</span><span class="p">):</span>
     <span class="n">y</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">memo</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span> <span class="o">=</span> <span class="n">y</span>
     <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">x</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -610,13 +623,13 @@
 <span class="k">if</span> <span class="n">PyStringMap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
     <span class="n">d</span><span class="p">[</span><span class="n">PyStringMap</span><span class="p">]</span> <span class="o">=</span> <span class="n">_deepcopy_dict</span>
 
-<span class="k">def</span> <span class="nf">_deepcopy_method</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span> <span class="c1"># Copy instance methods</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_deepcopy_method</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span> <span class="c1"># Copy instance methods</span>
     <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">x</span><span class="p">)(</span><span class="n">x</span><span class="o">.</span><span class="vm">__func__</span><span class="p">,</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="vm">__self__</span><span class="p">,</span> <span class="n">memo</span><span class="p">))</span>
 <span class="n">d</span><span class="p">[</span><span class="n">types</span><span class="o">.</span><span class="n">MethodType</span><span class="p">]</span> <span class="o">=</span> <span class="n">_deepcopy_method</span>
 
 <span class="k">del</span> <span class="n">d</span>
 
-<span class="k">def</span> <span class="nf">_keep_alive</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_keep_alive</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Keeps a reference to the object x in the memo.</span>
 
 <span class="sd">    Because we remember objects by their id, we have</span>
@@ -632,7 +645,7 @@
         <span class="c1"># aha, this is the first one :-)</span>
         <span class="n">memo</span><span class="p">[</span><span class="nb">id</span><span class="p">(</span><span class="n">memo</span><span class="p">)]</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="p">]</span>
 
-<span class="k">def</span> <span class="nf">_reconstruct</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_reconstruct</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memo</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span>
                  <span class="n">state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">listiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dictiter</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
                  <span class="o">*</span><span class="p">,</span> <span class="n">deepcopy</span><span class="o">=</span><span class="n">deepcopy</span><span class="p">):</span>
     <span class="n">deep</span> <span class="o">=</span> <span class="n">memo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
@@ -740,8 +753,8 @@ By The BayesFlow authors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -15,31 +15,28 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../../_static/custom.css?v=8fec244e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
@@ -55,7 +52,6 @@
     <link rel="search" title="Search" href="../../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -71,8 +67,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../../../search.html"
       method="get">
@@ -80,6 +87,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -87,8 +95,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -106,8 +114,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -137,235 +144,71 @@
     
     
     <img src="../../../../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
-    <img src="../../../../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <script>document.write(`<img src="../../../../_static/bayesflow_hex.png" class="logo__image only-dark" alt="BayesFlow: Amortized Bayesian Inference - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../../../../index.html">BayesFlow</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../../examples.html">Examples</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/Quickstart_Amortized_Posterior_Estimation.html">1. Quickstart: Amortized Posterior Estimation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/TwoMoons_StarterNotebook.html">2. Two Moons: Tackling Bimodal Posteriors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/SIR_PosteriorEstimation.html">3. Posterior Estimation for SIR-like Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/Linear_Regression.html">4. Amortized Posterior Estimation for Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/Hyperparameter_Optimization.html">5. Hyperparameter Optimization Using Optuna</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/Bayesian_Experimental_Design.html">6. Bayesian Experimental Design (BED) with BayesFlow and PyTorch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/SBML_Model_Posterior_Estimation.html">7. Posterior Estimation of SBML Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/Linear_Regression_Starter.html">1. Amortized Posterior Estimation for Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/Two_Moons_Starter.html">2. Two Moons: Tackling Bimodal Posteriors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/SIR_Posterior_Estimation.html">3. Posterior Estimation for SIR-like Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/Hyperparameter_Optimization.html">4. Hyperparameter Optimization Using Optuna</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/Bayesian_Experimental_Design.html">5. Bayesian Experimental Design (BED) with BayesFlow and PyTorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/From_ABC_to_BayesFlow.html">6. From pyABC to BayesFlow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../_examples/One_Sample_TTest.html">7. Simple Model Comparison - One Sample T-Test</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../../api/bayesflow.html">Public API: bayesflow package</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.adapters.html">bayesflow.adapters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.adapters.adapter.html">bayesflow.adapters.adapter</a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.html">bayesflow.adapters.transforms</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.as_set.html">bayesflow.adapters.transforms.as_set</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.as_time_series.html">bayesflow.adapters.transforms.as_time_series</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.broadcast.html">bayesflow.adapters.transforms.broadcast</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.concatenate.html">bayesflow.adapters.transforms.concatenate</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.constrain.html">bayesflow.adapters.transforms.constrain</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.convert_dtype.html">bayesflow.adapters.transforms.convert_dtype</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.drop.html">bayesflow.adapters.transforms.drop</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.elementwise_transform.html">bayesflow.adapters.transforms.elementwise_transform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.expand_dims.html">bayesflow.adapters.transforms.expand_dims</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.filter_transform.html">bayesflow.adapters.transforms.filter_transform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.keep.html">bayesflow.adapters.transforms.keep</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.lambda_transform.html">bayesflow.adapters.transforms.lambda_transform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.map_transform.html">bayesflow.adapters.transforms.map_transform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.one_hot.html">bayesflow.adapters.transforms.one_hot</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.rename.html">bayesflow.adapters.transforms.rename</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.standardize.html">bayesflow.adapters.transforms.standardize</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.to_array.html">bayesflow.adapters.transforms.to_array</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.transform.html">bayesflow.adapters.transforms.transform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.adapters.transforms.html">bayesflow.adapters.transforms</a></li>
 </ul>
 </details></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.approximators.html">bayesflow.approximators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.approximators.approximator.html">bayesflow.approximators.approximator</a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.approximators.backend_approximators.html">bayesflow.approximators.backend_approximators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.approximators.backend_approximators.backend_approximator.html">bayesflow.approximators.backend_approximators.backend_approximator</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.approximators.backend_approximators.jax_approximator.html">bayesflow.approximators.backend_approximators.jax_approximator</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.approximators.backend_approximators.numpy_approximator.html">bayesflow.approximators.backend_approximators.numpy_approximator</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.approximators.backend_approximators.tensorflow_approximator.html">bayesflow.approximators.backend_approximators.tensorflow_approximator</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.approximators.backend_approximators.torch_approximator.html">bayesflow.approximators.backend_approximators.torch_approximator</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.approximators.continuous_approximator.html">bayesflow.approximators.continuous_approximator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.approximators.model_comparison_approximator.html">bayesflow.approximators.model_comparison_approximator</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.html">bayesflow.benchmarks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.simulators.html">bayesflow.benchmarks.simulators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.simulators.benchmark_simulator.html">bayesflow.benchmarks.simulators.benchmark_simulator</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.simulators.bernoulli_glm.html">bayesflow.benchmarks.simulators.bernoulli_glm</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.simulators.bernoulli_glm_raw.html">bayesflow.benchmarks.simulators.bernoulli_glm_raw</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.simulators.gaussian_linear.html">bayesflow.benchmarks.simulators.gaussian_linear</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.simulators.gaussian_linear_uniform.html">bayesflow.benchmarks.simulators.gaussian_linear_uniform</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.simulators.gaussian_mixture.html">bayesflow.benchmarks.simulators.gaussian_mixture</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.simulators.inverse_kinematics.html">bayesflow.benchmarks.simulators.inverse_kinematics</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.simulators.lotka_volterra.html">bayesflow.benchmarks.simulators.lotka_volterra</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.simulators.sir.html">bayesflow.benchmarks.simulators.sir</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.simulators.slcp.html">bayesflow.benchmarks.simulators.slcp</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.simulators.slcp_distractors.html">bayesflow.benchmarks.simulators.slcp_distractors</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.simulators.two_moons.html">bayesflow.benchmarks.simulators.two_moons</a></li>
-</ul>
-</details></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.datasets.html">bayesflow.datasets</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.datasets.disk_dataset.html">bayesflow.datasets.disk_dataset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.datasets.offline_dataset.html">bayesflow.datasets.offline_dataset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.datasets.online_dataset.html">bayesflow.datasets.online_dataset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.datasets.rounds_dataset.html">bayesflow.datasets.rounds_dataset</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.diagnostics.html">bayesflow.diagnostics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.diagnostics.metrics.html">bayesflow.diagnostics.metrics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.diagnostics.plots.html">bayesflow.diagnostics.plots</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.distributions.html">bayesflow.distributions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.distributions.diagonal_normal.html">bayesflow.distributions.diagonal_normal</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.distributions.diagonal_student_t.html">bayesflow.distributions.diagonal_student_t</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.distributions.distribution.html">bayesflow.distributions.distribution</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.distributions.mixture_distribution.html">bayesflow.distributions.mixture_distribution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.approximators.html">bayesflow.approximators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.benchmarks.html">bayesflow.benchmarks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.datasets.html">bayesflow.datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.diagnostics.html">bayesflow.diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.distributions.html">bayesflow.distributions</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.experimental.html">bayesflow.experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.experimental.continuous_time_consistency_model.html">bayesflow.experimental.continuous_time_consistency_model</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.metrics.html">bayesflow.metrics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.metrics.functional.html">bayesflow.metrics.functional</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.metrics.functional.kernels.html">bayesflow.metrics.functional.kernels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.metrics.functional.html">bayesflow.metrics.functional</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.metrics.maximum_mean_discrepancy.html">bayesflow.metrics.maximum_mean_discrepancy</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.metrics.root_mean_squard_error.html">bayesflow.metrics.root_mean_squard_error</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.networks.html">bayesflow.networks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.networks.cif.html">bayesflow.networks.cif</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.cif.cif.html">bayesflow.networks.cif.cif</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.cif.conditional_gaussian.html">bayesflow.networks.cif.conditional_gaussian</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.networks.consistency_models.html">bayesflow.networks.consistency_models</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.consistency_models.consistency_model.html">bayesflow.networks.consistency_models.consistency_model</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.consistency_models.continuous_consistency_model.html">bayesflow.networks.consistency_models.continuous_consistency_model</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.networks.coupling_flow.html">bayesflow.networks.coupling_flow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.coupling_flow.actnorm.html">bayesflow.networks.coupling_flow.actnorm</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.coupling_flow.coupling_flow.html">bayesflow.networks.coupling_flow.coupling_flow</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.coupling_flow.couplings.html">bayesflow.networks.coupling_flow.couplings</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.coupling_flow.invertible_layer.html">bayesflow.networks.coupling_flow.invertible_layer</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.coupling_flow.permutations.html">bayesflow.networks.coupling_flow.permutations</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.coupling_flow.transforms.html">bayesflow.networks.coupling_flow.transforms</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.networks.deep_set.html">bayesflow.networks.deep_set</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.deep_set.deep_set.html">bayesflow.networks.deep_set.deep_set</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.deep_set.equivariant_module.html">bayesflow.networks.deep_set.equivariant_module</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.deep_set.invariant_module.html">bayesflow.networks.deep_set.invariant_module</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.networks.embeddings.html">bayesflow.networks.embeddings</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.embeddings.fourier_embedding.html">bayesflow.networks.embeddings.fourier_embedding</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.embeddings.recurrent_embedding.html">bayesflow.networks.embeddings.recurrent_embedding</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.embeddings.time2vec.html">bayesflow.networks.embeddings.time2vec</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.networks.flow_matching.html">bayesflow.networks.flow_matching</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.flow_matching.flow_matching.html">bayesflow.networks.flow_matching.flow_matching</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.flow_matching.integrators.html">bayesflow.networks.flow_matching.integrators</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.networks.free_form_flow.html">bayesflow.networks.free_form_flow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.free_form_flow.free_form_flow.html">bayesflow.networks.free_form_flow.free_form_flow</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.networks.inference_network.html">bayesflow.networks.inference_network</a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.networks.lstnet.html">bayesflow.networks.lstnet</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.lstnet.lstnet.html">bayesflow.networks.lstnet.lstnet</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.lstnet.skip_recurrent.html">bayesflow.networks.lstnet.skip_recurrent</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.networks.mlp.html">bayesflow.networks.mlp</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.mlp.hidden_block.html">bayesflow.networks.mlp.hidden_block</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.mlp.mlp.html">bayesflow.networks.mlp.mlp</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.networks.summary_network.html">bayesflow.networks.summary_network</a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.networks.transformers.html">bayesflow.networks.transformers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.transformers.fusion_transformer.html">bayesflow.networks.transformers.fusion_transformer</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.transformers.isab.html">bayesflow.networks.transformers.isab</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.transformers.mab.html">bayesflow.networks.transformers.mab</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.transformers.pma.html">bayesflow.networks.transformers.pma</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.transformers.sab.html">bayesflow.networks.transformers.sab</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.transformers.set_transformer.html">bayesflow.networks.transformers.set_transformer</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.networks.transformers.time_series_transformer.html">bayesflow.networks.transformers.time_series_transformer</a></li>
-</ul>
-</details></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.simulators.html">bayesflow.simulators</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.simulators.hierarchical_simulator.html">bayesflow.simulators.hierarchical_simulator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.simulators.lambda_simulator.html">bayesflow.simulators.lambda_simulator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.simulators.model_comparison_simulator.html">bayesflow.simulators.model_comparison_simulator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.simulators.sequential_simulator.html">bayesflow.simulators.sequential_simulator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.simulators.simulator.html">bayesflow.simulators.simulator</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.simulators.two_moons.html">bayesflow.simulators.two_moons</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.types.html">bayesflow.types</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.types.shape.html">bayesflow.types.shape</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.types.tensor.html">bayesflow.types.tensor</a></li>
-</ul>
-</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.networks.html">bayesflow.networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.simulators.html">bayesflow.simulators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.types.html">bayesflow.types</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.utils.html">bayesflow.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.callbacks.html">bayesflow.utils.callbacks</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.comp_utils.html">bayesflow.utils.comp_utils</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.decorators.html">bayesflow.utils.decorators</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.dict_utils.html">bayesflow.utils.dict_utils</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.dispatch.html">bayesflow.utils.dispatch</a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.utils.ecdf.html">bayesflow.utils.ecdf</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.utils.ecdf.minimal_coverage_probs.html">bayesflow.utils.ecdf.minimal_coverage_probs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.utils.ecdf.ranks.html">bayesflow.utils.ecdf.ranks</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.utils.exceptions.html">bayesflow.utils.exceptions</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.utils.exceptions.shape_error.html">bayesflow.utils.exceptions.shape_error</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.functional.html">bayesflow.utils.functional</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.git.html">bayesflow.utils.git</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.hparam_utils.html">bayesflow.utils.hparam_utils</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.io.html">bayesflow.utils.io</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.jacobian.html">bayesflow.utils.jacobian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.logging.html">bayesflow.utils.logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.plot_utils.html">bayesflow.utils.plot_utils</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.serialization.html">bayesflow.utils.serialization</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.tensor_utils.html">bayesflow.utils.tensor_utils</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.validators.html">bayesflow.utils.validators</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.workflow_utils.html">bayesflow.utils.workflow_utils</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.workflows.html">bayesflow.workflows</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.workflows.basic_workflow.html">bayesflow.workflows.basic_workflow</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.workflows.workflow.html">bayesflow.workflows.workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.workflows.html">bayesflow.workflows</a></li>
 </ul>
 </details></li>
-</ul>
-</details></li>
-<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing to BayesFlow</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../about.html">About us</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../../../contributing.html">Contributing to BayesFlow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../development/index.html">Patterns &amp; Caveats</a></li>
 </ul>
 
     </div>
@@ -382,7 +225,6 @@
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
   <ul>
       <li><a href="/dev/_modules/bayesflow/diagnostics/plots/pairs_posterior.html" class="current">dev</a></li>
-      <li><a href="/master/_modules/bayesflow/diagnostics/plots/pairs_posterior.html" >master</a></li>
   </ul>
   
 </div>
@@ -391,14 +233,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -494,16 +331,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 
 </div></div>
       
@@ -530,64 +375,71 @@
                 <article class="bd-article">
                   
   <h1>Source code for bayesflow.diagnostics.plots.pairs_posterior</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
 
-<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span>
+<span class="c1"># from matplotlib.lines import Line2D</span>
 
-<span class="kn">from</span> <span class="nn">.pairs_samples</span> <span class="kn">import</span> <span class="n">pairs_samples</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bayesflow.utils.dict_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">dicts_to_arrays</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">.pairs_samples</span><span class="w"> </span><span class="kn">import</span> <span class="n">_pairs_samples</span>
 
 
 <div class="viewcode-block" id="pairs_posterior">
-<a class="viewcode-back" href="../../../../api/bayesflow.diagnostics.plots.html#bayesflow.diagnostics.pairs_posterior">[docs]</a>
-<span class="k">def</span> <span class="nf">pairs_posterior</span><span class="p">(</span>
-    <span class="n">post_samples</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-    <span class="n">prior_samples</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">prior</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-    <span class="n">variable_names</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="n">true_params</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a class="viewcode-back" href="../../../../api/bayesflow.diagnostics.html#bayesflow.diagnostics.pairs_posterior">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">pairs_posterior</span><span class="p">(</span>
+    <span class="n">estimates</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">targets</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">priors</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">dataset_id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">variable_keys</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">variable_names</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">height</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
-    <span class="n">label_fontsize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span>
-    <span class="n">legend_fontsize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
-    <span class="n">tick_fontsize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
     <span class="n">post_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="s2">&quot;#132a70&quot;</span><span class="p">,</span>
     <span class="n">prior_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="s2">&quot;gray&quot;</span><span class="p">,</span>
-    <span class="n">post_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span>
-    <span class="n">prior_alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+    <span class="n">label_fontsize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span>
+    <span class="n">tick_fontsize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">12</span><span class="p">,</span>
+    <span class="n">legend_fontsize</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">14</span><span class="p">,</span>
     <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">sns</span><span class="o">.</span><span class="n">PairGrid</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Generates a bivariate pair plot given posterior draws and optional prior or prior draws.</span>
 
-<span class="sd">    post_samples   : np.ndarray of shape (n_post_draws, n_params)</span>
+<span class="sd">    estimates   : np.ndarray of shape (n_post_draws, n_params)</span>
 <span class="sd">        The posterior draws obtained for a SINGLE observed data set.</span>
-<span class="sd">    prior_samples       : np.ndarray of shape (n_prior_draws, n_params) or None, optional (default: None)</span>
-<span class="sd">        The optional prior samples obtained from the prior. If both prior and prior_samples are provided, prior_samples</span>
-<span class="sd">        will be used.</span>
-<span class="sd">    prior             : bayesflow.forward_inference.Prior instance or None, optional, default: None</span>
-<span class="sd">        The optional prior object having an input-output signature as given by bayesflow.forward_inference.Prior</span>
+<span class="sd">    targets       : np.ndarray of shape (n_params,) or None, optional, default: None</span>
+<span class="sd">        Optional true parameter values that have generated the observed dataset.</span>
+<span class="sd">    priors       : np.ndarray of shape (n_prior_draws, n_params) or None, optional (default: None)</span>
+<span class="sd">        Optional prior samples obtained from the prior.</span>
+<span class="sd">    dataset_id: Optional ID of the dataset for whose posterior the pairs plot shall be generated.</span>
+<span class="sd">        Should only be specified if estimates contains posterior draws from multiple datasets.</span>
+<span class="sd">    variable_keys       : list or None, optional, default: None</span>
+<span class="sd">       Select keys from the dictionary provided in samples.</span>
+<span class="sd">       By default, select all keys.</span>
 <span class="sd">    variable_names       : list or None, optional, default: None</span>
 <span class="sd">        The parameter names for nice plot titles. Inferred if None</span>
-<span class="sd">    true_params       : np.ndarray of shape (n_params,) or None, optional, default: None</span>
-<span class="sd">        The true parameter values to be plotted on the diagonal.</span>
 <span class="sd">    height            : float, optional, default: 3</span>
 <span class="sd">        The height of the pairplot</span>
 <span class="sd">    label_fontsize    : int, optional, default: 14</span>
 <span class="sd">        The font size of the x and y-label texts (parameter names)</span>
-<span class="sd">    legend_fontsize   : int, optional, default: 16</span>
-<span class="sd">        The font size of the legend text</span>
 <span class="sd">    tick_fontsize     : int, optional, default: 12</span>
 <span class="sd">        The font size of the axis ticklabels</span>
+<span class="sd">    legend_fontsize   : int, optional, default: 16</span>
+<span class="sd">        The font size of the legend text</span>
 <span class="sd">    post_color        : str, optional, default: &#39;#132a70&#39;</span>
 <span class="sd">        The color for the posterior histograms and KDEs</span>
 <span class="sd">    priors_color      : str, optional, default: gray</span>
 <span class="sd">        The color for the optional prior histograms and KDEs</span>
-<span class="sd">    post_alpha        : float in [0, 1], optonal, default: 0.9</span>
+<span class="sd">    post_alpha        : float in [0, 1], optional, default: 0.9</span>
 <span class="sd">        The opacity of the posterior plots</span>
-<span class="sd">    prior_alpha       : float in [0, 1], optonal, default: 0.7</span>
+<span class="sd">    prior_alpha       : float in [0, 1], optional, default: 0.7</span>
 <span class="sd">        The opacity of the prior plots</span>
+<span class="sd">    **kwargs          : dict, optional, default: {}</span>
+<span class="sd">        Further optional keyword arguments propagated to `_pairs_samples`</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -599,100 +451,55 @@
 <span class="sd">        If the shape of posterior_draws is not 2-dimensional.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="c1"># Ensure correct shape</span>
-    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">post_samples</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;Posterior samples for a single data set should be a matrix, but&quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;your `post_samples` array has a shape of </span><span class="si">{</span><span class="n">post_samples</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">!&quot;</span>
-        <span class="p">)</span>
-
-    <span class="c1"># Plot posterior first</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-    <span class="n">g</span> <span class="o">=</span> <span class="n">pairs_samples</span><span class="p">(</span>
-        <span class="n">samples</span><span class="o">=</span><span class="n">post_samples</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">,</span> <span class="n">variable_names</span><span class="o">=</span><span class="n">variable_names</span><span class="p">,</span> <span class="n">render</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+    <span class="n">plot_data</span> <span class="o">=</span> <span class="n">dicts_to_arrays</span><span class="p">(</span>
+        <span class="n">estimates</span><span class="o">=</span><span class="n">estimates</span><span class="p">,</span>
+        <span class="n">targets</span><span class="o">=</span><span class="n">targets</span><span class="p">,</span>
+        <span class="n">priors</span><span class="o">=</span><span class="n">priors</span><span class="p">,</span>
+        <span class="n">dataset_ids</span><span class="o">=</span><span class="n">dataset_id</span><span class="p">,</span>
+        <span class="n">variable_keys</span><span class="o">=</span><span class="n">variable_keys</span><span class="p">,</span>
+        <span class="n">variable_names</span><span class="o">=</span><span class="n">variable_names</span><span class="p">,</span>
     <span class="p">)</span>
 
-    <span class="c1"># Obtain n_draws and n_params</span>
-    <span class="n">n_draws</span><span class="p">,</span> <span class="n">n_params</span> <span class="o">=</span> <span class="n">post_samples</span><span class="o">.</span><span class="n">shape</span>
+    <span class="c1"># dicts_to_arrays will keep dataset axis even if it is of length 1</span>
+    <span class="c1"># however, pairs plotting requires the dataset axis to be removed</span>
+    <span class="n">estimates_shape</span> <span class="o">=</span> <span class="n">plot_data</span><span class="p">[</span><span class="s2">&quot;estimates&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">estimates_shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">estimates_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">plot_data</span><span class="p">[</span><span class="s2">&quot;estimates&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">plot_data</span><span class="p">[</span><span class="s2">&quot;estimates&quot;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
-    <span class="c1"># If prior object is given and no draws, obtain draws</span>
-    <span class="k">if</span> <span class="n">prior</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">prior_samples</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">draws</span> <span class="o">=</span> <span class="n">prior</span><span class="p">(</span><span class="n">n_draws</span><span class="p">)</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">draws</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
-            <span class="n">prior_samples</span> <span class="o">=</span> <span class="n">draws</span><span class="p">[</span><span class="s2">&quot;prior_draws&quot;</span><span class="p">]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">prior_samples</span> <span class="o">=</span> <span class="n">draws</span>
-    <span class="k">elif</span> <span class="n">prior_samples</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># trim to the same number of draws as posterior</span>
-        <span class="n">prior_samples</span> <span class="o">=</span> <span class="n">prior_samples</span><span class="p">[:</span><span class="n">n_draws</span><span class="p">]</span>
+    <span class="c1"># plot posterior first</span>
+    <span class="n">g</span> <span class="o">=</span> <span class="n">_pairs_samples</span><span class="p">(</span>
+        <span class="n">plot_data</span><span class="o">=</span><span class="n">plot_data</span><span class="p">,</span>
+        <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">post_color</span><span class="p">,</span>
+        <span class="n">color2</span><span class="o">=</span><span class="n">prior_color</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+        <span class="n">label_fontsize</span><span class="o">=</span><span class="n">label_fontsize</span><span class="p">,</span>
+        <span class="n">tick_fontsize</span><span class="o">=</span><span class="n">tick_fontsize</span><span class="p">,</span>
+        <span class="n">legend_fontsize</span><span class="o">=</span><span class="n">legend_fontsize</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">)</span>
 
-    <span class="c1"># Attempt to determine parameter names</span>
-    <span class="k">if</span> <span class="n">variable_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">prior</span><span class="p">,</span> <span class="s2">&quot;param_names&quot;</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">prior</span><span class="o">.</span><span class="n">variable_names</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">variable_names</span> <span class="o">=</span> <span class="n">prior</span><span class="o">.</span><span class="n">variable_names</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">variable_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s2"> $</span><span class="se">\\</span><span class="s2">theta_</span><span class="se">{{</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="se">}}</span><span class="s2">$&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_params</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">variable_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s2"> $</span><span class="se">\\</span><span class="s2">theta_</span><span class="se">{{</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="se">}}</span><span class="s2">$&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_params</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">variable_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">p</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">variable_names</span><span class="p">]</span>
+    <span class="n">targets</span> <span class="o">=</span> <span class="n">plot_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;targets&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">targets</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># Ensure targets is at least 2D</span>
+        <span class="k">if</span> <span class="n">targets</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">targets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
 
-    <span class="c1"># Add prior, if given</span>
-    <span class="k">if</span> <span class="n">prior_samples</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">prior_samples_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">prior_samples</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">variable_names</span><span class="p">)</span>
-        <span class="n">g</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">prior_samples_df</span>
-        <span class="n">g</span><span class="o">.</span><span class="n">map_diag</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">histplot</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">prior_color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">prior_alpha</span><span class="p">,</span> <span class="n">kde</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">g</span><span class="o">.</span><span class="n">map_lower</span><span class="p">(</span><span class="n">sns</span><span class="o">.</span><span class="n">kdeplot</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">prior_color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">prior_alpha</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-
-    <span class="c1"># Add true parameters</span>
-    <span class="k">if</span> <span class="n">true_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="c1"># Custom function to plot true_params on the diagonal</span>
-        <span class="k">def</span> <span class="nf">plot_true_params</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-            <span class="n">param</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Get the single true value for the diagonal</span>
-            <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>  <span class="c1"># Add vertical line</span>
-
-        <span class="c1"># only plot on the diagonal a vertical line for the true parameter</span>
-        <span class="n">g</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">true_params</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="n">variable_names</span><span class="p">)</span>
+        <span class="c1"># Create DataFrame with variable names as columns</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">targets</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">targets</span><span class="o">.</span><span class="n">variable_names</span><span class="p">)</span>
+        <span class="n">g</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;_source&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;True Parameter&quot;</span>
         <span class="n">g</span><span class="o">.</span><span class="n">map_diag</span><span class="p">(</span><span class="n">plot_true_params</span><span class="p">)</span>
 
-    <span class="c1"># Add legend, if prior also given</span>
-    <span class="k">if</span> <span class="n">prior_samples</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">prior</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">handles</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="n">Line2D</span><span class="p">(</span><span class="n">xdata</span><span class="o">=</span><span class="p">[],</span> <span class="n">ydata</span><span class="o">=</span><span class="p">[],</span> <span class="n">color</span><span class="o">=</span><span class="n">post_color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">post_alpha</span><span class="p">),</span>
-            <span class="n">Line2D</span><span class="p">(</span><span class="n">xdata</span><span class="o">=</span><span class="p">[],</span> <span class="n">ydata</span><span class="o">=</span><span class="p">[],</span> <span class="n">color</span><span class="o">=</span><span class="n">prior_color</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">prior_alpha</span><span class="p">),</span>
-        <span class="p">]</span>
-        <span class="n">handles_names</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Posterior&quot;</span><span class="p">,</span> <span class="s2">&quot;Prior&quot;</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">true_params</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">handles</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Line2D</span><span class="p">(</span><span class="n">xdata</span><span class="o">=</span><span class="p">[],</span> <span class="n">ydata</span><span class="o">=</span><span class="p">[],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">))</span>
-            <span class="n">handles_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;True Parameter&quot;</span><span class="p">)</span>
-        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">handles</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">handles_names</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">legend_fontsize</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;center right&quot;</span><span class="p">)</span>
-
-    <span class="n">n_row</span><span class="p">,</span> <span class="n">n_col</span> <span class="o">=</span> <span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">shape</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_row</span><span class="p">):</span>
-        <span class="c1"># Remove upper axis</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_col</span><span class="p">):</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-
-        <span class="c1"># Modify tick sizes</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;major&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">tick_fontsize</span><span class="p">)</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;minor&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">tick_fontsize</span><span class="p">)</span>
-
-    <span class="c1"># Add nice labels</span>
-    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">param_name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">variable_names</span><span class="p">):</span>
-        <span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">param_name</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">label_fontsize</span><span class="p">)</span>
-        <span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">variable_names</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">param_name</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">label_fontsize</span><span class="p">)</span>
-
-    <span class="c1"># Add grids</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_params</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_params</span><span class="p">):</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-
-    <span class="n">g</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">g</span></div>
 
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_true_params</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Custom function to plot true parameters on the diagonal.&quot;&quot;&quot;</span>
+    <span class="c1"># hue needs to be added to handle the case of plotting both posterior and prior</span>
+    <span class="n">param</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># Get the single true value for the diagonal</span>
+    <span class="c1"># only plot on the diagonal a vertical line for the true parameter</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s2">&quot;--&quot;</span><span class="p">)</span>
 </pre></div>
 
                 </article>
@@ -755,8 +562,8 @@ By The BayesFlow authors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

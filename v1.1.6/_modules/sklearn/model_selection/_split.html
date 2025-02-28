@@ -15,31 +15,28 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=8fec244e" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../../../_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
@@ -55,7 +52,6 @@
     <link rel="search" title="Search" href="../../../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="" />
   </head>
   
   
@@ -71,8 +67,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../../../search.html"
       method="get">
@@ -80,6 +87,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -87,8 +95,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -106,8 +114,7 @@
       
         
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -137,17 +144,21 @@
     
     
     <img src="../../../_static/bayesflow_hex.png" class="logo__image only-light" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
-    <img src="../../../_static/bayesflow_hex.png" class="logo__image only-dark pst-js-only" alt="BayesFlow: Amortized Bayesian Inference - Home"/>
+    <script>document.write(`<img src="../../../_static/bayesflow_hex.png" class="logo__image only-dark" alt="BayesFlow: Amortized Bayesian Inference - Home"/>`);</script>
   
   
 </a></div>
         <div class="sidebar-primary-item">
 
-<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
- <i class="fa-solid fa-magnifying-glass"></i>
- <span class="search-button__default-text">Search</span>
- <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-</button></div>
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <ul class="nav bd-sidenav">
@@ -223,7 +234,6 @@
   <p class="caption" aria-level="2" role="heading"><span class="caption-text">Branches</span></p>
   <ul>
       <li><a href="/dev/_modules/sklearn/model_selection/_split.html" >dev</a></li>
-      <li><a href="/master/_modules/sklearn/model_selection/_split.html" >master</a></li>
   </ul>
   
 </div>
@@ -232,14 +242,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -335,16 +340,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 
 </div></div>
       
@@ -379,34 +392,34 @@
 <span class="c1"># Authors: The scikit-learn developers</span>
 <span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
 
-<span class="kn">import</span> <span class="nn">numbers</span>
-<span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
-<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
-<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Iterable</span>
-<span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">signature</span>
-<span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">chain</span><span class="p">,</span> <span class="n">combinations</span>
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">ceil</span><span class="p">,</span> <span class="n">floor</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numbers</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">inspect</span><span class="w"> </span><span class="kn">import</span> <span class="n">signature</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">chain</span><span class="p">,</span> <span class="n">combinations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">ceil</span><span class="p">,</span> <span class="n">floor</span>
 
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">comb</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.special</span><span class="w"> </span><span class="kn">import</span> <span class="n">comb</span>
 
-<span class="kn">from</span> <span class="nn">..utils</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">_safe_indexing</span><span class="p">,</span>
     <span class="n">check_random_state</span><span class="p">,</span>
     <span class="n">indexable</span><span class="p">,</span>
     <span class="n">metadata_routing</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">..utils._array_api</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils._array_api</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">_convert_to_numpy</span><span class="p">,</span>
     <span class="n">ensure_common_namespace_device</span><span class="p">,</span>
     <span class="n">get_namespace</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">..utils._param_validation</span> <span class="kn">import</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">RealNotInt</span><span class="p">,</span> <span class="n">validate_params</span>
-<span class="kn">from</span> <span class="nn">..utils.extmath</span> <span class="kn">import</span> <span class="n">_approximate_mode</span>
-<span class="kn">from</span> <span class="nn">..utils.metadata_routing</span> <span class="kn">import</span> <span class="n">_MetadataRequester</span>
-<span class="kn">from</span> <span class="nn">..utils.multiclass</span> <span class="kn">import</span> <span class="n">type_of_target</span>
-<span class="kn">from</span> <span class="nn">..utils.validation</span> <span class="kn">import</span> <span class="n">_num_samples</span><span class="p">,</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">column_or_1d</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils._param_validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">RealNotInt</span><span class="p">,</span> <span class="n">validate_params</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.extmath</span><span class="w"> </span><span class="kn">import</span> <span class="n">_approximate_mode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.metadata_routing</span><span class="w"> </span><span class="kn">import</span> <span class="n">_MetadataRequester</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.multiclass</span><span class="w"> </span><span class="kn">import</span> <span class="n">type_of_target</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..utils.validation</span><span class="w"> </span><span class="kn">import</span> <span class="n">_num_samples</span><span class="p">,</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">column_or_1d</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">&quot;BaseCrossValidator&quot;</span><span class="p">,</span>
@@ -429,10 +442,10 @@
 <span class="p">]</span>
 
 
-<span class="k">class</span> <span class="nc">_UnsupportedGroupCVMixin</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_UnsupportedGroupCVMixin</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Mixin for splitters that do not support Groups.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -463,7 +476,7 @@
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">GroupsConsumerMixin</span><span class="p">(</span><span class="n">_MetadataRequester</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GroupsConsumerMixin</span><span class="p">(</span><span class="n">_MetadataRequester</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;A Mixin to ``groups`` by default.</span>
 
 <span class="sd">    This Mixin makes the object to request ``groups`` by default as ``True``.</span>
@@ -474,7 +487,7 @@
     <span class="n">__metadata_request__split</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;groups&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
 
 
-<span class="k">class</span> <span class="nc">BaseCrossValidator</span><span class="p">(</span><span class="n">_MetadataRequester</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BaseCrossValidator</span><span class="p">(</span><span class="n">_MetadataRequester</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for all cross-validators.</span>
 
 <span class="sd">    Implementations must define `_iter_test_masks` or `_iter_test_indices`.</span>
@@ -486,7 +499,7 @@
     <span class="c1"># which don&#39;t support ``groups``.</span>
     <span class="n">__metadata_request__split</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;groups&quot;</span><span class="p">:</span> <span class="n">metadata_routing</span><span class="o">.</span><span class="n">UNUSED</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -519,7 +532,7 @@
 
     <span class="c1"># Since subclasses must implement either _iter_test_masks or</span>
     <span class="c1"># _iter_test_indices, neither can be abstract.</span>
-    <span class="k">def</span> <span class="nf">_iter_test_masks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_test_masks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates boolean masks corresponding to test sets.</span>
 
 <span class="sd">        By default, delegates to _iter_test_indices(X, y, groups)</span>
@@ -529,19 +542,19 @@
             <span class="n">test_mask</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">yield</span> <span class="n">test_mask</span>
 
-    <span class="k">def</span> <span class="nf">_iter_test_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_test_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates integer indices corresponding to test sets.&quot;&quot;&quot;</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span>
 
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of splitting iterations in the cross-validator.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">_build_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">LeaveOneOut</span><span class="p">(</span><span class="n">_UnsupportedGroupCVMixin</span><span class="p">,</span> <span class="n">BaseCrossValidator</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LeaveOneOut</span><span class="p">(</span><span class="n">_UnsupportedGroupCVMixin</span><span class="p">,</span> <span class="n">BaseCrossValidator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Leave-One-Out cross-validator.</span>
 
 <span class="sd">    Provides train/test indices to split data in train/test sets. Each</span>
@@ -587,7 +600,7 @@
 <span class="sd">    GroupKFold : K-fold iterator variant with non-overlapping groups.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">_iter_test_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_test_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">n_samples</span> <span class="o">=</span> <span class="n">_num_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">n_samples</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -595,7 +608,7 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of splitting iterations in the cross-validator.</span>
 
 <span class="sd">        Parameters</span>
@@ -620,7 +633,7 @@
         <span class="k">return</span> <span class="n">_num_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">LeavePOut</span><span class="p">(</span><span class="n">_UnsupportedGroupCVMixin</span><span class="p">,</span> <span class="n">BaseCrossValidator</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LeavePOut</span><span class="p">(</span><span class="n">_UnsupportedGroupCVMixin</span><span class="p">,</span> <span class="n">BaseCrossValidator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Leave-P-Out cross-validator.</span>
 
 <span class="sd">    Provides train/test indices to split data in train/test sets. This results</span>
@@ -678,10 +691,10 @@
 <span class="sd">      Test:  index=[2 3]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">p</span> <span class="o">=</span> <span class="n">p</span>
 
-    <span class="k">def</span> <span class="nf">_iter_test_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_test_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">n_samples</span> <span class="o">=</span> <span class="n">_num_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">n_samples</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -692,7 +705,7 @@
         <span class="k">for</span> <span class="n">combination</span> <span class="ow">in</span> <span class="n">combinations</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">n_samples</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">):</span>
             <span class="k">yield</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">combination</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of splitting iterations in the cross-validator.</span>
 
 <span class="sd">        Parameters</span>
@@ -712,11 +725,11 @@
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">comb</span><span class="p">(</span><span class="n">_num_samples</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">p</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
 
-<span class="k">class</span> <span class="nc">_BaseKFold</span><span class="p">(</span><span class="n">BaseCrossValidator</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_BaseKFold</span><span class="p">(</span><span class="n">BaseCrossValidator</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for K-Fold cross-validators and TimeSeriesSplit.&quot;&quot;&quot;</span>
 
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">shuffle</span><span class="p">,</span> <span class="n">random_state</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">shuffle</span><span class="p">,</span> <span class="n">random_state</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Integral</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                 <span class="s2">&quot;The number of folds must be of Integral type. &quot;</span>
@@ -747,7 +760,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">shuffle</span> <span class="o">=</span> <span class="n">shuffle</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -784,7 +797,7 @@
         <span class="k">for</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
             <span class="k">yield</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span>
 
-    <span class="k">def</span> <span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of splitting iterations in the cross-validator.</span>
 
 <span class="sd">        Parameters</span>
@@ -808,7 +821,7 @@
 
 <div class="viewcode-block" id="KFold">
 <a class="viewcode-back" href="../../../api/bayesflow.computational_utilities.html#bayesflow.computational_utilities.KFold">[docs]</a>
-<span class="k">class</span> <span class="nc">KFold</span><span class="p">(</span><span class="n">_UnsupportedGroupCVMixin</span><span class="p">,</span> <span class="n">_BaseKFold</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">KFold</span><span class="p">(</span><span class="n">_UnsupportedGroupCVMixin</span><span class="p">,</span> <span class="n">_BaseKFold</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;K-Fold cross-validator.</span>
 
 <span class="sd">    Provides train/test indices to split data in train/test sets. Split</span>
@@ -885,10 +898,10 @@
 <span class="sd">    RepeatedKFold : Repeats K-Fold n times.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_iter_test_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_test_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">n_samples</span> <span class="o">=</span> <span class="n">_num_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">shuffle</span><span class="p">:</span>
@@ -905,7 +918,7 @@
 
 
 
-<span class="k">class</span> <span class="nc">GroupKFold</span><span class="p">(</span><span class="n">GroupsConsumerMixin</span><span class="p">,</span> <span class="n">_BaseKFold</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GroupKFold</span><span class="p">(</span><span class="n">GroupsConsumerMixin</span><span class="p">,</span> <span class="n">_BaseKFold</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;K-fold iterator variant with non-overlapping groups.</span>
 
 <span class="sd">    Each group will appear exactly once in the test set across all folds (the</span>
@@ -980,10 +993,10 @@
 <span class="sd">        classification tasks).</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_iter_test_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_test_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The &#39;groups&#39; parameter should not be None.&quot;</span><span class="p">)</span>
         <span class="n">groups</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;groups&quot;</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -1032,7 +1045,7 @@
             <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_splits</span><span class="p">):</span>
                 <span class="k">yield</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">indices</span> <span class="o">==</span> <span class="n">f</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -1059,7 +1072,7 @@
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">StratifiedKFold</span><span class="p">(</span><span class="n">_BaseKFold</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">StratifiedKFold</span><span class="p">(</span><span class="n">_BaseKFold</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Stratified K-Fold cross-validator.</span>
 
 <span class="sd">    Provides train/test indices to split data in train/test sets.</span>
@@ -1137,10 +1150,10 @@
 <span class="sd">    RepeatedStratifiedKFold : Repeats Stratified K-Fold n times.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_make_test_folds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_make_test_folds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">rng</span> <span class="o">=</span> <span class="n">check_random_state</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
         <span class="c1"># XXX: as of now, cross-validation splitters only operate in NumPy-land</span>
         <span class="c1"># without attempting to leverage array API namespace features. However</span>
@@ -1210,12 +1223,12 @@
             <span class="n">test_folds</span><span class="p">[</span><span class="n">y_encoded</span> <span class="o">==</span> <span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">folds_for_class</span>
         <span class="k">return</span> <span class="n">test_folds</span>
 
-    <span class="k">def</span> <span class="nf">_iter_test_masks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_test_masks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">test_folds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_test_folds</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_splits</span><span class="p">):</span>
             <span class="k">yield</span> <span class="n">test_folds</span> <span class="o">==</span> <span class="n">i</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -1258,7 +1271,7 @@
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">StratifiedGroupKFold</span><span class="p">(</span><span class="n">GroupsConsumerMixin</span><span class="p">,</span> <span class="n">_BaseKFold</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">StratifiedGroupKFold</span><span class="p">(</span><span class="n">GroupsConsumerMixin</span><span class="p">,</span> <span class="n">_BaseKFold</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Stratified K-Fold iterator variant with non-overlapping groups.</span>
 
 <span class="sd">    This cross-validation object is a variation of StratifiedKFold attempts to</span>
@@ -1357,10 +1370,10 @@
 <span class="sd">    GroupKFold: K-fold iterator variant with non-overlapping groups.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_iter_test_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_test_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
         <span class="c1"># Implementation is based on this kaggle kernel:</span>
         <span class="c1"># https://www.kaggle.com/jakubwasikowski/stratified-group-k-fold-cross-validation</span>
         <span class="c1"># and is a subject to Apache 2.0 License. You may obtain a copy of the</span>
@@ -1441,7 +1454,7 @@
             <span class="p">]</span>
             <span class="k">yield</span> <span class="n">test_indices</span>
 
-    <span class="k">def</span> <span class="nf">_find_best_fold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_counts_per_fold</span><span class="p">,</span> <span class="n">y_cnt</span><span class="p">,</span> <span class="n">group_y_counts</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_find_best_fold</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">y_counts_per_fold</span><span class="p">,</span> <span class="n">y_cnt</span><span class="p">,</span> <span class="n">group_y_counts</span><span class="p">):</span>
         <span class="n">best_fold</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">min_eval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
         <span class="n">min_samples_in_fold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
@@ -1464,7 +1477,7 @@
         <span class="k">return</span> <span class="n">best_fold</span>
 
 
-<span class="k">class</span> <span class="nc">TimeSeriesSplit</span><span class="p">(</span><span class="n">_BaseKFold</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TimeSeriesSplit</span><span class="p">(</span><span class="n">_BaseKFold</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Time Series cross-validator.</span>
 
 <span class="sd">    Provides train/test indices to split time series data samples</span>
@@ -1585,13 +1598,13 @@
 <span class="sd">    left to their default values.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">max_train_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gap</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">max_train_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">gap</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">n_splits</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_train_size</span> <span class="o">=</span> <span class="n">max_train_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">test_size</span> <span class="o">=</span> <span class="n">test_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gap</span> <span class="o">=</span> <span class="n">gap</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -1621,7 +1634,7 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -1676,7 +1689,7 @@
                 <span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">LeaveOneGroupOut</span><span class="p">(</span><span class="n">GroupsConsumerMixin</span><span class="p">,</span> <span class="n">BaseCrossValidator</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LeaveOneGroupOut</span><span class="p">(</span><span class="n">GroupsConsumerMixin</span><span class="p">,</span> <span class="n">BaseCrossValidator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Leave One Group Out cross-validator.</span>
 
 <span class="sd">    Provides train/test indices to split data such that each training set is</span>
@@ -1725,7 +1738,7 @@
 <span class="sd">    GroupKFold: K-fold iterator variant with non-overlapping groups.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">_iter_test_masks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_test_masks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The &#39;groups&#39; parameter should not be None.&quot;</span><span class="p">)</span>
         <span class="c1"># We make a copy of groups to avoid side-effects during iteration</span>
@@ -1741,7 +1754,7 @@
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">unique_groups</span><span class="p">:</span>
             <span class="k">yield</span> <span class="n">groups</span> <span class="o">==</span> <span class="n">i</span>
 
-    <span class="k">def</span> <span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of splitting iterations in the cross-validator.</span>
 
 <span class="sd">        Parameters</span>
@@ -1768,7 +1781,7 @@
         <span class="n">groups</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;groups&quot;</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">groups</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -1795,7 +1808,7 @@
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">LeavePGroupsOut</span><span class="p">(</span><span class="n">GroupsConsumerMixin</span><span class="p">,</span> <span class="n">BaseCrossValidator</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">LeavePGroupsOut</span><span class="p">(</span><span class="n">GroupsConsumerMixin</span><span class="p">,</span> <span class="n">BaseCrossValidator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Leave P Group(s) Out cross-validator.</span>
 
 <span class="sd">    Provides train/test indices to split data according to a third-party</span>
@@ -1850,10 +1863,10 @@
 <span class="sd">    GroupKFold : K-fold iterator variant with non-overlapping groups.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_groups</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_groups</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_groups</span> <span class="o">=</span> <span class="n">n_groups</span>
 
-    <span class="k">def</span> <span class="nf">_iter_test_masks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_test_masks</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The &#39;groups&#39; parameter should not be None.&quot;</span><span class="p">)</span>
         <span class="n">groups</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span>
@@ -1874,7 +1887,7 @@
                 <span class="n">test_index</span><span class="p">[</span><span class="n">groups</span> <span class="o">==</span> <span class="n">l</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">yield</span> <span class="n">test_index</span>
 
-    <span class="k">def</span> <span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of splitting iterations in the cross-validator.</span>
 
 <span class="sd">        Parameters</span>
@@ -1901,7 +1914,7 @@
         <span class="n">groups</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;groups&quot;</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">comb</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">groups</span><span class="p">)),</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_groups</span><span class="p">,</span> <span class="n">exact</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -1928,7 +1941,7 @@
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">_RepeatedSplits</span><span class="p">(</span><span class="n">_MetadataRequester</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_RepeatedSplits</span><span class="p">(</span><span class="n">_MetadataRequester</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Repeated splits for an arbitrary randomized CV splitter.</span>
 
 <span class="sd">    Repeats splits for cross-validators n times with different randomization</span>
@@ -1958,7 +1971,7 @@
     <span class="c1"># which don&#39;t support ``groups``.</span>
     <span class="n">__metadata_request__split</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;groups&quot;</span><span class="p">:</span> <span class="n">metadata_routing</span><span class="o">.</span><span class="n">UNUSED</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cv</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">cvargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cv</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">cvargs</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">n_repeats</span><span class="p">,</span> <span class="n">numbers</span><span class="o">.</span><span class="n">Integral</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Number of repetitions must be of Integral type.&quot;</span><span class="p">)</span>
 
@@ -1973,7 +1986,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cvargs</span> <span class="o">=</span> <span class="n">cvargs</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -2005,7 +2018,7 @@
             <span class="k">for</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="ow">in</span> <span class="n">cv</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
                 <span class="k">yield</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span>
 
-    <span class="k">def</span> <span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of splitting iterations in the cross-validator.</span>
 
 <span class="sd">        Parameters</span>
@@ -2031,11 +2044,11 @@
         <span class="n">cv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cv</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="n">rng</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">cvargs</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">cv</span><span class="o">.</span><span class="n">get_n_splits</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_repeats</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">_build_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">RepeatedKFold</span><span class="p">(</span><span class="n">_UnsupportedGroupCVMixin</span><span class="p">,</span> <span class="n">_RepeatedSplits</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RepeatedKFold</span><span class="p">(</span><span class="n">_UnsupportedGroupCVMixin</span><span class="p">,</span> <span class="n">_RepeatedSplits</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Repeated K-Fold cross validator.</span>
 
 <span class="sd">    Repeats K-Fold n times with different randomization in each repetition.</span>
@@ -2095,13 +2108,13 @@
 <span class="sd">    RepeatedStratifiedKFold : Repeats Stratified K-Fold n times.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">KFold</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="n">n_repeats</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span>
         <span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">RepeatedStratifiedKFold</span><span class="p">(</span><span class="n">_UnsupportedGroupCVMixin</span><span class="p">,</span> <span class="n">_RepeatedSplits</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">RepeatedStratifiedKFold</span><span class="p">(</span><span class="n">_UnsupportedGroupCVMixin</span><span class="p">,</span> <span class="n">_RepeatedSplits</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Repeated Stratified K-Fold cross validator.</span>
 
 <span class="sd">    Repeats Stratified K-Fold n times with different randomization in each</span>
@@ -2163,7 +2176,7 @@
 <span class="sd">    RepeatedKFold : Repeats K-Fold n times.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">n_repeats</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">StratifiedKFold</span><span class="p">,</span>
             <span class="n">n_repeats</span><span class="o">=</span><span class="n">n_repeats</span><span class="p">,</span>
@@ -2171,7 +2184,7 @@
             <span class="n">n_splits</span><span class="o">=</span><span class="n">n_splits</span><span class="p">,</span>
         <span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -2209,7 +2222,7 @@
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="n">groups</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">BaseShuffleSplit</span><span class="p">(</span><span class="n">_MetadataRequester</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">BaseShuffleSplit</span><span class="p">(</span><span class="n">_MetadataRequester</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for *ShuffleSplit.</span>
 
 <span class="sd">    Parameters</span>
@@ -2242,7 +2255,7 @@
     <span class="c1"># which don&#39;t support ``groups``.</span>
     <span class="n">__metadata_request__split</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;groups&quot;</span><span class="p">:</span> <span class="n">metadata_routing</span><span class="o">.</span><span class="n">UNUSED</span><span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_splits</span> <span class="o">=</span> <span class="n">n_splits</span>
@@ -2251,7 +2264,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_test_size</span> <span class="o">=</span> <span class="mf">0.1</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -2285,7 +2298,7 @@
         <span class="k">for</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_iter_indices</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
             <span class="k">yield</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span>
 
-    <span class="k">def</span> <span class="nf">_iter_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate (train, test) indices&quot;&quot;&quot;</span>
         <span class="n">n_samples</span> <span class="o">=</span> <span class="n">_num_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">n_train</span><span class="p">,</span> <span class="n">n_test</span> <span class="o">=</span> <span class="n">_validate_shuffle_split</span><span class="p">(</span>
@@ -2303,7 +2316,7 @@
             <span class="n">ind_train</span> <span class="o">=</span> <span class="n">permutation</span><span class="p">[</span><span class="n">n_test</span> <span class="p">:</span> <span class="p">(</span><span class="n">n_test</span> <span class="o">+</span> <span class="n">n_train</span><span class="p">)]</span>
             <span class="k">yield</span> <span class="n">ind_train</span><span class="p">,</span> <span class="n">ind_test</span>
 
-    <span class="k">def</span> <span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of splitting iterations in the cross-validator.</span>
 
 <span class="sd">        Parameters</span>
@@ -2324,11 +2337,11 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_splits</span>
 
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">_build_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">ShuffleSplit</span><span class="p">(</span><span class="n">_UnsupportedGroupCVMixin</span><span class="p">,</span> <span class="n">BaseShuffleSplit</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">ShuffleSplit</span><span class="p">(</span><span class="n">_UnsupportedGroupCVMixin</span><span class="p">,</span> <span class="n">BaseShuffleSplit</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Random permutation cross-validator.</span>
 
 <span class="sd">    Yields indices to split data into training and test sets.</span>
@@ -2421,7 +2434,7 @@
 <span class="sd">      Test:  index=[2 4]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -2433,7 +2446,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_test_size</span> <span class="o">=</span> <span class="mf">0.1</span>
 
 
-<span class="k">class</span> <span class="nc">GroupShuffleSplit</span><span class="p">(</span><span class="n">GroupsConsumerMixin</span><span class="p">,</span> <span class="n">BaseShuffleSplit</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GroupShuffleSplit</span><span class="p">(</span><span class="n">GroupsConsumerMixin</span><span class="p">,</span> <span class="n">BaseShuffleSplit</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Shuffle-Group(s)-Out cross-validation iterator.</span>
 
 <span class="sd">    Provides randomized train/test indices to split data according to a</span>
@@ -2521,7 +2534,7 @@
 <span class="sd">    LeavePGroupsOut : Train set leaves out all possible subsets of `p` groups.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -2532,7 +2545,7 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_test_size</span> <span class="o">=</span> <span class="mf">0.2</span>
 
-    <span class="k">def</span> <span class="nf">_iter_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">groups</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The &#39;groups&#39; parameter should not be None.&quot;</span><span class="p">)</span>
         <span class="n">groups</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">groups</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;groups&quot;</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
@@ -2546,7 +2559,7 @@
 
             <span class="k">yield</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -2579,7 +2592,7 @@
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">StratifiedShuffleSplit</span><span class="p">(</span><span class="n">BaseShuffleSplit</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">StratifiedShuffleSplit</span><span class="p">(</span><span class="n">BaseShuffleSplit</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Stratified ShuffleSplit cross-validator.</span>
 
 <span class="sd">    Provides train/test indices to split data in train/test sets.</span>
@@ -2654,7 +2667,7 @@
 <span class="sd">      Test:  index=[3 4 2]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">train_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="kc">None</span>
     <span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -2665,7 +2678,7 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_default_test_size</span> <span class="o">=</span> <span class="mf">0.1</span>
 
-    <span class="k">def</span> <span class="nf">_iter_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">n_samples</span> <span class="o">=</span> <span class="n">_num_samples</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
         <span class="n">y</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">input_name</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">ensure_2d</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
         <span class="n">n_train</span><span class="p">,</span> <span class="n">n_test</span> <span class="o">=</span> <span class="n">_validate_shuffle_split</span><span class="p">(</span>
@@ -2739,7 +2752,7 @@
 
             <span class="k">yield</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -2782,7 +2795,7 @@
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_validate_shuffle_split</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">test_size</span><span class="p">,</span> <span class="n">train_size</span><span class="p">,</span> <span class="n">default_test_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_validate_shuffle_split</span><span class="p">(</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">test_size</span><span class="p">,</span> <span class="n">train_size</span><span class="p">,</span> <span class="n">default_test_size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Validation helper to check if the train/test sizes are meaningful w.r.t. the</span>
 <span class="sd">    size of the data (n_samples).</span>
@@ -2863,7 +2876,7 @@
     <span class="k">return</span> <span class="n">n_train</span><span class="p">,</span> <span class="n">n_test</span>
 
 
-<span class="k">class</span> <span class="nc">PredefinedSplit</span><span class="p">(</span><span class="n">BaseCrossValidator</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PredefinedSplit</span><span class="p">(</span><span class="n">BaseCrossValidator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Predefined split cross-validator.</span>
 
 <span class="sd">    Provides train/test indices to split data into train/test sets using a</span>
@@ -2905,13 +2918,13 @@
 <span class="sd">      Test:  index=[1 3]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_fold</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">test_fold</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">test_fold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_fold</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">test_fold</span> <span class="o">=</span> <span class="n">column_or_1d</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_fold</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">unique_folds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_fold</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">unique_folds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_folds</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_folds</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -2940,7 +2953,7 @@
             <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_split</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">_split</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_split</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Yields</span>
@@ -2957,7 +2970,7 @@
             <span class="n">test_index</span> <span class="o">=</span> <span class="n">ind</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
             <span class="k">yield</span> <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span>
 
-    <span class="k">def</span> <span class="nf">_iter_test_masks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_iter_test_masks</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generates boolean masks corresponding to test sets.&quot;&quot;&quot;</span>
         <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">unique_folds</span><span class="p">:</span>
             <span class="n">test_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">test_fold</span> <span class="o">==</span> <span class="n">f</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -2965,7 +2978,7 @@
             <span class="n">test_mask</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
             <span class="k">yield</span> <span class="n">test_mask</span>
 
-    <span class="k">def</span> <span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of splitting iterations in the cross-validator.</span>
 
 <span class="sd">        Parameters</span>
@@ -2987,13 +3000,13 @@
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">unique_folds</span><span class="p">)</span>
 
 
-<span class="k">class</span> <span class="nc">_CVIterableWrapper</span><span class="p">(</span><span class="n">BaseCrossValidator</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">_CVIterableWrapper</span><span class="p">(</span><span class="n">BaseCrossValidator</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Wrapper class for old style cv objects and iterables.&quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cv</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cv</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cv</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">cv</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_n_splits</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Returns the number of splitting iterations in the cross-validator.</span>
 
 <span class="sd">        Parameters</span>
@@ -3014,7 +3027,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cv</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">groups</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate indices to split data into training and test set.</span>
 
 <span class="sd">        Parameters</span>
@@ -3040,7 +3053,7 @@
             <span class="k">yield</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span>
 
 
-<span class="k">def</span> <span class="nf">check_cv</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">classifier</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">check_cv</span><span class="p">(</span><span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">classifier</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Input checker utility for building a cross-validator.</span>
 
 <span class="sd">    Parameters</span>
@@ -3125,7 +3138,7 @@
     <span class="p">},</span>
     <span class="n">prefer_skip_nested_validation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span> <span class="nf">train_test_split</span><span class="p">(</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">train_test_split</span><span class="p">(</span>
     <span class="o">*</span><span class="n">arrays</span><span class="p">,</span>
     <span class="n">test_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
     <span class="n">train_size</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
@@ -3262,7 +3275,7 @@
 <span class="nb">setattr</span><span class="p">(</span><span class="n">train_test_split</span><span class="p">,</span> <span class="s2">&quot;__test__&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
 
-<span class="k">def</span> <span class="nf">_pprint</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">printer</span><span class="o">=</span><span class="nb">repr</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_pprint</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">printer</span><span class="o">=</span><span class="nb">repr</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Pretty print the dictionary &#39;params&#39;</span>
 
 <span class="sd">    Parameters</span>
@@ -3312,7 +3325,7 @@
     <span class="k">return</span> <span class="n">lines</span>
 
 
-<span class="k">def</span> <span class="nf">_build_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_build_repr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
     <span class="c1"># XXX This is copied from BaseEstimator&#39;s get_params</span>
     <span class="bp">cls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span>
     <span class="n">init</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="fm">__init__</span><span class="p">,</span> <span class="s2">&quot;deprecated_original&quot;</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="fm">__init__</span><span class="p">)</span>
@@ -3352,7 +3365,7 @@
     <span class="k">return</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2">(</span><span class="si">%s</span><span class="s2">)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">class_name</span><span class="p">,</span> <span class="n">_pprint</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">class_name</span><span class="p">)))</span>
 
 
-<span class="k">def</span> <span class="nf">_yields_constant_splits</span><span class="p">(</span><span class="n">cv</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_yields_constant_splits</span><span class="p">(</span><span class="n">cv</span><span class="p">):</span>
     <span class="c1"># Return True if calling cv.split() always returns the same splits</span>
     <span class="c1"># We assume that if a cv doesn&#39;t have a shuffle parameter, it shuffles by</span>
     <span class="c1"># default (e.g. ShuffleSplit). If it actually doesn&#39;t shuffle (e.g.</span>
@@ -3423,8 +3436,8 @@ By The BayesFlow authors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>

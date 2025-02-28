@@ -34,7 +34,6 @@
     :template: custom-module-template.rst
     :recursive:
   
-    adapter
     transforms
 
   

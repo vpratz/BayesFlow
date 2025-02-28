@@ -23,12 +23,12 @@
 
   .. autosummary::
   
-    HierarchicalSimulator
+    TwoMoons
+    Simulator
     LambdaSimulator
     ModelComparisonSimulator
     SequentialSimulator
-    Simulator
-    TwoMoons
+    HierarchicalSimulator
   
   
 
@@ -37,20 +37,5 @@
   
 
   
-  
-  .. rubric:: Modules
-
-  .. autosummary::
-    :toctree:
-    :template: custom-module-template.rst
-    :recursive:
-  
-    hierarchical_simulator
-    lambda_simulator
-    model_comparison_simulator
-    sequential_simulator
-    simulator
-    two_moons
-
   
   
