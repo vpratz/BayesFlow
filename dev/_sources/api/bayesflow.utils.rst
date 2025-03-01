@@ -13,60 +13,60 @@
 
   .. autosummary::
   
-    keras_kwargs
-    jvp
-    tile_axis
-    find_pooling
-    expand_right
-    simultaneous_ecdf_bands
-    tree_concatenate
-    jacobian_trace
-    pickle_load
-    prepare_plot_data
-    deserialize_value_or_type
-    pad
-    expand_to
-    integrate
-    jacobian
-    tree_stack
-    expand_as
-    detailed_loss_callback
-    serialize_value_or_type
-    add_titles_and_labels
-    expand_left_to
-    split_tensors
-    split_arrays
-    find_recurrent_net
-    find_distribution
-    check_estimates_prior_shapes
-    prettify_subplots
-    find_network
-    convert_kwargs
-    expand_left_as
-    make_quadratic
-    find_summary_network
-    add_metric
-    find_batch_size
-    concatenate
-    filter_kwargs
-    expand_right_to
-    expand_left
-    parse_bytes
-    devices
-    batched_call
-    expand
-    expand_right_as
     size_of
-    optimal_transport
-    searchsorted
+    expand_left_to
+    detailed_loss_callback
+    batched_call
+    tree_stack
     find_permutation
-    find_inference_network
     format_bytes
+    jacobian
     find_memory_budget
+    expand_to
+    expand
+    split_arrays
+    tile_axis
     check_lengths_same
-    expand_tile
+    find_recurrent_net
+    find_batch_size
     convert_args
+    concatenate
+    convert_kwargs
+    find_pooling
+    expand_tile
+    find_distribution
+    prepare_plot_data
+    expand_left
+    filter_kwargs
+    find_inference_network
+    find_summary_network
+    jacobian_trace
     vjp
+    split_tensors
+    devices
+    integrate
+    optimal_transport
+    expand_right_to
+    serialize_value_or_type
+    expand_as
+    add_metric
+    expand_right_as
+    expand_right
+    searchsorted
+    add_titles_and_labels
+    simultaneous_ecdf_bands
+    keras_kwargs
+    find_network
+    pad
+    expand_left_as
+    jvp
+    make_quadratic
+    pickle_load
+    prettify_subplots
+    parse_bytes
+    tree_concatenate
+    deserialize_value_or_type
+    check_estimates_prior_shapes
   
   
 
@@ -87,9 +87,9 @@
     :template: custom-module-template.rst
     :recursive:
   
+    numpy_utils
     keras_utils
     logging
-    numpy_utils
 
   
   
