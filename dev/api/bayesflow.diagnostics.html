@@ -462,44 +462,44 @@ document.write(`
 <p class="rubric">Functions</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.calibration_error" title="bayesflow.diagnostics.calibration_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_error</span></code></a>(estimates, targets[, ...])</p></td>
-<td><p>Computes an aggregate score for the marginal calibration error over an ensemble of approximate posteriors.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.diagnostics.pairs_samples" title="bayesflow.diagnostics.pairs_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pairs_samples</span></code></a>([samples, variable_keys, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.pairs_samples" title="bayesflow.diagnostics.pairs_samples"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pairs_samples</span></code></a>([samples, variable_keys, ...])</p></td>
 <td><p>A more flexible pair plot function for multiple distributions based upon collected samples.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.loss" title="bayesflow.diagnostics.loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">loss</span></code></a>(history[, train_key, val_key, ...])</p></td>
-<td><p>A generic helper function to plot the losses of a series of training epochs and runs.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.diagnostics.posterior_contraction" title="bayesflow.diagnostics.posterior_contraction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">posterior_contraction</span></code></a>(estimates, targets[, ...])</p></td>
-<td><p>Computes the posterior contraction (PC) from prior to posterior for the given samples.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.pairs_posterior" title="bayesflow.diagnostics.pairs_posterior"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pairs_posterior</span></code></a>(estimates[, targets, ...])</p></td>
-<td><p>Generates a bivariate pair plot given posterior draws and optional prior or prior draws.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.diagnostics.mc_confusion_matrix" title="bayesflow.diagnostics.mc_confusion_matrix"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mc_confusion_matrix</span></code></a>(pred_models, true_models)</p></td>
 <td><p>Plots a confusion matrix for validating a neural network trained for Bayesian model comparison.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.recovery" title="bayesflow.diagnostics.recovery"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recovery</span></code></a>(estimates, targets[, ...])</p></td>
-<td><p>Creates and plots publication-ready recovery plot with true estimate vs.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.posterior_contraction" title="bayesflow.diagnostics.posterior_contraction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">posterior_contraction</span></code></a>(estimates, targets[, ...])</p></td>
+<td><p>Computes the posterior contraction (PC) from prior to posterior for the given samples.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.diagnostics.mmd_hypothesis_test" title="bayesflow.diagnostics.mmd_hypothesis_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mmd_hypothesis_test</span></code></a>(mmd_null[, ...])</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.loss" title="bayesflow.diagnostics.loss"><code class="xref py py-obj docutils literal notranslate"><span class="pre">loss</span></code></a>(history[, train_key, val_key, ...])</p></td>
+<td><p>A generic helper function to plot the losses of a series of training epochs and runs.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.diagnostics.root_mean_squared_error" title="bayesflow.diagnostics.root_mean_squared_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">root_mean_squared_error</span></code></a>(estimates, targets)</p></td>
 <td><p>Computes the (Normalized) Root Mean Squared Error (RMSE/NRMSE) for the given posterior and prior samples.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.z_score_contraction" title="bayesflow.diagnostics.z_score_contraction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">z_score_contraction</span></code></a>(estimates, targets[, ...])</p></td>
-<td><p>Implements a graphical check for global model sensitivity by plotting the posterior z-score over the posterior contraction for each set of posterior samples in <code class="docutils literal notranslate"><span class="pre">estimates</span></code> according to [1].</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.diagnostics.calibration_ecdf" title="bayesflow.diagnostics.calibration_ecdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_ecdf</span></code></a>(estimates, targets[, ...])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.calibration_ecdf" title="bayesflow.diagnostics.calibration_ecdf"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_ecdf</span></code></a>(estimates, targets[, ...])</p></td>
 <td><p>Creates the empirical CDFs for each marginal rank distribution and plots it against a uniform ECDF.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.calibration_histogram" title="bayesflow.diagnostics.calibration_histogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_histogram</span></code></a>(estimates, targets[, ...])</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.diagnostics.calibration_histogram" title="bayesflow.diagnostics.calibration_histogram"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_histogram</span></code></a>(estimates, targets[, ...])</p></td>
 <td><p>Creates and plots publication-ready histograms of rank statistics for simulation-based calibration (SBC) checks according to [1].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.pairs_posterior" title="bayesflow.diagnostics.pairs_posterior"><code class="xref py py-obj docutils literal notranslate"><span class="pre">pairs_posterior</span></code></a>(estimates[, targets, ...])</p></td>
+<td><p>Generates a bivariate pair plot given posterior draws and optional prior or prior draws.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.diagnostics.mc_calibration" title="bayesflow.diagnostics.mc_calibration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mc_calibration</span></code></a>(pred_models, true_models[, ...])</p></td>
 <td><p>Plots the calibration curves, the ECEs and the marginal histograms of predicted posterior model probabilities for a model comparison problem.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.mmd_hypothesis_test" title="bayesflow.diagnostics.mmd_hypothesis_test"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mmd_hypothesis_test</span></code></a>(mmd_null[, ...])</p></td>
-<td><p></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.recovery" title="bayesflow.diagnostics.recovery"><code class="xref py py-obj docutils literal notranslate"><span class="pre">recovery</span></code></a>(estimates, targets[, ...])</p></td>
+<td><p>Creates and plots publication-ready recovery plot with true estimate vs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.diagnostics.z_score_contraction" title="bayesflow.diagnostics.z_score_contraction"><code class="xref py py-obj docutils literal notranslate"><span class="pre">z_score_contraction</span></code></a>(estimates, targets[, ...])</p></td>
+<td><p>Implements a graphical check for global model sensitivity by plotting the posterior z-score over the posterior contraction for each set of posterior samples in <code class="docutils literal notranslate"><span class="pre">estimates</span></code> according to [1].</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.diagnostics.calibration_error" title="bayesflow.diagnostics.calibration_error"><code class="xref py py-obj docutils literal notranslate"><span class="pre">calibration_error</span></code></a>(estimates, targets[, ...])</p></td>
+<td><p>Computes an aggregate score for the marginal calibration error over an ensemble of approximate posteriors.</p></td>
 </tr>
 </tbody>
 </table>

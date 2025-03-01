@@ -17,19 +17,19 @@
 
   .. autosummary::
   
-    FreeFormFlow
-    InferenceNetwork
-    LSTNet
-    MLP
-    FlowMatching
-    ConsistencyModel
-    FusionTransformer
-    DeepSet
-    TimeSeriesTransformer
-    SetTransformer
-    CouplingFlow
     CIF
+    MLP
+    FreeFormFlow
+    SetTransformer
+    ConsistencyModel
+    LSTNet
+    InferenceNetwork
+    DeepSet
+    FlowMatching
+    FusionTransformer
     SummaryNetwork
+    CouplingFlow
+    TimeSeriesTransformer
   
   
 
