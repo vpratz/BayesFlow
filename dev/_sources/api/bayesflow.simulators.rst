@@ -23,9 +23,9 @@
 
   .. autosummary::
   
-    HierarchicalSimulator
-    ModelComparisonSimulator
     Simulator
+    ModelComparisonSimulator
+    HierarchicalSimulator
     SequentialSimulator
     LambdaSimulator
     TwoMoons

@@ -17,9 +17,9 @@
 
   .. autosummary::
   
-    Approximator
     ModelComparisonApproximator
     ContinuousApproximator
+    Approximator
   
   
 
