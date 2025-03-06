@@ -13,6 +13,8 @@ logging.basicConfig()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
+logger.info("Running from PR")
+
 #: Determine repository root directory
 root = Git.root(Path(__file__).parent)
 
