@@ -185,6 +185,11 @@
 <li class="toctree-l2"><a class="reference internal" href="api/bayesflow.diagnostics.html">bayesflow.diagnostics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/bayesflow.distributions.html">bayesflow.distributions</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="api/bayesflow.experimental.html">bayesflow.experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="api/bayesflow.experimental.cif.html">bayesflow.experimental.cif</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="api/bayesflow.experimental.cif.cif.html">bayesflow.experimental.cif.cif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="api/bayesflow.experimental.cif.conditional_gaussian.html">bayesflow.experimental.cif.conditional_gaussian</a></li>
+</ul>
+</details></li>
 <li class="toctree-l3"><a class="reference internal" href="api/bayesflow.experimental.continuous_time_consistency_model.html">bayesflow.experimental.continuous_time_consistency_model</a></li>
 </ul>
 </details></li>
@@ -196,9 +201,9 @@
 <li class="toctree-l2"><a class="reference internal" href="api/bayesflow.simulators.html">bayesflow.simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/bayesflow.types.html">bayesflow.types</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="api/bayesflow.utils.html">bayesflow.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="api/bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="api/bayesflow.utils.logging.html">bayesflow.utils.logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="api/bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="api/bayesflow.workflows.html">bayesflow.workflows</a></li>
@@ -588,19 +593,28 @@ Multi-OS tests will automatically be run once you create a pull request.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">.</span><span class="p">[</span><span class="n">docs</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>The overall <em>structure</em> of the documentation is manually designed, but the API documentation is auto-generated.</p>
-<p>You can re-build the current documentation with</p>
+<p>The overall <em>structure</em> of the documentation is manually designed, but the API documentation is auto-generated.
+New top-level modules (i.e., <code class="docutils literal notranslate"><span class="pre">bayesflow.mynewmodule</span></code>) have to be manually added to the list in <code class="docutils literal notranslate"><span class="pre">docsrc/source/api/bayesflow.rst</span></code> to be included.</p>
+<p>You can re-build the for your local state with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docsrc
-make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>dev
+make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span><span class="nb">local</span>
 <span class="c1"># in case of issues, try `make clean-all`</span>
 </pre></div>
 </div>
+<p>Note that files ignored by git (i.e., listed in <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>) are not included in the documentation.</p>
 <p>We also provide a multi-version documentation. To generate it, run</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docsrc
-make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>github
+make<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>docs
 </pre></div>
 </div>
-<p>The entry point of the rendered documentation will be at <code class="docutils literal notranslate"><span class="pre">docs/index.html</span></code>.</p>
+<p>This will create and cache virtual environments for the build at <code class="docutils literal notranslate"><span class="pre">docsrc/.docs_venvs</span></code>.
+To remove them, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean-all</span></code> in the <code class="docutils literal notranslate"><span class="pre">docsrc</span></code> directory.</p>
+<p>The entry point of the rendered documentation will be at <code class="docutils literal notranslate"><span class="pre">docs/index.html</span></code>.
+To view the docs in the browser (which ensures correct redirects), run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docsrc
+make<span class="w"> </span>view-docs
+</pre></div>
+</div>
 <p>Note that undocumented changes will likely be rejected.</p>
 </section>
 <section id="create-a-pull-request">

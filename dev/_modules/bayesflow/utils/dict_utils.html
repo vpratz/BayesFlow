@@ -184,6 +184,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../api/bayesflow.diagnostics.html">bayesflow.diagnostics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/bayesflow.distributions.html">bayesflow.distributions</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../api/bayesflow.experimental.html">bayesflow.experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../api/bayesflow.experimental.cif.html">bayesflow.experimental.cif</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/bayesflow.experimental.cif.cif.html">bayesflow.experimental.cif.cif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/bayesflow.experimental.cif.conditional_gaussian.html">bayesflow.experimental.cif.conditional_gaussian</a></li>
+</ul>
+</details></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../api/bayesflow.experimental.continuous_time_consistency_model.html">bayesflow.experimental.continuous_time_consistency_model</a></li>
 </ul>
 </details></li>
@@ -195,9 +200,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../api/bayesflow.simulators.html">bayesflow.simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/bayesflow.types.html">bayesflow.types</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../api/bayesflow.utils.html">bayesflow.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../api/bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../api/bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../api/bayesflow.utils.logging.html">bayesflow.utils.logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/bayesflow.workflows.html">bayesflow.workflows</a></li>
@@ -384,7 +389,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="convert_args">
-<a class="viewcode-back" href="../../../api/bayesflow.utils.html#bayesflow.experimental.continuous_time_consistency_model.convert_args">[docs]</a>
+<a class="viewcode-back" href="../../../api/bayesflow.utils.html#bayesflow.experimental.cif.conditional_gaussian.convert_args">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">convert_args</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">any</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert positional and keyword arguments to just positional arguments for f&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">kwargs</span><span class="p">:</span>
@@ -407,7 +412,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="convert_kwargs">
-<a class="viewcode-back" href="../../../api/bayesflow.utils.html#bayesflow.experimental.continuous_time_consistency_model.convert_kwargs">[docs]</a>
+<a class="viewcode-back" href="../../../api/bayesflow.utils.html#bayesflow.experimental.cif.conditional_gaussian.convert_kwargs">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">convert_kwargs</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Convert positional and keyword arguments qto just keyword arguments for f&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">args</span><span class="p">:</span>
@@ -428,7 +433,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="filter_kwargs">
-<a class="viewcode-back" href="../../../api/bayesflow.utils.html#bayesflow.experimental.continuous_time_consistency_model.filter_kwargs">[docs]</a>
+<a class="viewcode-back" href="../../../api/bayesflow.utils.html#bayesflow.experimental.cif.conditional_gaussian.filter_kwargs">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">filter_kwargs</span><span class="p">(</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">T</span><span class="p">],</span> <span class="n">f</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">T</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Filter keyword arguments for f&quot;&quot;&quot;</span>
     <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
@@ -445,7 +450,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="keras_kwargs">
-<a class="viewcode-back" href="../../../api/bayesflow.utils.html#bayesflow.experimental.continuous_time_consistency_model.keras_kwargs">[docs]</a>
+<a class="viewcode-back" href="../../../api/bayesflow.utils.html#bayesflow.experimental.cif.conditional_gaussian.keras_kwargs">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">keras_kwargs</span><span class="p">(</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">T</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Keep dictionary keys that do not end with _kwargs. Used for propagating</span>
 <span class="sd">    keyword arguments in nested layer classes.</span>
@@ -470,7 +475,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="split_tensors">
-<a class="viewcode-back" href="../../../api/bayesflow.utils.html#bayesflow.experimental.continuous_time_consistency_model.split_tensors">[docs]</a>
+<a class="viewcode-back" href="../../../api/bayesflow.utils.html#bayesflow.experimental.cif.conditional_gaussian.split_tensors">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">split_tensors</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">any</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">],</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">any</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Split tensors in the dictionary along the given axis.&quot;&quot;&quot;</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>
@@ -491,7 +496,7 @@ document.write(`
 
 
 <div class="viewcode-block" id="split_arrays">
-<a class="viewcode-back" href="../../../api/bayesflow.utils.html#bayesflow.experimental.continuous_time_consistency_model.split_arrays">[docs]</a>
+<a class="viewcode-back" href="../../../api/bayesflow.utils.html#bayesflow.experimental.cif.conditional_gaussian.split_arrays">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">split_arrays</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="n">axis</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Split tensors in the dictionary along the given axis.&quot;&quot;&quot;</span>
     <span class="n">result</span> <span class="o">=</span> <span class="p">{}</span>

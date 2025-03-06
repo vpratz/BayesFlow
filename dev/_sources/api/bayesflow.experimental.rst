@@ -28,6 +28,7 @@
     :template: custom-module-template.rst
     :recursive:
   
+    cif
     continuous_time_consistency_model
 
   

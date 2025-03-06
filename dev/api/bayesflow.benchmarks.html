@@ -185,6 +185,11 @@
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.diagnostics.html">bayesflow.diagnostics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.distributions.html">bayesflow.distributions</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.experimental.html">bayesflow.experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.experimental.cif.html">bayesflow.experimental.cif</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.experimental.cif.cif.html">bayesflow.experimental.cif.cif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.experimental.cif.conditional_gaussian.html">bayesflow.experimental.cif.conditional_gaussian</a></li>
+</ul>
+</details></li>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.experimental.continuous_time_consistency_model.html">bayesflow.experimental.continuous_time_consistency_model</a></li>
 </ul>
 </details></li>
@@ -196,9 +201,9 @@
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.simulators.html">bayesflow.simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.types.html">bayesflow.types</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.utils.html">bayesflow.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.logging.html">bayesflow.utils.logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.workflows.html">bayesflow.workflows</a></li>
@@ -434,17 +439,13 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.LotkaVolterra"><code class="docutils literal notranslate"><span class="pre">LotkaVolterra</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.LotkaVolterra.__call__"><code class="docutils literal notranslate"><span class="pre">LotkaVolterra.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.LotkaVolterra.observation_model"><code class="docutils literal notranslate"><span class="pre">LotkaVolterra.observation_model()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.LotkaVolterra.prior"><code class="docutils literal notranslate"><span class="pre">LotkaVolterra.prior()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.LotkaVolterra.sample"><code class="docutils literal notranslate"><span class="pre">LotkaVolterra.sample()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.TwoMoons"><code class="docutils literal notranslate"><span class="pre">TwoMoons</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.TwoMoons.__call__"><code class="docutils literal notranslate"><span class="pre">TwoMoons.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.TwoMoons.observation_model"><code class="docutils literal notranslate"><span class="pre">TwoMoons.observation_model()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.TwoMoons.prior"><code class="docutils literal notranslate"><span class="pre">TwoMoons.prior()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.TwoMoons.sample"><code class="docutils literal notranslate"><span class="pre">TwoMoons.sample()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -463,11 +464,11 @@ document.write(`
 <p class="rubric">Classes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.benchmarks.LotkaVolterra" title="bayesflow.benchmarks.LotkaVolterra"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LotkaVolterra</span></code></a>([X0, Y0, T, subsample, ...])</p></td>
-<td><p>Lotka Volterra simulated benchmark.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.benchmarks.TwoMoons" title="bayesflow.benchmarks.TwoMoons"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoMoons</span></code></a>([lower_bound, upper_bound, rng])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.benchmarks.TwoMoons" title="bayesflow.benchmarks.TwoMoons"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TwoMoons</span></code></a>([lower_bound, upper_bound, rng])</p></td>
 <td><p>Two moons simulated benchmark.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.benchmarks.LotkaVolterra" title="bayesflow.benchmarks.LotkaVolterra"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LotkaVolterra</span></code></a>([X0, Y0, T, subsample, ...])</p></td>
+<td><p>Lotka Volterra simulated benchmark.</p></td>
 </tr>
 </tbody>
 </table>
@@ -500,12 +501,6 @@ representation of the simulated data is returned.</p>
 </dl>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.benchmarks.LotkaVolterra.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#bayesflow.benchmarks.LotkaVolterra.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.benchmarks.LotkaVolterra.observation_model">
 <span class="sig-name descname"><span class="pre">observation_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/bayesflow/benchmarks/simulators/lotka_volterra.html#LotkaVolterra.observation_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.LotkaVolterra.observation_model" title="Link to this definition">#</a></dt>
@@ -543,27 +538,6 @@ which represents the four contact parameters of the Lotka-Volterra model.</p>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.benchmarks.LotkaVolterra.sample">
-<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#bayesflow.benchmarks.LotkaVolterra.sample" title="Link to this definition">#</a></dt>
-<dd><p>Runs simulated benchmark and returns <cite>batch_size</cite> parameter
-and observation batches</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>batch_shape: tuple</strong></dt><dd><p>Number of parameter-observation batches to simulate.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>dict[str, np.ndarray]: simulated parameters and observables</dt><dd><p>with shapes (<cite>batch_size</cite>, …)</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 <dl class="py class">
@@ -584,12 +558,6 @@ See: <a class="reference external" href="https://arxiv.org/pdf/2101.04653.pdf">h
 </dl>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.benchmarks.TwoMoons.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#bayesflow.benchmarks.TwoMoons.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.benchmarks.TwoMoons.observation_model">
 <span class="sig-name descname"><span class="pre">observation_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/benchmarks/simulators/two_moons.html#TwoMoons.observation_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.benchmarks.TwoMoons.observation_model" title="Link to this definition">#</a></dt>
@@ -619,27 +587,6 @@ See: <a class="reference external" href="https://arxiv.org/pdf/2101.04653.pdf">h
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>params: np.ndarray of shape (2, )</dt><dd><p>A single draw from the 2-dimensional uniform prior.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.benchmarks.TwoMoons.sample">
-<span class="sig-name descname"><span class="pre">sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batch_shape</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#bayesflow.benchmarks.TwoMoons.sample" title="Link to this definition">#</a></dt>
-<dd><p>Runs simulated benchmark and returns <cite>batch_size</cite> parameter
-and observation batches</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>batch_shape: tuple</strong></dt><dd><p>Number of parameter-observation batches to simulate.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>dict[str, np.ndarray]: simulated parameters and observables</dt><dd><p>with shapes (<cite>batch_size</cite>, …)</p>
 </dd>
 </dl>
 </dd>
@@ -696,17 +643,13 @@ and observation batches</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.LotkaVolterra"><code class="docutils literal notranslate"><span class="pre">LotkaVolterra</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.LotkaVolterra.__call__"><code class="docutils literal notranslate"><span class="pre">LotkaVolterra.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.LotkaVolterra.observation_model"><code class="docutils literal notranslate"><span class="pre">LotkaVolterra.observation_model()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.LotkaVolterra.prior"><code class="docutils literal notranslate"><span class="pre">LotkaVolterra.prior()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.LotkaVolterra.sample"><code class="docutils literal notranslate"><span class="pre">LotkaVolterra.sample()</span></code></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.TwoMoons"><code class="docutils literal notranslate"><span class="pre">TwoMoons</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.TwoMoons.__call__"><code class="docutils literal notranslate"><span class="pre">TwoMoons.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.TwoMoons.observation_model"><code class="docutils literal notranslate"><span class="pre">TwoMoons.observation_model()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.TwoMoons.prior"><code class="docutils literal notranslate"><span class="pre">TwoMoons.prior()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.benchmarks.TwoMoons.sample"><code class="docutils literal notranslate"><span class="pre">TwoMoons.sample()</span></code></a></li>
 </ul>
 </li>
 </ul>

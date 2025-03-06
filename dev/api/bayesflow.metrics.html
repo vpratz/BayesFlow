@@ -185,6 +185,11 @@
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.diagnostics.html">bayesflow.diagnostics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.distributions.html">bayesflow.distributions</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.experimental.html">bayesflow.experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.experimental.cif.html">bayesflow.experimental.cif</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.experimental.cif.cif.html">bayesflow.experimental.cif.cif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.experimental.cif.conditional_gaussian.html">bayesflow.experimental.cif.conditional_gaussian</a></li>
+</ul>
+</details></li>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.experimental.continuous_time_consistency_model.html">bayesflow.experimental.continuous_time_consistency_model</a></li>
 </ul>
 </details></li>
@@ -196,9 +201,9 @@
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.simulators.html">bayesflow.simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.types.html">bayesflow.types</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.utils.html">bayesflow.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.logging.html">bayesflow.utils.logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.workflows.html">bayesflow.workflows</a></li>
@@ -434,37 +439,11 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.__call__"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.__call__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.add_variable"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.add_variable()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.add_weight"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.add_weight()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.dtype"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.dtype</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.from_config"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.from_config()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.get_config"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.get_config()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.reset_state"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.reset_state()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.result"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.result()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.stateless_reset_state"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.stateless_reset_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.stateless_result"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.stateless_result()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.stateless_update_state"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.stateless_update_state()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.update_state"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.update_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.variables"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.variables</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.__call__"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.__call__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.add_variable"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.add_variable()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.add_weight"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.add_weight()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.dtype"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.dtype</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.from_config"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.from_config()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.get_config"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.get_config()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.reset_state"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.reset_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.result"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.result()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.stateless_reset_state"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.stateless_reset_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.stateless_result"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.stateless_result()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.stateless_update_state"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.stateless_update_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.update_state"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.update_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.variables"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.variables</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError</span></code></a></li>
 </ul>
             </nav>
         </div>
@@ -504,46 +483,6 @@ document.write(`
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.metrics.</span></span><span class="sig-name descname"><span class="pre">MaximumMeanDiscrepancy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'maximum_mean_discrepancy'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kernel</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'inverse_multiquadratic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unbiased</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/metrics/maximum_mean_discrepancy.html#MaximumMeanDiscrepancy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Metric</span></code></p>
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.MaximumMeanDiscrepancy.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.MaximumMeanDiscrepancy.add_variable">
-<span class="sig-name descname"><span class="pre">add_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initializer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sum'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy.add_variable" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.MaximumMeanDiscrepancy.add_weight">
-<span class="sig-name descname"><span class="pre">add_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initializer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy.add_weight" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="bayesflow.metrics.MaximumMeanDiscrepancy.dtype">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy.dtype" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.MaximumMeanDiscrepancy.from_config">
-<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy.from_config" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.MaximumMeanDiscrepancy.get_config">
-<span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy.get_config" title="Link to this definition">#</a></dt>
-<dd><p>Return the serializable config of the metric.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.MaximumMeanDiscrepancy.reset_state">
-<span class="sig-name descname"><span class="pre">reset_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy.reset_state" title="Link to this definition">#</a></dt>
-<dd><p>Reset all of the metric state variables.</p>
-<p>This function is called between epochs/steps,
-when a metric is evaluated during training.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.metrics.MaximumMeanDiscrepancy.result">
 <span class="sig-name descname"><span class="pre">result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/metrics/maximum_mean_discrepancy.html#MaximumMeanDiscrepancy.result"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy.result" title="Link to this definition">#</a></dt>
 <dd><p>Compute the current metric value.</p>
@@ -554,30 +493,10 @@ when a metric is evaluated during training.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.MaximumMeanDiscrepancy.stateless_reset_state">
-<span class="sig-name descname"><span class="pre">stateless_reset_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy.stateless_reset_state" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.MaximumMeanDiscrepancy.stateless_result">
-<span class="sig-name descname"><span class="pre">stateless_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric_variables</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy.stateless_result" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.MaximumMeanDiscrepancy.stateless_update_state">
-<span class="sig-name descname"><span class="pre">stateless_update_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric_variables</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy.stateless_update_state" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.metrics.MaximumMeanDiscrepancy.update_state">
 <span class="sig-name descname"><span class="pre">update_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/metrics/maximum_mean_discrepancy.html#MaximumMeanDiscrepancy.update_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy.update_state" title="Link to this definition">#</a></dt>
 <dd><p>Accumulate statistics for the metric.</p>
 </dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="bayesflow.metrics.MaximumMeanDiscrepancy.variables">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">variables</span></span><a class="headerlink" href="#bayesflow.metrics.MaximumMeanDiscrepancy.variables" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 
@@ -585,82 +504,6 @@ when a metric is evaluated during training.</p>
 <dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.metrics.</span></span><span class="sig-name descname"><span class="pre">RootMeanSquaredError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'root_mean_squared_error'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/metrics/root_mean_squard_error.html#RootMeanSquaredError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">MeanMetricWrapper</span></code></p>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError.add_variable">
-<span class="sig-name descname"><span class="pre">add_variable</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initializer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">aggregation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'sum'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError.add_variable" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError.add_weight">
-<span class="sig-name descname"><span class="pre">add_weight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initializer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError.add_weight" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError.dtype">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dtype</span></span><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError.dtype" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError.from_config">
-<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">config</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError.from_config" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError.get_config">
-<span class="sig-name descname"><span class="pre">get_config</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError.get_config" title="Link to this definition">#</a></dt>
-<dd><p>Return the serializable config of the metric.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError.reset_state">
-<span class="sig-name descname"><span class="pre">reset_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError.reset_state" title="Link to this definition">#</a></dt>
-<dd><p>Reset all of the metric state variables.</p>
-<p>This function is called between epochs/steps,
-when a metric is evaluated during training.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError.result">
-<span class="sig-name descname"><span class="pre">result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError.result" title="Link to this definition">#</a></dt>
-<dd><p>Compute the current metric value.</p>
-<dl class="simple">
-<dt>Returns:</dt><dd><p>A scalar tensor, or a dictionary of scalar tensors.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError.stateless_reset_state">
-<span class="sig-name descname"><span class="pre">stateless_reset_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError.stateless_reset_state" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError.stateless_result">
-<span class="sig-name descname"><span class="pre">stateless_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric_variables</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError.stateless_result" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError.stateless_update_state">
-<span class="sig-name descname"><span class="pre">stateless_update_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric_variables</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError.stateless_update_state" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError.update_state">
-<span class="sig-name descname"><span class="pre">update_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">y_true</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_pred</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_weight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError.update_state" title="Link to this definition">#</a></dt>
-<dd><p>Accumulate statistics for the metric.</p>
-</dd></dl>
-
-<dl class="py property">
-<dt class="sig sig-object py" id="bayesflow.metrics.RootMeanSquaredError.variables">
-<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">variables</span></span><a class="headerlink" href="#bayesflow.metrics.RootMeanSquaredError.variables" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </section>
@@ -711,37 +554,11 @@ when a metric is evaluated during training.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.__call__"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.__call__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.add_variable"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.add_variable()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.add_weight"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.add_weight()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.dtype"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.dtype</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.from_config"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.from_config()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.get_config"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.get_config()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.reset_state"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.reset_state()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.result"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.result()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.stateless_reset_state"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.stateless_reset_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.stateless_result"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.stateless_result()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.stateless_update_state"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.stateless_update_state()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.update_state"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.update_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.MaximumMeanDiscrepancy.variables"><code class="docutils literal notranslate"><span class="pre">MaximumMeanDiscrepancy.variables</span></code></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.__call__"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.__call__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.add_variable"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.add_variable()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.add_weight"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.add_weight()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.dtype"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.dtype</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.from_config"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.from_config()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.get_config"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.get_config()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.reset_state"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.reset_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.result"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.result()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.stateless_reset_state"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.stateless_reset_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.stateless_result"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.stateless_result()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.stateless_update_state"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.stateless_update_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.update_state"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.update_state()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError.variables"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError.variables</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.metrics.RootMeanSquaredError"><code class="docutils literal notranslate"><span class="pre">RootMeanSquaredError</span></code></a></li>
 </ul>
   </nav></div>
 

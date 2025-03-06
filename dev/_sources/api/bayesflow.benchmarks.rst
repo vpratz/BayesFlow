@@ -17,8 +17,8 @@
 
   .. autosummary::
   
-    LotkaVolterra
     TwoMoons
+    LotkaVolterra
   
   
 

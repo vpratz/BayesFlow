@@ -184,6 +184,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.diagnostics.html">bayesflow.diagnostics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.distributions.html">bayesflow.distributions</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.experimental.html">bayesflow.experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../../api/bayesflow.experimental.cif.html">bayesflow.experimental.cif</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.experimental.cif.cif.html">bayesflow.experimental.cif.cif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../api/bayesflow.experimental.cif.conditional_gaussian.html">bayesflow.experimental.cif.conditional_gaussian</a></li>
+</ul>
+</details></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.experimental.continuous_time_consistency_model.html">bayesflow.experimental.continuous_time_consistency_model</a></li>
 </ul>
 </details></li>
@@ -195,9 +200,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.simulators.html">bayesflow.simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.types.html">bayesflow.types</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../../api/bayesflow.utils.html">bayesflow.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.logging.html">bayesflow.utils.logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../api/bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../api/bayesflow.workflows.html">bayesflow.workflows</a></li>
@@ -440,8 +445,13 @@ document.write(`
 
         <span class="bp">self</span><span class="o">.</span><span class="n">use_optimal_transport</span> <span class="o">=</span> <span class="n">use_optimal_transport</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">integrate_kwargs</span> <span class="o">=</span> <span class="n">integrate_kwargs</span> <span class="ow">or</span> <span class="n">FlowMatching</span><span class="o">.</span><span class="n">INTEGRATE_DEFAULT_CONFIG</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">optimal_transport_kwargs</span> <span class="o">=</span> <span class="n">optimal_transport_kwargs</span> <span class="ow">or</span> <span class="n">FlowMatching</span><span class="o">.</span><span class="n">OPTIMAL_TRANSPORT_DEFAULT_CONFIG</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">new_integrate_kwargs</span> <span class="o">=</span> <span class="n">FlowMatching</span><span class="o">.</span><span class="n">INTEGRATE_DEFAULT_CONFIG</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">new_integrate_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">integrate_kwargs</span> <span class="ow">or</span> <span class="p">{})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">integrate_kwargs</span> <span class="o">=</span> <span class="n">new_integrate_kwargs</span>
+
+        <span class="n">new_optimal_transport_kwargs</span> <span class="o">=</span> <span class="n">FlowMatching</span><span class="o">.</span><span class="n">OPTIMAL_TRANSPORT_DEFAULT_CONFIG</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">new_optimal_transport_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">optimal_transport_kwargs</span> <span class="ow">or</span> <span class="p">{})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">optimal_transport_kwargs</span> <span class="o">=</span> <span class="n">new_optimal_transport_kwargs</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">losses</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">loss_fn</span><span class="p">)</span>
 

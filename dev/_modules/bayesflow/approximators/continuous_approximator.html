@@ -184,6 +184,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../api/bayesflow.diagnostics.html">bayesflow.diagnostics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/bayesflow.distributions.html">bayesflow.distributions</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../api/bayesflow.experimental.html">bayesflow.experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../../api/bayesflow.experimental.cif.html">bayesflow.experimental.cif</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/bayesflow.experimental.cif.cif.html">bayesflow.experimental.cif.cif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../api/bayesflow.experimental.cif.conditional_gaussian.html">bayesflow.experimental.cif.conditional_gaussian</a></li>
+</ul>
+</details></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../api/bayesflow.experimental.continuous_time_consistency_model.html">bayesflow.experimental.continuous_time_consistency_model</a></li>
 </ul>
 </details></li>
@@ -195,9 +200,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../api/bayesflow.simulators.html">bayesflow.simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/bayesflow.types.html">bayesflow.types</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../api/bayesflow.utils.html">bayesflow.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../api/bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../api/bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../api/bayesflow.utils.logging.html">bayesflow.utils.logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../api/bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../api/bayesflow.workflows.html">bayesflow.workflows</a></li>
@@ -496,6 +501,56 @@ document.write(`
 <div class="viewcode-block" id="ContinuousApproximator.fit">
 <a class="viewcode-back" href="../../../api/bayesflow.approximators.html#bayesflow.approximators.ContinuousApproximator.fit">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Trains the approximator on the provided dataset or on-demand data generated from the given simulator.</span>
+<span class="sd">        If `dataset` is not provided, a dataset is built from the `simulator`.</span>
+<span class="sd">        If the model has not been built, it will be built using a batch from the dataset.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dataset : keras.utils.PyDataset, optional</span>
+<span class="sd">            A dataset containing simulations for training. If provided, `simulator` must be None.</span>
+<span class="sd">        simulator : Simulator, optional</span>
+<span class="sd">            A simulator used to generate a dataset. If provided, `dataset` must be None.</span>
+<span class="sd">        **kwargs : dict</span>
+<span class="sd">            Additional keyword arguments passed to `keras.Model.fit()`, including (see also `build_dataset`):</span>
+<span class="sd">            batch_size : int or None, default=&#39;auto&#39;</span>
+<span class="sd">                Number of samples per gradient update. Do not specify if `dataset` is provided as a</span>
+<span class="sd">                `keras.utils.PyDataset`, `tf.data.Dataset`, `torch.utils.data.DataLoader`, or a generator function.</span>
+<span class="sd">            epochs : int, default=1</span>
+<span class="sd">                Number of epochs to train the model.</span>
+<span class="sd">            verbose : {&quot;auto&quot;, 0, 1, 2}, default=&quot;auto&quot;</span>
+<span class="sd">                Verbosity mode. 0 = silent, 1 = progress bar, 2 = one line per epoch.</span>
+<span class="sd">            callbacks : list of keras.callbacks.Callback, optional</span>
+<span class="sd">                List of callbacks to apply during training.</span>
+<span class="sd">            validation_split : float, optional</span>
+<span class="sd">                Fraction of training data to use for validation (only supported if `dataset` consists of NumPy arrays</span>
+<span class="sd">                or tensors).</span>
+<span class="sd">            validation_data : tuple or dataset, optional</span>
+<span class="sd">                Data for validation, overriding `validation_split`.</span>
+<span class="sd">            shuffle : bool, default=True</span>
+<span class="sd">                Whether to shuffle the training data before each epoch (ignored for dataset generators).</span>
+<span class="sd">            initial_epoch : int, default=0</span>
+<span class="sd">                Epoch at which to start training (useful for resuming training).</span>
+<span class="sd">            steps_per_epoch : int or None, optional</span>
+<span class="sd">                Number of steps (batches) before declaring an epoch finished.</span>
+<span class="sd">            validation_steps : int or None, optional</span>
+<span class="sd">                Number of validation steps per validation epoch.</span>
+<span class="sd">            validation_batch_size : int or None, optional</span>
+<span class="sd">                Number of samples per validation batch (defaults to `batch_size`).</span>
+<span class="sd">            validation_freq : int, default=1</span>
+<span class="sd">                Specifies how many training epochs to run before performing validation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        keras.callbacks.History</span>
+<span class="sd">            A history object containing the training loss and metrics values.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If both `dataset` and `simulator` are provided or neither is provided.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">adapter</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="p">)</span></div>
 
 
@@ -533,6 +588,27 @@ document.write(`
         <span class="n">split</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates samples from the approximator given input conditions. The `conditions` dictionary is preprocessed</span>
+<span class="sd">        using the `adapter`. Samples are converted to NumPy arrays after inference.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        num_samples : int</span>
+<span class="sd">            Number of samples to generate.</span>
+<span class="sd">        conditions : dict[str, np.ndarray]</span>
+<span class="sd">            Dictionary of conditioning variables as NumPy arrays.</span>
+<span class="sd">        split : bool, default=False</span>
+<span class="sd">            Whether to split the output arrays along the last axis and return one column vector per target variable</span>
+<span class="sd">            samples.</span>
+<span class="sd">        **kwargs : dict</span>
+<span class="sd">            Additional keyword arguments for the adapter and sampling process.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict[str, np.ndarray]</span>
+<span class="sd">            Dictionary containing generated samples with the same keys as `conditions`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">conditions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;inference&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="c1"># at inference time, inference_variables are estimated by the networks and thus ignored in conditions</span>
         <span class="n">conditions</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;inference_variables&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -589,6 +665,22 @@ document.write(`
 <div class="viewcode-block" id="ContinuousApproximator.log_prob">
 <a class="viewcode-back" href="../../../api/bayesflow.approximators.html#bayesflow.approximators.ContinuousApproximator.log_prob">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">log_prob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Computes the log-probability of given data under the model. The `data` dictionary is preprocessed using the</span>
+<span class="sd">        `adapter`. Log-probabilities are returned as NumPy arrays.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        data : dict[str, np.ndarray]</span>
+<span class="sd">            Dictionary of observed data as NumPy arrays.</span>
+<span class="sd">        **kwargs : dict</span>
+<span class="sd">            Additional keyword arguments for the adapter and log-probability computation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+<span class="sd">            Log-probabilities of the distribution `p(inference_variables | inference_conditions, h(summary_conditions))`</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">adapter</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">strict</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">stage</span><span class="o">=</span><span class="s2">&quot;inference&quot;</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">data</span> <span class="o">=</span> <span class="n">keras</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">map_structure</span><span class="p">(</span><span class="n">keras</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">convert_to_tensor</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
         <span class="n">log_prob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_log_prob</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>

@@ -185,6 +185,11 @@
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.diagnostics.html">bayesflow.diagnostics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.distributions.html">bayesflow.distributions</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.experimental.html">bayesflow.experimental</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="bayesflow.experimental.cif.html">bayesflow.experimental.cif</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.experimental.cif.cif.html">bayesflow.experimental.cif.cif</a></li>
+<li class="toctree-l4"><a class="reference internal" href="bayesflow.experimental.cif.conditional_gaussian.html">bayesflow.experimental.cif.conditional_gaussian</a></li>
+</ul>
+</details></li>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.experimental.continuous_time_consistency_model.html">bayesflow.experimental.continuous_time_consistency_model</a></li>
 </ul>
 </details></li>
@@ -196,9 +201,9 @@
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.simulators.html">bayesflow.simulators</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.types.html">bayesflow.types</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="bayesflow.utils.html">bayesflow.utils</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.keras_utils.html">bayesflow.utils.keras_utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.logging.html">bayesflow.utils.logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bayesflow.utils.numpy_utils.html">bayesflow.utils.numpy_utils</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="bayesflow.workflows.html">bayesflow.workflows</a></li>
@@ -434,7 +439,6 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsSet"><code class="docutils literal notranslate"><span class="pre">AsSet</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsSet.__call__"><code class="docutils literal notranslate"><span class="pre">AsSet.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsSet.forward"><code class="docutils literal notranslate"><span class="pre">AsSet.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsSet.from_config"><code class="docutils literal notranslate"><span class="pre">AsSet.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsSet.get_config"><code class="docutils literal notranslate"><span class="pre">AsSet.get_config()</span></code></a></li>
@@ -442,7 +446,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsTimeSeries"><code class="docutils literal notranslate"><span class="pre">AsTimeSeries</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsTimeSeries.__call__"><code class="docutils literal notranslate"><span class="pre">AsTimeSeries.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsTimeSeries.forward"><code class="docutils literal notranslate"><span class="pre">AsTimeSeries.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsTimeSeries.from_config"><code class="docutils literal notranslate"><span class="pre">AsTimeSeries.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsTimeSeries.get_config"><code class="docutils literal notranslate"><span class="pre">AsTimeSeries.get_config()</span></code></a></li>
@@ -450,8 +453,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Broadcast"><code class="docutils literal notranslate"><span class="pre">Broadcast</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Broadcast.__call__"><code class="docutils literal notranslate"><span class="pre">Broadcast.__call__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Broadcast.extra_repr"><code class="docutils literal notranslate"><span class="pre">Broadcast.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Broadcast.forward"><code class="docutils literal notranslate"><span class="pre">Broadcast.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Broadcast.from_config"><code class="docutils literal notranslate"><span class="pre">Broadcast.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Broadcast.get_config"><code class="docutils literal notranslate"><span class="pre">Broadcast.get_config()</span></code></a></li>
@@ -459,7 +460,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Concatenate"><code class="docutils literal notranslate"><span class="pre">Concatenate</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Concatenate.__call__"><code class="docutils literal notranslate"><span class="pre">Concatenate.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Concatenate.extra_repr"><code class="docutils literal notranslate"><span class="pre">Concatenate.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Concatenate.forward"><code class="docutils literal notranslate"><span class="pre">Concatenate.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Concatenate.from_config"><code class="docutils literal notranslate"><span class="pre">Concatenate.from_config()</span></code></a></li>
@@ -468,7 +468,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Constrain"><code class="docutils literal notranslate"><span class="pre">Constrain</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Constrain.__call__"><code class="docutils literal notranslate"><span class="pre">Constrain.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Constrain.forward"><code class="docutils literal notranslate"><span class="pre">Constrain.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Constrain.from_config"><code class="docutils literal notranslate"><span class="pre">Constrain.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Constrain.get_config"><code class="docutils literal notranslate"><span class="pre">Constrain.get_config()</span></code></a></li>
@@ -476,7 +475,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ConvertDType"><code class="docutils literal notranslate"><span class="pre">ConvertDType</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ConvertDType.__call__"><code class="docutils literal notranslate"><span class="pre">ConvertDType.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ConvertDType.forward"><code class="docutils literal notranslate"><span class="pre">ConvertDType.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ConvertDType.from_config"><code class="docutils literal notranslate"><span class="pre">ConvertDType.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ConvertDType.get_config"><code class="docutils literal notranslate"><span class="pre">ConvertDType.get_config()</span></code></a></li>
@@ -484,7 +482,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Drop"><code class="docutils literal notranslate"><span class="pre">Drop</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Drop.__call__"><code class="docutils literal notranslate"><span class="pre">Drop.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Drop.extra_repr"><code class="docutils literal notranslate"><span class="pre">Drop.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Drop.forward"><code class="docutils literal notranslate"><span class="pre">Drop.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Drop.from_config"><code class="docutils literal notranslate"><span class="pre">Drop.from_config()</span></code></a></li>
@@ -501,7 +498,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ExpandDims"><code class="docutils literal notranslate"><span class="pre">ExpandDims</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ExpandDims.__call__"><code class="docutils literal notranslate"><span class="pre">ExpandDims.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ExpandDims.forward"><code class="docutils literal notranslate"><span class="pre">ExpandDims.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ExpandDims.from_config"><code class="docutils literal notranslate"><span class="pre">ExpandDims.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ExpandDims.get_config"><code class="docutils literal notranslate"><span class="pre">ExpandDims.get_config()</span></code></a></li>
@@ -509,7 +505,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.FilterTransform"><code class="docutils literal notranslate"><span class="pre">FilterTransform</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.FilterTransform.__call__"><code class="docutils literal notranslate"><span class="pre">FilterTransform.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.FilterTransform.extra_repr"><code class="docutils literal notranslate"><span class="pre">FilterTransform.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.FilterTransform.forward"><code class="docutils literal notranslate"><span class="pre">FilterTransform.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.FilterTransform.from_config"><code class="docutils literal notranslate"><span class="pre">FilterTransform.from_config()</span></code></a></li>
@@ -518,7 +513,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Keep"><code class="docutils literal notranslate"><span class="pre">Keep</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Keep.__call__"><code class="docutils literal notranslate"><span class="pre">Keep.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Keep.extra_repr"><code class="docutils literal notranslate"><span class="pre">Keep.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Keep.forward"><code class="docutils literal notranslate"><span class="pre">Keep.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Keep.from_config"><code class="docutils literal notranslate"><span class="pre">Keep.from_config()</span></code></a></li>
@@ -527,7 +521,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.LambdaTransform"><code class="docutils literal notranslate"><span class="pre">LambdaTransform</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.LambdaTransform.__call__"><code class="docutils literal notranslate"><span class="pre">LambdaTransform.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.LambdaTransform.forward"><code class="docutils literal notranslate"><span class="pre">LambdaTransform.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.LambdaTransform.from_config"><code class="docutils literal notranslate"><span class="pre">LambdaTransform.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.LambdaTransform.get_config"><code class="docutils literal notranslate"><span class="pre">LambdaTransform.get_config()</span></code></a></li>
@@ -535,8 +528,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.MapTransform"><code class="docutils literal notranslate"><span class="pre">MapTransform</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.MapTransform.__call__"><code class="docutils literal notranslate"><span class="pre">MapTransform.__call__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.MapTransform.extra_repr"><code class="docutils literal notranslate"><span class="pre">MapTransform.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.MapTransform.forward"><code class="docutils literal notranslate"><span class="pre">MapTransform.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.MapTransform.from_config"><code class="docutils literal notranslate"><span class="pre">MapTransform.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.MapTransform.get_config"><code class="docutils literal notranslate"><span class="pre">MapTransform.get_config()</span></code></a></li>
@@ -544,7 +535,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.OneHot"><code class="docutils literal notranslate"><span class="pre">OneHot</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.OneHot.__call__"><code class="docutils literal notranslate"><span class="pre">OneHot.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.OneHot.forward"><code class="docutils literal notranslate"><span class="pre">OneHot.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.OneHot.from_config"><code class="docutils literal notranslate"><span class="pre">OneHot.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.OneHot.get_config"><code class="docutils literal notranslate"><span class="pre">OneHot.get_config()</span></code></a></li>
@@ -552,7 +542,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Rename"><code class="docutils literal notranslate"><span class="pre">Rename</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Rename.__call__"><code class="docutils literal notranslate"><span class="pre">Rename.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Rename.extra_repr"><code class="docutils literal notranslate"><span class="pre">Rename.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Rename.forward"><code class="docutils literal notranslate"><span class="pre">Rename.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Rename.from_config"><code class="docutils literal notranslate"><span class="pre">Rename.from_config()</span></code></a></li>
@@ -561,7 +550,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Standardize"><code class="docutils literal notranslate"><span class="pre">Standardize</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Standardize.__call__"><code class="docutils literal notranslate"><span class="pre">Standardize.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Standardize.forward"><code class="docutils literal notranslate"><span class="pre">Standardize.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Standardize.from_config"><code class="docutils literal notranslate"><span class="pre">Standardize.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Standardize.get_config"><code class="docutils literal notranslate"><span class="pre">Standardize.get_config()</span></code></a></li>
@@ -569,7 +557,6 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ToArray"><code class="docutils literal notranslate"><span class="pre">ToArray</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ToArray.__call__"><code class="docutils literal notranslate"><span class="pre">ToArray.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ToArray.forward"><code class="docutils literal notranslate"><span class="pre">ToArray.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ToArray.from_config"><code class="docutils literal notranslate"><span class="pre">ToArray.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ToArray.get_config"><code class="docutils literal notranslate"><span class="pre">ToArray.get_config()</span></code></a></li>
@@ -601,59 +588,59 @@ document.write(`
 <p class="rubric">Classes</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.AsSet" title="bayesflow.adapters.transforms.AsSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsSet</span></code></a>()</p></td>
-<td><p>The <cite>.as_set([&quot;x&quot;, &quot;y&quot;])</cite> transform indicates that both <cite>x</cite> and <cite>y</cite> are treated as sets.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Keep" title="bayesflow.adapters.transforms.Keep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Keep</span></code></a>(keys)</p></td>
-<td><p>Name the data parameters that should be kept for futher calculation.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Constrain" title="bayesflow.adapters.transforms.Constrain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Constrain</span></code></a>(*[, lower, upper, method, ...])</p></td>
-<td><p>Constrains neural network predictions of a data variable to specified bounds.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Concatenate" title="bayesflow.adapters.transforms.Concatenate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Concatenate</span></code></a>(keys, *, into[, axis, _indices])</p></td>
-<td><p>Concatenate multiple arrays into a new key.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.ExpandDims" title="bayesflow.adapters.transforms.ExpandDims"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExpandDims</span></code></a>(keys, *, axis)</p></td>
-<td><p>Expand the shape of an array. Examples:     shape (3,) array:     &gt;&gt;&gt; a = np.array([1, 2, 3])     shape (2, 3) array:     &gt;&gt;&gt; b = np.array([[1, 2, 3], [4, 5, 6]])     &gt;&gt;&gt; dat = dict(a=a, b=b).</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.OneHot" title="bayesflow.adapters.transforms.OneHot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneHot</span></code></a>(num_classes)</p></td>
-<td><p>Changes data to be one-hot encoded.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.MapTransform" title="bayesflow.adapters.transforms.MapTransform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapTransform</span></code></a>(transform_map)</p></td>
-<td><p>Implements a transform that applies a set of elementwise transforms to a subset of the data as given by a mapping.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.FilterTransform" title="bayesflow.adapters.transforms.FilterTransform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FilterTransform</span></code></a>(*, transform_constructor[, ...])</p></td>
-<td><p>Implements a transform that applies a different transform on a subset of the data.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.ElementwiseTransform" title="bayesflow.adapters.transforms.ElementwiseTransform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementwiseTransform</span></code></a>()</p></td>
-<td><p>Base class on which other transforms are based</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.ConvertDType" title="bayesflow.adapters.transforms.ConvertDType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConvertDType</span></code></a>(from_dtype, to_dtype)</p></td>
-<td><p>Default transform used to convert all floats from float64 to float32 to be in line with keras framework.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.LambdaTransform" title="bayesflow.adapters.transforms.LambdaTransform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LambdaTransform</span></code></a>(*, forward, inverse)</p></td>
-<td><p>Transforms a parameter using a pair of forward and inverse functions.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Rename" title="bayesflow.adapters.transforms.Rename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rename</span></code></a>(from_key, to_key)</p></td>
-<td><p>Transform to rename keys in data dictionary.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Drop" title="bayesflow.adapters.transforms.Drop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Drop</span></code></a>(keys)</p></td>
-<td><p>Transform to drop variables from further calculation.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.AsTimeSeries" title="bayesflow.adapters.transforms.AsTimeSeries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsTimeSeries</span></code></a>()</p></td>
+<td><p>The <cite>.as_time_series</cite> transform can be used to indicate that variables shall be treated as time series.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Broadcast" title="bayesflow.adapters.transforms.Broadcast"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Broadcast</span></code></a>(keys, *, to[, expand, exclude, ...])</p></td>
 <td><p>Broadcasts arrays or scalars to the shape of a given other array.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.AsTimeSeries" title="bayesflow.adapters.transforms.AsTimeSeries"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsTimeSeries</span></code></a>()</p></td>
-<td><p>The <cite>.as_time_series</cite> transform can be used to indicate that variables shall be treated as time series.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Standardize" title="bayesflow.adapters.transforms.Standardize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Standardize</span></code></a>([mean, std, axis, momentum])</p></td>
+<td><p>Transform that when applied standardizes data using typical z-score standardization i.e. for some unstandardized data x the standardized version z  would be.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Keep" title="bayesflow.adapters.transforms.Keep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Keep</span></code></a>(keys)</p></td>
+<td><p>Name the data parameters that should be kept for futher calculation.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.LambdaTransform" title="bayesflow.adapters.transforms.LambdaTransform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LambdaTransform</span></code></a>(*, forward, inverse)</p></td>
+<td><p>Transforms a parameter using a pair of forward and inverse functions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.FilterTransform" title="bayesflow.adapters.transforms.FilterTransform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FilterTransform</span></code></a>(*, transform_constructor[, ...])</p></td>
+<td><p>Implements a transform that applies a different transform on a subset of the data.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Drop" title="bayesflow.adapters.transforms.Drop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Drop</span></code></a>(keys)</p></td>
+<td><p>Transform to drop variables from further calculation.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.OneHot" title="bayesflow.adapters.transforms.OneHot"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OneHot</span></code></a>(num_classes)</p></td>
+<td><p>Changes data to be one-hot encoded.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.ExpandDims" title="bayesflow.adapters.transforms.ExpandDims"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ExpandDims</span></code></a>(keys, *, axis)</p></td>
+<td><p>Expand the shape of an array. Examples:     shape (3,) array:     &gt;&gt;&gt; a = np.array([1, 2, 3])     shape (2, 3) array:     &gt;&gt;&gt; b = np.array([[1, 2, 3], [4, 5, 6]])     &gt;&gt;&gt; dat = dict(a=a, b=b).</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.ToArray" title="bayesflow.adapters.transforms.ToArray"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ToArray</span></code></a>()</p></td>
 <td><p>Checks provided data for any non-arrays and converts them to numpy arrays.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Transform" title="bayesflow.adapters.transforms.Transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transform</span></code></a>()</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.ConvertDType" title="bayesflow.adapters.transforms.ConvertDType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConvertDType</span></code></a>(from_dtype, to_dtype)</p></td>
+<td><p>Default transform used to convert all floats from float64 to float32 to be in line with keras framework.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.MapTransform" title="bayesflow.adapters.transforms.MapTransform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MapTransform</span></code></a>(transform_map)</p></td>
+<td><p>Implements a transform that applies a set of elementwise transforms to a subset of the data as given by a mapping.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Concatenate" title="bayesflow.adapters.transforms.Concatenate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Concatenate</span></code></a>(keys, *, into[, axis, _indices])</p></td>
+<td><p>Concatenate multiple arrays into a new key.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Rename" title="bayesflow.adapters.transforms.Rename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Rename</span></code></a>(from_key, to_key)</p></td>
+<td><p>Transform to rename keys in data dictionary.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Constrain" title="bayesflow.adapters.transforms.Constrain"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Constrain</span></code></a>(*[, lower, upper, method, ...])</p></td>
+<td><p>Constrains neural network predictions of a data variable to specified bounds.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.ElementwiseTransform" title="bayesflow.adapters.transforms.ElementwiseTransform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementwiseTransform</span></code></a>()</p></td>
 <td><p>Base class on which other transforms are based</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Standardize" title="bayesflow.adapters.transforms.Standardize"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Standardize</span></code></a>([mean, std, axis, momentum])</p></td>
-<td><p>Transform that when applied standardizes data using typical z-score standardization i.e. for some unstandardized data x the standardized version z  would be.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.AsSet" title="bayesflow.adapters.transforms.AsSet"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AsSet</span></code></a>()</p></td>
+<td><p>The <cite>.as_set([&quot;x&quot;, &quot;y&quot;])</cite> transform indicates that both <cite>x</cite> and <cite>y</cite> are treated as sets.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#bayesflow.adapters.transforms.Transform" title="bayesflow.adapters.transforms.Transform"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transform</span></code></a>()</p></td>
+<td><p>Base class on which other transforms are based</p></td>
 </tr>
 </tbody>
 </table>
@@ -679,12 +666,6 @@ to better ensure the correct treatment of sets.</p>
 )</p>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.AsSet.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.AsSet.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.AsSet.forward">
 <span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/as_set.html#AsSet.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.AsSet.forward" title="Link to this definition">#</a></dt>
@@ -725,12 +706,6 @@ to better ensure the correct treatment of time series data.</p>
 )</p>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.AsTimeSeries.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.AsTimeSeries.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.AsTimeSeries.forward">
 <span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/as_time_series.html#AsTimeSeries.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.AsTimeSeries.forward" title="Link to this definition">#</a></dt>
@@ -796,17 +771,6 @@ shape (2, 2, 3) array:
 </dl>
 <p>It is recommended to precede this transform with a <a class="reference internal" href="#bayesflow.adapters.transforms.ToArray" title="bayesflow.adapters.transforms.ToArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">bayesflow.adapters.transforms.ToArray</span></code></a> transform.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.Broadcast.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.Broadcast.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.Broadcast.extra_repr">
-<span class="sig-name descname"><span class="pre">extra_repr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.Broadcast.extra_repr" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.Broadcast.forward">
 <span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/broadcast.html#Broadcast.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.Broadcast.forward" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -853,12 +817,6 @@ variables “x” and “y”. We can then use concatonate in the following way<
 <p>)</p>
 </dd>
 </dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.Concatenate.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.Concatenate.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.Concatenate.extra_repr">
 <span class="sig-name descname"><span class="pre">extra_repr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/concatenate.html#Concatenate.extra_repr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.Concatenate.extra_repr" title="Link to this definition">#</a></dt>
@@ -935,12 +893,6 @@ adapter = (</p>
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.Constrain.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.Constrain.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.Constrain.forward">
 <span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/constrain.html#Constrain.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.Constrain.forward" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -967,12 +919,6 @@ adapter = (</p>
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.adapters.transforms.</span></span><span class="sig-name descname"><span class="pre">ConvertDType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_dtype</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/convert_dtype.html#ConvertDType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.ConvertDType" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#bayesflow.adapters.transforms.ElementwiseTransform" title="bayesflow.adapters.transforms.elementwise_transform.ElementwiseTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElementwiseTransform</span></code></a></p>
 <p>Default transform used to convert all floats from float64 to float32 to be in line with keras framework.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.ConvertDType.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.ConvertDType.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.ConvertDType.forward">
 <span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/convert_dtype.html#ConvertDType.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.ConvertDType.forward" title="Link to this definition">#</a></dt>
@@ -1017,12 +963,6 @@ adapter = (</p>
 <span class="go">    {&#39;a&#39;: [1, 2, 3, 4]}</span>
 </pre></div>
 </div>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.Drop.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.Drop.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.Drop.extra_repr">
 <span class="sig-name descname"><span class="pre">extra_repr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/drop.html#Drop.extra_repr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.Drop.extra_repr" title="Link to this definition">#</a></dt>
@@ -1116,12 +1056,6 @@ shape (2, 3) array:
 </div></blockquote>
 <p>It is recommended to precede this transform with a <a class="reference internal" href="#bayesflow.adapters.transforms.ToArray" title="bayesflow.adapters.transforms.ToArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">bayesflow.adapters.transforms.ToArray</span></code></a> transform.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.ExpandDims.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.ExpandDims.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.ExpandDims.forward">
 <span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/expand_dims.html#ExpandDims.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.ExpandDims.forward" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -1149,12 +1083,6 @@ shape (2, 3) array:
 <dd><p>Bases: <a class="reference internal" href="#bayesflow.adapters.transforms.Transform" title="bayesflow.adapters.transforms.transform.Transform"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transform</span></code></a></p>
 <p>Implements a transform that applies a different transform on a subset of the data. Used by other transforms and
 base adapter class.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.FilterTransform.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.FilterTransform.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.FilterTransform.extra_repr">
 <span class="sig-name descname"><span class="pre">extra_repr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/filter_transform.html#FilterTransform.extra_repr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.FilterTransform.extra_repr" title="Link to this definition">#</a></dt>
@@ -1216,12 +1144,6 @@ We are interested only in theta and x, to keep only theta and x we should use th
 &gt;&gt;&gt; keeper.forward(dat)
 {‘b’: [[1, 2], [3, 4]], ‘c’: [[5, 6, 7, 8]]}</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.Keep.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.Keep.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.Keep.extra_repr">
 <span class="sig-name descname"><span class="pre">extra_repr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/keep.html#Keep.extra_repr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.Keep.extra_repr" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -1257,12 +1179,6 @@ We are interested only in theta and x, to keep only theta and x we should use th
 This most likely means you will have to pass the scope that the forward and inverse functions are contained in
 to the <cite>custom_objects</cite> argument of the <cite>deserialize</cite> function when deserializing this class.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.LambdaTransform.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.LambdaTransform.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.LambdaTransform.forward">
 <span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/lambda_transform.html#LambdaTransform.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.LambdaTransform.forward" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -1291,17 +1207,6 @@ to the <cite>custom_objects</cite> argument of the <cite>deserialize</cite> func
 <p>Implements a transform that applies a set of elementwise transforms
 to a subset of the data as given by a mapping.</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.MapTransform.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.MapTransform.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.MapTransform.extra_repr">
-<span class="sig-name descname"><span class="pre">extra_repr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.MapTransform.extra_repr" title="Link to this definition">#</a></dt>
-<dd></dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.MapTransform.forward">
 <span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">strict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/map_transform.html#MapTransform.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.MapTransform.forward" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -1328,12 +1233,6 @@ to a subset of the data as given by a mapping.</p>
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bayesflow.adapters.transforms.</span></span><span class="sig-name descname"><span class="pre">OneHot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_classes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/one_hot.html#OneHot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.OneHot" title="Link to this definition">#</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#bayesflow.adapters.transforms.ElementwiseTransform" title="bayesflow.adapters.transforms.elementwise_transform.ElementwiseTransform"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElementwiseTransform</span></code></a></p>
 <p>Changes data to be one-hot encoded.</p>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.OneHot.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.OneHot.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.OneHot.forward">
 <span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/one_hot.html#OneHot.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.OneHot.forward" title="Link to this definition">#</a></dt>
@@ -1379,12 +1278,6 @@ approximator. This transform can only rename one variable at a time.</p>
 </dd>
 </dl>
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.Rename.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.Rename.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.Rename.extra_repr">
 <span class="sig-name descname"><span class="pre">extra_repr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/rename.html#Rename.extra_repr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.Rename.extra_repr" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -1427,12 +1320,6 @@ axis: integer representing a specific axis along which standardization should ta
 </div></blockquote>
 <p>momentum: float in (0,1) specifying the momentum during training</p>
 <dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.Standardize.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.Standardize.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
-<dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.Standardize.forward">
 <span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'training'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/standardize.html#Standardize.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.Standardize.forward" title="Link to this definition">#</a></dt>
 <dd></dd></dl>
@@ -1473,12 +1360,6 @@ This ensures all data is in a format suitable for training.</p>
 <span class="go">        [3, 4]])</span>
 </pre></div>
 </div>
-<dl class="py method">
-<dt class="sig sig-object py" id="bayesflow.adapters.transforms.ToArray.__call__">
-<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#bayesflow.adapters.transforms.ToArray.__call__" title="Link to this definition">#</a></dt>
-<dd><p>Call self as a function.</p>
-</dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="bayesflow.adapters.transforms.ToArray.forward">
 <span class="sig-name descname"><span class="pre">forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">any</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="reference internal" href="../_modules/bayesflow/adapters/transforms/to_array.html#ToArray.forward"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bayesflow.adapters.transforms.ToArray.forward" title="Link to this definition">#</a></dt>
@@ -1587,7 +1468,6 @@ This ensures all data is in a format suitable for training.</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsSet"><code class="docutils literal notranslate"><span class="pre">AsSet</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsSet.__call__"><code class="docutils literal notranslate"><span class="pre">AsSet.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsSet.forward"><code class="docutils literal notranslate"><span class="pre">AsSet.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsSet.from_config"><code class="docutils literal notranslate"><span class="pre">AsSet.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsSet.get_config"><code class="docutils literal notranslate"><span class="pre">AsSet.get_config()</span></code></a></li>
@@ -1595,7 +1475,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsTimeSeries"><code class="docutils literal notranslate"><span class="pre">AsTimeSeries</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsTimeSeries.__call__"><code class="docutils literal notranslate"><span class="pre">AsTimeSeries.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsTimeSeries.forward"><code class="docutils literal notranslate"><span class="pre">AsTimeSeries.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsTimeSeries.from_config"><code class="docutils literal notranslate"><span class="pre">AsTimeSeries.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.AsTimeSeries.get_config"><code class="docutils literal notranslate"><span class="pre">AsTimeSeries.get_config()</span></code></a></li>
@@ -1603,8 +1482,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Broadcast"><code class="docutils literal notranslate"><span class="pre">Broadcast</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Broadcast.__call__"><code class="docutils literal notranslate"><span class="pre">Broadcast.__call__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Broadcast.extra_repr"><code class="docutils literal notranslate"><span class="pre">Broadcast.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Broadcast.forward"><code class="docutils literal notranslate"><span class="pre">Broadcast.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Broadcast.from_config"><code class="docutils literal notranslate"><span class="pre">Broadcast.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Broadcast.get_config"><code class="docutils literal notranslate"><span class="pre">Broadcast.get_config()</span></code></a></li>
@@ -1612,7 +1489,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Concatenate"><code class="docutils literal notranslate"><span class="pre">Concatenate</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Concatenate.__call__"><code class="docutils literal notranslate"><span class="pre">Concatenate.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Concatenate.extra_repr"><code class="docutils literal notranslate"><span class="pre">Concatenate.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Concatenate.forward"><code class="docutils literal notranslate"><span class="pre">Concatenate.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Concatenate.from_config"><code class="docutils literal notranslate"><span class="pre">Concatenate.from_config()</span></code></a></li>
@@ -1621,7 +1497,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Constrain"><code class="docutils literal notranslate"><span class="pre">Constrain</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Constrain.__call__"><code class="docutils literal notranslate"><span class="pre">Constrain.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Constrain.forward"><code class="docutils literal notranslate"><span class="pre">Constrain.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Constrain.from_config"><code class="docutils literal notranslate"><span class="pre">Constrain.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Constrain.get_config"><code class="docutils literal notranslate"><span class="pre">Constrain.get_config()</span></code></a></li>
@@ -1629,7 +1504,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ConvertDType"><code class="docutils literal notranslate"><span class="pre">ConvertDType</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ConvertDType.__call__"><code class="docutils literal notranslate"><span class="pre">ConvertDType.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ConvertDType.forward"><code class="docutils literal notranslate"><span class="pre">ConvertDType.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ConvertDType.from_config"><code class="docutils literal notranslate"><span class="pre">ConvertDType.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ConvertDType.get_config"><code class="docutils literal notranslate"><span class="pre">ConvertDType.get_config()</span></code></a></li>
@@ -1637,7 +1511,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Drop"><code class="docutils literal notranslate"><span class="pre">Drop</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Drop.__call__"><code class="docutils literal notranslate"><span class="pre">Drop.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Drop.extra_repr"><code class="docutils literal notranslate"><span class="pre">Drop.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Drop.forward"><code class="docutils literal notranslate"><span class="pre">Drop.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Drop.from_config"><code class="docutils literal notranslate"><span class="pre">Drop.from_config()</span></code></a></li>
@@ -1654,7 +1527,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ExpandDims"><code class="docutils literal notranslate"><span class="pre">ExpandDims</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ExpandDims.__call__"><code class="docutils literal notranslate"><span class="pre">ExpandDims.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ExpandDims.forward"><code class="docutils literal notranslate"><span class="pre">ExpandDims.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ExpandDims.from_config"><code class="docutils literal notranslate"><span class="pre">ExpandDims.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ExpandDims.get_config"><code class="docutils literal notranslate"><span class="pre">ExpandDims.get_config()</span></code></a></li>
@@ -1662,7 +1534,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.FilterTransform"><code class="docutils literal notranslate"><span class="pre">FilterTransform</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.FilterTransform.__call__"><code class="docutils literal notranslate"><span class="pre">FilterTransform.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.FilterTransform.extra_repr"><code class="docutils literal notranslate"><span class="pre">FilterTransform.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.FilterTransform.forward"><code class="docutils literal notranslate"><span class="pre">FilterTransform.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.FilterTransform.from_config"><code class="docutils literal notranslate"><span class="pre">FilterTransform.from_config()</span></code></a></li>
@@ -1671,7 +1542,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Keep"><code class="docutils literal notranslate"><span class="pre">Keep</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Keep.__call__"><code class="docutils literal notranslate"><span class="pre">Keep.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Keep.extra_repr"><code class="docutils literal notranslate"><span class="pre">Keep.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Keep.forward"><code class="docutils literal notranslate"><span class="pre">Keep.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Keep.from_config"><code class="docutils literal notranslate"><span class="pre">Keep.from_config()</span></code></a></li>
@@ -1680,7 +1550,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.LambdaTransform"><code class="docutils literal notranslate"><span class="pre">LambdaTransform</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.LambdaTransform.__call__"><code class="docutils literal notranslate"><span class="pre">LambdaTransform.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.LambdaTransform.forward"><code class="docutils literal notranslate"><span class="pre">LambdaTransform.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.LambdaTransform.from_config"><code class="docutils literal notranslate"><span class="pre">LambdaTransform.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.LambdaTransform.get_config"><code class="docutils literal notranslate"><span class="pre">LambdaTransform.get_config()</span></code></a></li>
@@ -1688,8 +1557,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.MapTransform"><code class="docutils literal notranslate"><span class="pre">MapTransform</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.MapTransform.__call__"><code class="docutils literal notranslate"><span class="pre">MapTransform.__call__()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.MapTransform.extra_repr"><code class="docutils literal notranslate"><span class="pre">MapTransform.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.MapTransform.forward"><code class="docutils literal notranslate"><span class="pre">MapTransform.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.MapTransform.from_config"><code class="docutils literal notranslate"><span class="pre">MapTransform.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.MapTransform.get_config"><code class="docutils literal notranslate"><span class="pre">MapTransform.get_config()</span></code></a></li>
@@ -1697,7 +1564,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.OneHot"><code class="docutils literal notranslate"><span class="pre">OneHot</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.OneHot.__call__"><code class="docutils literal notranslate"><span class="pre">OneHot.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.OneHot.forward"><code class="docutils literal notranslate"><span class="pre">OneHot.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.OneHot.from_config"><code class="docutils literal notranslate"><span class="pre">OneHot.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.OneHot.get_config"><code class="docutils literal notranslate"><span class="pre">OneHot.get_config()</span></code></a></li>
@@ -1705,7 +1571,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Rename"><code class="docutils literal notranslate"><span class="pre">Rename</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Rename.__call__"><code class="docutils literal notranslate"><span class="pre">Rename.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Rename.extra_repr"><code class="docutils literal notranslate"><span class="pre">Rename.extra_repr()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Rename.forward"><code class="docutils literal notranslate"><span class="pre">Rename.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Rename.from_config"><code class="docutils literal notranslate"><span class="pre">Rename.from_config()</span></code></a></li>
@@ -1714,7 +1579,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Standardize"><code class="docutils literal notranslate"><span class="pre">Standardize</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Standardize.__call__"><code class="docutils literal notranslate"><span class="pre">Standardize.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Standardize.forward"><code class="docutils literal notranslate"><span class="pre">Standardize.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Standardize.from_config"><code class="docutils literal notranslate"><span class="pre">Standardize.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.Standardize.get_config"><code class="docutils literal notranslate"><span class="pre">Standardize.get_config()</span></code></a></li>
@@ -1722,7 +1586,6 @@ This ensures all data is in a format suitable for training.</p>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ToArray"><code class="docutils literal notranslate"><span class="pre">ToArray</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ToArray.__call__"><code class="docutils literal notranslate"><span class="pre">ToArray.__call__()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ToArray.forward"><code class="docutils literal notranslate"><span class="pre">ToArray.forward()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ToArray.from_config"><code class="docutils literal notranslate"><span class="pre">ToArray.from_config()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesflow.adapters.transforms.ToArray.get_config"><code class="docutils literal notranslate"><span class="pre">ToArray.get_config()</span></code></a></li>

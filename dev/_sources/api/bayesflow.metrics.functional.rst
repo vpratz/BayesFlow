@@ -13,8 +13,8 @@ bayesflow.metrics.functional
 
   .. autosummary::
   
-    maximum_mean_discrepancy
     root_mean_squared_error
+    maximum_mean_discrepancy
   
   
 

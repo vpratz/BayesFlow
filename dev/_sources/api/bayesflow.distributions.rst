@@ -18,8 +18,8 @@
   .. autosummary::
   
     Distribution
-    DiagonalStudentT
     DiagonalNormal
+    DiagonalStudentT
   
   
 

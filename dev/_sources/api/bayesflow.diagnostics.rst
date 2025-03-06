@@ -13,19 +13,19 @@
 
   .. autosummary::
   
-    mmd_hypothesis_test
     z_score_contraction
-    recovery
-    pairs_posterior
-    calibration_histogram
-    loss
-    pairs_samples
-    mc_calibration
-    mc_confusion_matrix
-    calibration_error
     root_mean_squared_error
+    loss
+    pairs_posterior
+    calibration_error
     calibration_ecdf
+    calibration_histogram
     posterior_contraction
+    pairs_samples
+    recovery
+    mmd_hypothesis_test
+    mc_confusion_matrix
+    mc_calibration
   
   
 
