@@ -74,6 +74,6 @@ jobs:
         # Run slow tests on manual trigger and main. Limit to one OS and Python version.
         # Multiline if statements are weird, https://github.com/orgs/community/discussions/25641,
         # but feel free to convert it.
-        if: ${{ ((github.event_name == 'workflow_dispatch') || (github.ref == 'main')) && ((matrix.os == 'windows-latest') && (matrix.python-version == '3.11')) }}
+        if: ${{ ((github.event_name == 'workflow_dispatch') || (github.event_name == 'push' && github.ref_name == 'main') || (github.event_name == 'pull_request' && github.base_ref == 'main')) && ((matrix.os == 'windows-latest') && (matrix.python-version == '3.11')) }}
         run: |
           pytest -m "slow"
