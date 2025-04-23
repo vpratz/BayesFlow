@@ -77,19 +77,3 @@ jobs:
         if: ${{ ((github.event_name == 'workflow_dispatch') || (github.ref == 'main')) && ((matrix.os == 'windows-latest') && (matrix.python-version == '3.11')) }}
         run: |
           pytest -m "slow"
-
-      - name: Upload test results to Codecov
-        if: ${{ !cancelled() }}
-        uses: codecov/codecov-action@v4
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-
-      - name: Create Coverage Report
-        run: |
-          coverage xml
-
-      - name: Upload Coverage Reports to CodeCov
-        uses: codecov/codecov-action@v4
-        with:
-          # do not use the files attribute here, otherwise the reports are not merged correctly
-          token: ${{ secrets.CODECOV_TOKEN }}
