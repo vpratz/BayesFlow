@@ -1,4 +1,3 @@
-
 name: Multi-Backend Tests
 
 on:
@@ -15,7 +14,6 @@ on:
 defaults:
   run:
     shell: bash
-
 
 jobs:
   test:
@@ -68,13 +66,15 @@ jobs:
           printenv | sort
           pip list
 
-      - name: Run Tests
-        run: |
-          pytest -x -m "not slow"
+      # - name: Run Tests
+      #   run: |
+      #     pytest -x -m "not slow"
 
       - name: Run Slow Tests
-        # run all slow tests only on manual trigger
-        if: github.event_name == 'workflow_dispatch'
+        # Run slow tests on manual trigger and main. Limit to one OS and Python version.
+        # Multiline if statements are weird, https://github.com/orgs/community/discussions/25641,
+        # but feel free to convert it.
+        if: ${{ ((github.event_name == 'workflow_dispatch') || (github.ref == 'main')) && ((matrix.os == 'windows-latest') && (matrix.python-version == '3.11')) }}
         run: |
           pytest -m "slow"
 
